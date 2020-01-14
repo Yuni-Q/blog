@@ -1,11 +1,13 @@
 @import '../styles/variables.scss';
 @import '../styles/light-theme.scss';
 @import '../styles/dark-theme.scss';
+@import '../styles/resume.scss';
+@import '../styles/christmas.scss';
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: $light-background-color;
-  -webkit-text-size-adjust: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s, color 0.3s;
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: $light-background-color;
+	-webkit-text-size-adjust: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transition: background-color 0.3s, color 0.3s;
 }
