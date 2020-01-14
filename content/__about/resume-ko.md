@@ -158,7 +158,13 @@ React를 주로 다루고 있습니다.
 
 # Community
 
-<!-- ### Presentations -->
+<h2 class='u-link zero'>Presentation</h2>
+
+### [FRONTEND](https://speakerdeck.com/yuniq/frontend)
+
+_[2020.01.11]_
+'MASH-UP BACKEND' 세미나에서 발표한 내용입니다.
+프론트엔드를 공부하며 알게 되었던 부분들을 중심으로 HTML부터 React 이후까지 간랸한 이야기를 공유하였습니다.
 
 ### Activity
 
