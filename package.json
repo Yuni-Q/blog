@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"author": "yuniq[YunHeeLee]<lyh6425@gmail.com>",
 	"bugs": {
-		"url": "https://github.com/JaeYeopHan/gatsby-starter-bee/issues"
+		"url": "https://github.com/Yuni-Q/blog/issues"
 	},
 	"dependencies": {
 		"gatsby": "^2.2.8",
