@@ -1,91 +1,47 @@
 ---
 title: 'about'
 date: 2020-01-14 12:40:00
-lang: 'en'
+lang: 'ko'
 ---
 
-# 이윤희 (yuniq)
+<article class="l-Wrapper">
+  <div class="l-Header">
+    <h1 class="Title">
+      <span class="u-shadow">
+        YUNHEE LEE
+      </span>
+    </h1>
+  </div>
 
-저는 **\_\_** 하는 엔지니어입니다.
+<br/>
 
-1. 배움을 좋아하는
-1. 좋은 설계를 하려고 고민하는
-1. 지속 가능한 프로덕트를 개발하는데 집중하는
-1. 업무 프로세스 그리고 이를 뒷받침하는 조직 문화에 관심이 많은
-1. 자동화를 통한 생산성 향상을 하고 싶은
-1. 테스트에 관심이 많은
+웹 프론트엔드 개발자 이윤희입니다.  
+React를 주로 다루고 있습니다.
 
-## Links
+`#TypeScript` `#React` `#RxJS` `#Redux` `#Documentation` `#Architecture`
 
-<table>
-  <tbody>
-    <tr>
-      <td style='text-align: right;'>
-        <b>GitHub</b>
-      </td>
-      <td>
-        <a href='https://github.com/Yuni-Q'>https://github.com/Yuni-Q</a>
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>Blog</b>
-      </td>
-      <td>
-        <a href='https://yuni-q.github.io'>https://yuni-q.github.io</a>
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>E-mail</b>
-      </td>
-      <td>
-        lyh6425@gmail.com
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>LinkedIn</b>
-      </td>
-      <td>
-        <a href='https://www.linkedin.com/in/yuniq'>https://www.linkedin.com/in/yuniq</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+|              |                                   |
+| :----------: | --------------------------------- |
+|  **GitHub**  | https://github.com/Yuni-Q         |
+|   **Blog**   | https://yuni-q.github.io          |
+|  **E-mail**  | lyh6425@gmail.com                 |
+| **LinkedIn** | https://www.linkedin.com/in/yuniq |
 
-# Experience
+<div class="l-Header">
+  <h1 class="Title">
+    <span class="u-shadow">
+      Work Experiences
+    </span>
+  </h1>
+</div>
 
-### 우아한형제들
+## [우아한형제들](https://www.woowahan.com/)
 
-<table>
-  <tbody>
-    <tr>
-      <td style='text-align: right;'>
-        <b>period</b>
-      </td>
-      <td>
-        19.08 ~ current
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>position</b>
-      </td>
-      <td>
-        B2B 서비스팀 / Front-End Engineer
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>project</b>
-      </td>
-      <td>
-        ceo-web-design-system / ceo-selfservice-front / smartmenu-admin-front
-      </td>
-    </tr>
-  </tbody>
-</table>
+|              |                                                                       |
+| -----------: | --------------------------------------------------------------------- |
+|   **period** | 19.08 ~ Current                                                       |
+| **position** | B2B 서비스팀 / Front-End Engineer                                     |
+| **projects** | ceo-web-design-system / ceo-selfservice-front / smartmenu-admin-front |
 
 - B2B 서비스팀에서 사장님광장 서비스 프론트 개발과 CS팀에서 사용하는 메뉴 관리 어드민 프론트 개발
 
@@ -120,36 +76,13 @@ lang: 'en'
 - 시스템 관련 라우팅 분리
 - 프랜차이즈 메뉴 할인 기능 개발
 
-### [미미박스](https://m.memebox.com/)
+## [미미박스](https://m.memebox.com/)
 
-<table>
-  <tbody>
-    <tr>
-      <td style='text-align: right;'>
-        <b>period</b>
-      </td>
-      <td>
-        19.01.23 ~ 19.08.23
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>position</b>
-      </td>
-      <td>
-        프론티어 / Front-End Engineer
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>project</b>
-      </td>
-      <td>
-        React Mobile-Web & WebView / handlebaz Web, handlebaz Mobile-Web & WebView
-      </td>
-    </tr>
-  </tbody>
-</table>
+|              |                                                                            |
+| -----------: | -------------------------------------------------------------------------- |
+|   **period** | 19.01.23 ~ 19.08.23                                                        |
+| **position** | 프론티어 / Front-End Engineer                                              |
+| **projects** | React Mobile-Web & WebView / handlebaz Web, handlebaz Mobile-Web & WebView |
 
 - 화장품 e-commerce MEMEBOX 웹 프론트엔드 개발
 
@@ -178,36 +111,13 @@ lang: 'en'
 - 19.01.23 ~ 19.08.23
 - Javascript, Node, handlebaz
 
-### [SVm](https://www.pufflive.me/web/pufftv?locale=ko)
+## [SVm](https://www.pufflive.me/web/pufftv?locale=ko)
 
-<table>
-  <tbody>
-    <tr>
-      <td style='text-align: right;'>
-        <b>period</b>
-      </td>
-      <td>
-        18.06.05 ~ 19.01.18
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>position</b>
-      </td>
-      <td>
-        서버팀 / Back-End Engineer
-      </td>
-    </tr>
-    <tr>
-      <td style='text-align: right;'>
-        <b>project</b>
-      </td>
-      <td>
-        PUFF APP Backend / PUFF APP Admin
-      </td>
-    </tr>
-  </tbody>
-</table>
+|              |                                   |
+| -----------: | --------------------------------- |
+|   **period** | 18.06.05 ~ 19.01.18               |
+| **position** | 서버팀 / Back-End Engineer        |
+| **projects** | PUFF APP Backend / PUFF APP Admin |
 
 - 동영상 스트리밍 앱인 퍼프 백엔드와 어드민 개발
 
@@ -226,14 +136,20 @@ lang: 'en'
 - Swagger 없는 API Swagger 작성
 - Swagger 모듈화 및 효과적인 관리를 위한 방안 구상
 
-# Project
+<div class="l-Header">
+  <h1 class="Title">
+    <span class="u-shadow">
+      Projects
+    </span>
+  </h1>
+</div>
 
-### [study-watson](https://github.com/mash-up-kr/study-watson)
+## [Study-Watson](https://github.com/mash-up-kr/study-watson)
 
 - 효율적으로 스터디를 관리하는 가장 쉬운 방법을 제공하는 웹 서비스
 - React / Redux / Redux-saga / NEXT
 
-### [TOAST](https://github.com/Yuni-Q/TOAST) / [어드민](https://github.com/Yuni-Q/TOAST-ADMIN)
+## [TOAST](https://github.com/Yuni-Q/TOAST) / [TOAST-ADMIN](https://github.com/Yuni-Q/TOAST-ADMIN)
 
 - 토익 스피킹을 위한 녹음 연습 및 공유 앱 제작
 - Node / MySQL
@@ -250,5 +166,7 @@ lang: 'en'
 
 #### [MASH-UP](https://www.facebook.com/mashupgroup/)
 
-- 2018.03 ~
-- 디자이너와 개발자가 함께하는 동아리
+|             |                                     |
+| ----------: | ----------------------------------- |
+|      period | 18.03 ~ Current                     |
+| description | 디자이너와 개발자가 함께하는 동아리 |
