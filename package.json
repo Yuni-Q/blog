@@ -8,10 +8,10 @@
 		"url": "https://github.com/Yuni-Q/blog/issues"
 	},
 	"dependencies": {
-		"gatsby": "^2.2.8",
+		"gatsby": "^2.18.22",
 		"gatsby-image": "^2.0.34",
 		"gatsby-plugin-feed": "^2.1.0",
-		"gatsby-plugin-google-analytics": "^2.0.17",
+		"gatsby-plugin-google-analytics": "^2.1.33",
 		"gatsby-plugin-lodash": "^3.0.5",
 		"gatsby-plugin-manifest": "^2.0.24",
 		"gatsby-plugin-offline": "^2.0.25",
@@ -35,7 +35,7 @@
 		"intersection-observer": "^0.5.1",
 		"lodash": "^4.17.11",
 		"node-sass": "^4.11.0",
-		"prismjs": "^1.15.0",
+		"prismjs": "^1.19.0",
 		"react": "^16.8.1",
 		"react-disqus-comments": "^1.4.0",
 		"react-dom": "^16.8.1",
@@ -49,7 +49,7 @@
 		"typeface-noto-sans-kr": "0.0.63",
 		"typography": "^0.16.17",
 		"typography-theme-github": "^0.16.18",
-		"webpack-dev-server": "^2.9.7"
+		"webpack-dev-server": "^2.11.5"
 	},
 	"devDependencies": {
 		"date-fns": "^1.30.1",
