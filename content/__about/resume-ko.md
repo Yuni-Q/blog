@@ -18,7 +18,7 @@ lang: 'ko'
 웹 프론트엔드 개발자 이윤희입니다.  
 React를 주로 다루고 있습니다.
 
-`#TypeScript` `#React` `#RxJS` `#Redux` `#Documentation` `#Architecture`
+`#javaScript` `#typeScript` `#react` `#redux` `#redux-saga` `#webpack` `#babel` `#next` `#node` `#express` `#styled-components`
 
 |              |                                   |
 | :----------: | --------------------------------- |
