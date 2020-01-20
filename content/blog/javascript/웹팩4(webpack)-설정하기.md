@@ -8,66 +8,81 @@ draft: false
 - 서버 사이드 템플릿 시대를 지나 단일 페이지 애플리케이션(Single Page Application, SPA) 개발이 점차 인기를 얻으면서 자바스크립트의 코드량이 과거에 비해 기하급수적으로 증가하게 되었습니다. 많게는 수천, 수만 줄이나 하는 자바스크립트 코드에서 특정 코드를 찾아 수정하기란 쉽지 않은 일입니다. 그래서, 개발 초기 단계에서 API 기능과 UI 컴포넌트에 맞게 자바스크립트 코드를 분리하게 되었습니다. 하지만, 분리해 놓은 여러개의 자바스크립트 파일들을 한 개씩 따로 불러온다면 웹 페이지 로딩시 속도 저하 문제가 발생할 수 있습니다. 그렇기 때문에 웹팩을 사용하여 수 많은 자바스크립트 파일들을 하나의 js 파일로 번들링하는 작업이 필요하게 되었습니다.
 - 웹팩은 파일을 하나로 합치기 위해 사용 합니다. 파일을 합쳐야 하는 이유는 http 요청이 비효율적이기 때문입니다.
 - 웹페이지는 수 많은 구성요소로 이루어져 있습니다. 기본적인 html, js, css 파일 외에도, 웹폰트, 이미지, json 데이터 등등 수 많은 파일들을 받아와야 합니다. http2에서는 하나의 커넥션에 동시에 여러 파일들을 요청할 수 있습니다. 하지만 아직 보편화되어있지 않기 때문에 현재 주로 사용하는 http/1.1에서는 커넥션 하나를 열어 하나씩 요청을 보내야합니다. 하나의 요청이 끝나야 다음 요청을 보낼 수 있기 때문에 요청이 많을수록 비효율적입니다.
+- 웹팩을 쓰는 이유는 모듈 시스템을 효율적으로 사용하기 위해 사용 합니다.
 
 ## 간단한 예제
 
 ```javascript
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const htmlList = ['add', 'book', 'edit', 'index', 'login', 'profile'];
-
-const htmlPlugins = htmlList.map(function(htmlName) {
-	return new HtmlWebpackPlugin({
-		filename: `${htmlName}.html`,
-		template: `./src/${htmlName}.html`,
-		hash: true,
-		chunks: [`${htmlName}`],
-	});
-});
+// const Myplugin = require("./myplugin");
 
 module.exports = {
+	mode: 'development',
 	entry: {
-		add: './src/ts/add.ts',
-		book: './src/ts/book.ts',
-		edit: './src/ts/edit.ts',
-		index: './src/ts/index.ts',
-		login: './src/ts/login.ts',
-		profile: './src/ts/profile.ts',
-	},
-	module: {
-		rules: [
-			{
-				test: /\.tsx?$/,
-				use: 'ts-loader',
-				exclude: /node_modules/,
-			},
-			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
-			},
-		],
-	},
-	resolve: {
-		extensions: ['.tsx', '.ts', '.js'],
+		main: './src/app.js',
 	},
 	output: {
 		filename: '[name].js',
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve('./dist'),
 	},
-	plugins: [].concat(htmlPlugins),
-	devServer: {
-		historyApiFallback: {
-			rewrites: [
-				{ from: /\/add/, to: '/add.html' },
-				{ from: /\/book/, to: '/book.html' },
-				{ from: /\/edit/, to: '/edit.html' },
-				{ from: /\/index/, to: '/index.html' },
-				{ from: /\/login/, to: '/login.html' },
-				{ from: /\/profile/, to: '/profile.html' },
-			],
-		},
+	module: {
+		rules: [
+			// {
+			// test: /\.js$/, // .js 확장자로 끝나는 모든 파일
+			// use: [path.resolve("./myloader.js")] // 방금 만든 로더를 적용한다
+			// },
+
+			{
+				test: /\.css$/,
+				use: [
+					process.env.NODE_ENV === 'production'
+						? MiniCssExtractPlugin.loader // 프로덕션 환경
+						: 'style-loader', // 개발 환경
+					'css-loader',
+				],
+			},
+			{
+				test: /\.(png|gif|jpg|svg)$/,
+				loader: 'url-loader',
+				options: {
+					publicPath: './dist/', // prefix를 아웃풋 경로로 지정
+					name: '[name].[ext]?[hash]', // 파일명 형식
+					limit: 200000, // 2kb
+				},
+			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader', // 바벨 로더를 추가한다
+			},
+		],
 	},
+	plugins: [
+		// new Myplugin(),
+		new webpack.BannerPlugin({
+			banner: () => `빌드 날짜: ${new Date().toLocaleString()}`,
+		}),
+		// string을 보낼 때는 JSON.stringfy로 감싸서 한다.
+		new webpack.DefinePlugin({}),
+		new HtmlWebpackPlugin({
+			template: './src/index.html',
+			templateParameters: {
+				env: process.env.NODE_ENV === 'development' ? '(개발용)' : '',
+			},
+			hash: true, // 정적 파일을 불러올때 쿼리문자열에 웹팩 해쉬값을 추가한다
+		}),
+		new CleanWebpackPlugin(),
+		// development에서는 불필요해서 사용하지 않는다.
+		// loader도 있어서 loader에서 사용해도 된다.
+		// ...(process.env.NODE_ENV === "production"
+		//   ? [new MiniCssExtractPlugin({ filename: `[name].css?[hash]` })]
+		//   : [])
+	],
 };
 ```
 
@@ -99,10 +114,16 @@ module.exports = {
 ## loader
 
 - 보통 웹팩을 사용하면 babel을 주로 같이 사용합니다. ES2015 이상의 문법들은 IE같은 구형 브라우저랑 호환시키기 위함인데요. 또는 jsx같은 react 문법을 컴파일하려고 하는 목적도 있습니다.
+- style-loader는 읽은 css를 적용합니다.
+- 로더는 뒤에서부터 로딩 합니다.
+- 커스텀 로더는 함수로 만듭니다.
+- url-loader는 내부적으로 file-loader를 사용하며 일정 크기 이상을 js 안에 base64로 포함한다.
 
 ## plugin
 
 - 플러그인은 약간 부가적인 기능입니다. 다양한 플러그인들이 나와있는데 이를 사용하면 효과적으로 번들링을 할 수 있습니다. 예를 들면 압축을 한다거나, 핫리로딩을 한다거나, 파일을 복사하는 등의 부수적인 작업을 할 수 있습니다.
+- 커스텀 플러그인은 클래스로 만듭니다.
+- DefinePlugin 사용 시 process.env.NODE_ENV는 웹팩에 mode로 들어 갑니다. 하지만 process.env는 빈 객체로 존재합니다.
 
 ## optimization
 
