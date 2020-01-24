@@ -5,6 +5,8 @@ category: javascript
 draft: false
 ---
 
+- 자바스크립트로 arrayList 구현하기
+
 ```javascript
 class ArrayList {
 	size = 0;
