@@ -64,7 +64,7 @@ class ArrayList {
 				const done = cursor >= this.size;
 				const value = !done ? this.elementData[cursor++] : undefined;
 				return {
-					done: done,
+					done: cursor === this.size;,
 					value: value,
 				};
 			},
