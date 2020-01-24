@@ -5,6 +5,8 @@ category: frontend
 draft: false
 ---
 
+## 모바일과 PC 웹브라우저의 viewport 차이
+
 - meta viewport 태그는 애플이 아이폰, 아이패드 등 자사의 모바일 브라우저의 뷰포트(viewport) 크기 조절을 위해 만들었습니다.
 - viewport란 우리말로 보임참, 즉 화면 상의 표시 영역을 뜻합니다.
 - 화면의 보여지는 영역과 viewport는 차이가 있는데, viewport는 그림을 그리기 위해 만든 하나의 영역을 만들었다고 가정하면, 보여지는 영역인 Visible Area와 차이가 있을 수 있습니다.
