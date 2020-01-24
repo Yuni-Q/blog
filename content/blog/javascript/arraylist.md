@@ -100,3 +100,8 @@ while (it.hasNext()) {
 console.log('iterator end');
 console.log(numbers.toString());
 ```
+
+## 참조
+
+- [데이터 스트럭쳐란 무엇인가?](https://www.youtube.com/watch?v=OH7prOt3vQA)
+- [codingeverybody/data_structure_java](https://github.com/codingeverybody/data_structure_java/tree/master/java/src/list/arraylist/implementation)
