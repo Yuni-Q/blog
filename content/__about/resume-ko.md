@@ -18,7 +18,7 @@ lang: 'ko'
 웹 프론트엔드 개발자 이윤희입니다.  
 React를 주로 다루고 있습니다.
 
-`#javaScript` `#typeScript` `#react` `#redux` `#redux-saga` `#webpack` `#babel` `#next` `#node` `#express` `#styled-components`
+`javaScript` `typeScript` `react` `redux` `redux-saga` `webpack` `babel` `next` `node` `express` `styled-components`
 
 |              |                                   |
 | :----------: | --------------------------------- |
@@ -49,7 +49,7 @@ React를 주로 다루고 있습니다.
 
 - 사장님 광장 개편을 위한 디자인 시스템 구축
 - 19.10 ~ current
-- TypeScript, React, Mobx, react-router
+- `TypeScript`, `React`, `Mobx`, `react-router`
 - 프로젝트 초기 React Application Architecture 설계
   - 새로운 프로젝트 개발 환경 및 구조 연구하고 설계 참여
 - 다른 프로젝트에서 사용 될 공통 디자인 시스템 컴포넌트 작성
@@ -58,7 +58,7 @@ React를 주로 다루고 있습니다.
 
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스 웹 서비스
 - 19.08 ~ current
-- TypeScript, React, Redux, redux-saga, react-router, jest
+- `TypeScript`, `React`, `Redux`, `redux-saga`, `react-router`, `Jest`
 - 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
 - 메뉴 타입 설정 기능 개발
 - 메뉴구성 / 메뉴 설정 기능 추가 개발
@@ -68,7 +68,7 @@ React를 주로 다루고 있습니다.
 
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스의 회사 내부 관리 웹 서비스
 - 19.08 ~ current
-- TypeScript, React, Redux, redux-saga, react-router, Antd
+- `TypeScript`, `React`, `Redux`, `redux-saga`, `react-router`, `Antd`
 
 - 메뉴 매핑 정보 체크 가능 개발
 - 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
@@ -90,7 +90,7 @@ React를 주로 다루고 있습니다.
 
 - React로 구성 된 모바일 웹과 웹뷰 서비스
 - 19.01.23 ~ 19.08.23
-- TypeScript, React, Redux, redux-thunk, react-router, Apollo
+- `TypeScript`, `React`, `Redux`, `redux-thunk`, `react-router`, `Apollo`
 - 기존 handlebaz로 구성되어 있던 모바일 웹 일부를 리액트로 리뉴얼
 - 퍼블리싱 없이 기획자와 디자이너의 기획서와 제플린을 통한 HTML, CSS, JS 작업(HTML, CSS 리드)
 - 기존 탭 리뉴얼 및 새로운 프로모션 탭 제작(홈, 베스트, 브랜드, 트랜드NOW, 이벤트, 브랜드 상세 페이지, 에러 페이지)
@@ -109,7 +109,7 @@ React를 주로 다루고 있습니다.
 
 - handlebaz로 되어 있는 프로젝트에 정적 데이터 수정( PC Web, Mobile Web )
 - 19.01.23 ~ 19.08.23
-- Javascript, Node, handlebaz
+- `Javascript`, `Node`, `handlebaz`
 
 ## [SVm](https://www.pufflive.me/web/pufftv?locale=ko)
 
@@ -122,6 +122,10 @@ React를 주로 다루고 있습니다.
 - 동영상 스트리밍 앱인 퍼프 백엔드와 어드민 개발
 
 #### PUFF APP Backend / PUFF APP Admin
+
+- PUFF APP을 위한 API 및 ADMIN 개발
+- 18.06.05 ~ 19.01.18
+- `Ruby on Rails`, `Javascript`, `Node`, `MySQL`, `AWS`
 
 - Ruby on Rails monolithic 구성 된 프로젝트 유지 보수
 - 앱 내 게임 관련 데이터 Redis에서 수집해 데이터 제공
@@ -147,14 +151,13 @@ React를 주로 다루고 있습니다.
 ## [Study-Watson](https://github.com/mash-up-kr/study-watson)
 
 - 효율적으로 스터디를 관리하는 가장 쉬운 방법을 제공하는 웹 서비스
-- React / Redux / Redux-saga / NEXT
+- `React`, `Redux`, `redux-saga`, `NEXT`
 
-## [TOAST](https://github.com/Yuni-Q/TOAST) / [TOAST-ADMIN](https://github.com/Yuni-Q/TOAST-ADMIN)
+## [Ahobsu-Node-Backend](https://github.com/Yuni-Q/Ahobsu-Node-Backend)
 
-- 토익 스피킹을 위한 녹음 연습 및 공유 앱 제작
-- Node / MySQL
-- 책, 파트, 질문들을 관리하기 위한 관리 페이지 제작
-- React / Redux / Redux-saga / NEXT
+- 매일 하루에 한 번 받을 질문에 답하면서 자신을 기록해보세요.
+- 단순히 기록에서 그치지 않고 당신이 기록한 일주일은 한 장의 꿈을 담은 카드로 완성됩니다.
+- `Node`, `Express`, `JEST`, `JWT`, `Sequelize`, `MySQL`, `EC2`, `S3`
 
 # Community
 
