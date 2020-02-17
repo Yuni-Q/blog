@@ -4,13 +4,16 @@ export const ChristmasTheme = ({ children }) => {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
+		const COUNT = 700;
+		const canvasNode = canvasRef.current;
+		const ctx = canvasNode.getContext('2d');
+		let timeId;
+
 		const snow = () => {
+			cancelAnimationFrame(timeId);
+			let i = 0;
 			let snowflakes = [];
 			let snowflake;
-			const COUNT = 700;
-			const canvasNode = canvasRef.current;
-			const ctx = canvasNode.getContext('2d');
-			let i = 0;
 			const width = document.documentElement.offsetWidth;
 			const height = document.documentElement.offsetHeight;
 			canvasNode.width = width;
@@ -61,7 +64,7 @@ export const ChristmasTheme = ({ children }) => {
 					}
 				}
 
-				requestAnimationFrame(update);
+				timeId = requestAnimationFrame(update);
 			};
 			init();
 		};
