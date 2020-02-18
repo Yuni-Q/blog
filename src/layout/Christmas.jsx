@@ -25,13 +25,13 @@ export const ChristmasTheme = ({ children }) => {
 					y: Math.random() * -height,
 					vy: 1 + Math.random() * 3,
 					vx: 0.5 - Math.random(),
-					r: 1 + Math.random() * 2,
+					r: 1 + Math.random() * 6,
 					opacity: 0.5 + Math.random() * 0.5,
 				};
 			};
 
 			const init = () => {
-				ctx.fillStyle = '#FFF';
+				ctx.fillStyle = '#FFCAEF';
 
 				for (i = 0; i < COUNT; i++) {
 					snowflake = reset();
@@ -53,17 +53,41 @@ export const ChristmasTheme = ({ children }) => {
 					snowflake.y += snowflake.vy;
 					snowflake.x += snowflake.vx;
 
+					// 벚꽃을 내리고 싶었던 싶었던 yuniq의 꿈
+					// const kappa = 0.5522848;
+					// const x = snowflake.x;
+					// const y = snowflake.y;
+					// const w = 10;
+					// const h = 20;
+					// const ox = (w / 2) * kappa; // control point offset horizontal
+					// const oy = (h / 2) * kappa; // control point offset vertical
+					// const xe = x + w; // x-end
+					// const ye = y + h; // y-end
+					// const xm = x + w / 2; // x-middle
+					// const ym = y + h / 2; // y-middle
+					// ctx.globalAlpha = snowflake.opacity;
+					// ctx.beginPath();
+					// ctx.moveTo(x, ym);
+					// ctx.rotate(1);
+					// ctx.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
+					// ctx.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
+					// ctx.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
+					// ctx.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
+					// ctx.closePath();
+					// ctx.fill();
+					// ctx.stroke();
+
 					ctx.globalAlpha = snowflake.opacity;
 					ctx.beginPath();
 					ctx.arc(snowflake.x, snowflake.y, snowflake.r, 0, Math.PI * 2, false);
 					ctx.closePath();
 					ctx.fill();
+					ctx.stroke();
 
 					if (snowflake.y > height) {
-						snowflake = reset();
+						snowflakes[i] = reset();
 					}
 				}
-
 				timeId = requestAnimationFrame(update);
 			};
 			init();
