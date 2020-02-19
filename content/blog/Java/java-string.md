@@ -1,7 +1,7 @@
 ---
 title: Java String
 date: 2020-02-05 09:02:29
-category: Java
+category: java
 draft: false
 ---
 
