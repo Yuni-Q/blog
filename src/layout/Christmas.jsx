@@ -1,9 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 
-export const ChristmasTheme = ({ children }) => {
+export const ChristmasTheme = ({ checked, children }) => {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
+		if (!checked) {
+			return;
+		}
 		const COUNT = 700;
 		const canvasNode = canvasRef.current;
 		const ctx = canvasNode.getContext('2d');
@@ -117,11 +120,11 @@ export const ChristmasTheme = ({ children }) => {
 		return () => {
 			window.removeEventListener('optimizedResize', snow);
 		};
-	}, [canvasRef]);
+	}, [canvasRef, checked]);
 
 	return (
 		<>
-			<canvas className="snowflakes" ref={canvasRef} />
+			{!!checked && <canvas className="snowflakes" ref={canvasRef} />}
 			{children}
 		</>
 	);
