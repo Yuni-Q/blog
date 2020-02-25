@@ -1,7 +1,7 @@
 ---
 title: typescript 헬터 타입
 date: 2020-01-27 16:01:61
-category: javascript
+category: typescript
 draft: false
 ---
 
