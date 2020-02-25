@@ -1,7 +1,7 @@
 ---
-title: TypeScript 3.0~3.6의 변경점
+title: TypeScript 버전에 따른 변경점
 date: 2020-02-01 13:02:90
-category: javascript
+category: typescript
 draft: false
 ---
 
@@ -82,3 +82,30 @@ draft: false
 - DOM 업데이트
 - 더 이상 병합되지 않는 JSDoc 설명
 - 키워드가 이스케이프 시퀀스를 포함 할 수 없음
+
+## [3.8](https://github.com/yeonjuan/Typescript-Handbook-ko/blob/master/release-notes/typescript-3.8.md)
+
+- 타입-전용 Imports 와 Exports (Type-Only Imports and Exports)
+  - 타입 전용 import가 생긴다면 type과 함수를 구분할 수 있을 것 같아 매우 좋아 보입니다.
+  - 이 기능은 대부분의 사용자에겐 생각할 필요가 없을 수도 있지만 --isolatedModules, TypeScript의 transpileModule API, 또는 Babel에서 문제가 발생하면 이 기능과 관련이 있을 수 있습니다.
+    - 하지만 두 기능에 모두 사용하고 있지 않아서 크게 와 닫지는 않습니다.
+  - import type은 타입 표기와 선언에 사용될 선언만 import 합니다. 이는 항상 완전히 제거되므로, 런타임에 남아있는 것은 없습니다. 마찬가지로, export type은 타입 문맥에 사용할 export만 제공하며, 이 또한 TypeScript의 출력물에서 제거됩니다.
+  - import type과 함께, TypeScript 3.8은 런타임 시 사용되지 않는 import에서 발생하는 작업을 제어하기 위해 새로운 컴파일러 플래그를 추가합니다: importsNotUsedAsValues. 이 플래그는 3 가지 다른 값을 가집니다:
+    - remove: 이는 imports를 제거하는 현재 동작이며, 계속 기본값으로 작동할 것이며, 기존 동작을 바꾸는 변화가 아닙니다.
+    - preserve: 이는 사용되지 않는 값들을 모두 보존합니다. 이로 인해 imports/side-effects가 보존될 수 있습니다.
+    - error: 이는 모든 (preserve option 처럼) 모든 imports를 보존하지만, import 값이 타입으로만 사용될 경우 오류를 발생시킵니다. 이는 실수로 값을 import하지 않지만 사이드 이팩트 import를 명시적으로 만들고 싶을 때 유용합니다.
+- ECMAScript 비공개 필드 (ECMAScript Private Fields)
+  - TypeScript 3.8 은 ECMAScript의 stage-3 클래스 필드 제안의 비공개 필드를 지원합니다.
+    - 비공개 필드는 # 문자로 시작합니다. 때때로 이를 비공개 이름(private names) 이라고 부릅니다.
+    - 모든 비공개 필드 이름은 이를 포함한 클래스 범위에서 유일합니다.
+    - public 또는 private 같은 TypeScript 접근 지정자는 비공개 필드로 사용될 수 없습니다.
+    - JS 사용자로부터도 비공개 필드는 이를 포함한 클래스 밖에서 접근하거나 탐지할 수 없습니다! 때때로 이를 강한 비공개(hard privacy) 라고 부릅니다.
+    - "강한" 비공개와 별도로, 비공개 필드의 또 다른 장점은 유일하다는 것입니다. 예를 들어, 일반적인 프로퍼티 선언은 하위클래스에서 덮어쓰기 쉽습니다. 비공개 필드에서는, 포함하고 있는 클래스에서 각각의 필드 이름이 유일하기 때문에 이에 대해 걱정하지 않아도 됩니다. 알아 두면 좋은 또 다른 점은 다른 타입으로 비공개 필드에 접근하면 TypeError 를 발생한다는 것입니다. 마자막으로, 모든 일반 .js 파일 사용자들의 경우, 비공개 필드는 항상 할당되기 전에 선언되어야 합니다. JavaScript는 항상 사용자들에게 선언되지 않은 프로퍼티에 접근을 허용했지만, TypeScript는 항상 클래스 프로퍼티 선언을 요구했습니다. 비공개 필드는, .js 또는 .ts 파일에서 동작하는지 상관없이 항상 선언이 필요합니다.
+    - 프로퍼티에서, TypeScript의 private 지정자는 완전히 지워집니다 - 이는 런타임에서는 완전히 일반 프로퍼티처럼 동작하며 이것이 private 지정자로 선언되었다고 알릴 방법이 없습니다. private 키워드를 사용할 때, 비공개는 오직 컴파일-타임/디자인-타임에만 시행되며, JavaScript 사용자에게는 전적으로 의도-기반입니다. 이 같은 종류의 "약한 비공개(soft privacy)"는 사용자가 API에 접근할 수 없는 상태에서 일시적으로 작업을 하는 데 도움이 되며, 어떤 런타임에서도 동작합니다. 반면에, ECMAScript의 # 비공개는 완벽하게 클래스 밖에서 접근 불가능합니다. 이런 강한 비공개(hard privacy)는 아무도 내부를 사용할 수 없도록 엄격하게 보장하는데 유용합니다. 만약 라이브러리 작성자일 경우, 비공개 필드를 제거하거나 이름을 바꾸는 것이 급격한 변화를 초래서는 안됩니다. 언급했듯이, 다른 장점은 ECMAScript의 # 비공개가 진짜 비공개이기 때문에 서브클래싱을 쉽게 할 수 있다는 것입니다. ECMAScript # 비공개 필드를 사용하면, 어떤 서브 클래스도 필드 네이밍 충돌에 대해 걱정할 필요가 없습니다. TypeScript의 private프로퍼티 선언에서는, 사용자는 여전히 상위 클래스에 선언된 프로퍼티를 짓밟지 않도록 주의해야 합니다. 한 가지 더 생각해봐야 할 것은 코드가 실행되기를 의도하는 곳입니다. 현재 TypeScript는 이 기능을 ECMAScript 2015 (ES6) 이상 버전을 대상으로 하지 않으면 지원할 수 없습니다. 이는 하위 레벨 구현이 비공개를 강제하기 위해 WeakMap을 사용하는데, WeakMap은 메모리 누수를 잃으키지 않도록 폴리필될 수 없기 때문입니다. 반면, TypeScript의 private-선언 프로퍼티는 모든 대상에서 동작합니다- ECMAScript3에서도! 마지막 고려 사항은 속도 일수 있습니다: private 프로퍼티는 다른 어떤 프로퍼티와 다르지 않기 때문에, 어떤 런타임을 대상으로 하단 다른 프로퍼티와 마찬가지로 접근 속도가 빠를 수 있습니다. 반면에, # 비공개 필드는 WeakMap을 이용해 다운 레벨 되기 때문에 사용 속도가 느려질 수 있습니다. 어떤 런타임은 # 비공개 필드 구현을 최적화 하고, 더 빠른 WeakMap을 구현하고 싶을 수 있지만, 모든 런타임에서 그렇지 않을 수 있습니다.
+- export \* as ns 구문 (export \* as ns Syntax)
+- 최상위-레벨 await (Top-Level await)
+  - 유의할 점이 있습니다: 최상위-레벨 await은 module의 최상위 레벨에서만 동작하며, 파일은 TypeScript가 import나 export를 찾을 때에만 모듈로 간주됩니다. 일부 기본적인 경우에 export {}와 같은 보일러 플레이트를 작성하여 이를 확인할 필요가 있습니다.이러한 경우가 예상되는 모든 환경에서 최상위 레벨 await은 동작하지 않을 수 있습니다. 현재, target 컴파일러 옵션이 es2017 이상이고, module이 esnext 또는 system인 경우에만 최상위 레벨 await을 사용할 수 있습니다. 몇몇 환경과 번들러내에서의 지원은 제한적으로 작동하거나 실험적 지원을 활성화해야 할 수도 있습니다.
+- es2020용 target과 module (es2020 for target and module)
+- JSDoc 프로퍼티 지정자 (JSDoc Property Modifiers)
+- 리눅스에서 더 나은 디렉터리 감시와 watchOptions
+- "빠르고 느슨한" 증분 검사
