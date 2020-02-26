@@ -45,6 +45,13 @@ React를 주로 다루고 있습니다.
 
 - B2B 서비스팀에서 사장님광장 서비스 프론트 개발과 CS팀에서 사용하는 메뉴 관리 어드민 프론트 개발
 
+#### ceo-web-self-service
+
+- 사장님 광장 내의 셀프 서비스 개발
+- 20.01 ~ current
+- `TypeScript`, `React`, `Mobx`, `react-router`
+- 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
+
 #### ceo-web-design-system
 
 - 사장님 광장 개편을 위한 디자인 시스템 구축
@@ -52,7 +59,7 @@ React를 주로 다루고 있습니다.
 - `TypeScript`, `React`, `Mobx`, `react-router`
 - 프로젝트 초기 React Application Architecture 설계
   - 새로운 프로젝트 개발 환경 및 구조 연구하고 설계 참여
-- 다른 프로젝트에서 사용 될 공통 디자인 시스템 컴포넌트 작성
+- 다른 프로젝트에서 사용 될 공통 디자인 시스템 컴포넌트 작성 및 수정
 
 #### ceo-selfservice-front
 
