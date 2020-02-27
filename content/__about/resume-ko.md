@@ -64,17 +64,18 @@ React를 주로 다루고 있습니다.
 #### ceo-selfservice-front
 
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스 웹 서비스
-- 19.08 ~ current
+- 19.08 ~ 20.01
 - `TypeScript`, `React`, `Redux`, `redux-saga`, `react-router`, `Jest`
 - 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
 - 메뉴 타입 설정 기능 개발
 - 메뉴구성 / 메뉴 설정 기능 추가 개발
 - 옵션 최대/최소값 기능 개발
+- ceo-web-self-service로 병합
 
 #### smartmenu-admin-front
 
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스의 회사 내부 관리 웹 서비스
-- 19.08 ~ current
+- 19.08 ~ 20.01
 - `TypeScript`, `React`, `Redux`, `redux-saga`, `react-router`, `Antd`
 
 - 메뉴 매핑 정보 체크 가능 개발
@@ -164,7 +165,7 @@ React를 주로 다루고 있습니다.
 
 - 매일 하루에 한 번 받을 질문에 답하면서 자신을 기록해보세요.
 - 단순히 기록에서 그치지 않고 당신이 기록한 일주일은 한 장의 꿈을 담은 카드로 완성됩니다.
-- `Node`, `Express`, `JEST`, `JWT`, `Sequelize`, `MySQL`, `EC2`, `S3`
+- `Node`, `Express`, `typescript`, `swagger`, `JEST`, `JWT`, `Sequelize`, `MySQL`, `EC2`, `NGINX`, `S3`
 
 # Community
 
