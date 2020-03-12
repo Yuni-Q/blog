@@ -51,6 +51,8 @@ React를 주로 다루고 있습니다.
 - 20.01 ~ current
 - `TypeScript`, `React`, `Mobx`, `react-router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
+- 혜택 시스템 개발
+- OLS 개발
 
 #### ceo-web-design-system
 
