@@ -179,3 +179,7 @@ export default db;
 ## process 사용하기
 
 - @types/node 설치
+
+## 같이 볼 만한 글
+
+- [Monolithic 서버사이드 타입스크립트 세팅 01](https://changhoi.github.io/posts/etc/serverside-typescript-setting-01/)
