@@ -14,6 +14,14 @@ function getTheme(checked) {
 	return checked ? THEME.DARK : THEME.LIGHT;
 }
 
+function canUseDOM() {
+	return !!(
+		typeof window !== 'undefined' &&
+		window.document &&
+		window.document.createElement
+	);
+}
+
 function toggleTheme(theme) {
 	switch (theme) {
 		case THEME.LIGHT: {
@@ -32,16 +40,19 @@ function toggleTheme(theme) {
 export const Layout = ({ location, title, children }) => {
 	const rootPath = `${__PATH_PREFIX__}/`;
 
-	let localStorageTheme = localStorage.getItem('theme');
-	if (!localStorageTheme) {
-		localStorage.setItem('theme', 'false');
-		localStorageTheme = 'false';
-	}
-
-	let localStorageSnow = localStorage.getItem('snow');
-	if (!localStorageSnow) {
-		localStorage.setItem('snow', 'false');
-		localStorageSnow = 'false';
+	let localStorageTheme = false;
+	let localStorageSnow = false;
+	if (!!canUseDOM()) {
+		localStorageTheme = localStorage.getItem('theme');
+		if (!localStorageTheme) {
+			localStorage.setItem('theme', 'false');
+			localStorageTheme = 'false';
+		}
+		localStorageSnow = localStorage.getItem('snow');
+		if (!localStorageSnow) {
+			localStorage.setItem('snow', 'false');
+			localStorageSnow = 'false';
+		}
 	}
 
 	const [checked, setChecked] = useState(
