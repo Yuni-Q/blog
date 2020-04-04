@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-
-import { Top } from '../components/top';
-import { Header } from '../components/header';
-import { ThemeSwitch } from '../components/theme-switch';
-import { SnowSwitch } from '../components/snow-switch';
+import React, { useEffect, useState } from 'react';
 import { Footer } from '../components/footer';
+import { Header } from '../components/header';
+import { SnowSwitch } from '../components/snow-switch';
+import { ThemeSwitch } from '../components/theme-switch';
+import { Top } from '../components/top';
+import { THEME } from '../constants';
+import * as Dom from '../utils/dom';
 import { rhythm } from '../utils/typography';
 import { ChristmasTheme } from './Christmas';
-import * as Dom from '../utils/dom';
-import { THEME } from '../constants';
-
 import './index.scss';
 
 function getTheme(checked) {
@@ -33,18 +31,43 @@ function toggleTheme(theme) {
 
 export const Layout = ({ location, title, children }) => {
 	const rootPath = `${__PATH_PREFIX__}/`;
-	const [checked, setChecked] = useState(true);
-	const [checkedSnow, setCheckedSnow] = useState(false);
+
+	let localStorageTheme = localStorage.getItem('theme');
+	if (!localStorageTheme) {
+		localStorage.setItem('theme', 'false');
+		localStorageTheme = 'false';
+	}
+
+	let localStorageSnow = localStorage.getItem('snow');
+	if (!localStorageSnow) {
+		localStorage.setItem('snow', 'false');
+		localStorageSnow = 'false';
+	}
+
+	const [checked, setChecked] = useState(
+		localStorageTheme === 'true' ? true : false
+	);
+	const [checkedSnow, setCheckedSnow] = useState(
+		localStorageSnow === 'true' ? true : false
+	);
+
+	useEffect(() => {
+		handleChange(checked);
+		setCheckedSnow(checkedSnow);
+	}, []);
 
 	const handleChange = checked => {
 		const theme = getTheme(checked);
-
 		setChecked(checked);
+		localStorage.setItem('theme', `${checked}`);
 		toggleTheme(theme);
 	};
+
 	const handleChangeSnow = checked => {
 		setCheckedSnow(checked);
+		localStorage.setItem('snow', `${checked}`);
 	};
+
 	return (
 		<>
 			<ChristmasTheme checked={checkedSnow}>

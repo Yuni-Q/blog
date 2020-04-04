@@ -1,14 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Switch from 'react-switch';
-
 import './index.scss';
 
 export const ThemeSwitch = ({ checked, handleChange }) => {
-	useEffect(() => {
-		// const checked = Dom.hasClassOfBody(THEME.DARK);
-
-		handleChange(true);
-	}, []);
 	return (
 		<div className="switch-container">
 			<label htmlFor="normal-switch">
