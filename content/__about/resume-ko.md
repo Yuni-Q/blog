@@ -158,16 +158,25 @@ React를 주로 다루고 있습니다.
   </h1>
 </div>
 
-## [Study-Watson](https://github.com/mash-up-kr/study-watson)
+## [study-watson](https://github.com/mash-up-kr/study-watson)
 
-- 효율적으로 스터디를 관리하는 가장 쉬운 방법을 제공하는 웹 서비스
+- 효율적으로 스터디를 관리하는 가장 쉬운 방법을 제공하는 웹 서비스 입니다.
 - `React`, `Redux`, `redux-saga`, `NEXT`
+- [시연 영상](https://www.youtube.com/watch?v=nKn6scRu-hk)
 
-## [Ahobsu-Node-Backend](https://github.com/Yuni-Q/Ahobsu-Node-Backend)
+## [Ahobsu-Node-Backend](https://github.com/Yuni-Q/ahobsu-node-backend)
 
-- 매일 하루에 한 번 받을 질문에 답하면서 자신을 기록해보세요.
-- 단순히 기록에서 그치지 않고 당신이 기록한 일주일은 한 장의 꿈을 담은 카드로 완성됩니다.
-- `Node`, `Express`, `typescript`, `swagger`, `JEST`, `JWT`, `Sequelize`, `MySQL`, `EC2`, `NGINX`, `S3`
+- 매일 하루에 한 번 받을 질문에 답하면서 자신을 기록하면 단순히 기록에서 그치지 않고 당신이 기록한 일주일은 한 장의 꿈을 담은 카드로 완성해 주는 iOS 앱 입니다.
+- `Node`, `Express`, `typescript`, `swagger`, `JEST`, `JWT`, `Sequelize`, `MySQL`, `EC2`, `S3`
+- [시연 영상](https://www.youtube.com/watch?v=m91rLvwMmXo)
+- [앱 다운로드](https://apps.apple.com/kr/app/moti/id1496912171)
+
+## 알아봐요 동물의 숲
+
+- 모아봐요 동물의 숲에 관한 최신 정보들을 쉽게 확인해 볼 수 있는 앱 입니다.
+  - 물고기, 곤충, 마이디자인, 주민, KK노래 미리듣기
+- `Node`, `Express`, `typescript`,`Sequelize`, `MySQL`, `EC2`,
+- [앱 다운로드](https://apps.apple.com/app/id1506382486?fbclid=IwAR22h2oP6yMONya-WEG-ghBANa6KnbJLMx9knSnhVS8cXWuFiY7SA-EeP-0)
 
 # Community
 
@@ -187,5 +196,5 @@ _[2020.01.11]_
 
 |             |                                     |
 | ----------: | ----------------------------------- |
-|      period | 18.03 ~ Current                     |
+|      period | 18.03 ~ 20.04                       |
 | description | 디자이너와 개발자가 함께하는 동아리 |
