@@ -4,7 +4,7 @@ date: 2020-01-14 12:40:00
 lang: 'en'
 ---
 
-# 이윤희 (yuniq)
+# 이윤희 (yuni-q)
 
 저는 **\_\_** 하는 엔지니어입니다.
 
@@ -48,7 +48,7 @@ lang: 'en'
         <b>LinkedIn</b>
       </td>
       <td>
-        <a href='https://www.linkedin.com/in/yuniq'>https://www.linkedin.com/in/yuniq</a>
+        <a href='https://www.linkedin.com/in/yuni-q'>https://www.linkedin.com/in/yuni-q</a>
       </td>
     </tr>
   </tbody>

@@ -56,7 +56,7 @@ export const ChristmasTheme = ({ checked, children }) => {
 					snowflake.y += snowflake.vy;
 					snowflake.x += snowflake.vx;
 
-					// 벚꽃을 내리고 싶었던 싶었던 yuniq의 꿈
+					// 벚꽃을 내리고 싶었던 싶었던 yuni-q의 꿈
 					// const kappa = 0.5522848;
 					// const x = snowflake.x;
 					// const y = snowflake.y;

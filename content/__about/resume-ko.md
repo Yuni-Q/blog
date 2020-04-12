@@ -20,12 +20,12 @@ React를 주로 다루고 있습니다.
 
 `javaScript` `typeScript` `react` `redux` `redux-saga` `webpack` `babel` `next` `node` `express` `styled-components`
 
-|              |                                   |
-| :----------: | --------------------------------- |
-|  **GitHub**  | https://github.com/Yuni-Q         |
-|   **Blog**   | https://yuni-q.github.io          |
-|  **E-mail**  | lyh6425@gmail.com                 |
-| **LinkedIn** | https://www.linkedin.com/in/yuniq |
+|              |                                    |
+| :----------: | ---------------------------------- |
+|  **GitHub**  | https://github.com/Yuni-Q          |
+|   **Blog**   | https://yuni-q.github.io           |
+|  **E-mail**  | lyh6425@gmail.com                  |
+| **LinkedIn** | https://www.linkedin.com/in/yuni-q |
 
 <div class="l-Header">
   <h1 class="Title">

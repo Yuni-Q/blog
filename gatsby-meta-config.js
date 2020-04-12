@@ -1,8 +1,8 @@
 module.exports = {
-	title: `yuniq 블로그`,
-	description: `yuniq's graffiti`,
-	author: `yuniq`,
-	introduction: `yuniq's graffiti.`,
+	title: `yuni-q 블로그`,
+	description: `yuni-q's graffiti`,
+	author: `yuni-q`,
+	introduction: `yuni-q's graffiti.`,
 	siteUrl: `https://yuni-q.github.io`, // Your blog site url
 	social: {
 		twitter: ``, // Your Twitter account
@@ -13,8 +13,8 @@ module.exports = {
 	icon: `content/assets/felog.png`, // Add your favicon
 	keywords: [`blog`],
 	comment: {
-		disqusShortName: 'yuniq', // Your disqus-short-name. check disqus.com.
-		utterances: 'yuniq', // Your repository for archive comment
+		disqusShortName: 'yuni-q', // Your disqus-short-name. check disqus.com.
+		utterances: 'yuni-q', // Your repository for archive comment
 	},
 	configs: {
 		countOfInitialPost: 10, // Config your initial count of post
