@@ -31,6 +31,10 @@ export function Head({ description, lang, meta, keywords, title }) {
                 content: metaDescription,
               },
               {
+                property: `og:image`,
+                content: 'https://yuni-q.github.io/favicon.png',
+              },
+              {
                 property: `og:type`,
                 content: `website`,
               },
