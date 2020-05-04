@@ -65,3 +65,7 @@ draft: false
 ### Queue
 
 - LinkedList 에 new 연산자로 객체를 생성함으로서 사용 가능합니다.
+
+## 참고
+
+- [기술면접 준비하기](https://velog.io/@hygoogi/%EA%B8%B0%EC%88%A0%EB%A9%B4%EC%A0%91-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0)
