@@ -318,7 +318,7 @@ type T5 = Parameters<any>; // unknown[]
 type T6 = Parameters<never>; // any
 
 // T extends (...args: any) => any에서
-// never 타입을통해 에러를 막지않았기떄문에 함수가 아니라면 에러가 발생합니다.
+// never 타입을통해 에러를 막지않았기때문에 함수가 아니라면 에러가 발생합니다.
 type T7 = Parameters<string>; // Error
 type T8 = Parameters<Function>; // Error
 ```
