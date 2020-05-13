@@ -51,8 +51,7 @@ React를 주로 다루고 있습니다.
 - 20.01 ~ current
 - `TypeScript`, `React`, `Mobx`, `react-router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
-- 혜택 시스템 개발
-- OLS 개발
+- ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
 
 #### ceo-web-design-system
 
