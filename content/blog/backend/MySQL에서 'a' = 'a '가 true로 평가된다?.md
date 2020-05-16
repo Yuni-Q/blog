@@ -1,5 +1,5 @@
 ---
-title: "a"와 "a "
+title: MySQL에서 'a' = 'a '가 true로 평가된다?
 date: 2020-05-15 21:05:88
 category: backend
 draft: false
