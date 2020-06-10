@@ -51,3 +51,20 @@ div {
 ```
 
 - 부모에게 `display: flex`, 형제에겐 `flex-shrink: 0`을 주면 남은 영역을 모두 차지하고 첫번째 줄에서 ellipsis 됩니다.
+
+## flex를 이용한 ellipsis
+
+```css
+.text-ellipsis {
+	flex: 1;
+	min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+```
+
+## 버그
+
+- 숫자만 있는 경우 ellipsis가 제대로 작동하지 않았습니다.
+  - 이 경우 상위 element에 overflow: hidden을 적용하면 해결할 수 있습니다.
