@@ -7,8 +7,8 @@ lang: 'ko'
 <article class="l-Wrapper">
   <div class="l-Header">
     <h1 class="Title">
-      <span class="u-shadow">
-        YUNHEE LEE
+      <span>
+        YUNHEE LEE<small>(FRONTEND DEVELOPER)</small>
       </span>
     </h1>
   </div>
@@ -45,6 +45,12 @@ React를 주로 다루고 있습니다.
 
 - B2B 서비스팀에서 사장님광장 서비스 프론트 개발과 CS팀에서 사용하는 메뉴 관리 어드민 프론트 개발
 
+#### ceo-moon
+
+- 사장님 광장 사이트 운영 개선(비로그인 부분)
+- 20.06 ~ current
+- `Typescript`, `WoowahanJS`
+
 #### ceo-web-self-service
 
 - 사장님 광장 내의 셀프 서비스 개발
@@ -52,6 +58,7 @@ React를 주로 다루고 있습니다.
 - `TypeScript`, `React`, `Mobx`, `react-router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
 - ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
+- 기존 ceo-selfservice-front 프로젝트를 제거하고 스마트메뉴 시스템 새로 개발
 
 #### ceo-web-design-system
 
