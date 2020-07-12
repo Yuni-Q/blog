@@ -202,7 +202,17 @@ draft: false
 </html>
 ```
 
-## 5. 스타일 입히기
+## 5. 파일 실행하기
+
+- html 파일을 더블클릭해서 사용할 수도 있지만 vscode의 plugin을 사용해서 좀 더 멋지게 웹사이트를 띄워보겠습니다.
+- vscode 좌측 active bar에 있는 Extenstions 버튼을 누릅니다.
+  - ![](./images/extenstions.png)
+- Search Extendtions in Marketplace에 Live Server를 입력합니다.
+- 라이브 서버를 설치 후 우측 하단에 Go Live 버튼을 누릅니다.
+  - ![](./images/goLive.png)
+- http://127.0.0.1:5500에 index.html 파일이 실행됩니다.
+
+## 6. 스타일 입히기
 
 - style.css 파일을 만듭니다.
 - 만들 css 파일을 연결 합니다.
@@ -420,7 +430,7 @@ img {
   - id > class > tag
 - !important를 사용하면 다른 우선순위를 무시하고 가장 높은 우선순위를 가집니다.
 
-## 6. img 태그 사용하기
+## 7. img 태그 사용하기
 
 - img 대신 img 태그를 사용해 이미지를 띄웁니다.
 
@@ -435,7 +445,7 @@ img {
   - 상대 주소로 컴퓨터에 있는 이미지를 첨부할 수도 있습니다.
 - alt는 이미지가 로딩되지 않을 때 대체 텍스트를 제공합니다. 또한 스크린 로더에게 이미지에 대한 정보를 제공합니다.
 
-## 7. a 태그 사용하기
+## 8. a 태그 사용하기
 
 - a 태그를 이용해서 페이지를 이동하거나 새로 띄울 수 있습니다.
 

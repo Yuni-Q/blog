@@ -34,9 +34,8 @@ draft: false
 
 ### vscode 기능 사용하기
 
-- vscode 좌측 active bar에 있는
-  <br>
-  ![](./images/sourceControl.png) 버튼을 누릅니다.
+- vscode 좌측 active bar에 있는 Source Control 버튼을 누릅니다.
+  - ![](./images/sourceControl.png)
 - CHANGES에 있는 파일들에 +(플러스) 버튼을 눌러 STAGED CHANGES로 옮깁니다.
   - git add와 같은 행위입니다.
 - 파일 상단에 Message라는 곳에 메시지를 입력후 command + enter 키를 누릅니다.
