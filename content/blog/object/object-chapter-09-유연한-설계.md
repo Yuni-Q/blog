@@ -2,7 +2,7 @@
 title: object chapter 09 유연한 설계
 date: 2020-04-25 10:04:20
 category: object
-draft: true
+draft: false
 ---
 
 - 이번 장에서는 유연하고 재사용 가능할 설계를 만들기 위해 적용할 수 있는 다양한 의존성 관리 기법들을 `원칙`이라는 관점에서 정리 합니다.

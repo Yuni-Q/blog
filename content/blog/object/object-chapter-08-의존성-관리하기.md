@@ -2,7 +2,7 @@
 title: object chapter 08 의존성 관리하기
 date: 2020-04-20 12:04:67
 category: object
-draft: true
+draft: false
 ---
 
 - 잘 설계된 객체지향 애플리케이션은 `작고 응집도 높은 객체`들로 구성됩니다.
