@@ -2,7 +2,7 @@
 title: Terminer Setting
 date: 2020-05-25 22:05:88
 category: develop
-draft: true
+draft: false
 ---
 
 ## zsh
