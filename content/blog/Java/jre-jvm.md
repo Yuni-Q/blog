@@ -2,7 +2,7 @@
 title: JRE JVM
 date: 2020-02-06 09:02:27
 category: java
-draft: true
+draft: false
 ---
 
 - JVM은 자바 가상머신(Java Virtual Machine)의 약자입니다.
