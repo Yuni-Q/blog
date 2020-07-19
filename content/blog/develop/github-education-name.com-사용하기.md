@@ -2,7 +2,7 @@
 title: github education name.com 사용하기
 date: 2020-03-22 22:03:06
 category: develop
-draft: true
+draft: false
 ---
 
 - 도메인 구입
@@ -15,9 +15,7 @@ draft: true
 ```bash
 mkdir ~/www.moti.company.ssl/
 cd ~/www.moti.company.ssl/
-
 openssl genrsa -out ~/www.moti.company.ssl/www.moti.company.key 2048
-
 openssl req -new -sha256 -key ~/www.moti.company.ssl/www.moti.company.key -out ~/www.moti.company.ssl/www.moti.company.csr
 ```
 
