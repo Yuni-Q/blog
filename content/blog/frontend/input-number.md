@@ -2,8 +2,10 @@
 title: input number
 date: 2020-02-08 15:02:74
 category: frontend
-draft: true
+draft: false
 ---
+
+- +, -, ., e은 input type이 number이어도 입력이 가능하기 때문에 onKeyDown에서 keyCode를 확인해서 입력을 막습니다.
 
 ```tsx
 import * as React from 'react';
