@@ -2,7 +2,7 @@
 title: close event
 date: 2020-06-29 14:06:45
 category: frontend
-draft: true
+draft: false
 ---
 
 ```javascript
