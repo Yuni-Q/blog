@@ -2,7 +2,7 @@
 title: repository와 DAO
 date: 2020-02-24 18:02:29
 category: develop
-draft: true
+draft: false
 ---
 
 - Repository는 하나의 도메인에 관련 된 것들을 컨트롤 합니다.
