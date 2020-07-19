@@ -2,7 +2,7 @@
 title: JavaScript Class
 date: 2020-02-03 12:02:89
 category: javascript
-draft: true
+draft: false
 ---
 
 - ES2015(ES6)에서 자바스크립트에 클래스(Class)가 도입되었습니다.
