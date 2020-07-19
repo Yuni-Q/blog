@@ -2,7 +2,7 @@
 title: background
 date: 2020-01-29 09:01:79
 category: frontend
-draft: false
+draft: true
 ---
 
 - background CSS 단축 속성은 색상, 이미지, 원점, 크기, 반복 등 여러 배경 스타일을 한 번에 지정합니다.

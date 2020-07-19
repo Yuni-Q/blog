@@ -2,7 +2,7 @@
 title: input number
 date: 2020-02-08 15:02:74
 category: frontend
-draft: false
+draft: true
 ---
 
 ```tsx

@@ -2,7 +2,7 @@
 title: clean code 10장 클래스
 date: 2020-03-27 18:03:91
 category: clean code
-draft: false
+draft: true
 ---
 
 ## 클래스 체계

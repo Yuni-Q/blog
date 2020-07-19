@@ -2,7 +2,7 @@
 title: 8장 OCP 개방 폐쇄 원칙
 date: 2020-05-04 12:05:10
 category: clean architecture
-draft: false
+draft: true
 ---
 
 ## OCP: 개방-패쇄 원칙 (Open-Closed Principle)

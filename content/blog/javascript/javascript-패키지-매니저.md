@@ -2,7 +2,7 @@
 title: javascript 패키지 매니저
 date: 2020-01-22 09:01:15
 category: javascript
-draft: false
+draft: true
 ---
 
 ## npm

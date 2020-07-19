@@ -2,7 +2,7 @@
 title: 폴링 vs SEE vs 웹소켓
 date: 2020-05-25 23:05:15
 category: develop
-draft: false
+draft: true
 ---
 
 - 폴링 : 주기적으로 서버에게 요청

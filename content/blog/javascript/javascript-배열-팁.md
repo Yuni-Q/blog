@@ -2,7 +2,7 @@
 title: JavaScript 배열 팁
 date: 2020-04-29 00:04:64
 category: javascript
-draft: false
+draft: true
 ---
 
 ## 1. 중복 값 삭제

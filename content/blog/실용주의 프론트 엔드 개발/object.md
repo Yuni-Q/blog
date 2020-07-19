@@ -2,7 +2,7 @@
 title: Object
 date: 2020-05-03 19:05:35
 category: 실용주의 프론트 엔드 개발
-draft: false
+draft: true
 ---
 
 ## mapValues

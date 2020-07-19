@@ -2,7 +2,7 @@
 title: pointer events
 date: 2020-02-13 10:02:58
 category: frontend
-draft: false
+draft: true
 ---
 
 - 스크롤 되는 영역에 그라데이션을 넣어야 했다.

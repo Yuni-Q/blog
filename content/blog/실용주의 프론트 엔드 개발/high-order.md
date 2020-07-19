@@ -2,7 +2,7 @@
 title: High Order
 date: 2020-05-03 18:05:56
 category: 실용주의 프론트 엔드 개발
-draft: false
+draft: true
 ---
 
 ## curry

@@ -2,7 +2,7 @@
 title: FOUR 선택된 주제들
 date: 2020-07-03 00:07:89
 category: 읽기 좋은 코드가 좋은 코드다
-draft: false
+draft: true
 ---
 
 ## 14 테스트와 가독성

@@ -2,7 +2,7 @@
 title: WEB FRONTEND
 date: 2020-01-24 23:01:46
 category: frontend
-draft: false
+draft: true
 ---
 
 - HTML부터 React까지의 제가 알고 있는 웹 프론트엔드 흐름에 대해 정리를 해보고자 합니다.

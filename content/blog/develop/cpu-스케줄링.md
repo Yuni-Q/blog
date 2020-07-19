@@ -2,7 +2,7 @@
 title: CPU 스케줄링
 date: 2020-04-16 10:04:32
 category: develop
-draft: false
+draft: true
 ---
 
 - 스케줄러란 CPU와 같은 자원을 우선순위에 기반하여 프로세스에 할당하는 방법을 말합니다.

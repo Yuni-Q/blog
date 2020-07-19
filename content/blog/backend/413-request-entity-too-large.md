@@ -2,7 +2,7 @@
 title: 413 Request Entity Too Large
 date: 2020-02-13 01:02:27
 category: backend
-draft: false
+draft: true
 ---
 
 - 이미지를 업로드 하는 경우에 로컬에서는 문제가 없었으나 호스팅한 서버에서는 `413 Request Entity Too Large`를 반환했습니다.

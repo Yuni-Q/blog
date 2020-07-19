@@ -2,7 +2,7 @@
 title: GoF 디자인 패턴 정리
 date: 2020-07-06 17:07:01
 category: GoF 디자인 패턴
-draft: false
+draft: true
 ---
 
 ## 생성패턴

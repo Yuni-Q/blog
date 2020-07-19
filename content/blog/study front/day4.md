@@ -2,7 +2,7 @@
 title: day4
 date: 2020-07-14 05:07:36
 category: study front
-draft: false
+draft: true
 ---
 
 ## 자바스크립트 사용하기

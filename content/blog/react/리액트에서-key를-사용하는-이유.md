@@ -2,7 +2,7 @@
 title: 리액트에서 key를 사용하는 이유
 date: 2020-01-18 17:01:14
 category: react
-draft: false
+draft: true
 ---
 
 - 리액트는 배열을 렌더링 할 때 값을 통하여 업데이트 성능을 최적화 합니다.

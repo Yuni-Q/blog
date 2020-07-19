@@ -2,7 +2,7 @@
 title: Map, Filter, Reduce를 사용하는 이유
 date: 2020-04-10 18:04:96
 category: javascript
-draft: false
+draft: true
 ---
 
 - 바로 현재 값에 접근할 수 있습니다.(array[i]와 같은 형식으로 접근하려면 매우 불편하죠.)

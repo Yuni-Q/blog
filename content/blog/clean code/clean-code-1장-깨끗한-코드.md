@@ -2,7 +2,7 @@
 title: clean code 1장 깨끗한 코드
 date: 2020-03-03 09:03:55
 category: clean code
-draft: false
+draft: true
 ---
 
 ## 코드가 존재하리라

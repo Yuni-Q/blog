@@ -2,7 +2,7 @@
 title: nginx + https 적용하기
 date: 2020-07-10 12:07:90
 category: develop
-draft: false
+draft: true
 ---
 
 ## nginx 설치

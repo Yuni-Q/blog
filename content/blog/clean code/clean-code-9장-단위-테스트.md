@@ -2,7 +2,7 @@
 title: clean code 9장 단위 테스트
 date: 2020-03-27 17:03:41
 category: clean code
-draft: false
+draft: true
 ---
 
 ## Intro

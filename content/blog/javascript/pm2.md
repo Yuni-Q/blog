@@ -2,7 +2,7 @@
 title: PM2
 date: 2020-05-10 09:05:47
 category: javascript
-draft: false
+draft: true
 ---
 
 - PM2는 Node.js 프로세스 관리 도구입니다.

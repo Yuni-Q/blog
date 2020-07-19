@@ -2,7 +2,7 @@
 title: SQL and NoSQL
 date: 2020-05-13 09:05:41
 category: backend
-draft: false
+draft: true
 ---
 
 ## SQL

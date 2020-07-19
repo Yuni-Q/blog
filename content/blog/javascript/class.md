@@ -2,7 +2,7 @@
 title: Class
 date: 2020-05-27 09:05:09
 category: javascript
-draft: false
+draft: true
 ---
 
 ## 자바스크립트에서 클래스란?

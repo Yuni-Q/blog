@@ -2,7 +2,7 @@
 title: Promise 정리
 date: 2020-05-03 17:05:50
 category: 실용주의 프론트 엔드 개발
-draft: false
+draft: true
 ---
 
 ## Promise 상태

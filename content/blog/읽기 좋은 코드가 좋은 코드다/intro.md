@@ -2,7 +2,7 @@
 title: Intro
 date: 2020-07-01 14:07:33
 category: 읽기 좋은 코드가 좋은 코드다
-draft: false
+draft: true
 ---
 
 ## 1 코드는 이해하기 쉬워야 한다

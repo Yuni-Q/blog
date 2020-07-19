@@ -2,7 +2,7 @@
 title: 7장 SRP 단일 책임 원칙
 date: 2020-05-04 12:05:16
 category: clean architecture
-draft: false
+draft: true
 ---
 
 ## SRP: 단일 책임 원칙 (Single Responsibility Principle)

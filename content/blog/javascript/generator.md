@@ -2,7 +2,7 @@
 title: generator
 date: 2020-04-12 00:04:09
 category: javascript
-draft: false
+draft: true
 ---
 
 - ES6는 제너레이터(Generator) 또는 Generator 함수 형태에서 함수와 Iterator를 다루는 방법을 새롭게 소개했습니다. 제너레이터는 함수를 중간에서 멈추고, 다시 멈췄던 부분부터 실행할 수 있게 합니다. 요약하면, Generator는 함수의 형태를 띄지만, Iterator처럼 동작합니다.

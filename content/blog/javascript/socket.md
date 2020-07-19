@@ -2,7 +2,7 @@
 title: Socket
 date: 2020-05-12 08:05:49
 category: javascript
-draft: false
+draft: true
 ---
 
 ## socket.to(소켓 아이디).emit(이벤트, 데이터)

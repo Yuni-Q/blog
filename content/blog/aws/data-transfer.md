@@ -2,7 +2,7 @@
 title: data transfer
 date: 2020-05-07 23:05:09
 category: aws
-draft: false
+draft: true
 ---
 
 - AWS EC2를 이용해 사이드 프로젝트를 진행하는 중 \$273.11 달러의 요금 청구서가 날아왔습니다.

@@ -2,7 +2,7 @@
 title: clean code 6장 객체와 자료 구조
 date: 2020-03-07 00:03:06
 category: clean code
-draft: false
+draft: true
 ---
 
 ## Intro

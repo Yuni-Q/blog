@@ -2,7 +2,7 @@
 title: github education name.com 사용하기
 date: 2020-03-22 22:03:06
 category: develop
-draft: false
+draft: true
 ---
 
 - 도메인 구입

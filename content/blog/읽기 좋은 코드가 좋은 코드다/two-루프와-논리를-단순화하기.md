@@ -2,7 +2,7 @@
 title: TWO 루프와 논리를 단순화하기
 date: 2020-07-02 23:07:14
 category: 읽기 좋은 코드가 좋은 코드다
-draft: false
+draft: true
 ---
 
 ## 7 읽기 쉽게 흐름제어 만들기

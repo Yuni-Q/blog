@@ -2,7 +2,7 @@
 title: Terminer 명령어
 date: 2020-05-25 22:05:53
 category: develop
-draft: false
+draft: true
 ---
 
 - pwd : 현재 위치

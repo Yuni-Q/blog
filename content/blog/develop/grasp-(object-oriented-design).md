@@ -2,7 +2,7 @@
 title: GRASP (object-oriented design)
 date: 2020-04-12 11:04:47
 category: develop
-draft: false
+draft: true
 ---
 
 ## What is GRASP?

@@ -2,7 +2,7 @@
 title: Promise
 date: 2020-04-12 01:04:34
 category: javascript
-draft: false
+draft: true
 ---
 
 ## Promise 이해하기

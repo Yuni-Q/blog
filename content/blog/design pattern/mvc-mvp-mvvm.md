@@ -2,7 +2,7 @@
 title: MVC MVP MVVM
 date: 2020-03-18 17:03:41
 category: design pattern
-draft: false
+draft: true
 ---
 
 ## Model

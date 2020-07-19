@@ -2,7 +2,7 @@
 title: clean code 3장 함수
 date: 2020-03-03 13:03:70
 category: clean code
-draft: false
+draft: true
 ---
 
 ## Intro

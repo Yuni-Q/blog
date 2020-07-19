@@ -2,7 +2,7 @@
 title: Primitive Type
 date: 2020-04-10 17:04:24
 category: javascript
-draft: false
+draft: true
 ---
 
 - 자바스크립트의 모든 것이 Object(객체)인 것은 아닙니다.

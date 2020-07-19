@@ -2,7 +2,7 @@
 title: == vs ===
 date: 2020-04-10 18:04:63
 category: javascript
-draft: false
+draft: true
 ---
 
 - 자바스크립트에는 눈으로 보기엔 비슷하지만 사실 매우 다른 동등 비교연산자 두개가 있습니다.

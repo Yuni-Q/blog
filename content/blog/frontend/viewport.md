@@ -2,7 +2,7 @@
 title: viewport
 date: 2020-01-23 09:01:64
 category: frontend
-draft: false
+draft: true
 ---
 
 ## 모바일과 PC 웹브라우저의 viewport 차이

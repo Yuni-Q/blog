@@ -2,7 +2,7 @@
 title: CURL
 date: 2020-05-25 23:05:97
 category: develop
-draft: false
+draft: true
 ---
 
 - REST API를 사용할 때는 cURL 옵션 중 몇 가지를 꼭 알아두는 것이 좋습니다.

@@ -2,7 +2,7 @@
 title: clean code 15장 16장
 date: 2020-04-02 14:04:08
 category: clean code
-draft: false
+draft: true
 ---
 
 ## 15장 JUnit 들여다보기

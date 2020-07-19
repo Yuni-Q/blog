@@ -2,7 +2,7 @@
 title: clean code 12장 창발성
 date: 2020-03-27 23:03:07
 category: clean code
-draft: false
+draft: true
 ---
 
 ## Intro

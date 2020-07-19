@@ -2,7 +2,7 @@
 title: Array
 date: 2020-05-03 19:05:14
 category: 실용주의 프론트 엔드 개발
-draft: false
+draft: true
 ---
 
 ## Array#reduce

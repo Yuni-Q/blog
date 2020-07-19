@@ -2,7 +2,7 @@
 title: clean code 17장 냄새와 휴리스틱
 date: 2020-04-02 14:04:86
 category: clean code
-draft: false
+draft: true
 ---
 
 ## 주석

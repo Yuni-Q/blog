@@ -2,7 +2,7 @@
 title: position 속성과 Offset
 date: 2020-01-28 03:01:85
 category: frontend
-draft: false
+draft: true
 ---
 
 ## position

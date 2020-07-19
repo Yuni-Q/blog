@@ -2,7 +2,7 @@
 title: 9장 LSP 리스코프 치환 원칙
 date: 2020-05-04 12:05:10
 category: clean architecture
-draft: false
+draft: true
 ---
 
 ## LSP: 리스코프 치환 원칙 (Liskov Substitution Principle)

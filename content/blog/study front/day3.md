@@ -2,7 +2,7 @@
 title: day3
 date: 2020-07-12 13:07:30
 category: study front
-draft: false
+draft: true
 ---
 
 ## 이미지 가운데 정렬

@@ -2,7 +2,7 @@
 title: kotlin is and as
 date: 2020-02-07 09:02:84
 category: kotlin
-draft: false
+draft: true
 ---
 
 ```kotlin

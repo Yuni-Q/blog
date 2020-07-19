@@ -2,7 +2,7 @@
 title: clean code 5장 형식 맞추기
 date: 2020-03-06 09:03:83
 category: clean code
-draft: false
+draft: true
 ---
 
 ## Intro

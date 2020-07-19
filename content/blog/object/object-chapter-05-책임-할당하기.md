@@ -2,7 +2,7 @@
 title: object chapter 05 책임 할당하기
 date: 2020-04-07 15:04:71
 category: object
-draft: false
+draft: true
 ---
 
 - 5장에서는 2장에서 소개한 코드의 설계 과정을 한 걸음씩 따라가 보면서 객체에 책임을 할당하는 기본적인 원리를 살펴 봅니다.

@@ -2,7 +2,7 @@
 title: 영속 자료 구조(Persistent Data Structures)
 date: 2020-05-03 17:05:54
 category: 실용주의 프론트 엔드 개발
-draft: false
+draft: true
 ---
 
 ## 불변 자료 구조 - Immutable Data Structures

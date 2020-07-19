@@ -2,7 +2,7 @@
 title: OOP, AOP, FP
 date: 2020-04-16 10:04:71
 category: develop
-draft: false
+draft: true
 ---
 
 ## OOP (객체지향 프로그래밍)

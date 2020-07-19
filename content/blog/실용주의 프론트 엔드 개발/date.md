@@ -2,7 +2,7 @@
 title: Date
 date: 2020-05-03 18:05:73
 category: 실용주의 프론트 엔드 개발
-draft: false
+draft: true
 ---
 
 ## 함수형

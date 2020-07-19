@@ -2,7 +2,7 @@
 title: ONE 표면적 수준에서의 개선
 date: 2020-07-01 14:07:97
 category: 읽기 좋은 코드가 좋은 코드다
-draft: false
+draft: true
 ---
 
 ## 2 이름에 정보 담기

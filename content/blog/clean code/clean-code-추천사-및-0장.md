@@ -2,7 +2,7 @@
 title: clean code 추천사 및 0장 들어가면서
 date: 2020-03-03 09:03:97
 category: clean code
-draft: false
+draft: true
 ---
 
 ## 추천사

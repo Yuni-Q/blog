@@ -2,7 +2,7 @@
 title: javascript에서 클래스를 구현하는 방법, 상속하는 방법
 date: 2020-01-27 14:01:06
 category: javascript
-draft: false
+draft: true
 ---
 
 ## prototype을 사용하여 class를 구현하는 방법

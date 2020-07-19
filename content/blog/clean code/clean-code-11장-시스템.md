@@ -2,7 +2,7 @@
 title: clean code 11장 시스템
 date: 2020-03-27 18:03:74
 category: clean code
-draft: false
+draft: true
 ---
 
 ## Intro

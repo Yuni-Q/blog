@@ -2,7 +2,7 @@
 title: hover
 date: 2020-02-14 17:02:04
 category: frontend
-draft: false
+draft: true
 ---
 
 - 마우스를 올리면 텍스트 밑에 밑줄을 긋는다거나 배경색을 바꾸는 효과를 줄때가 있다.

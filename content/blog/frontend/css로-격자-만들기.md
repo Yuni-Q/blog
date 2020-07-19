@@ -2,7 +2,7 @@
 title: CSS로 격자 만들기
 date: 2020-03-13 13:03:70
 category: frontend
-draft: false
+draft: true
 ---
 
 ```css

@@ -2,7 +2,7 @@
 title: THREE 코드 재작성하기
 date: 2020-07-03 00:07:27
 category: 읽기 좋은 코드가 좋은 코드다
-draft: false
+draft: true
 ---
 
 ## 10 상관없는 하위문제 추출하기

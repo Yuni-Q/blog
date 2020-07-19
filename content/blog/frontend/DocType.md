@@ -2,7 +2,7 @@
 title: DocType
 date: 2020-04-29 09:04:42
 category: frontend
-draft: false
+draft: true
 ---
 
 ## XHTML이란?

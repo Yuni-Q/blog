@@ -2,7 +2,7 @@
 title: console 꾸미기
 date: 2020-07-03 16:07:80
 category: javascript
-draft: false
+draft: true
 ---
 
 ## Colors reference

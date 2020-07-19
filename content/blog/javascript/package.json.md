@@ -2,7 +2,7 @@
 title: package.json
 date: 2020-01-21 16:01:44
 category: javascript
-draft: false
+draft: true
 ---
 
 - package.json 파일을 작성할 때에는 JavaScript의 객체 리터럴이 아니라 올바른 JSON 포맷이어야 합니다.

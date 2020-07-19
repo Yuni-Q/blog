@@ -2,7 +2,7 @@
 title: clean code 4장 주석
 date: 2020-03-04 16:03:32
 category: clean code
-draft: false
+draft: true
 ---
 
 - 나쁜 코드에 주석을 달지 말아야 합니다. 새로 짜는 것이 좋습니다.

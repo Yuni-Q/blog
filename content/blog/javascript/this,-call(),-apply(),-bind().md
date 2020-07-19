@@ -2,7 +2,7 @@
 title: this, call(), apply(), bind()
 date: 2020-04-10 18:04:24
 category: javascript
-draft: false
+draft: true
 ---
 
 ## this

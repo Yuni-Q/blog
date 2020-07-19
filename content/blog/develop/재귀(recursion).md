@@ -2,7 +2,7 @@
 title: 재귀(Recursion)
 date: 2020-04-12 00:04:00
 category: develop
-draft: false
+draft: true
 ---
 
 ## 재귀의 3가지 중요한 특성

@@ -2,7 +2,7 @@
 title: function component type
 date: 2020-02-10 12:02:66
 category: react
-draft: false
+draft: true
 ---
 
 - react에서 function으로 만들어진 component에는 4가지 타입이 있었습니다.

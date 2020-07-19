@@ -2,7 +2,7 @@
 title: clean code 14장 점진적인개선
 date: 2020-04-02 14:04:66
 category: clean code
-draft: false
+draft: true
 ---
 
 - 지난 수십여 년 동안 쌓아온 경험에서 얻은 교훈이라면, 프로그래밍은 과학보다 공예(craft)에 가깝다는 사실입니다.

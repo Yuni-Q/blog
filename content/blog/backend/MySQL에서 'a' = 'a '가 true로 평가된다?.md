@@ -2,7 +2,7 @@
 title: MySQL에서 'a' = 'a '가 true로 평가된다?
 date: 2020-05-15 21:05:88
 category: backend
-draft: false
+draft: true
 ---
 
 - MySQL, PostgreSQL, SQLite, SQL Server 중 PostgreSQL 과 SQLite 만 'a'와 'a '를 다른 값으로 평가합니다.

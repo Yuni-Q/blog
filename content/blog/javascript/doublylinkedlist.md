@@ -2,7 +2,7 @@
 title: doublyLinkedList
 date: 2020-01-24 23:01:14
 category: javascript
-draft: false
+draft: true
 ---
 
 - 자바스크립트로 doublyLinkedList 구현하기

@@ -2,7 +2,7 @@
 title: 11장 DIP 의존성 역전 원칙
 date: 2020-05-04 12:05:34
 category: clean architecture
-draft: false
+draft: true
 ---
 
 ## DIP: 의존성 역전 원칙 (Dependency Inversion Principle)

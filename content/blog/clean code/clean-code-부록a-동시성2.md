@@ -2,7 +2,7 @@
 title: clean code 부록A 동시성2
 date: 2020-04-02 14:04:11
 category: clean code
-draft: false
+draft: true
 ---
 
 ## 클라이언트/서버 예제

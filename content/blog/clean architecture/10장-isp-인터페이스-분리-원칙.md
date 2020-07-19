@@ -2,7 +2,7 @@
 title: 10장 ISP 인터페이스 분리 원칙
 date: 2020-05-04 12:05:95
 category: clean architecture
-draft: false
+draft: true
 ---
 
 ## ISP: 인터페이스 분리 원칙 (Interface Segregation Principle)

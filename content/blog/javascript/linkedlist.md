@@ -2,7 +2,7 @@
 title: linkedList
 date: 2020-01-24 22:01:91
 category: javascript
-draft: false
+draft: true
 ---
 
 - 자바스크립트로 linkedList 구현하기

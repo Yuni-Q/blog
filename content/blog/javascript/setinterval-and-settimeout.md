@@ -2,7 +2,7 @@
 title: setInterval and setTimeout
 date: 2020-03-25 02:03:87
 category: javascript
-draft: false
+draft: true
 ---
 
 - setInterval(func, delay, ...args)와 setTimeout(func, delay, ...args) 2개의 메소드는 func을 delayms 이후에 주기적으로 혹은 한번 실행하도록 허용해줍니다.

@@ -2,7 +2,7 @@
 title: Sequelize
 date: 2020-05-09 11:05:70
 category: backend
-draft: false
+draft: true
 ---
 
 ## Sequelize에서 Raw Query 사용

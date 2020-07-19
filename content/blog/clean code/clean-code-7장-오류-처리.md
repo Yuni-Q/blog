@@ -2,7 +2,7 @@
 title: clean code 7장 오류 처리
 date: 2020-03-10 23:03:39
 category: clean code
-draft: false
+draft: true
 ---
 
 ## Intro

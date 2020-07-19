@@ -2,7 +2,7 @@
 title: clean code 13장 동시성
 date: 2020-03-31 17:03:71
 category: clean code
-draft: false
+draft: true
 ---
 
 # Intro
