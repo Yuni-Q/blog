@@ -2,7 +2,7 @@
 title: ellipsis
 date: 2020-04-28 09:04:01
 category: frontend
-draft: true
+draft: false
 ---
 
 ## 1줄
