@@ -2,7 +2,7 @@
 title: TypeScript 버전에 따른 변경점
 date: 2020-02-01 13:02:90
 category: typescript
-draft: true
+draft: false
 ---
 
 ## 3.0
