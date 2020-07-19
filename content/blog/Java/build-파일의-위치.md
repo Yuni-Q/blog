@@ -2,7 +2,7 @@
 title: build 파일의 위치
 date: 2020-07-15 17:07:01
 category: java
-draft: true
+draft: false
 ---
 
 - spring backend로 된 프로젝트 진행 중 누군가는 out 파일이 생기고 누군가는 생기지 않아 문제를 겪에 되었습니다.
