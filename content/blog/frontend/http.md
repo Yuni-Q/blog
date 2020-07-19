@@ -2,7 +2,7 @@
 title: http
 date: 2020-02-11 09:02:40
 category: frontend
-draft: true
+draft: false
 ---
 
 - HTTP/1은 하나의 TCP 연결에 하나의 요청만 처리하고 연결을 끊어버렸기 때문에 매 요청마다 이 번거로운 핸드쉐이크를 거쳐야 했습니다.
