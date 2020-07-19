@@ -45,25 +45,34 @@ React를 주로 다루고 있습니다.
 
 - B2B 서비스팀에서 사장님광장 서비스 프론트 개발과 CS팀에서 사용하는 메뉴 관리 어드민 프론트 개발
 
+#### super2
+
+- 20.07 ~ current
+- `Typescript`, `React`
+- 실행 환경 개선
+  - 기존 spring 실행, tsc 실행, webpack 2개 실행을 하나의 커맨드로 실행하게 변경
+- lint 적용
+
 #### ceo-moon
 
-- 사장님 광장 사이트 운영 개선(비로그인 부분)
+- 사장님 광장 사이트 운영 개선(셀프서비스 제외한 부분)
 - 20.06 ~ current
 - `Typescript`, `WoowahanJS`
 
 #### ceo-web-self-service
 
 - 사장님 광장 내의 셀프 서비스 개발
-- 20.01 ~ current
+- 20.01 ~ 20.07
 - `TypeScript`, `React`, `Mobx`, `react-router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
+- ceo-web-design-system를 활용해서 서비스 개발
 - ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
-- 기존 ceo-selfservice-front 프로젝트를 제거하고 스마트메뉴 시스템 새로 개발
+- 기존 ceo-selfservice-front 프로젝트를 제거하고 스마트메뉴 시스템 새로 개발(20.07.14 open)
 
 #### ceo-web-design-system
 
 - 사장님 광장 개편을 위한 디자인 시스템 구축
-- 19.10 ~ current
+- 19.10 ~ 20.07
 - `TypeScript`, `React`, `Mobx`, `react-router`
 - 프로젝트 초기 React Application Architecture 설계
   - 새로운 프로젝트 개발 환경 및 구조 연구하고 설계 참여
