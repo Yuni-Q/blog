@@ -2,7 +2,7 @@
 title: html edit
 date: 2020-02-21 17:02:15
 category: frontend
-draft: true
+draft: false
 ---
 
 - `document.designMode = "on"`, `document.getElementById("myP").contentEditable = true`
