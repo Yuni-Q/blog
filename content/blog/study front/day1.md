@@ -2,7 +2,7 @@
 title: day1
 date: 2020-07-08 15:07:60
 category: study front
-draft: true
+draft: false
 ---
 
 ## 1. vscode 설치

@@ -2,7 +2,7 @@
 title: day5
 date: 2020-07-14 23:07:19
 category: study front
-draft: true
+draft: false
 ---
 
 ## 캔버스를 활용한 눈알 굴리기
