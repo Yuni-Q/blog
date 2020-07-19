@@ -2,7 +2,7 @@
 title: 413 Request Entity Too Large
 date: 2020-02-13 01:02:27
 category: backend
-draft: true
+draft: false
 ---
 
 - 이미지를 업로드 하는 경우에 로컬에서는 문제가 없었으나 호스팅한 서버에서는 `413 Request Entity Too Large`를 반환했습니다.
@@ -11,8 +11,8 @@ draft: true
 
 ## 해결 방안
 
-- nginx 서버 업로드 크기(사이즈) 설정하기
-- 설정되지 않은 경우 1M가 넘는 경우 에러가 발생할 수 있습니다.
+- nginx 서버 업로드 크기(사이즈)를 설정합니다.
+- 설정되지 않은 경우 1M가 넘는 경우 에러가 발생합니다.
 
 ```bash
 vi /etc/nginx/nginx.conf
