@@ -2,7 +2,7 @@
 title: npm 모듈의 타입 선언 파일(.d.ts)을 커스텀 타입 선언 파일로 대체하는 법
 date: 2020-03-26 20:03:31
 category: typescript
-draft: true
+draft: false
 ---
 
 ## 원본 .d.ts 파일이 node_modules 아래에 있을 경우
