@@ -2,7 +2,7 @@
 title: XSS
 date: 2020-02-21 17:02:33
 category: frontend
-draft: true
+draft: false
 ---
 
 ## XSS 란?
