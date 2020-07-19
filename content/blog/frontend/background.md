@@ -7,7 +7,7 @@ draft: true
 
 - background CSS 단축 속성은 색상, 이미지, 원점, 크기, 반복 등 여러 배경 스타일을 한 번에 지정합니다.
 - background: background-color | background-image | background-repeat | background-attachment | background-position
-- background: #123456 url(“hooney.net”) no-repeat center left;
+- background: #123456 url("./image.png") no-repeat center left;
 - background 단축 속성을 사용할 경우 background-size와 background-position을 단축 속성으로 구분 하기 힘들기 때문에 슬래시(/)를 사용해 구분한합니다.
 - background-clip 속성을 사용해 배경의 경계를 지정 할 수 있습니다.
 
