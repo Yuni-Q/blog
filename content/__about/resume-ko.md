@@ -20,22 +20,22 @@ React를 주로 다루고 있습니다.
 
 `javaScript` `typeScript` `react` `redux` `redux-saga` `webpack` `babel` `next` `node` `express` `styled-components`
 
-|              |                                    |
-| :----------: | ---------------------------------- |
-|  **GitHub**  | https://github.com/Yuni-Q          |
-|   **Blog**   | https://yuni-q.github.io           |
-|  **E-mail**  | lyh6425@gmail.com                  |
-| **LinkedIn** | https://www.linkedin.com/in/yuni-q |
+|              |                                                          |
+| :----------: | -------------------------------------------------------- |
+|  **GitHub**  | https://github.com/Yuni-Q                                |
+|   **Blog**   | https://yuni-q.github.io                                 |
+|  **E-mail**  | <a href='mailto:lyh6425@gmail.com'>lyh6425@gmail.com</a> |
+| **LinkedIn** | https://www.linkedin.com/in/yuni-q                       |
 
 <div class="l-Header">
-  <h1 class="Title">
+  <h2 class="Title">
     <span class="u-shadow">
       Work Experiences
     </span>
-  </h1>
+  </h2>
 </div>
 
-## [우아한형제들](https://www.woowahan.com/)
+### [우아한형제들](https://www.woowahan.com/)
 
 |              |                                                                       |
 | -----------: | --------------------------------------------------------------------- |
@@ -51,8 +51,7 @@ React를 주로 다루고 있습니다.
 - B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영
 - 20.07 ~ current
 - `Typescript`, `React`
-- 실행 환경 개선
-  - 기존 spring 실행, tsc 실행, webpack 2개 실행을 하나의 커맨드로 실행하게 변경
+- 실행 환경 개선(기존 spring 실행, tsc 실행, webpack 2개 실행을 하나의 커맨드로 실행하게 변경)
 - lint 적용
 
 #### ceo-moon
@@ -104,7 +103,7 @@ React를 주로 다루고 있습니다.
 - 시스템 관련 라우팅 분리
 - 프랜차이즈 메뉴 할인 기능 개발
 
-## [미미박스](https://m.memebox.com/)
+### [미미박스](https://m.memebox.com/)
 
 |              |                                                                            |
 | -----------: | -------------------------------------------------------------------------- |
@@ -139,7 +138,7 @@ React를 주로 다루고 있습니다.
 - 19.01.23 ~ 19.08.23
 - `Javascript`, `Node`, `handlebaz`
 
-## [SVm](https://www.pufflive.me/web/pufftv?locale=ko)
+### [SVm](https://www.pufflive.me/web/pufftv?locale=ko)
 
 |              |                                   |
 | -----------: | --------------------------------- |
@@ -169,38 +168,38 @@ React를 주로 다루고 있습니다.
 - Swagger 모듈화 및 효과적인 관리를 위한 방안 구상
 
 <div class="l-Header">
-  <h1 class="Title">
+  <h2 class="Title">
     <span class="u-shadow">
       Projects
     </span>
-  </h1>
+  </h2>
 </div>
 
-## [study-watson](https://github.com/mash-up-kr/study-watson)
+### [study-watson](https://github.com/mash-up-kr/study-watson)
 
 - 효율적으로 스터디를 관리하는 가장 쉬운 방법을 제공하는 웹 서비스 입니다.
 - `React`, `Redux`, `redux-saga`, `NEXT`
 - [시연 영상](https://www.youtube.com/watch?v=nKn6scRu-hk)
 
-## [Ahobsu-Node-Backend](https://github.com/Yuni-Q/ahobsu-node-backend)
+### [Ahobsu-Node-Backend](https://github.com/Yuni-Q/ahobsu-node-backend)
 
 - 매일 하루에 한 번 받을 질문에 답하면서 자신을 기록하면 단순히 기록에서 그치지 않고 당신이 기록한 일주일은 한 장의 꿈을 담은 카드로 완성해 주는 iOS 앱 입니다.
 - `Node`, `Express`, `typescript`, `swagger`, `JEST`, `JWT`, `Sequelize`, `MySQL`, `EC2`, `S3`
 - [시연 영상](https://www.youtube.com/watch?v=m91rLvwMmXo)
 - [앱 다운로드](https://apps.apple.com/kr/app/moti/id1496912171)
 
-## 알아봐요 동물의 숲
+### 알아봐요 동물의 숲
 
 - 모아봐요 동물의 숲에 관한 최신 정보들을 쉽게 확인해 볼 수 있는 앱 입니다.
   - 물고기, 곤충, 마이디자인, 주민, KK노래 미리듣기
 - `Node`, `Express`, `typescript`,`Sequelize`, `MySQL`, `EC2`,
 - [앱 다운로드](https://apps.apple.com/app/id1506382486?fbclid=IwAR22h2oP6yMONya-WEG-ghBANa6KnbJLMx9knSnhVS8cXWuFiY7SA-EeP-0)
 
-# Community
+## Community
 
-<h2 class='u-link zero'>Presentation</h2>
+### Presentation
 
-### [FRONTEND](https://speakerdeck.com/yuniq/frontend)
+#### [FRONTEND](https://speakerdeck.com/yuniq/frontend)
 
 _[2020.01.11]_
 'MASH-UP BACKEND' 세미나에서 발표한 내용입니다.
