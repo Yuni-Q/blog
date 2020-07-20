@@ -43,10 +43,12 @@ React를 주로 다루고 있습니다.
 | **position** | B2B 서비스팀 / Front-End Engineer                                     |
 | **projects** | ceo-web-design-system / ceo-selfservice-front / smartmenu-admin-front |
 
-- B2B 서비스팀에서 사장님광장 서비스 프론트 개발과 CS팀에서 사용하는 메뉴 관리 어드민 프론트 개발
+- 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영
+- 배민사장님광장 외 B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영
 
 #### super2
 
+- B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영
 - 20.07 ~ current
 - `Typescript`, `React`
 - 실행 환경 개선
@@ -55,13 +57,14 @@ React를 주로 다루고 있습니다.
 
 #### ceo-moon
 
-- 사장님 광장 사이트 운영 개선(셀프서비스 제외한 부분)
+- 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영
+  선(셀프서비스 제외한 부분)
 - 20.06 ~ current
 - `Typescript`, `WoowahanJS`
 
 #### ceo-web-self-service
 
-- 사장님 광장 내의 셀프 서비스 개발
+- 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영(셀프서비스 부분)
 - 20.01 ~ 20.07
 - `TypeScript`, `React`, `Mobx`, `react-router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
@@ -71,7 +74,7 @@ React를 주로 다루고 있습니다.
 
 #### ceo-web-design-system
 
-- 사장님 광장 개편을 위한 디자인 시스템 구축
+- B2B서비스채널을 위한 디자인 시스템 구축
 - 19.10 ~ 20.07
 - `TypeScript`, `React`, `Mobx`, `react-router`
 - 프로젝트 초기 React Application Architecture 설계
