@@ -23,9 +23,19 @@ draft: false
 ## TypeScript의 Class
 
 - type과 Access Modifier가 추가 되었습니다.
-- Access Modifier
+- class에서 modifier란 class의 method나 property에 부여할수 있는 특징을 말합니다.
   - public
   - private
   - protected
   - readonly
   - static
+- 자바스크립트 클래스의 method와 property는 기본적으로 public이며, 다른 modifier를 강제할 수 있는 문법이 없습니다. (ES10에서 부터는 #을 변수명 앞에 붙이면 private선언이 되기는 합니다.) 타입스크립트에서는 modifier를 강제할 수 있습니다.
+- modifier의 목적은 해당 method나 property에 접근할 수 있는 권한을 명시하기 위함입니다.
+- 아무것도 정해 두지 않으면 기본적으로 public이 부여됩니다. 어느곳에서든지 해당 method나 property에 접근할 수 있습니다.
+- private이 부여된 method의 경우에는 동일한 클래스에 있는 다른 method에 의해서만 호출 될 수 있습니다.
+- protected가 부여된 경우, 동일한 클래스에 있는 다른 method 혹은 child class에 있는 method에 의해 호출될 수 있습니다.
+- modifier를 추가하는 이유는 다른 개발자들이 call할 수 있는 method를 제한하기 위함입니다. 잘못 사용하는 경우 어플리케이션을 망가뜨릴 정도로 복잡한 method가 다른 개발자에 의해 call되는걸 막는것이 주 목적입니다.
+
+## 참고
+
+- [Daily Study Logging46 - 타입스크립트, Instance Method Modifiers](https://www.hamadevelop.me/dailyblogging46/?fbclid=IwAR0P-4UBlh8r7Tt6d3CepKAzZu4MxfsjXsbsHoNDoV13qqu57gZTHgEdJxE)
