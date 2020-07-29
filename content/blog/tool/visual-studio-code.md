@@ -46,7 +46,7 @@ draft: false
 
 - 페어링 태그의 이름을 자동으로 바꿉니다.
 
-### ESLint
+### [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 - JS 작성에 도움을 줍니다.
 - 사용하기 위해 설치가 필요합니다.
@@ -59,19 +59,19 @@ eslint init
 - .eslintrc.js 파일이 생성 됩니다.
 - .eslintgnore 파일에 ESLint가 무시행야하는 파일이나 디렉터리를 추가할 수 있습니다.
 
-### htmltagwrap
+### [htmltagwrap](https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap)
 
 - option + w 를 이용하여 선택한 내용을 HTML(p) 태그로 래핑 합니다.
 
-### VS Code JavaScript (ES6) snippets
+### [VS Code JavaScript (ES6) snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets)
 
 - ES6 구문의 JavaScript 코드 작성에 도움을 줍니다.
 
-### Live Server
+### [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
-- VScode에서 바로 실행 !! ( 5000 포트 사용 )
+- VScode에서 바로 실행합니다.(5000 포트 사용합니다.)
 
-### Prettier - Code formatter
+### [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 Prettier를 사용하여 JavaScript / TypeScript / CSS를 포맷하는 VS 코드 패키지 입니다.
 
@@ -117,18 +117,18 @@ Prettier를 사용하여 JavaScript / TypeScript / CSS를 포맷하는 VS 코드
 
 ### [Bookmarks](https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks)
 
-## [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens)
+### [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens)
 
-## [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
+### [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 
-## [CSS Peek](https://marketplace.visualstudio.com/items?itemName=pranaygp.vscode-css-peek)
+### [CSS Peek](https://marketplace.visualstudio.com/items?itemName=pranaygp.vscode-css-peek)
 
 - commande + click으로 해당 css가 정의된 곳으로 이동합니다.
 
-## [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
+### [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
 
 - indent를 보기 쉽게 여러개의 색으로 표현해 줍니다.
 
-## [HTML CSS Support](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css)
+### [HTML CSS Support](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css)
 
 - 작업 영역에있는 정의 또는 링크 요소를 통해 참조되는 외부 파일을 기반으로 HTML 클래스 특성에 대해 CSS 클래스 이름 완성을 제공 합니다.
