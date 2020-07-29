@@ -77,7 +77,7 @@ Prettier를 사용하여 JavaScript / TypeScript / CSS를 포맷하는 VS 코드
 
 ### [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)
 
--= 괄호를 색깔로 구분 할 수 있습니다.
+- 괄호를 색깔로 구분 할 수 있습니다.
 
 ### [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
 
