@@ -568,3 +568,185 @@ strIterator.next(); // { value: 'o', done: false }
 strIterator.next(); // { value: undefined, done: true }
 strIterator.next(); // { value: undefined, done: true }
 ```
+
+## 37. Generator와 Iterator
+
+- generator 함수로부터 만들어진 객체는 iterable protocol과 iterator protocol을 동시에 만족합니다.
+- generator 함수 안에서 return 키워드를 사용하면 반복이 바로 끝나면서 next 메소드에서 반환되는 객체의 속성에 앞의 반환값이 저장됩니다. 다만, return을 통해 반환된 값이 반복 절차에 포함되지는 않습니다.
+- generator 함수로부터 생성된 객체의 next 메소드에 인수를 주어서 호출하면, generator 함수가 멈췄던 부분의 yield 표현식의 결과값은 앞에서 받은 인수가 됩니다.
+
+## 38. class
+
+```javascript
+class Person {
+	// 이전에서 사용하던 생성자 함수는 클래스 안에 `constructor`라는 이름으로 정의합니다.
+	constructor({ name, age }) {
+		this.name = name;
+		this.age = age;
+	}
+
+	// 객체에서 메소드를 정의할 때 사용하던 문법을 그대로 사용하면, 메소드가 자동으로 `Person.prototype`에 저장됩니다.
+	introduce() {
+		return `안녕하세요, 제 이름은 ${this.name}입니다.`;
+	}
+}
+
+const person = new Person({ name: '이윤희', age: 19 });
+console.log(person.introduce()); // 안녕하세요, 제 이름은 이윤희입니다.
+console.log(typeof Person); // function
+console.log(typeof Person.prototype.constructor); // function
+console.log(typeof Person.prototype.introduce); // function
+console.log(person instanceof Person); // true
+```
+
+- 클래스는 함수로 호출될 수 없습니다.
+- 클래스 선언은 let과 const처럼 블록 스코프에 선언되며, 호이스팅(hoisting)이 일어나지 않습니다.
+- 클래스의 메소드 안에서 super 키워드를 사용할 수 있습니다.
+- 객체 리터럴의 문법과 마찬가지로, 임의의 표현식을 대괄호로 둘러싸서 메소드의 이름으로 사용할 수도 있습니다.
+- getter 혹은 setter를 정의하고 싶을 때는 메소드 이름 앞에 get 또는 set을 붙여주면 됩니다.
+- Symbol.iterator 메소드를 generator로 정의해주면, 클래스의 인스턴스를 쉽게 iterable로 만들 수 있습니다.
+
+```javascript
+class Gen {
+	*[Symbol.iterator]() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+}
+
+// 1, 2, 3이 차례대로 출력됩니다.
+for (let n of new Gen()) {
+	console.log(n);
+}
+```
+
+- 일반적인 메소드는 클래스의 prototype 속성에 저장되는 반면, 클래스 필드는 인스턴스 객체에 저장됩니다.
+- 화살표 함수의 this는 호출 형태에 관계없이 항상 인스턴스 객체를 가리키게 됩니다.
+- 메소드를 값으로 다루어야 할 경우에는 일반적인 메소드 대신 화살표 함수가 사용되는 경우가 종종 있습니다. 다만, 일반적인 메소드와 달리, 클래스 필드를 통해 정의한 메소드는 인스턴스를 생성할 때마다 새로 생성되기 때문에 메모리를 더 차지하게 되므로 주의해서 사용해야 합니다.
+
+## 38. Node
+
+## 39. Time
+
+```javascript
+const timeoutId = setTimeout(() => {
+	console.log('setTimeout이 실행된 지 2초가 지났습니다.');
+}, 2000);
+
+const intervalId = setInterval(() => {
+	console.log('3초마다 출력됩니다.');
+}, 3000);
+
+clearTimeout(timeoutId);
+clearInterval(intervalId);
+
+// 실제 지연시간과 약간의 차이가 존재합니다.
+// 또한 지연시간을 0으로 주었을 때는 코드가 기대한대로 동작하지 않습니다.
+```
+
+## 40. 비동기 프로그래밍
+
+- Promise를 활용한 then
+- aysc와 await
+- Generater
+  - generator는 함수의 재개를 프로그래머가 직접 제어할 수 있다는 장점을 갖고 있기 때문에, 일부러 비동기 함수 대신 generator를 사용하는 경우도 있습니다. React에서 비동기 프로그래밍을 하기 위해 널리 사용되는 라이브러리인 redux-saga 역시 generator를 활용하고 있습니다.
+
+## 41. 동기식 코드에서의 예외 처리
+
+- try...catch...finally 구문
+
+```javascript
+try {
+	// code
+} catch (error) {
+	// try 안에서 에러 발생 시 동작
+	// code
+} finally {
+	// catch 여부와 관계 없이 무조건 실행해야 하는 부분
+}
+```
+
+## 42. 직접 에러 발행
+
+```javascript
+throw new Error('짝수가 아닙니다.');
+```
+
+### 에러 객체에 기능 추가
+
+```javascript
+class MyError extends Error {
+	constructor(value, ...params) {
+		super(...params);
+		this.value = value;
+		this.name = 'MyError';
+	}
+}
+
+try {
+	const even = parseInt(prompt('짝수를 입력하세요'));
+	if (even % 2 !== 0) {
+		throw new MyError(even, '짝수가 아닙니다.');
+	}
+} catch (e) {
+	if (e instanceof MyError) {
+		console.log(e.value);
+	}
+}
+```
+
+## 42. 비동기식 코드에서의 예외 처리
+
+- 비동기식으로 작동하는 콜백의 내부에서 발생한 에러는, 콜백 바깥에 있는 try 블록으로는 잡아낼 수 없습니다. 따라서, try 블록을 비동기 콜백 내부에 작성해주어야 합니다.
+- Promise 객체는 세 가지 상태를 가질 수 있습니다.
+  - pending : Promise 객체에 결과값이 채워지지 않은 상태
+  - fulfilled : Promise 객체에 결과값이 채워진 상태
+  - rejected : Promise 객체에 결과값을 채우려고 시도하다가 에러가 난 상태
+
+### 방법 1
+
+```javascript
+const p = new Promise(resolve => {
+	const even = parseInt(prompt('짝수를 입력하세요'));
+	if (even % 2 !== 0) {
+		throw new Error('짝수가 아닙니다.');
+	} else {
+		resolve(even);
+	}
+});
+
+p.then(
+	even => {
+		return '짝수입니다.';
+	},
+	e => {
+		return e.message;
+	}
+).then(alert);
+```
+
+## 방법 2
+
+```javascript
+p.then(even => {
+	return '짝수입니다.';
+})
+	.catch(e => {
+		return e.message;
+	})
+	.then(alert);
+```
+
+## 43. 모듈
+
+```javascript
+<script type="module" src="index.mjs"></script>
+```
+
+- import 구문에서 이름을 적어주는 부분에 중괄호를 생략하면, 모듈의 default export를 가져옵니다.
+- export 혹은 import 하는 이름의 뒤에 as를 붙여서, 다른 이름이 대신 사용되게 할 수 있습니다.
+
+## 참고
+
+- [JavaScript로 만나는 세상](https://helloworldjavascript.net)
