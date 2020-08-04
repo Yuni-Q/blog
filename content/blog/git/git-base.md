@@ -30,10 +30,14 @@ draft: false
 
 ## 4. merge
 
-- git merge 합쳐질 브랜치명 : 현재 브랜치에 다른 브랜치를 merge 합니다.
+- git merge 브랜치명 : 현재 브랜치에 다른 브랜치를 merge 합니다.
 
 ## 5. Gui
 
 - [sourcetreeapp](https://www.sourcetreeapp.com/)
 - [gitkraken](https://www.gitkraken.com/)
 - [git-fork](https://git-fork.com/)
+
+## 6. GIT LOG를 예쁘게 보는 방법
+
+- git log --graph --oneline --abbrev-commit --decorate
