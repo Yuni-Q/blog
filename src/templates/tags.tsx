@@ -41,7 +41,7 @@ export default ({ data, location }) => {
 		ScrollManager.init();
 
 		return () => {
-			window.removeEventListener(`scroll`, onScroll, { passive: false });
+			window.removeEventListener(`scroll`, onScroll);
 			IOManager.destroy();
 			ScrollManager.destroy();
 		};

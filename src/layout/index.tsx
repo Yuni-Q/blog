@@ -38,10 +38,10 @@ function toggleTheme(theme) {
 }
 
 export const Layout = ({ location, title, children }) => {
-	const rootPath = `${__PATH_PREFIX__}/`;
+	const rootPath = '/';
 
-	let localStorageTheme = false;
-	let localStorageSnow = false;
+	let localStorageTheme = 'false';
+	let localStorageSnow = 'false';
 	if (!!canUseDOM()) {
 		localStorageTheme = localStorage.getItem('theme');
 		if (!localStorageTheme) {
