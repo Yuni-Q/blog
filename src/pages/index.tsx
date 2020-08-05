@@ -55,12 +55,10 @@ export default ({ data, location }) => {
 	});
 
 	useEffect(() => {
-		if (document.querySelector(`.${category}`)) {
-			document.querySelector(`.${category}`).scrollIntoView({
-				behavior: 'smooth',
-				inline: 'center',
-			});
-		}
+		document.querySelector('li[aria-selected=true]').scrollIntoView({
+			behavior: 'smooth',
+			inline: 'center',
+		});
 	}, [category]);
 
 	const selectCategory = category => {
