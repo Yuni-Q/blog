@@ -1,7 +1,7 @@
 ---
 title: day5
 date: 2020-07-14 23:07:19
-category: study front
+category: studyFront
 draft: false
 ---
 

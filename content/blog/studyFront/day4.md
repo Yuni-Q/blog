@@ -1,7 +1,7 @@
 ---
 title: day4
 date: 2020-07-14 05:07:36
-category: study front
+category: studyFront
 draft: false
 ---
 

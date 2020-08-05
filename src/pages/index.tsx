@@ -54,6 +54,15 @@ export default ({ data, location }) => {
 		Storage.setCategory(category);
 	});
 
+	useEffect(() => {
+		if (document.querySelector(`.${category}`)) {
+			document.querySelector(`.${category}`).scrollIntoView({
+				behavior: 'smooth',
+				inline: 'center',
+			});
+		}
+	}, [category]);
+
 	const selectCategory = category => {
 		setCategory(category);
 		ScrollManager.go(DEST_POS);
