@@ -2,6 +2,7 @@
 title: html base
 date: 2020-08-03 17:08:31
 category: frontend
+tags: ['html']
 draft: false
 ---
 
