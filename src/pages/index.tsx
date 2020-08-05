@@ -55,7 +55,6 @@ export default ({ data, location }) => {
 	});
 
 	const selectCategory = category => {
-		console.log(22, category);
 		setCategory(category);
 		ScrollManager.go(DEST_POS);
 	};
@@ -71,7 +70,7 @@ export default ({ data, location }) => {
 			triggerCondition: () => isTriggerPos() && doesNeedMore(),
 		})();
 	};
-	console.log(333, category);
+
 	return (
 		<Layout location={location} title={siteMetadata.title}>
 			<Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
