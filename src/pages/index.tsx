@@ -58,12 +58,12 @@ export default ({ data, location }) => {
 		document.querySelector('li[aria-selected=true]').scrollIntoView({
 			behavior: 'smooth',
 			inline: 'center',
+			block: 'start',
 		});
 	}, [category]);
 
 	const selectCategory = category => {
 		setCategory(category);
-		ScrollManager.go(DEST_POS);
 	};
 
 	const onScroll = () => {
