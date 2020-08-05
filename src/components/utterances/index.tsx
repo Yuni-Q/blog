@@ -4,7 +4,7 @@ const src = 'https://utteranc.es/client.js';
 const branch = 'master';
 
 export const Utterences = ({ repo }) => {
-	const rootElm = React.createRef();
+	const rootElm = React.createRef<HTMLDivElement>();
 
 	useEffect(() => {
 		const utterances = document.createElement('script');

@@ -114,7 +114,7 @@ export const ChristmasTheme = ({ checked, children }) => {
 			};
 
 			/* init - you can init any event */
-			throttle('resize', 'optimizedResize');
+			throttle('resize', 'optimizedResize', null);
 		})();
 		window.addEventListener('optimizedResize', snow);
 		return () => {
