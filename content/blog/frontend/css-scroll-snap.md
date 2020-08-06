@@ -2,7 +2,7 @@
 title: CSS Scroll snap
 date: 2020-08-06 09:08:95
 category: frontend
-tags: ['css']
+tags: ['css', 'scroll']
 draft: true
 ---
 
