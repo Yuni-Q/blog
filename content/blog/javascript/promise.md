@@ -2,6 +2,7 @@
 title: Promise
 date: 2020-04-12 01:04:34
 category: javascript
+tags: ['javascript', 'promise', 'promise.all', 'map']]
 draft: true
 ---
 
@@ -46,6 +47,37 @@ draft: true
 
 - Observable은 0개 혹은 그 이상의 이벤트를 내보내는 lazy event stream입니다. 그리고 Observable을 끝낼 수도 있고 안 끝낼 수도 있습니다.
 
+## Promise.all
+
+- Promise.all 예제에서 map을 사용해 async function을 호출 할 때 map 함수를 async function으로 부르는 경우가 많았습니다. 하지만 이미 async 함수를 부르는데 map 함수도 async 일까에 대한 의문에 대해서 조사해 보았습니다.
+
+```javascript
+const a = async t => {
+	await new Promise(resolve => setTimeout(resolve, t));
+	return t;
+};
+
+const b = async () => {
+	const c = [1000, 2000, 3000, 4000, 5000];
+	const d = await Promise.all(c.map(f => a(f))); // 5초 소요
+	console.log(11, d);
+};
+
+const e = () => {
+	const c = [1000, 2000, 3000, 4000, 5000];
+	const d = Promise.all(c.map(f => a(f))); // 5초 소요
+	console.log(11, d);
+};
+
+b();
+```
+
+- async를 붙이는 것과 그렇지 않은 것에 차이가 없습니다. 다만 타입 추론을 위해 typescript에서 넣어주는 것이 좋을 것이라는 의견도 있었습니다.
+
 ## 참조
 
 - [자바스크립트 개발자라면 알아야 할 33가지 개념 #25 자바스크립트 : 바보를 위한 Promise](https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-25-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EB%B0%94%EB%B3%B4%EB%A5%BC-%EC%9C%84%ED%95%9C-Promise)
+
+```
+
+```
