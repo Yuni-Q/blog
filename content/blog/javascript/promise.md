@@ -2,7 +2,7 @@
 title: Promise
 date: 2020-04-12 01:04:34
 category: javascript
-tags: ['javascript', 'promise', 'promise.all', 'map']]
+tags: ['javascript', 'promise', 'promise.all', 'map']
 draft: true
 ---
 
