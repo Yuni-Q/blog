@@ -13,7 +13,6 @@ import { PostNavigator } from '../components/post-navigator';
 import { Disqus } from '../components/disqus';
 import { Utterences } from '../components/utterances';
 import * as ScrollManager from '../utils/scroll';
-import { ThemeProvider } from '../context/ThemeContext';
 
 import '../styles/code.scss';
 
@@ -29,29 +28,27 @@ export default ({ data, pageContext, location }) => {
 	const { disqusShortName, utterances } = comment;
 
 	return (
-		<ThemeProvider>
-			<Layout location={location} title={title}>
-				<Head title={post.frontmatter.title} description={post.excerpt} />
-				<PostTitle title={post.frontmatter.title} />
-				<PostContainer html={post.html} />
-				<SocialShare title={post.frontmatter.title} author={author} />
-				{!!sponsor.buyMeACoffeeId && (
-					<SponsorButton sponsorId={sponsor.buyMeACoffeeId} />
-				)}
-				<Elements.Hr />
-				<Bio />
-				<PostNavigator pageContext={pageContext} />
-				{!!disqusShortName && (
-					<Disqus
-						post={post}
-						shortName={disqusShortName}
-						siteUrl={siteUrl}
-						slug={pageContext.slug}
-					/>
-				)}
-				{!!utterances && <Utterences repo={utterances} />}
-			</Layout>
-		</ThemeProvider>
+		<Layout location={location} title={title}>
+			<Head title={post.frontmatter.title} description={post.excerpt} />
+			<PostTitle title={post.frontmatter.title} />
+			<PostContainer html={post.html} />
+			<SocialShare title={post.frontmatter.title} author={author} />
+			{!!sponsor.buyMeACoffeeId && (
+				<SponsorButton sponsorId={sponsor.buyMeACoffeeId} />
+			)}
+			<Elements.Hr />
+			<Bio />
+			<PostNavigator pageContext={pageContext} />
+			{!!disqusShortName && (
+				<Disqus
+					post={post}
+					shortName={disqusShortName}
+					siteUrl={siteUrl}
+					slug={pageContext.slug}
+				/>
+			)}
+			{!!utterances && <Utterences repo={utterances} />}
+		</Layout>
 	);
 };
 

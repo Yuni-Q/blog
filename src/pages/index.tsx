@@ -13,7 +13,6 @@ import * as Storage from '../utils/storage';
 import * as IOManager from '../utils/visible';
 import * as EventManager from '../utils/event-manager';
 import * as Dom from '../utils/dom';
-import { ThemeProvider } from '../context/ThemeContext';
 
 import { HOME_TITLE, CATEGORY_TYPE } from '../constants';
 
@@ -80,23 +79,21 @@ export default ({ data, location }) => {
 	};
 
 	return (
-		<ThemeProvider>
-			<Layout location={location} title={siteMetadata.title}>
-				<Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
-				<Bio />
-				<Category
-					categories={categories}
-					category={category}
-					selectCategory={selectCategory}
-				/>
-				<Contents
-					posts={posts}
-					countOfInitialPost={countOfInitialPost}
-					count={count}
-					category={category}
-				/>
-			</Layout>
-		</ThemeProvider>
+		<Layout location={location} title={siteMetadata.title}>
+			<Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
+			<Bio />
+			<Category
+				categories={categories}
+				category={category}
+				selectCategory={selectCategory}
+			/>
+			<Contents
+				posts={posts}
+				countOfInitialPost={countOfInitialPost}
+				count={count}
+				category={category}
+			/>
+		</Layout>
 	);
 };
 
