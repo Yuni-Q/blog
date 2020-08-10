@@ -97,3 +97,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 		});
 	}
 };
+
+// for React-Hot-Loader: react-🔥-dom patch is not detected
+exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
+	const config = getConfig();
+	if (stage.startsWith('develop') && config.resolve) {
+		config.resolve.alias = {
+			...config.resolve.alias,
+			'react-dom': '@hot-loader/react-dom',
+		};
+	}
+};
