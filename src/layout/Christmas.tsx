@@ -4,11 +4,14 @@ export const ChristmasTheme = ({ checked, children }) => {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
-		if (checked === 'light') {
+		if (checked === 'on') {
 			return;
 		}
 		const COUNT = 700;
 		const canvasNode = canvasRef.current;
+		if (!canvasNode) {
+			return;
+		}
 		const ctx = canvasNode.getContext('2d');
 		let timeId;
 
@@ -96,16 +99,16 @@ export const ChristmasTheme = ({ checked, children }) => {
 			init();
 		};
 		snow();
-		(function () {
-			const throttle = function (type, name, obj) {
+		(function() {
+			const throttle = function(type, name, obj) {
 				obj = obj || window;
 				let running = false;
-				const func = function () {
+				const func = function() {
 					if (running) {
 						return;
 					}
 					running = true;
-					requestAnimationFrame(function () {
+					requestAnimationFrame(function() {
 						obj.dispatchEvent(new CustomEvent(name));
 						running = false;
 					});
@@ -124,7 +127,7 @@ export const ChristmasTheme = ({ checked, children }) => {
 
 	return (
 		<>
-			{checked === 'dark' && <canvas className="snowflakes" ref={canvasRef} />}
+			{checked === 'off' && <canvas className="snowflakes" ref={canvasRef} />}
 			{children}
 		</>
 	);
