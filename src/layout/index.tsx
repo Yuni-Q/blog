@@ -40,43 +40,46 @@ function toggleTheme(theme) {
 export const Layout = ({ location, title, children }) => {
 	const rootPath = '/';
 
-	let localStorageTheme = 'false';
-	let localStorageSnow = 'false';
+	let localStorageTheme = THEME.LIGHT;
+	let localStorageSnow = THEME.LIGHT;
 	if (!!canUseDOM()) {
 		localStorageTheme = localStorage.getItem('theme');
-		if (!localStorageTheme) {
-			localStorage.setItem('theme', 'false');
-			localStorageTheme = 'false';
+		if (localStorageTheme === THEME.DARK) {
+			document.documentElement.setAttribute('data-theme', THEME.DARK);
+			localStorage.setItem('theme', THEME.DARK);
+			localStorageTheme = THEME.DARK;
 		}
 		localStorageSnow = localStorage.getItem('snow');
-		if (!localStorageSnow) {
-			localStorage.setItem('snow', 'false');
-			localStorageSnow = 'false';
+		if (localStorageSnow === THEME.DARK) {
+			localStorage.setItem('snow', THEME.DARK);
+			localStorageSnow = THEME.DARK;
 		}
 	}
 
 	const [checked, setChecked] = useState(
-		localStorageTheme === 'true' ? true : false
+		localStorageTheme === THEME.DARK ? THEME.DARK : THEME.LIGHT
 	);
 	const [checkedSnow, setCheckedSnow] = useState(
-		localStorageSnow === 'true' ? true : false
+		localStorageSnow === THEME.DARK ? THEME.DARK : THEME.LIGHT
 	);
 
 	useEffect(() => {
-		handleChange(checked);
+		handleChange(checked === THEME.DARK);
 		setCheckedSnow(checkedSnow);
 	}, []);
 
 	const handleChange = checked => {
 		const theme = getTheme(checked);
-		setChecked(checked);
-		localStorage.setItem('theme', `${checked}`);
+		setChecked(theme === THEME.DARK ? THEME.DARK : THEME.LIGHT);
+		localStorage.setItem('theme', `${theme === THEME.DARK ? THEME.DARK : THEME.LIGHT}`);
+		document.documentElement.setAttribute('data-theme', theme === THEME.DARK ? THEME.DARK : THEME.LIGHT);
 		toggleTheme(theme);
 	};
 
 	const handleChangeSnow = checked => {
-		setCheckedSnow(checked);
-		localStorage.setItem('snow', `${checked}`);
+		const theme = getTheme(checked);
+		setCheckedSnow(theme === THEME.DARK ? THEME.DARK : THEME.LIGHT);
+		localStorage.setItem('snow', `${theme === THEME.DARK ? THEME.DARK : THEME.LIGHT}`);
 	};
 
 	return (

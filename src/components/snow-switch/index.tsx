@@ -9,7 +9,7 @@ export const SnowSwitch = ({ checked, handleChange }) => {
 			<label htmlFor="normal-switch">
 				<Switch
 					onChange={handleChange}
-					checked={checked}
+					checked={checked === 'dark'}
 					id="normal-switch"
 					height={24}
 					width={48}
