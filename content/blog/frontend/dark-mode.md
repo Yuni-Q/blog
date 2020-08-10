@@ -74,7 +74,7 @@ function toggleTheme() {
 ```javascript
 const mql = window.matchMedia('(prefers-color-scheme: dark)');
 
-mql.addEventListener(e => {
+mql.addListener(e => {
 	if (e.matches) {
 		// 해당 미디어 쿼리가 참인 경우
 	} else {
