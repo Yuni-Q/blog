@@ -18,12 +18,12 @@ const StlyedLink = styled(Link)`
 const StyledThumbnailItem = styled.div`
 	padding: 16px;
 	border-radius: 8px;
-	background-color: $white;
+	background-color: inherit;
 	margin-bottom: 24px;
 	box-shadow: ${({ theme }) =>
 		theme === THEME.LIGHT
 			? '0 5px 22px 4px rgba(236, 238, 242, 0.5), 0 8px 16px 0 rgba(236, 238, 242, 0.5)'
-			: '0 5px 22px 4px rgba(10, 10, 10, 0.5), 0 8px 16px 0 rgba(10, 10, 10, 0.5)'};
+			: '0 5px 22px 4px rgba(10, 10, 10, 0.3), 0 8px 16px 0 rgba(10, 10, 10, 0.3)'};
 	&:hover {
 		cursor: pointer;
 		background-color: ${({ theme }) =>
