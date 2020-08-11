@@ -74,10 +74,10 @@ b();
 
 - async를 붙이는 것과 그렇지 않은 것에 차이가 없습니다. 다만 타입 추론을 위해 typescript에서 넣어주는 것이 좋을 것이라는 의견도 있었습니다.
 
+## Promise.allSettled
+
+- Promise.allSettled() 메소드는 배열이나 별도의 나열 가능한 객체를 통해 나열된 Promise모음이 모두 이행하거나 거부했을 때에 대한 대응을 할 수 있는 Promise 객체를 반환합니다.
+
 ## 참조
 
 - [자바스크립트 개발자라면 알아야 할 33가지 개념 #25 자바스크립트 : 바보를 위한 Promise](https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-25-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EB%B0%94%EB%B3%B4%EB%A5%BC-%EC%9C%84%ED%95%9C-Promise)
-
-```
-
-```
