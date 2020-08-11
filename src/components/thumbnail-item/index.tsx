@@ -17,10 +17,19 @@ const StlyedLink = styled(Link)`
 	color: ${({ theme }) => (theme === THEME.LIGHT ? '#000080' : '#9fa8da')};
 `;
 
+const StyledThumbnailItem = styled.div`
+	padding: 16px;
+  border-radius: 8px;
+	background-color: $white;
+	margin-bottom: 16px;
+	box-shadow: 0 5px 22px 4px rgba(236, 238, 242, 0.5),
+		0 8px 16px 0 rgba(236, 238, 242, 0.5);
+`;
+
 export const ThumbnailItem = ({ node }) => {
 	const state = useThemeState();
 	return (
-		<>
+		<StyledThumbnailItem>
 			<Link className={`thumbnail ${TARGET_CLASS} `} to={node.fields.slug}>
 				<div key={node.fields.slug}>
 					<h3>{node.frontmatter.title || node.fields.slug}</h3>
@@ -38,6 +47,6 @@ export const ThumbnailItem = ({ node }) => {
 					</StlyedLink>
 				))}
 			</div>
-		</>
+		</StyledThumbnailItem>
 	);
 };
