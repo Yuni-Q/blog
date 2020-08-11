@@ -5,6 +5,7 @@ import { SNOW, THEME } from '../../constants';
 import { useThemeDispatch, useThemeState } from '../../context/ThemeContext';
 import { GitHubIcon } from '../social-share/github-icon';
 import './index.scss';
+import { SnowSwitch } from '../snow-switch';
 
 const StyledButton = styled.button`
 	outline: 0;
@@ -101,26 +102,12 @@ export const Top = ({ theme, title, location, rootPath }) => {
 			type: 'SET_SNOW',
 			snow: state.snow === SNOW.ON ? SNOW.OFF : SNOW.ON,
 		});
-	useEffect(() => {
-		const setTheme = () =>
-			dispatch({
-				type: 'SET_THEME',
-				theme: state.theme === THEME.LIGHT ? THEME.LIGHT : THEME.DARK,
-			});
-		const setSnow = () =>
-			dispatch({
-				type: 'SET_SNOW',
-				snow: state.snow === SNOW.ON ? SNOW.ON : SNOW.OFF,
-			});
-		setTheme();
-		// setSnow();
-	}, []);
 
 	return (
 		<div className="top">
 			{!isRoot && (
-				<Link to={`/`} className="link">
-					{title}
+				<Link to={`/`} className="link" style={{ fontSize: 1 }}>
+					{`Yuni-Q`}
 				</Link>
 			)}
 			<GitHubIcon />
@@ -128,6 +115,7 @@ export const Top = ({ theme, title, location, rootPath }) => {
 				<div></div>
 				<div></div>
 			</StyledButton>
+			<SnowSwitch checked={state.snow} handleChange={setSnow} />
 		</div>
 	);
 };

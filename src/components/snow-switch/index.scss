@@ -1,10 +1,12 @@
 .switch-container {
-	text-align: right;
+  float: right;
+  display: block;
+  margin: 15px 16px 0;
 
-	.icon {
-		text-align: center;
-		color: #222;
-		font-size: 14px;
-		font-weight: 900;
-	}
+  .icon {
+    text-align: center;
+    color: #222;
+    font-size: 14px;
+    font-weight: 900;
+  }
 }

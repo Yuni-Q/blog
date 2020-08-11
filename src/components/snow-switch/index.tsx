@@ -5,7 +5,7 @@ import './index.scss';
 
 export const SnowSwitch = ({ checked, handleChange }) => {
 	return (
-		<div className="switch-container" style={{ margin: '0 16px' }}>
+		<div className="switch-container">
 			<label htmlFor="normal-switch">
 				<Switch
 					onChange={handleChange}
