@@ -1,12 +1,13 @@
-import React from 'react';
 import { Link } from 'gatsby';
-import { GitHubIcon } from '../social-share/github-icon';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-
+import { SNOW, THEME } from '../../constants';
+import { useThemeDispatch, useThemeState } from '../../context/ThemeContext';
+import { GitHubIcon } from '../social-share/github-icon';
 import './index.scss';
-import { THEME } from '../../constants';
 
 const StyledButton = styled.button`
+	outline: 0;
 	background: #fff;
 	margin: 10px 0;
 	float: right;
@@ -81,13 +82,40 @@ const StyledButton = styled.button`
 		top: 0;
 		transform: ${({ theme }) =>
 			theme === THEME.LIGHT ? 'translate(14px, -14px)' : 'translate(0, 0)'};
-		transition: background 0.25s ease 0s, transform 0.45s ease 0s;
+		transition: all 0.25s ease 0s, transform 0.45s ease 0s;
 		width: 24px;
 	}
 `;
 
 export const Top = ({ theme, title, location, rootPath }) => {
 	const isRoot = location.pathname === rootPath;
+	const state = useThemeState();
+	const dispatch = useThemeDispatch();
+	const setTheme = () =>
+		dispatch({
+			type: 'SET_THEME',
+			theme: state.theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT,
+		});
+	const setSnow = () =>
+		dispatch({
+			type: 'SET_SNOW',
+			snow: state.snow === SNOW.ON ? SNOW.OFF : SNOW.ON,
+		});
+	useEffect(() => {
+		const setTheme = () =>
+			dispatch({
+				type: 'SET_THEME',
+				theme: state.theme === THEME.LIGHT ? THEME.LIGHT : THEME.DARK,
+			});
+		const setSnow = () =>
+			dispatch({
+				type: 'SET_SNOW',
+				snow: state.snow === SNOW.ON ? SNOW.ON : SNOW.OFF,
+			});
+		setTheme();
+		// setSnow();
+	}, []);
+
 	return (
 		<div className="top">
 			{!isRoot && (
@@ -96,7 +124,7 @@ export const Top = ({ theme, title, location, rootPath }) => {
 				</Link>
 			)}
 			<GitHubIcon />
-			<StyledButton theme={theme}>
+			<StyledButton theme={theme} onClick={setTheme}>
 				<div></div>
 				<div></div>
 			</StyledButton>
