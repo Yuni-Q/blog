@@ -24,12 +24,16 @@ const StyledThumbnailItem = styled.div`
 	margin-bottom: 16px;
 	box-shadow: 0 5px 22px 4px rgba(236, 238, 242, 0.5),
 		0 8px 16px 0 rgba(236, 238, 242, 0.5);
+	&:hover {
+		cursor: pointer;
+		background-color: ${({ theme }) => (theme === THEME.LIGHT ? '#F8F9FA' : '#212329')};
+	}
 `;
 
 export const ThumbnailItem = ({ node }) => {
 	const state = useThemeState();
 	return (
-		<StyledThumbnailItem>
+		<StyledThumbnailItem theme={state.theme}>
 			<Link className={`thumbnail ${TARGET_CLASS} `} to={node.fields.slug}>
 				<div key={node.fields.slug}>
 					<h3>{node.frontmatter.title || node.fields.slug}</h3>
