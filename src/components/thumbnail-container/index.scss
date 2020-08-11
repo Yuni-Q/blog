@@ -1,4 +1,8 @@
 .thumbnail-container {
-	min-height: calc(100vh - 3.5rem);
-	margin: 16px -3.25rem;
+  min-height: calc(100vh - 3.5rem);
+  margin: 16px -3.25rem;
+
+  @media (max-width: 660px) {
+    padding: 0 16px;
+  }
 }
