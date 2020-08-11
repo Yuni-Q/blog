@@ -28,6 +28,9 @@ const StyledButton = styled.button`
 	transition: opacity 0.3s ease;
 	vertical-align: middle;
 	width: 40px;
+	&:hover {
+		background: black;
+	}
 	div:nth-child(1) {
 		border: ${({ theme }) =>
 			theme === THEME.LIGHT ? 'none' : '2px solid #78757a'};
@@ -73,7 +76,7 @@ const StyledButton = styled.button`
 		}
 	}
 	div:nth-child(2) {
-		background: ${({ theme }) => (theme === THEME.LIGHT ? 'none' : '#ffffff')};
+		background: ${({ theme }) => (theme === THEME.LIGHT ? 'none' : 'inherit')};
 		border-radius: 50%;
 		border: 0;
 		height: 24px;
@@ -83,7 +86,7 @@ const StyledButton = styled.button`
 		top: 0;
 		transform: ${({ theme }) =>
 			theme === THEME.LIGHT ? 'translate(14px, -14px)' : 'translate(0, 0)'};
-		transition: all 0.25s ease 0s, transform 0.45s ease 0s;
+		transition: opacity 0.25s ease 0s, transform 0.45s ease 0s;
 		width: 24px;
 	}
 `;
