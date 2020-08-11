@@ -10,8 +10,6 @@ import { THEME } from '../../constants';
 const StlyedLink = styled(Link)`
 	display: inline-block;
 	border-radius: 8px;
-	border: 3px solid
-		${({ theme }) => (theme === THEME.LIGHT ? 'black' : 'white')};
 	margin-right: 8px;
 	padding: 4px;
 	color: ${({ theme }) => (theme === THEME.LIGHT ? '#000080' : '#9fa8da')};
@@ -19,14 +17,17 @@ const StlyedLink = styled(Link)`
 
 const StyledThumbnailItem = styled.div`
 	padding: 16px;
-  border-radius: 8px;
+	border-radius: 8px;
 	background-color: $white;
-	margin-bottom: 16px;
-	box-shadow: 0 5px 22px 4px rgba(236, 238, 242, 0.5),
-		0 8px 16px 0 rgba(236, 238, 242, 0.5);
+	margin-bottom: 24px;
+	box-shadow: ${({ theme }) =>
+		theme === THEME.LIGHT
+			? '0 5px 22px 4px rgba(236, 238, 242, 0.5), 0 8px 16px 0 rgba(236, 238, 242, 0.5)'
+			: '0 5px 22px 4px rgba(10, 10, 10, 0.5), 0 8px 16px 0 rgba(10, 10, 10, 0.5)'};
 	&:hover {
 		cursor: pointer;
-		background-color: ${({ theme }) => (theme === THEME.LIGHT ? '#F8F9FA' : '#212329')};
+		background-color: ${({ theme }) =>
+			theme === THEME.LIGHT ? '#F8F9FA' : '#212329'};
 	}
 `;
 
