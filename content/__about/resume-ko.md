@@ -1,6 +1,6 @@
 ---
 title: 'about'
-date: 2020-01-14 12:40:00
+date: 2020-08-12 02:10:00
 lang: 'ko'
 ---
 
@@ -197,6 +197,7 @@ lang: 'ko'
 - 모아봐요 동물의 숲에 관한 최신 정보들을 쉽게 확인해 볼 수 있는 앱 입니다.
   - 물고기, 곤충, 마이디자인, 주민, KK노래 미리듣기
 - `Node`, `Express`, `Typescript`,`Sequelize`, `MySQL`, `EC2`,
+- [시연 영상](https://www.youtube.com/watch?v=38oB4rUzMVM&t=2s)
 - [앱 다운로드](https://apps.apple.com/app/id1506382486?fbclid=IwAR22h2oP6yMONya-WEG-ghBANa6KnbJLMx9knSnhVS8cXWuFiY7SA-EeP-0)
 
 ## Community
