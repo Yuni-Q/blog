@@ -79,8 +79,8 @@ export default ({ data, location }) => {
 	};
 
 	return (
-		<Layout location={location} title={siteMetadata.title}>
-			<Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
+		<Layout location={location} title={location?.pathname.split('tags/')[1].split('/')[0] || siteMetadata.title}>
+			<Head title={location?.pathname.split('tags/')[1].split('/')[0] || HOME_TITLE} keywords={siteMetadata.keywords} />
 			<Bio />
 			<Category
 				categories={categories}

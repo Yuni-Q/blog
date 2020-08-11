@@ -43,7 +43,7 @@ export const LayoutDetail = ({ location, title, children }) => {
 
   return (
     <ChristmasTheme checked={state.snow}>
-      <Top title={title} location={location} rootPath={rootPath} />
+      <Top title={'yuni-q 블로그'} location={location} rootPath={rootPath} />
       <div
         style={{
           marginLeft: `auto`,
