@@ -1,20 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
 import { graphql } from 'gatsby';
 import _ from 'lodash';
-
-import { Layout } from '../layout';
-import { Bio } from '../components/bio';
-import { Head } from '../components/head';
+import React, { useEffect, useRef, useState } from 'react';
 import { Category } from '../components/category';
 import { Contents } from '../components/contents';
-
+import { Head } from '../components/head';
+import { CATEGORY_TYPE, HOME_TITLE } from '../constants';
+import { Layout } from '../layout';
+import * as Dom from '../utils/dom';
+import * as EventManager from '../utils/event-manager';
 import * as ScrollManager from '../utils/scroll';
 import * as Storage from '../utils/storage';
 import * as IOManager from '../utils/visible';
-import * as EventManager from '../utils/event-manager';
-import * as Dom from '../utils/dom';
-
-import { HOME_TITLE, CATEGORY_TYPE } from '../constants';
 
 const DEST_POS = 316;
 const BASE_LINE = 80;
@@ -79,9 +75,16 @@ export default ({ data, location }) => {
 	};
 
 	return (
-		<Layout location={location} title={location?.pathname.split('tags/')[1].split('/')[0] || siteMetadata.title}>
-			<Head title={location?.pathname.split('tags/')[1].split('/')[0] || HOME_TITLE} keywords={siteMetadata.keywords} />
-			<Bio />
+		<Layout
+			location={location}
+			title={
+				location?.pathname.split('tags/')[1].split('/')[0] || siteMetadata.title
+			}
+		>
+			<Head
+				title={location?.pathname.split('tags/')[1].split('/')[0] || HOME_TITLE}
+				keywords={siteMetadata.keywords}
+			/>
 			<Category
 				categories={categories}
 				category={category}
