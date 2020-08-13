@@ -2,7 +2,7 @@
 title: table
 date: 2020-08-13 09:08:76
 category: frontend
-tags: ['table', 'html']
+tags: ['table', 'html', 'css']
 draft: true
 ---
 
