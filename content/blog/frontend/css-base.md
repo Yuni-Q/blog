@@ -176,3 +176,30 @@ body.show-grid::before {
 ## 20. background 속성
 
 - img 태그로 이미지를 할 수도 있지만 background 속성으로도 할 수 있습니다.
+
+## 21. float
+
+- 이미지를 띄워 텍스트와 함께 배치합니다(순서는 html 순서).
+- div와 같은 상위 태그의 범위 유지하기 위해 clear: both 속석을 사용합니다.
+- 형제 div를 마지막에 넣어 clear 속성 부여하기도 합니다(하지만 좋은 방법이 아닙니다).
+- 부모 div에 클래스를 넣고 ::after에 clear 속성 부여합니다.
+
+```css
+div::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+```
+
+## 22. 포지셔닝
+
+- 페이지의 다른 부분 위에 떠있는 UI요소를 만들고 싶거나 페이지의 스크롤과 상관없이 항상 브라우저창의 동일한 위치에 자리한 UI 만들때 사용합니다.
+
+- 정적 (static) : 기본속성입니다.
+- 상대 (relative) : float와 다르게 흐름을 유지, z-index값이 높으면 더 상단에 위치합니다(같으면 나중에 나온 것이 우선).
+- 절대 (absolute) : float와 같이 흐름에 영향이 가는데 자유롭게 배치 할 수 있습니다. z-index값은 10이나 100단위로 관리하는 것이 좋습니다. 부모를 찾는 방법은 position값이 static이 아닌 가장 가까운 조상이 부모가 됩니다( relative 많이 사용합니다).
+- 고정 (fixed) : 스크롤 시에도 고정(부모를 찾지 않습니다) 기존 값이 있으면 initial 값을 주어 초기화 해야합니다.
+- 달라붙는 ( sticky ) : 다음 item이 올때까지 위치 고정합니다.
+- transform: translateX(-50%) : width의 50% 만큼 -x축으로 이동합니다.
+- opacity : 불투명도를 조정합니다.
