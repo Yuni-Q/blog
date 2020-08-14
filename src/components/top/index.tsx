@@ -31,6 +31,11 @@ const StyledButton = styled.button`
 	&:hover {
 		background: black;
 	}
+	@media (max-width: 800px) {
+		&:hover {
+			background: #fff;
+		}
+	}
 	div:nth-child(1) {
 		border: ${({ theme }) =>
 			theme === THEME.LIGHT ? 'none' : '2px solid #78757a'};

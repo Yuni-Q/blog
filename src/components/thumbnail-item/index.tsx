@@ -29,6 +29,12 @@ const StyledThumbnailItem = styled.div`
 		background-color: ${({ theme }) =>
 			theme === THEME.LIGHT ? '#F8F9FA' : '#212329'};
 	}
+	@media (max-width: 800px) {
+		&:hover {
+			background-color: inherit;
+		}
+	}
+	
 `;
 
 export const ThumbnailItem = ({ node }) => {

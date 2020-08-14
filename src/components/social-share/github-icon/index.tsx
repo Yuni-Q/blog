@@ -8,6 +8,11 @@ const StyledSVG = styled.svg`
 	&:hover {
 		color: blue;
 	}
+	@media (max-width: 800px) {
+		&:hover {
+			color: gray;
+		}
+	}
 `;
 
 export const GitHubIcon = () => {
