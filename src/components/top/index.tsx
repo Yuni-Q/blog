@@ -114,7 +114,7 @@ export const Top = ({ theme, title, location, rootPath }) => {
 	return (
 		<div className="top">
 			{!isRoot && (
-				<Link to={`/`} className="link" style={{ fontSize: 1 }}>
+				<Link to={`/`} className="link" style={{ fontSize: 20 }}>
 					{`Yuni-Q`}
 				</Link>
 			)}
