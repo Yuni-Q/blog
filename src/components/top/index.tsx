@@ -97,7 +97,6 @@ const StyledButton = styled.button`
 `;
 
 export const Top = ({ theme, title, location, rootPath }) => {
-	const isRoot = location.pathname === rootPath;
 	const state = useThemeState();
 	const dispatch = useThemeDispatch();
 	const setTheme = () =>
@@ -113,11 +112,9 @@ export const Top = ({ theme, title, location, rootPath }) => {
 
 	return (
 		<div className="top">
-			{!isRoot && (
-				<Link to={`/`} className="link" style={{ fontSize: 20 }}>
-					{`Yuni-Q`}
-				</Link>
-			)}
+			<Link to={`/`} className="link" style={{ fontSize: 20 }}>
+				{`Yuni-Q`}
+			</Link>
 			<GitHubIcon />
 			<StyledButton theme={theme} onClick={setTheme}>
 				<div></div>
