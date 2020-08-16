@@ -1,10 +1,11 @@
 import React, { useRef, useEffect } from 'react';
+import {SNOW} from '../constants';
 
 export const ChristmasTheme = ({ checked, children }) => {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
-		if (checked === 'on') {
+		if (checked === SNOW.OFF) {
 			return;
 		}
 		const COUNT = 700;
@@ -127,7 +128,7 @@ export const ChristmasTheme = ({ checked, children }) => {
 
 	return (
 		<>
-			{checked === 'off' && <canvas className="snowflakes" ref={canvasRef} />}
+			{checked === SNOW.ON && <canvas className="snowflakes" ref={canvasRef} />}
 			{children}
 		</>
 	);

@@ -113,7 +113,7 @@ const StyledButton = styled.button`
 		}
 		.snow {
 			fill: ${({ snow }) =>
-			snow === SNOW.ON ? '#fff' : '#FFCAEF'};
+			snow === SNOW.ON ? '#FFCAEF' : '#fff'};
 		}
 		.github {
 			color: #fff;
@@ -140,7 +140,7 @@ const StyledButton = styled.button`
 			}
 			.snow {
 				fill: ${({ snow }) =>
-				snow === SNOW.ON ? '#78757a' : '#FFCAEF'};
+				snow === SNOW.ON ? '#FFCAEF' : '#78757a'};
 			}
 			.github {
 				color: #78757a;
@@ -153,13 +153,7 @@ const StyledSvg = styled.svg`
 	transition: all 0.3s ease;
 	width: 28px;
 	fill: ${({ snow }) =>
-			snow === SNOW.ON ? '#78757a' : '#FFCAEF'};
-	@media (max-width: 800px) {
-		&:hover { 
-			fill: ${({ snow }) =>
-				snow === SNOW.ON ? '#78757a' : '#FFCAEF'};
-		}
-	}
+		snow === SNOW.ON ? '#FFCAEF' : '#78757a'};
 `
 
 export const Top = ({ theme, title, location, rootPath }) => {

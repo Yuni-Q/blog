@@ -78,17 +78,24 @@ function reducer(state: State, action: Action): State {
 // ThemeProvider 에서 useReduer를 사용하고
 // ThemeStateContext.Provider 와 ThemeDispatchContext.Provider 로 children 을 감싸서 반환합니다.
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-	const localStorageTheme = THEME.LIGHT;
-	const localStorageSnow = SNOW.ON;
+	let localStorageTheme = THEME.LIGHT;
+	let localStorageSnow = SNOW.OFF;
 	useEffect(() => {
-		let localStorageTheme = localStorage.getItem('theme');
+		localStorageTheme = localStorage.getItem('theme');
 		if (localStorageTheme === THEME.DARK) {
 			document.documentElement.setAttribute('data-theme', THEME.DARK);
 			localStorage.setItem('theme', THEME.DARK);
 			localStorageTheme = THEME.DARK;
+		} else {
+			document.documentElement.setAttribute('data-theme', THEME.LIGHT);
+			localStorage.setItem('theme', THEME.LIGHT);
+			localStorageTheme = THEME.LIGHT;
 		}
-		let localStorageSnow = localStorage.getItem('snow');
-		if (localStorageSnow === SNOW.OFF) {
+		localStorageSnow = localStorage.getItem('snow');
+		if (localStorageSnow === SNOW.ON) {
+			localStorage.setItem('snow', SNOW.ON);
+			localStorageSnow = SNOW.ON;
+		} else {
 			localStorage.setItem('snow', SNOW.OFF);
 			localStorageSnow = SNOW.OFF;
 		}
@@ -103,6 +110,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 				type: 'SET_SNOW',
 				snow: localStorageSnow,
 			});
+			console.log(333,localStorageTheme,localStorageSnow )
 		setTheme();
 		setSnow();
 	}, []);
