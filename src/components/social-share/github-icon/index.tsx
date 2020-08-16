@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import './index.scss';
 import sendGAEvent, {GA_ACTION} from '../../../utils/ga';
 
 const StyledSVG = styled.svg`
-	color: gray;
+	transition: all 0.3s ease;
+	padding-top: 6px;
+	color: #78757a;
+	width: 28px;
 	&:hover {
-		color: blue;
+		color: #fff;
 	}
 	@media (max-width: 800px) {
 		&:hover {
-			color: gray;
+			color: #78757a;
 		}
 	}
 `;
@@ -27,9 +29,8 @@ export const GitHubIcon = () => {
 			}}
 		>
 			<StyledSVG
+				className="github"
 				xmlns="http://www.w3.org/2000/svg"
-				width="32"
-				height="32"
 				viewBox="0 0 24 24"
 				fill="currentColor"
 			>
