@@ -6,7 +6,7 @@ import { useThemeDispatch, useThemeState } from '../../context/ThemeContext';
 import { GitHubIcon } from '../social-share/github-icon';
 import './index.scss';
 import { SnowSwitch } from '../snow-switch';
-import {GA_ACTION, GAClickEvent} from '../../utils/ga';
+import sendGAEvent, {GA_ACTION} from '../../utils/ga';
 
 const StyledButton = styled.button`
 	outline: 0;
@@ -114,13 +114,13 @@ export const Top = ({ theme, title, location, rootPath }) => {
 	return (
 		<div className="top">
 			<Link to={`/`} className="link" onClick={() => {
-				GAClickEvent('button', GA_ACTION.CLICK, '/')
+				sendGAEvent('button', GA_ACTION.CLICK, '/')
 			}}>
 				{`Yuni-Q`}
 			</Link>
 			<GitHubIcon />
 			<StyledButton theme={theme} onClick={() => {
-				GAClickEvent('button', GA_ACTION.CLICK, 'theme')
+				sendGAEvent('button', GA_ACTION.CLICK, 'theme');
 				setTheme()
 			}}>
 				<div></div>

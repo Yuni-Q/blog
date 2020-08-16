@@ -15,6 +15,6 @@ export const GA_ACTION = {
   CLICK: '클릭',
 }
 
-export const GAClickEvent = (category, action = '', label = '') => (e) => {
+export const GAClickEvent = (category, action = GA_ACTION.CLICK, label = '') => (e) => {
   sendGAEvent(category, action, label);
 }

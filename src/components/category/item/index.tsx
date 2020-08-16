@@ -1,5 +1,5 @@
 import React from 'react';
-import {GAClickEvent, GA_ACTION} from '../../../utils/ga';
+import sendGAEvent, { GA_ACTION } from '../../../utils/ga';
 
 export const Item = ({ title, category, selectCategory }) => (
 	<li
@@ -8,7 +8,7 @@ export const Item = ({ title, category, selectCategory }) => (
 		aria-selected={category === title ? 'true' : 'false'}
 	>
 		<div className={title} onClick={() => {
-				GAClickEvent('category', GA_ACTION.CLICK, title);
+				sendGAEvent('category', GA_ACTION.CLICK, title);
 				selectCategory(title);
 			}}
 		>

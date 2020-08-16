@@ -3,7 +3,7 @@ import { StaticQuery, graphql, Link } from 'gatsby'
 import Image from 'gatsby-image'
 
 import './index.scss'
-import {GAClickEvent, GA_ACTION} from '../../utils/ga'
+import sendGAEvent, { GA_ACTION } from '../../utils/ga'
 
 export const Bio = () => (
   <StaticQuery
@@ -26,7 +26,7 @@ export const Bio = () => (
               <div className="author-name">
                 <span className="author-name-prefix">Written by</span>
                 <Link to={'/about'} className="author-name-content" onClick={() => {
-                  GAClickEvent('button', GA_ACTION.CLICK, 'resume')
+                  sendGAEvent('button', GA_ACTION.CLICK, 'resume')
 
                 }}>
                   <span>@{author}</span>
@@ -35,24 +35,24 @@ export const Bio = () => (
                 <p className="author-socials">
                   {social.github && (
                     <a href={`https://github.com/${social.github}`} onClick={() => {
-                      GAClickEvent('button', GA_ACTION.CLICK, 'github')
+                      sendGAEvent('button', GA_ACTION.CLICK, 'github')
                     }}>GitHub</a>
                   )}
                   {social.medium && (
                     <a href={`https://medium.com/${social.medium}`} onClick={() => {
-                      GAClickEvent('button', GA_ACTION.CLICK, 'medium')
+                      sendGAEvent('button', GA_ACTION.CLICK, 'medium')
                     }}>Medium</a>
                   )}
                   {social.twitter && (
                     <a href={`https://twitter.com/${social.twitter}`} onClick={() => {
-                      GAClickEvent('button', GA_ACTION.CLICK, 'Twitter')
+                      sendGAEvent('button', GA_ACTION.CLICK, 'Twitter')
                     }}>
                       Twitter
                     </a>
                   )}
                   {social.facebook && (
                     <a href={`https://www.facebook.com/${social.facebook}`} onClick={() => {
-                      GAClickEvent('button', GA_ACTION.CLICK, 'facebook')
+                      sendGAEvent('button', GA_ACTION.CLICK, 'facebook')
                     }}>
                       Facebook
                     </a>

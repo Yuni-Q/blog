@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Switch from 'react-switch';
 
 import './index.scss';
-import {GAClickEvent, GA_ACTION} from '../../utils/ga';
+import sendGAEvent, {GA_ACTION} from '../../utils/ga';
 
 export const SnowSwitch = ({ checked, handleChange }) => {
 	return (
@@ -10,7 +10,7 @@ export const SnowSwitch = ({ checked, handleChange }) => {
 			<label htmlFor="normal-switch">
 				<Switch
 					onChange={() => {
-						GAClickEvent('button', GA_ACTION.CLICK, 'snow')
+						sendGAEvent('button', GA_ACTION.CLICK, 'snow')
 						handleChange()
 					}}
 					checked={checked === 'off'}
