@@ -88,7 +88,7 @@ export const ChristmasTheme = ({ checked, children }) => {
 					ctx.arc(snowflake.x, snowflake.y, snowflake.r, 0, Math.PI * 2, false);
 					ctx.closePath();
 					ctx.fill();
-					ctx.stroke();
+					//ctx.stroke();
 
 					if (snowflake.y > height) {
 						snowflakes[i] = reset();
