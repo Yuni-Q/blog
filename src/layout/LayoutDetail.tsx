@@ -116,7 +116,8 @@ export const LayoutDetail = ({ location, title, children }) => {
 	const rootPath = '/';
 	const state = useThemeState();
 	return (
-		<GlobalStyle theme={state.theme}>
+		<>
+		<GlobalStyle theme={state.theme} />
 			<ChristmasTheme checked={state.snow}>
 				<Top
 					theme={state.theme}
@@ -137,6 +138,6 @@ export const LayoutDetail = ({ location, title, children }) => {
 					<Footer />
 				</div>
 			</ChristmasTheme>
-		</GlobalStyle>
+			</>
 	);
 };
