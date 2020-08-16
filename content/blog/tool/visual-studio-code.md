@@ -73,7 +73,7 @@ eslint init
 
 ### [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-Prettier를 사용하여 JavaScript / TypeScript / CSS를 포맷하는 VS 코드 패키지 입니다.
+- Prettier를 사용하여 JavaScript / TypeScript / CSS를 포맷하는 VS 코드 패키지 입니다.
 
 ### [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)
 
