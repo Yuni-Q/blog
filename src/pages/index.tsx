@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { graphql } from 'gatsby';
+import {graphql} from 'gatsby';
 import _ from 'lodash';
-
-import { Layout } from '../layout';
-import { Bio } from '../components/bio';
-import { Head } from '../components/head';
-import { Category } from '../components/category';
-import { Contents } from '../components/contents';
-
+import React,{useEffect,useRef,useState} from 'react';
+import {Bio} from '../components/bio';
+import {Category} from '../components/category';
+import {Contents} from '../components/contents';
+import {Head} from '../components/head';
+import {CATEGORY_TYPE,HOME_TITLE} from '../constants';
+import {Layout} from '../layout';
+import * as Dom from '../utils/dom';
+import * as EventManager from '../utils/event-manager';
+import sendGAEvent,{GA_ACTION} from '../utils/ga';
 import * as ScrollManager from '../utils/scroll';
 import * as Storage from '../utils/storage';
 import * as IOManager from '../utils/visible';
-import * as EventManager from '../utils/event-manager';
-import * as Dom from '../utils/dom';
 
-import { HOME_TITLE, CATEGORY_TYPE } from '../constants';
 
 const DEST_POS = 316;
 const BASE_LINE = 80;
@@ -36,6 +35,7 @@ export default ({ data, location }) => {
 	const categories = _.uniq(posts.map(({ node }) => node.frontmatter.category));
 
 	useEffect(() => {
+		sendGAEvent('index', GA_ACTION.EXPOSE);
 		window.addEventListener(`scroll`, onScroll, { passive: false });
 		IOManager.init();
 		ScrollManager.init();

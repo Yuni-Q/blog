@@ -5,6 +5,7 @@ import {THEME} from '../../constants';
 import {useThemeState} from '../../context/ThemeContext';
 import {TARGET_CLASS} from '../../utils/visible';
 import './index.scss';
+import {GAClickEvent, GA_ACTION} from '../../utils/ga';
 
 const StlyedLink = styled(Link)`
 	display: inline-block;
@@ -40,7 +41,9 @@ export const ThumbnailItem = ({ node }) => {
 	const state = useThemeState();
 	return (
 		<StyledThumbnailItem theme={state.theme}>
-			<Link className={`thumbnail ${TARGET_CLASS} `} to={node.fields.slug}>
+			<Link className={`thumbnail ${TARGET_CLASS} `} to={node.fields.slug} onClick={() => {
+				GAClickEvent('thumbnail', GA_ACTION.CLICK, node.frontmatter.title || node.fields.slug) 
+			}}>
 				<div key={node.fields.slug}>
 					<h3>{node.frontmatter.title || node.fields.slug}</h3>
 					<p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
@@ -52,6 +55,9 @@ export const ThumbnailItem = ({ node }) => {
 						theme={state.theme}
 						key={index}
 						to={`/tags/${tag}/`}
+						onClick={() => {
+							GAClickEvent('tag', GA_ACTION.CLICK, tag) 
+						}}
 					>
 						{`#${tag}`}
 					</StlyedLink>

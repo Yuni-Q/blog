@@ -3,6 +3,7 @@ import { StaticQuery, graphql, Link } from 'gatsby'
 import Image from 'gatsby-image'
 
 import './index.scss'
+import {GAClickEvent, GA_ACTION} from '../../utils/ga'
 
 export const Bio = () => (
   <StaticQuery
@@ -24,24 +25,35 @@ export const Bio = () => (
               />
               <div className="author-name">
                 <span className="author-name-prefix">Written by</span>
-                <Link to={'/about'} className="author-name-content">
+                <Link to={'/about'} className="author-name-content" onClick={() => {
+                  GAClickEvent('button', GA_ACTION.CLICK, 'resume')
+
+                }}>
                   <span>@{author}</span>
                 </Link>
                 <div className="author-introduction">{introduction}</div>
                 <p className="author-socials">
                   {social.github && (
-                    <a href={`https://github.com/${social.github}`}>GitHub</a>
+                    <a href={`https://github.com/${social.github}`} onClick={() => {
+                      GAClickEvent('button', GA_ACTION.CLICK, 'github')
+                    }}>GitHub</a>
                   )}
                   {social.medium && (
-                    <a href={`https://medium.com/${social.medium}`}>Medium</a>
+                    <a href={`https://medium.com/${social.medium}`} onClick={() => {
+                      GAClickEvent('button', GA_ACTION.CLICK, 'medium')
+                    }}>Medium</a>
                   )}
                   {social.twitter && (
-                    <a href={`https://twitter.com/${social.twitter}`}>
+                    <a href={`https://twitter.com/${social.twitter}`} onClick={() => {
+                      GAClickEvent('button', GA_ACTION.CLICK, 'Twitter')
+                    }}>
                       Twitter
                     </a>
                   )}
                   {social.facebook && (
-                    <a href={`https://www.facebook.com/${social.facebook}`}>
+                    <a href={`https://www.facebook.com/${social.facebook}`} onClick={() => {
+                      GAClickEvent('button', GA_ACTION.CLICK, 'facebook')
+                    }}>
                       Facebook
                     </a>
                   )}

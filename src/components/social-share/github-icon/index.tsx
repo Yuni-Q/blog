@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import './index.scss';
+import {GAClickEvent, GA_ACTION} from '../../../utils/ga';
 
 const StyledSVG = styled.svg`
 	color: gray;
@@ -21,6 +22,9 @@ export const GitHubIcon = () => {
 			href="https://github.com/Yuni-Q/blog"
 			className="github"
 			aria-label="GitHub"
+			onClick={() => {
+				GAClickEvent('button', GA_ACTION.CLICK, 'github')
+			}}
 		>
 			<StyledSVG
 				xmlns="http://www.w3.org/2000/svg"

@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { graphql } from 'gatsby';
-
+import {graphql} from 'gatsby';
+import React,{useEffect} from 'react';
+import {Bio} from '../components/bio';
+import {Disqus} from '../components/disqus';
 import * as Elements from '../components/elements';
-import { Layout } from '../layout';
-import { Head } from '../components/head';
-import { PostTitle } from '../components/post-title';
-import { PostContainer } from '../components/post-container';
-import { SocialShare } from '../components/social-share';
-import { SponsorButton } from '../components/sponsor-button';
-import { Bio } from '../components/bio';
-import { PostNavigator } from '../components/post-navigator';
-import { Disqus } from '../components/disqus';
-import { Utterences } from '../components/utterances';
-import * as ScrollManager from '../utils/scroll';
-
+import {Head} from '../components/head';
+import {PostContainer} from '../components/post-container';
+import {PostNavigator} from '../components/post-navigator';
+import {PostTitle} from '../components/post-title';
+import {SocialShare} from '../components/social-share';
+import {SponsorButton} from '../components/sponsor-button';
+import {Utterences} from '../components/utterances';
+import {Layout} from '../layout';
 import '../styles/code.scss';
+import sendGAEvent,{GA_ACTION} from '../utils/ga';
+import * as ScrollManager from '../utils/scroll';
 
 export default ({ data, pageContext, location }) => {
 	useEffect(() => {
+		sendGAEvent('blog-post', GA_ACTION.EXPOSE);
 		ScrollManager.init();
 		return () => ScrollManager.destroy();
 	}, []);

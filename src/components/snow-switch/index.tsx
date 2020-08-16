@@ -2,13 +2,17 @@ import React, { useEffect } from 'react';
 import Switch from 'react-switch';
 
 import './index.scss';
+import {GAClickEvent, GA_ACTION} from '../../utils/ga';
 
 export const SnowSwitch = ({ checked, handleChange }) => {
 	return (
 		<div className="switch-container">
 			<label htmlFor="normal-switch">
 				<Switch
-					onChange={handleChange}
+					onChange={() => {
+						GAClickEvent('button', GA_ACTION.CLICK, 'snow')
+						handleChange()
+					}}
 					checked={checked === 'off'}
 					id="normal-switch"
 					height={24}
