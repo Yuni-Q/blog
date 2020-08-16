@@ -53,7 +53,7 @@ lang: 'ko'
 
 - B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영개선
 - 20.07 ~ current
-- `Typescript`, `React`, `Spring`
+- `Typescript` `React` `Spring`
 - 운영개선 작업
 - 실행 환경 개선
 - lint 적용
@@ -62,13 +62,13 @@ lang: 'ko'
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 제외한 부분)
 - 20.06 ~ current
-- `Javascript`, `WoowahanJS`
+- `Javascript` `WoowahanJS`
 
 #### ceo-web-self-service
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 부분)
 - 20.01 ~ 20.07
-- `TypeScript`, `React`, `Mobx`, `React-Router`
+- `TypeScript` `React` `Mobx` `React-Router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
 - ceo-web-design-system를 활용해서 서비스 Front-end 개발/운영개선
 - ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
@@ -79,7 +79,7 @@ lang: 'ko'
 
 - B2B서비스채널을 위한 디자인 시스템 구축
 - 19.10 ~ current
-- `TypeScript`, `React`, `Mobx`, `React-Router`
+- `TypeScript` `React` `Mobx` `React-Router`
 - 프로젝트 초기 React Application Architecture 설계
   - 새로운 프로젝트 개발 환경 및 구조 연구하고 설계 참여
 - 다른 프로젝트에서 사용 될 공통 디자인 시스템 컴포넌트 작성 및 수정
@@ -89,7 +89,7 @@ lang: 'ko'
 
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스 웹 서비스 개발/운영개선
 - 19.08 ~ 20.01
-- `TypeScript`, `React`, `Redux`, `Redux-Saga`, `React-Router`, `JEST`
+- `TypeScript` `React` `Redux` `Redux-Saga` `React-Router` `JEST`
 - 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
 - 메뉴 타입 설정 기능 개발
 - 메뉴구성 / 메뉴 설정 기능 추가 개발
@@ -100,7 +100,7 @@ lang: 'ko'
 
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스의 회사 내부 관리 웹 서비스 개발/운영개선
 - 19.08 ~ 20.01
-- `TypeScript`, `React`, `Redux`, `Redux-Saga`, `React-Router`, `Antd`
+- `TypeScript` `React` `Redux` `Redux-Saga` `React-Router` `Antd`
 
 - 메뉴 매핑 정보 체크 가능 개발
 - 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
@@ -122,7 +122,7 @@ lang: 'ko'
 
 - React로 구성 된 모바일 웹과 웹뷰 서비스
 - 19.01.23 ~ 19.08.23
-- `TypeScript`, `React`, `Redux`, `Redux-Thunk`, `React-Router`, `Apollo`
+- `TypeScript` `React` `Redux` `Redux-Thunk` `React-Router` `Apollo`
 - 기존 handlebaz로 구성되어 있던 모바일 웹 리액트로 리뉴얼
 - 퍼블리싱 없이 기획자와 디자이너의 기획서와 제플린을 통한 HTML, CSS, JS 작업(HTML, CSS 리드)
 - 기존 탭 리뉴얼 및 새로운 프로모션 탭 제작
@@ -139,7 +139,7 @@ lang: 'ko'
 
 - handlebaz로 되어 있는 프로젝트에 정적 데이터 수정( PC Web, Mobile Web )
 - 19.01.23 ~ 19.08.23
-- `Javascript`, `Node`, `Handlebaz`
+- `Javascript` `Node` `Handlebaz`
 
 ### [SVm](https://www.pufflive.me/web/pufftv?locale=ko)
 
@@ -155,7 +155,7 @@ lang: 'ko'
 
 - PUFF APP을 위한 API 및 ADMIN 개발/유지보수
 - 18.06.05 ~ 19.01.18
-- `Ruby on Rails`, `Javascript`, `Node`, `MySQL`, `AWS`
+- `Ruby on Rails` `Javascript` `Node` `MySQL` `AWS`
 
 - Ruby on Rails monolithic 구성 된 프로젝트 유지 보수
 - 앱 내 게임 관련 데이터 Redis에서 수집해 데이터 제공
@@ -177,13 +177,13 @@ lang: 'ko'
 ### [study-watson](https://github.com/mash-up-kr/study-watson)
 
 - 효율적으로 스터디를 관리하는 가장 쉬운 방법을 제공하는 웹 서비스 입니다.
-- `React`, `Redux`, `Redux-Saga`, `NEXT`
+- `React` `Redux` `Redux-Saga` `NEXT`
 - [시연 영상](https://www.youtube.com/watch?v=nKn6scRu-hk)
 
 ### [Ahobsu-Node-Backend](https://github.com/Yuni-Q/ahobsu-node-backend)
 
 - 매일 하루에 한 번 받을 질문에 답하면서 자신을 기록하면 단순히 기록에서 그치지 않고 당신이 기록한 일주일은 한 장의 꿈을 담은 카드로 완성해 주는 iOS 앱 입니다.
-- `Node`, `Express`, `Typescript`, `Swagger`, `JEST`, `JWT`, `Sequelize`, `MySQL`, `EC2`, `S3`
+- `Node` `Express` `Typescript` `Swagger` `JEST` `JWT` `Sequelize` `MySQL` `EC2` `S3`
 - [시연 영상](https://www.youtube.com/watch?v=m91rLvwMmXo)
 - [앱 다운로드](https://apps.apple.com/kr/app/moti/id1496912171)
 
@@ -191,7 +191,7 @@ lang: 'ko'
 
 - 모아봐요 동물의 숲에 관한 최신 정보들을 쉽게 확인해 볼 수 있는 앱 입니다.
   - 물고기, 곤충, 마이디자인, 주민, KK노래 미리듣기
-- `Node`, `Express`, `Typescript`,`Sequelize`, `MySQL`, `EC2`,
+- `Node` `Express` ` Typescript``Sequelize ` `MySQL` `EC2`
 - [시연 영상](https://www.youtube.com/watch?v=38oB4rUzMVM&t=2s)
 - [앱 다운로드](https://apps.apple.com/app/id1506382486?fbclid=IwAR22h2oP6yMONya-WEG-ghBANa6KnbJLMx9knSnhVS8cXWuFiY7SA-EeP-0)
 
