@@ -33,7 +33,7 @@ export default ({ data, location }) => {
 	const categories = _.uniq(posts.map(({ node }) => node.frontmatter.category));
 
 	useEffect(() => {
-		sendGAEvent('tags', GA_ACTION.EXPOSE);
+		sendGAEvent('tags', GA_ACTION.EXPOSE, location?.pathname.split('tags/')[1].split('/')[0] || HOME_TITLE);
 		window.addEventListener(`scroll`, onScroll, { passive: false });
 		IOManager.init();
 		ScrollManager.init();

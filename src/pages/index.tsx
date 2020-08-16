@@ -35,7 +35,7 @@ export default ({ data, location }) => {
 	const categories = _.uniq(posts.map(({ node }) => node.frontmatter.category));
 
 	useEffect(() => {
-		sendGAEvent('index', GA_ACTION.EXPOSE);
+		sendGAEvent(HOME_TITLE, GA_ACTION.EXPOSE, HOME_TITLE);
 		window.addEventListener(`scroll`, onScroll, { passive: false });
 		IOManager.init();
 		ScrollManager.init();

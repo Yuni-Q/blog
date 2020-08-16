@@ -17,7 +17,7 @@ import * as ScrollManager from '../utils/scroll';
 
 export default ({ data, pageContext, location }) => {
 	useEffect(() => {
-		sendGAEvent('blog-post', GA_ACTION.EXPOSE);
+		sendGAEvent('blog-post', GA_ACTION.EXPOSE, post.frontmatter.title);
 		ScrollManager.init();
 		return () => ScrollManager.destroy();
 	}, []);
