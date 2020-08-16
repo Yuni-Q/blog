@@ -112,7 +112,7 @@ export const Top = ({ theme, title, location, rootPath }) => {
 
 	return (
 		<div className="top">
-			<Link to={`/`} className="link" style={{ fontSize: 20 }}>
+			<Link to={`/`} className="link">
 				{`Yuni-Q`}
 			</Link>
 			<GitHubIcon />

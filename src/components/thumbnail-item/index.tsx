@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'gatsby';
-import _ from 'lodash';
-import { TARGET_CLASS } from '../../utils/visible';
+import {Link} from 'gatsby';
+import React from 'react';
 import styled from 'styled-components';
+import {THEME} from '../../constants';
+import {useThemeState} from '../../context/ThemeContext';
+import {TARGET_CLASS} from '../../utils/visible';
 import './index.scss';
-import { useThemeState } from '../../context/ThemeContext';
-import { THEME } from '../../constants';
 
 const StlyedLink = styled(Link)`
 	display: inline-block;
@@ -52,7 +51,7 @@ export const ThumbnailItem = ({ node }) => {
 					<StlyedLink
 						theme={state.theme}
 						key={index}
-						to={`/tags/${_.kebabCase(tag)}/`}
+						to={`/tags/${tag}/`}
 					>
 						{`#${tag}`}
 					</StlyedLink>

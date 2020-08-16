@@ -28,7 +28,7 @@ export default ({ data, pageContext, location }) => {
 	const { disqusShortName, utterances } = comment;
 
 	return (
-		<Layout location={location} title={title}>
+		<Layout location={location}>
 			<Head title={post.frontmatter.title} description={post.excerpt} />
 			<PostTitle title={post.frontmatter.title} />
 			<PostContainer html={post.html} />

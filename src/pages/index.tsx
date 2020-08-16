@@ -79,7 +79,7 @@ export default ({ data, location }) => {
 	};
 
 	return (
-		<Layout location={location} title={siteMetadata.title}>
+		<Layout location={location}>
 			<Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
 			<Bio />
 			<Category

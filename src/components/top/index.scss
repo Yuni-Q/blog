@@ -12,8 +12,8 @@
 	.link {
 		position: relative;
 		display: inline-block;
-		font-size: 28px;
-		padding-top: 8px;
+		font-size: 20px;
+		padding-top: 16px;
 		color: $top-header-text-color;
 		opacity: 0.7;
 		font-family: 'Catamaran';
@@ -24,7 +24,7 @@
 		z-index: 100;
 		position: absolute;
 		left: -64px;
-		top: 2px;
+		top: 4px;
 		display: inline-block;
 		background: url(/favicon.png);
 		background-repeat: no-repeat;

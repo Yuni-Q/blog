@@ -10,7 +10,6 @@ import './index.scss';
 export const LayoutDetail = ({ location, title, children }) => {
 	const rootPath = '/';
 	const state = useThemeState();
-
 	return (
 		<ChristmasTheme checked={state.snow}>
 			<Top
@@ -27,7 +26,7 @@ export const LayoutDetail = ({ location, title, children }) => {
 					padding: `${rhythm(1.5)} ${rhythm(2)}`,
 				}}
 			>
-				<Header title={title} location={location} rootPath={rootPath} />
+				{title && <Header title={title} location={location} rootPath={rootPath} />}
 				{children}
 				<Footer />
 			</div>

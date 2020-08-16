@@ -73,12 +73,11 @@ export default ({ data, location }) => {
 			triggerCondition: () => isTriggerPos() && doesNeedMore(),
 		})();
 	};
-
 	return (
 		<Layout
 			location={location}
 			title={
-				location?.pathname.split('tags/')[1].split('/')[0] || siteMetadata.title
+				location ? `#${location.pathname.split('tags/')[1].split('/')[0]}` : siteMetadata.title
 			}
 		>
 			<Head
