@@ -105,7 +105,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 			});
 		setTheme();
 		setSnow();
-		toggleTheme(localStorageTheme)
 	}, []);
 
 	const [state, dispatch] = useReducer(reducer, {
