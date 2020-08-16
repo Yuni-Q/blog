@@ -6,8 +6,9 @@ import { useThemeState } from '../context/ThemeContext';
 import { rhythm } from '../utils/typography';
 import { ChristmasTheme } from './Christmas';
 import './index.scss';
-import styled from 'styled-components';
 import {THEME} from '../constants';
+import { createGlobalStyle } from "styled-components"
+
 
 const navigatorTextColor = '#cc007a';
 const navigatorBackgroundColor= '#fceff7';
@@ -26,13 +27,13 @@ const darkCategoryHighlightTextColor = '#fff';
 
 const lightBackgroundColor =  '#fff';
 const lightTextShadow =  '0 0 0.1px rgba(0, 0, 0, 0.3)';
-const lightHoverTextShadow =  '0 0 6px rgba(0, 0, 0, 0.2)';
 const lightCategoryBorderColor = '#ecf0f2';
 const lightCategoryBackgroundColor = '#f4f7f8';
 
-const StlyedBody = styled.div`
-transition: background-color .3s,color .3s;
-background-color: ${({theme}) => theme === THEME.LIGHT ? lightBackgroundColor : darkBackgroundColor};
+const GlobalStyle = createGlobalStyle`
+body {
+	transition: background-color .3s,color .3s;
+	background-color: ${({theme}) => theme === THEME.LIGHT ? lightBackgroundColor : darkBackgroundColor};
 	text-shadow: ${({theme}) => theme === THEME.LIGHT ? lightTextShadow : darkTextShadow};
 	color: ${({theme}) => theme === THEME.LIGHT ? 'inherit' : darkLightFontColor};
 
@@ -107,6 +108,7 @@ background-color: ${({theme}) => theme === THEME.LIGHT ? lightBackgroundColor : 
 			color: ${({theme}) => theme === THEME.LIGHT ? '#cc007a' : navigatorTextColor};
 		}
 	}
+}
 `;
 
 
@@ -114,7 +116,7 @@ export const LayoutDetail = ({ location, title, children }) => {
 	const rootPath = '/';
 	const state = useThemeState();
 	return (
-		<StlyedBody theme={state.theme}>
+		<GlobalStyle theme={state.theme}>
 			<ChristmasTheme checked={state.snow}>
 				<Top
 					theme={state.theme}
@@ -135,6 +137,6 @@ export const LayoutDetail = ({ location, title, children }) => {
 					<Footer />
 				</div>
 			</ChristmasTheme>
-		</StlyedBody>
+		</GlobalStyle>
 	);
 };
