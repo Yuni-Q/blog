@@ -62,7 +62,7 @@ lang: 'ko'
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 제외한 부분)
 - 20.06 ~ current
-- `Javascript`, `WoowahanJS`,
+- `Javascript`, `WoowahanJS`
 
 #### ceo-web-self-service
 
