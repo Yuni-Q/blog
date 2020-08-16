@@ -5,9 +5,9 @@ import sendGAEvent, {GA_ACTION} from '../../../utils/ga';
 
 const StyledSVG = styled.svg`
 	transition: all 0.3s ease;
-	padding-top: 6px;
+	padding-top: 4px;
 	color: #78757a;
-	width: 28px;
+	width: 32px;
 	&:hover {
 		color: #fff;
 	}
