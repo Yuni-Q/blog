@@ -52,6 +52,7 @@
 		"typeface-noto-sans-kr": "0.0.63",
 		"typography": "^0.16.17",
 		"typography-theme-github": "^0.16.18",
+		"uuid": "^8.3.0",
 		"webpack-dev-server": "^3.11.0"
 	},
 	"devDependencies": {
