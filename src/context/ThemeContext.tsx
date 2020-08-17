@@ -110,7 +110,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 				type: 'SET_SNOW',
 				snow: localStorageSnow,
 			});
-			console.log(333,localStorageTheme,localStorageSnow )
 		setTheme();
 		setSnow();
 	}, []);
