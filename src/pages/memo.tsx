@@ -52,7 +52,7 @@ const App = () => {
         left: parseInt(left, 10),
         width: memo.width,
         height: memo.height,
-        text: '',
+        text: memo.text,
       }
     ]);
   };
@@ -72,7 +72,7 @@ const App = () => {
         left: memo.left,
         width: parseInt(width, 10),
         height: parseInt(height, 10),
-        text: '',
+        text: memo.text,
       }
     ]);
   };
