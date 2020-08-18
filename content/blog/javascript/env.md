@@ -1,8 +1,8 @@
 ---
-title: 환경변수 사용
+title: env
 date: 2020-08-10 12:08:53
-category: develop
-tags: ['env', 'cross-env', 'port']
+category: javascript
+tags: ['env', 'cross-env', 'port', 'javascript']
 draft: false
 ---
 
@@ -50,3 +50,7 @@ npm i -D cross-env
 	}
 }
 ```
+
+## dotenv
+
+- 비밀키는 .env라는 파일에 모아두고, dotenv가 .env 파일을 읽어서 process.env 객체에 넣습니다.
