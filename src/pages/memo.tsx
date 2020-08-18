@@ -1,11 +1,22 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-
-import Memo from "../components/Memo";
 import axios from 'axios';
+import React,{useCallback,useEffect,useRef,useState} from "react";
+import Memo from "../components/memo/Memo";
+import styled from 'styled-components'
+import Spinner from '../components/spinner/Spinner';
+
 const { v4: uuid } = require('uuid');
 
+const StyledLoading = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: gray;
+  display: flex;
+  color: white;
+  align-items: center;
+`;
+
 const App = () => {
-  
+  const [loading, setLoading] = useState(true);
   const [memos, setMemos] = useState([]);
 
   const ref = useRef(null);
@@ -99,6 +110,7 @@ const App = () => {
   const getItem = async () => {
     const result = await axios.get('https://script.google.com/macros/s/AKfycbwn9aYX70mvprKz1IbJezxqzXCDP2-24tjJ9qdjIqlcgOkLsshg/exec');
     setMemos(JSON.parse(result.data.items[0].name) || [])
+    setLoading(false)
   }
   
   const setItem = async (memos) => {
@@ -126,7 +138,8 @@ const App = () => {
       ref={ref}
       style={{ width: "100vw", height: "100vh" }}
     >
-      {memos &&
+      {!!loading && <StyledLoading><Spinner /></StyledLoading>}
+      {!loading && memos &&
         memos.map(memo => {
           const { id, top, left, width, height,text } = memo;
           return (
