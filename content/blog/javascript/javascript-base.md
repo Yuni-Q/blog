@@ -726,7 +726,7 @@ p.then(
 ).then(alert);
 ```
 
-## 방법 2
+### 방법 2
 
 ```javascript
 p.then(even => {
@@ -747,6 +747,422 @@ p.then(even => {
 - import 구문에서 이름을 적어주는 부분에 중괄호를 생략하면, 모듈의 default export를 가져옵니다.
 - export 혹은 import 하는 이름의 뒤에 as를 붙여서, 다른 이름이 대신 사용되게 할 수 있습니다.
 
+## 44. 삼항조건 연산자 (The Ternary Operator)
+
+- if..else 문항을 사용할때 한줄로 줄여주는 아주 좋은 방법입니다.
+
+```javascript
+// 기존
+const x = 20;
+let answer1;
+if (x > 10) {
+	answer1 = 'greater than 10';
+} else {
+	answer1 = 'less than 10';
+}
+
+// 축약기법
+const answer2 = x > 10 ? 'greater than 10' : 'less than 10';
+const answer3 = x > 10 ? ' greater than 10' : x;
+```
+
+## 45. 간략계산법 (Short-circuit Evaluation)
+
+- 기존의 변수를 다른 변수에 할당하고 싶은 경우, 기존 변수가 null, undefined 또는 empty 값이 아닌것을 확인해야합니다. (위 세가지일 경우 에러가 뜹니다) 이를 해결하기 위해서 긴 if문을 작성하거나 축약코딩으로 한줄에 끝낼 수 있습니다.
+
+```javascript
+// 기존
+if (variable1 !== null || variable1 !== undefined || variable1 !== '') {
+	let variable2 = variable1;
+}
+
+// 축약기법
+const variable3 = null;
+const variable4 = variable3 || 'new';
+
+let variable5;
+let variable6 = variable5 || '';
+console.log(variable6 === ''); // true
+
+variable5 = 'foo';
+variable6 = variable5 || '';
+console.log(variable6); // foo
+```
+
+## 46. 변수 선언
+
+- 축약기법을 사용하면 여러개의 변수를 선언할 수 있습니다.
+
+```javascript
+// 기존
+let x;
+let y;
+let z = 3;
+
+// 축약기법
+let x,
+	y,
+	z = 3;
+```
+
+## 47. If Presence
+
+- if문을 확인하기 위해서는, 대입 연산자를 제외하고 작성 할 수 있습니다.
+
+```javascript
+// 기존
+if (likeJavaScript === true) {
+}
+
+// 축약기법
+if (likeJavaScript) {
+}
+```
+
+- 위 두개의 예제는 정확히 일치하지는 않습니다. 축약기법의 if 문은 likeJavaScript 값이 truthy일 경우 통과하도록 되어있지만, 기존 방법은 무조건 TRUE 일경우에만 통과할 수 있기 때문입니다.
+
+```javascript
+// 기존
+let a;
+if (a !== true) {
+	// 코드 실행...
+}
+
+// 축약기법
+let a;
+if (!a) {
+	// 코드실행...
+}
+```
+
+## 48. For 루프
+
+```javascript
+// 기존
+for (let i = 0; i < allImgs.length; i++) {}
+
+// 축약기법
+for (let index of allImgs) {
+}
+
+// Array.forEach 축약기법
+function logArrayElements(element, index, array) {
+	console.log('a[' + index + '] = ' + element);
+}
+[2, 5, 9].forEach(logArrayElements);
+// logs:
+// a[0] = 2
+// a[1] = 5
+// a[2] = 9
+```
+
+## 49. 간략 계산법(Short-circuit Evaluation)
+
+- 기본 값을 부여하기 위해 파라미터의 null 또는 undefined 여부를 파악하느라 6줄 이상의 코드를 작성하는것보다 short-circuit evaluation 방법을 이용해서 한줄로 작성하는 방법이 유용합니다.
+
+```javascript
+// 기존
+let dbHost;
+if (process.env.DB_HOST) {
+	dbHost = process.env.DB_HOST;
+} else {
+	dbHost = 'localhost';
+}
+
+// 축약기법
+const dbHost = process.env.DB_HOST || 'localhost';
+```
+
+- Short-circuit evaluation 이란 두가지의 변수를 비교할때, 앞에 있는 변수가 false 일경우 결과는 무조건 false 이기때문에 뒤의 변수는 확인하지 않고 return 시키는 방법입니다.
+
+## 50. 십진수 지수(Decimal base exponents)
+
+- 0이 많은 숫자를 적을때, 수 많은 0들을 제외하고 코딩을 할 수 있습니다. 예를 들어 1e7은 1 뒤에 0이 7개 붙는다는 뜻입니다. 이는 10,000,000를 줄여쓴 것이고 자바스크립트에서는 float 타입값으로 받아드립니다.
+
+```javascript
+// 기존
+for (let i = 0; i < 10000; i++) {}
+
+// 축약기법
+for (let i = 0; i < 1e7; i++) {}
+
+// All the below will evaluate to true
+console.log(1 === 1);
+console.log(1e1 === 10);
+console.log(1e2 === 100);
+console.log(1e3 === 1000);
+console.log(1e4 === 10000);
+console.log(1e5 === 100000);
+```
+
+## 51. 객체 프로퍼티
+
+- 객체 리터럴 표기법은 자바스크립트 코딩을 훨씬 쉽게 만들어줍니다. 만일 프로퍼티 이름이 key 이름과 같을경우, 축약기법을 활용할 수 있습니다.
+
+```javascript
+// 기존
+const obj = { x: x, y: y };
+
+// 축약기법
+const obj = { x, y };
+```
+
+## 52. 애로우(화살표) 함수
+
+- 기존 함수 선언문은 읽고, 쓰기 쉽게 되어있습니다. 하지만 함수 네스팅이 시작되면 선언문 자체가 불필요하게 느껴지고, 헷갈리게 됩니다.
+
+```javascript
+// 기존
+function sayHello(name) {
+	console.log('Hello', name);
+}
+setTimeout(function() {
+	console.log('Loaded');
+}, 2000);
+list.forEach(function(item) {
+	console.log(item);
+});
+
+// 축약기법
+sayHello = name => console.log('Hello', name);
+setTimeout(() => console.log('Loaded'), 2000);
+list.forEach(item => console.log(item));
+```
+
+- 애로우 함수 표기법에서는 this가 기존의 함수 선언문과 다르게 받아들여집니다. 따라서 위의 두 예제는 완벽하게 동일하다고 볼 수는 없습니다.
+
+## 53. 묵시적 반환(Implicit Return)
+
+- return 은 함수 결과를 반환하는데 사용되는 명령어입니다. 한 줄로만 작성된 애로우 함수는 별도의 return 명령어가 없어도 자동으로 반환하도록 되어있습니다. 다만, 중괄호({})를 생략한 함수여야 return 명령어도 생략 할 수 있습니다.
+- 한 줄 이상의 문장(객체 리터럴)을 반환하려면 중괄호({})대신 괄호(())를 사용해서 함수를 묶어야합니다. 이렇게 하면 함수가 한 문장으로 작성되었음을 나타낼 수 있습니다.
+
+```javascript
+// 기존
+function calcCircumference(diameter) {
+	return Math.PI * diameter;
+}
+
+// 축약기법
+calcCircumference = diameter => (
+  Math.PI * diameter;
+)
+```
+
+## 54. 파라미터 기본 값 지정하기(Default Parameter Values)
+
+- 기존에는 if 문을 통해서 함수의 파라미터 값에 기본 값을 지정해줘야했습니다. ES6에서는 함수 선언문 자체에서 기본값을 지정해 줄 수 있습니다.
+
+```javascript
+// 기존
+function volume(l, w, h) {
+	if (w === undefined) w = 3;
+	if (h === undefined) h = 4;
+	return l * w * h;
+}
+
+// 축약기법
+volume = (l, w = 3, h = 4) => l * w * h;
+volume(2); //output: 24
+```
+
+## 55. 템플릿 리터럴(Template Literals)
+
+- 문자열로 ' + ' 를 입력하며 자바스크립트 값을 추가하는 방법보다 백틱(backtick)을 사용해서 스트링을 감싸고, \${}를 사용해서 변수를 담아주면 됩니다.
+
+```javascript
+// 기존
+const welcome = 'You have logged in as ' + first + ' ' + last + '.';
+const db = 'http://' + host + ':' + port + '/' + database;
+
+// 축약기법
+const welcome = `You have logged in as ${first} ${last}`;
+const db = `http://${host}:${port}/${database}`;
+```
+
+## 56. 비구조화 할당(Destructuring Assignment)
+
+- 유명한 프레임워크로 개발을 하고 있다면 컴포넌트와 API간 정보를 전송하기 위해서 객체 리터럴이나 배열로 이뤄진 데이터를 사용하게 될 가능성이 큽니다. 데이터 객체가 컴포넌트에 들어가게 되면, unpack이 필요합니다.
+
+```javascript
+// 기존
+const observable = require('mobx/observable');
+const action = require('mobx/action');
+const runInAction = require('mobx/runInAction');
+
+const store = this.props.store;
+const form = this.props.form;
+const loading = this.props.loading;
+const errors = this.props.errors;
+const entity = this.props.entity;
+
+// 축약기법
+import { observable, action, runInAction } from 'mobx';
+
+const { store, form, loading, errors, entity } = this.props;
+
+// 축약기법으로 커스텀 변수명을 지정할 수 있습니다
+const { store, form, loading, errors, entity: contact } = this.props;
+```
+
+## 57. 여러줄로 문자열 쓰기(Multi-line String)
+
+```javascript
+// 기존
+const lorem =
+	'Lorem ipsum dolor sit amet, consectetur\n\t' +
+	'adipisicing elit, sed do eiusmod tempor incididunt\n\t' +
+	'ut labore et dolore magna aliqua. Ut enim ad minim\n\t' +
+	'veniam, quis nostrud exercitation ullamco laboris\n\t' +
+	'nisi ut aliquip ex ea commodo consequat. Duis aute\n\t' +
+	'irure dolor in reprehenderit in voluptate velit esse.\n\t';
+
+// 축약기법
+const lorem = `Lorem ipsum dolor sit amet, consectetur
+    adipisicing elit, sed do eiusmod tempor incididunt
+    ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat. Duis aute
+    irure dolor in reprehenderit in voluptate velit esse.`;
+```
+
+## 58. 전개 연산자(Spread Operator)
+
+- ES6에서 소개된 전개 연산자는 자바스크립트 코드를 더 효율적이고 재미있게 사용 할 수 있는 방법을 제시합니다. 간단히는 배열의 값을 변환하는데 사용할 수 있습니다. 전개 연산자를 사용하는 방법은 점 세개(...)를 붙이면 됩니다.
+
+```javascript
+// 기존
+// joining arrays
+const odd = [1, 3, 5];
+const nums = [2, 4, 6].concat(odd);
+
+// cloning arrays
+const arr = [1, 2, 3, 4];
+const arr2 = arr.slice();
+
+// 축약기법
+// joining arrays
+const odd = [1, 3, 5];
+const nums = [2, 4, 6, ...odd];
+console.log(nums); // [ 2, 4, 6, 1, 3, 5 ]
+
+// cloning arrays
+const arr = [1, 2, 3, 4];
+const arr2 = [...arr];
+
+// concat()함수와는 다르게 전개 연산자를 이용하면 하나의 배열을 다른 배열의 아무 곳에나 추가할 수 있습니다.
+const odd = [1, 3, 5];
+const nums = [2, ...odd, 4, 6];
+
+// 전개 연산자는 ES6의 구조화 대입법(destructuring notation)와 함께 사용할 수도 있습니다.
+const { a, b, ...z } = { a: 1, b: 2, c: 3, d: 4 };
+console.log(a); // 1
+console.log(b); // 2
+console.log(z); // { c: 3, d: 4 }
+```
+
+## 59. 필수(기본) 파라미터(Mandatory Parameter)
+
+- 기본적으로 자바스크립트는 함수의 파라미터값을 받지 않았을경우, undefined로 지정합니다. 다른 언어들은 경고나 에러 메시지를 나타내기도 하죠. 이런 기본 파라미터 값을 강제로 지정하는 방법은 if 문을 사용해서 undefined일 경우 에러가 나도록 하거나, ‘Mandatory parameter shorthand’을 사용하는 방법이 있습니다.
+
+```javascript
+// 기존
+function foo(bar) {
+	if (bar === undefined) {
+		throw new Error('Missing parameter!');
+	}
+	return bar;
+}
+
+// 축약기법
+mandatory = () => {
+	throw new Error('Missing parameter!');
+};
+
+foo = (bar = mandatory()) => {
+	return bar;
+};
+```
+
+## 60. Array.find
+
+- 자바스크립트로 특정 값을 찾기 위한 함수를 작성하다보면 보통 for 루프를 이용해서 작성을 하게 됩니다. ES6에서는 find()라는 새로운 함수가 생겼습니다.
+
+```javascript
+const pets = [
+	{ type: 'Dog', name: 'Max' },
+	{ type: 'Cat', name: 'Karl' },
+	{ type: 'Dog', name: 'Tommy' },
+];
+
+// 기존
+function findDog(name) {
+	for (let i = 0; i < pets.length; ++i) {
+		if (pets[i].type === 'Dog' && pets[i].name === name) {
+			return pets[i];
+		}
+	}
+}
+findDog('Tommy');
+
+// 축약기법
+pet = pets.find(pet => pet.type === 'Dog' && pet.name === 'Tommy');
+console.log(pet); // { type: 'Dog', name: 'Tommy' }
+```
+
+## 61. Object [key]
+
+- Foo.bar를 Foo[‘bar’]와 같습니다. 왜 후자와 같이 코딩을 해야하는지 의문이 들 수도 있겠지만, 재사용이 용이한 코드 블락을 작성하기 위해서는 매우 효율적인 방법입니다.
+
+```javascript
+// 기존
+function validate(values) {
+	if (!values.first) return false;
+	if (!values.last) return false;
+	return true;
+}
+
+console.log(validate({ first: 'Bruce', last: 'Wayne' })); // true
+
+// 축약기법
+// object validation rules (객체로 만든 validation 규칙)
+const schema = {
+	first: {
+		required: true,
+	},
+	last: {
+		required: true,
+	},
+};
+
+// universal validation function (공통적으로 사용할 수 있는 validation 함수)
+const validate = (schema, values) => {
+	for (field in schema) {
+		if (schema[field].required) {
+			if (!values[field]) {
+				return false;
+			}
+		}
+	}
+	return true;
+};
+
+console.log(validate(schema, { first: 'Bruce' })); // false
+console.log(validate(schema, { first: 'Bruce', last: 'Wayne' })); // true
+```
+
+## 62. 단항 비트 논리부정 연산자(Double Bitwise NOT)
+
+- Math.floor() 함수의 대체용으로 사용할 수 있습니다. 또 Math.floor() 함수보다 훨씬 빠르게 작동한다는 장점도 있습니다.
+
+```javascript
+// 기존
+Math.floor(4.9) === 4; //true
+
+// 축약기법
+~~4.9 === 4; //true
+```
+
 ## 참고
 
 - [JavaScript로 만나는 세상](https://helloworldjavascript.net)
+- [[번역]ES6 축약코딩 기법 19가지](https://chanspark.github.io/2017/11/28/ES6-%EA%BF%80%ED%8C%81.html)
