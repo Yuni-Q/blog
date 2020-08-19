@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React,{useCallback,useEffect,useRef,useState} from "react";
+import styled from 'styled-components';
 import Memo from "../components/memo/Memo";
-import styled from 'styled-components'
 import Spinner from '../components/spinner/Spinner';
+import sendGAEvent,{GA_ACTION} from '../utils/ga';
 
 const { v4: uuid } = require('uuid');
 
@@ -128,6 +129,7 @@ const App = () => {
   }, [onClickAdd]);
 
   useEffect(() => {
+    sendGAEvent('memo', GA_ACTION.EXPOSE, 'memo');
     getItem();
   },[])
 

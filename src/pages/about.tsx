@@ -1,10 +1,15 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-
-import { rhythm } from '../utils/typography';
+import {graphql} from 'gatsby';
+import React,{useEffect} from 'react';
 import * as Lang from '../constants';
+import sendGAEvent,{GA_ACTION} from '../utils/ga';
+import {rhythm} from '../utils/typography';
+
+
 
 export default ({ data }) => {
+	useEffect(() => {
+		sendGAEvent('resume', GA_ACTION.EXPOSE, 'resume');
+	}, [])
 	const resumes = data.allMarkdownRemark.edges;
 
 	const resume = resumes
