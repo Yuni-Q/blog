@@ -1,8 +1,19 @@
 ---
-title: this, call(), apply(), bind()
+title: this
 date: 2020-04-10 18:04:24
 category: javascript
-tags: ['this', 'call', 'apply', 'bind']
+tags:
+  [
+    'this',
+    'call',
+    'apply',
+    'bind',
+    '함수 호출',
+    '메소드 호출',
+    '생성자 함수 호출',
+    '명시적바인딩',
+    '묵시적바인딩',
+  ]
 draft: true
 ---
 
@@ -199,6 +210,7 @@ console.log(Person.prototype.getName()); // Kim
 
 - 자바스크립트의 생성자 함수는 말 그대로 객체를 생성하는 역할을 합니다. 하지만 자바와 같은 객체지향 언어의 생성자 함수와는 다르게 그 형식이 정해져 있는 것이 아니라 `기존 함수에 new 연산자를 붙여서 호출하면 해당 함수는 생성자 함수로 동작합니다`.
 - 이는 반대로 생각하면 생성자 함수가 아닌 일반 함수에 new 연산자를 붙여 호출하면 생성자 함수처럼 동작할 수 있습니다. 따라서 일반적으로 생성자 함수명은 첫문자를 대문자로 기술하여 혼란을 방지하려는 노력을 합니다.
+- 함수가 new와 함께 호출되었을 때는 묵시적, 명시적 또는 하드 바인딩을 신경쓰지 않습니다. 이 때는 그냥 새로운 인스턴스인 새로운 컨텍스트를 만들어냅니다. 이를 `New 바인딩(New binding)`이라고 부릅니다.
 
 ```javascript
 // 생성자 함수
@@ -326,7 +338,7 @@ console.log(window.name); // Lee
 
 ## 4. apply/call/bind 호출
 
-- this에 바인딩될 객체는 함수 호출 패턴에 의해 결정됩니다. 이는 자바스크립트 엔진이 수행하는 것입니다. 이러한 자바스크립트 엔진의 암묵적 this 바인딩 이외에 this를 특정 객체에 `명시적으로 바인딩하는 방법`도 제공됩니다. 이것을 가능하게 하는 것이 Function.prototype.apply, Function.prototype.call 메소드입니다. 이 메소드들은 모든 함수 객체의 프로토타입 객체인 Function.prototype 객체의 메소드입니다.
+- this에 바인딩될 객체는 함수 호출 패턴에 의해 결정됩니다. 이는 자바스크립트 엔진이 수행하는 것입니다. 이러한 자바스크립트 엔진의 암묵적 this 바인딩 이외에 this를 특정 객체에 `명시적으로 바인딩하는 방법`도 제공됩니다. 이것을 가능하게 하는 것이 `Function.prototype.apply`, `Function.prototype.call` 메소드입니다. 이 메소드들은 모든 함수 객체의 프로토타입 객체인 Function.prototype 객체의 메소드입니다.
 - 명시적인 바인딩은 묵시적 바인딩보다 우위를 갖게 됩니다.
 
 ```javascript
@@ -350,36 +362,95 @@ Person.apply(foo, ['name']);
 console.log(foo); // { name: 'name' }
 ```
 
-- 빈 객체 foo를 apply() 메소드의 첫번째 매개변수에, argument의 배열을 두번째 매개변수에 전달하면서 Person 함수를 호출하였습니다. 이때 Person 함수의 this는 foo 객체가 된다. Person 함수는 this의 name 프로퍼티에 매개변수 name에 할당된 인수를 할당하는데 this에 바인딩된 foo 객체에는 name 프로퍼티가 없으므로 name 프로퍼티가 동적 추가되고 값이 할당된다.
-
-## 명시적 바인딩(Explicit binding)
-
-- 함수에 명시적으로 컨텍스트를 바인딩할 때, 그것을 명시적 바인딩이라 합니다. 이러한 동작은 주로 call 메소드와 apply 메소드에 의해 이뤄집니다.
-- 명시적인 바인딩은 묵시적 바인딩보다 우위를 갖게 됩니다.
+- 빈 객체 foo를 apply() 메소드의 첫번째 매개변수에, argument의 배열을 두번째 매개변수에 전달하면서 Person 함수를 호출하였습니다. 이때 Person 함수의 this는 foo 객체가 됩니다. Person 함수는 this의 name 프로퍼티에 매개변수 name에 할당된 인수를 할당하는데 this에 바인딩된 foo 객체에는 name 프로퍼티가 없으므로 name 프로퍼티가 동적 추가되고 값이 할당됩니다.
+- apply() 메소드의 대표적인 용도는 arguments 객체와 같은 유사 배열 객체에 배열 메소드를 사용하는 경우입니다. arguments 객체는 배열이 아니기 때문에 slice() 같은 배열의 메소드를 사용할 수 없으나 apply() 메소드를 이용하면 가능합니다.
 
 ```javascript
-var myMethod = function () {
-  console.log(this);
-};
+function convertArgsToArray() {
+	console.log(arguments);
 
-var myObject = {
-  myMethod: myMethod
-};
+	// arguments 객체를 배열로 변환
+	// slice: 배열의 특정 부분에 대한 복사본을 생성한다.
+	var arr = Array.prototype.slice.apply(arguments); // arguments.slice
+	// var arr = [].slice.apply(arguments);
 
-myMethod() // this === window
-myMethod.call(myObject, args1, args2, ...) // this === myObject
-myMethod.apply(myObject, [array of args]) // this === myObject
+	console.log(arr);
+	return arr;
+}
+
+convertArgsToArray(1, 2, 3);
 ```
 
-## 하드 바인딩(Hard binding)
+- Array.prototype.slice.apply(arguments)는 'Array.prototype.slice() 메소드를 호출합니다. 단 this는 arguments 객체로 바인딩합니다'는 의미가 됩니다. 결국 Array.prototype.slice() 메소드를 arguments 객체 자신의 메소드인 것처럼 arguments.slice()와 같은 형태로 호출합니다.
+- call() 메소드의 경우, apply()와 기능은 같지만 apply()의 두번째 인자에서 배열 형태로 넘긴 것을 각각 하나의 인자로 넘깁니다.
 
-- 하드 바인딩은 bind(ES5)으로 가능합니다. bind 메소드는 우리가 지정한 this 컨텍스트를 가진 기존 함수를 불러오기 위해 하드코딩된 새로운 함수를 반환합니다.
-- 하드바인딩은 명시적 바인딩보다 우위를 갖게 됩니다.
+```javascript
+Person.apply(foo, [1, 2, 3]);
+Person.call(foo, 1, 2, 3);
+```
 
-## 'New' 바인딩(New binding)
+- apply()와 call() 메소드는 콜백 함수의 this를 위해서 사용되기도 합니다.
 
-- 새로운 new 인스턴스를 참조하는 함수가 호출되었을 때, this가 만들어집니다.
-- 함수가 new와 함께 호출되었을 때는 묵시적, 명시적 또는 하드 바인딩을 신경쓰지 않습니다. 이 때는 그냥 새로운 인스턴스인 새로운 컨텍스트를 만들어냅니다.
+```javascript
+function Person(name) {
+	this.name = name;
+}
+
+Person.prototype.doSomething = function(callback) {
+	if (typeof callback == 'function') {
+		callback.call(this);
+	}
+};
+
+function foo() {
+	console.log(this.name);
+}
+
+var p = new Person('Lee');
+p.doSomething(foo); // 'Lee'
+```
+
+- ES5에 추가된 Function.prototype.bind를 사용하는 방법도 가능합니다. Function.prototype.bind는 함수에 인자로 전달한 this가 바인딩된 새로운 함수를 리턴합니다. 즉, Function.prototype.bind는 Function.prototype.apply, Function.prototype.call 메소드와 같이 함수를 실행하지 않기 때문에 명시적으로 함수를 호출할 필요가 있습니다.
+- Function.prototype.bind를 `하드 바인딩(Hard binding)`이라고 부릅니다.
+  - 하드바인딩은 명시적 바인딩보다 우위를 갖게 됩니다.
+
+```javascript
+function Person(name) {
+	this.name = name;
+}
+
+Person.prototype.doSomething = function(callback) {
+	if (typeof callback == 'function') {
+		// callback.call(this);
+		// this가 바인딩된 새로운 함수를 호출
+		callback.bind(this)();
+	}
+};
+
+function foo() {
+	console.log('#', this.name);
+}
+
+var p = new Person('Lee');
+p.doSomething(foo); // 'Lee'
+```
+
+### call
+
+- call 메소드의 첫번째 파라미터는 함수가 호출되는 순간 'this' 오브젝트 값을 세팅합니다.
+- 나머지 파라미터들은 실제 함수의 인자들을 사용합니다.
+
+### apply
+
+- call 메소드와 비슷하게 동작합니다.
+- 첫번째 파라미터는 함수가 호출되는 순간 'this'의 값을 세팅합니다.
+- apply 메소드가 call 메소드와 유일하게 다른 점은 두번째 파라미터에서 실제 함수의 인자 값을 `배열`로 받는다는 것입니다.
+
+### bind
+
+- bind 메소드에 대한 첫번째 파라미터는 역시 bound 함수가 호출될 때, 타겟 함수에서 'this' 의 값을 세팅하는 부분입니다.
+- bound 함수가 'new' 연산자를 이용하여 생성됐을때는, 바인드 시킨 this 값(첫번째 파라미터의 값)이 무시된다는 것을 알아두셔야 합니다.
+- 나머지 파라미터들은 인자로 잘 넘겨집니다.
 
 ## API 호출
 
@@ -430,23 +501,6 @@ myObject = {
 ```
 
 - 이 방법은 추천드리지 않습니다. 왜냐하면 메모리 누수를 초래할 수 있고, 진짜 스코프를 잊게 만들고 변수에 의존하게 만들기 때문입니다. 스코프가 정말 엉망이 되는 지경에 다다를 수도 있습니다. This 문제는 이벤트 리스너, 타임아웃, forEach와 같은 것들에도 적용됩니다.
-
-## call
-
-- call 메소드의 첫번째 파라미터는 함수가 호출되는 순간 "this" 오브젝트 값을 세팅합니다. 이 경우에는 "obj" 가 this 오브젝트였습니다.
-- 나머지 파라미터들은 실제 함수의 인자들이었습니다.
-
-## apply
-
-- call 메소드와 비슷하게 동작합니다.
-- 첫번째 파라미터는 함수가 호출되는 순간 "this" 의 값을 세팅합니다.
-- apply 메소드가 call 메소드와 유일하게 다른 점은 두번째 파라미터에서 실제 함수의 인자 값을 `배열`로 받는다는 것입니다.
-
-## bind
-
-- bind 메소드에 대한 첫번째 파라미터는 역시 bound 함수가 호출될 때, 타겟 함수에서 "this" 의 값을 세팅하는 부분입니다.
-- bound 함수가 "new" 연산자를 이용하여 생성됐을때는, 바인드 시킨 this 값(첫번째 파라미터의 값)이 무시된다는 것을 알아두셔야 합니다.
-- 나머지 파라미터들은 인자로 잘 넘겨집니다.
 
 ## 참조
 
