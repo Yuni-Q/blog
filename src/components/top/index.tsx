@@ -7,7 +7,7 @@ import sendGAEvent,{GA_ACTION} from '../../utils/ga';
 import {GitHubIcon} from '../social-share/github-icon';
 import './index.scss';
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{theme: string; snow: string;}>`
 	outline: 0;
 	background: #fff;
 	margin: 10px 0;
@@ -149,7 +149,7 @@ const StyledButton = styled.button`
 	}
 `;
 
-const StyledSvg = styled.svg`
+const StyledSvg = styled.svg<{snow: string;}>`
 	transition: all 0.3s ease;
 	width: 28px;
 	fill: ${({ snow }) =>
@@ -177,10 +177,10 @@ export const Top = ({ theme, title, location, rootPath }) => {
 			}}>
 				{`Yuni-Q`}
 			</Link>
-			<StyledButton theme={theme} onClick={() => {}} >
+			<StyledButton theme={theme} snow={state.snow} onClick={() => {}} >
 				<GitHubIcon />
 			</StyledButton>
-			<StyledButton theme={theme} onClick={() => {
+			<StyledButton theme={theme} snow={state.snow} onClick={() => {
 				sendGAEvent('button', GA_ACTION.CLICK, 'theme');
 				setTheme()
 			}}>
