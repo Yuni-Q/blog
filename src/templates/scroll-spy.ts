@@ -20,7 +20,6 @@ export default class ScrollSpy {
       if (this.isOnTopOfDoc(ref)) {
         this.deactiveateTarget()
         const t = this.findTarget(ref.id)
-        console.log(22, t)
         if (t) {
           this.activate(t)
         }
@@ -41,7 +40,6 @@ export default class ScrollSpy {
   findTarget(id: string): HTMLElement | undefined {
     return this.targets.filter(
       a => {
-        console.log(444, decodeURIComponent(a.attributes["href"].value).split('#')[1], decodeURIComponent(id))
         return decodeURIComponent(a.attributes["href"].value).split('#')[1] === decodeURIComponent(id)
       }
     )[0]
