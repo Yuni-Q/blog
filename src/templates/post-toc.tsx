@@ -8,7 +8,7 @@ const StyledToc = styled.aside`
 order: 1;
 width: 250px;
 position: fixed;
-max-height: 100vh;
+max-height: 90vh;
 overflow-y: scroll;
 top: 68px;
 right: 0;
