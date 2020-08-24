@@ -14,6 +14,7 @@ import {Layout} from '../layout';
 import '../styles/code.scss';
 import sendGAEvent,{GA_ACTION} from '../utils/ga';
 import * as ScrollManager from '../utils/scroll';
+import PostToc from './post-toc'
 
 export default ({ data, pageContext, location }) => {
 	useEffect(() => {
@@ -23,6 +24,7 @@ export default ({ data, pageContext, location }) => {
 	}, []);
 
 	const post = data.markdownRemark;
+	const {tableOfContents} = post;
 	const metaData = data.site.siteMetadata;
 	const { title, comment, siteUrl, author, sponsor } = metaData;
 	const { disqusShortName, utterances } = comment;
@@ -31,6 +33,8 @@ export default ({ data, pageContext, location }) => {
 		<Layout location={location}>
 			<Head title={post.frontmatter.title} description={post.excerpt} />
 			<PostTitle title={post.frontmatter.title} />
+			
+			<PostToc tableOfContents={tableOfContents}/>
 			<PostContainer html={post.html} />
 			<SocialShare title={post.frontmatter.title} author={author} />
 			{!!sponsor.buyMeACoffeeId && (
@@ -72,6 +76,7 @@ export const pageQuery = graphql`
 			id
 			excerpt(pruneLength: 280)
 			html
+			tableOfContents
 			frontmatter {
 				title
 				date(formatString: "MMMM DD, YYYY")

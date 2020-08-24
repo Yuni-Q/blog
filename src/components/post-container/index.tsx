@@ -8,5 +8,5 @@ const StyledDiv = styled.div`
 `;
 
 export const PostContainer = ({ html }) => (
-  <StyledDiv dangerouslySetInnerHTML={{ __html: html }} />
+  <StyledDiv className="post-content" dangerouslySetInnerHTML={{ __html: html }} />
 )
