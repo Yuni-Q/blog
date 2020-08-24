@@ -2,15 +2,18 @@
 title: node https 적용
 date: 2020-04-01 13:04:36
 category: develop
+tags: ['node', 'https', 'certbot-auto', 'mkcert']
 draft: false
 ---
 
-## 사용하게 된 계기
+## certbot-auto
+
+### certbot-auto 사용하게 된 계기
 
 - github education name.com에서 도메인과 ssl 사용하던 중 예기치 않게 서버를 종료 후 ssl을 다시 적용해야 하는데 쉽지 않았습니다.
 - 메일 같은걸 보내긴 했는데 되는건지도 잘 모르겠고, 인증서를 다시 보려고 해도 에러만 발생합니다...
 
-## certbot-auto 세팅
+### certbot-auto 세팅
 
 ```bash
 wget https://dl.eff.org/certbot-auto
@@ -18,7 +21,7 @@ chmod +x certbot-auto
 ./certbot-auto certonly --standalone
 ```
 
-## www 파일 수정
+### www 파일 수정
 
 ```typescript
 if (process.env.NODE_ENV === 'production') {
@@ -61,9 +64,35 @@ if (process.env.NODE_ENV === 'production') {
 - 3버전은 왜인지 모르겠지만 잘 적용되지 않습니다.
 - 4버전은 사용 방법이 다릅니다.
 
-## 실행
+### 실행
 
 - 1024번 포트 이하로 실행 할 때는 sudo 권한이 필요합니다.(sudo su)
   - Error: listen EACCES: permission denied 0.0.0.0:443
 - sudo su 이후에는 nvm과 node를 다시 설치해야 했습니다.
 - 이 이슈와는 관련 없지만 NODE_ENV는 webpack mode에 따라 변해서 다른 방식으로 넣어주는게 영향이 없었습니다.
+
+## 로컬 개발 환경에서 HTTPS 적용 가이드
+
+- mkcert(https://github.com/FiloSottile/mkcert) 사용
+
+```bash
+brew install mkcert
+mkcert -install
+mkcert local.yuniq.com "*.yuniq.com" localhost ::3
+```
+
+```javascript
+const https = require('https');
+const fs = require('fs');
+const express = require('express');
+const app = express();
+
+const options = {
+	key: fs.readFileSync('./local.yuniq.com+3-key.pem', 'utf-8'),
+	cert: fs.readFileSync('./local.yuniq.com+3.pem', 'utf-8'),
+};
+
+https
+	.createServer(options, app)
+	.listen(8000, () => console.log('App listening on port 8000!'));
+```
