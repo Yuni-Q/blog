@@ -1,13 +1,17 @@
 ---
-title: multi thread
+title: worker
 date: 2020-08-24 13:08:64
 category: javascript
-tags: ['javascript', 'thread']
+tags: ['javascript', 'thread', 'worker']
 draft: true
 ---
 
+## Web worker 란?
+
 - 자바스크립트는 인프리터 언어이며 단일 스레드입니다.
 - 자바스크립트에서 동적으로 UI변경 작업이 있을시에는 UI스레드라는 공간에서 큐 방식으로 처리 순서를 담아 놓습니다.
+- HTML 페이지에서 스크립트를 실행할때 그 페이지는 스크립트가 완료할때 까지 응답하지 않게 됩니다. 이를 해결하기 위해 Web worker를 사용합니다. Web worker는 페이지의 퍼포먼스에 영향을 주지 않고 다른 스크립트와는 독립적으로 백그라운드에서 실행되는 javascript입니다.
+- 기존의 웹은 다중 쓰레드가 불가능했기 때문에 작업이 끝나기 전까지 UI 멈춰버리는 경우가 발생했습니다. 하지만, Web worker 덕분에 웹은 멀티 쓰레드 구동이 가능해졌습니다. 즉, Web worker는 쓰레드라는 개념이라고 볼 수 있습니다.
 - 웹 워커는 멀티스레드 기능을 지원하며 워커가 생성될 때마다 자바스크립트를 실행할 수 있는 고유 스레드를 생성하여 속도 성능을 크게 향상시킬 수 있습니다. 워커에서 실행할 수 있는 코드는 브라우저 UI에도, 다른 워커에서 실행하는 코드에도 영향을 주지 않습니다. 즉 독립적으로 실행되는 멀티스레드입니다.
 
 ## 케이스 1
@@ -190,3 +194,4 @@ if (isMainThread) {
 
 - [[Javascript] 웹 워커(멀티스레드)](https://realmojo.tistory.com/109)
 - [노드교과서 개정판 3-10. worker_threads](https://www.youtube.com/watch?v=Kq-6hGizSDs)
+- [박스여우 - BoxFox](https://boxfoxs.tistory.com/294)
