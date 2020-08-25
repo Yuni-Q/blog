@@ -6,13 +6,13 @@ import {THEME} from '../constants';
 
 const StyledToc = styled.aside`
 order: 1;
-width: 250px;
+width: 240px;
 position: fixed;
 max-height: 90vh;
 overflow-y: scroll;
 top: 68px;
-right: 0;
-@media (max-width: 1025px) {
+right: 32px;
+@media (max-width: 1200px) {
 	display: none;
 }
 
