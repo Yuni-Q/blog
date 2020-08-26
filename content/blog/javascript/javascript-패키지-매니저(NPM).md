@@ -2,6 +2,7 @@
 title: javascript 패키지 매니저(NPM)
 date: 2020-01-22 09:01:15
 category: javascript
+tag: ['javascript', 'npm', 'yarn']
 draft: false
 ---
 
@@ -88,6 +89,16 @@ draft: false
 
 - [npm 패키지 검색 및 비교](https://npmcompare.com/)
 - [패키지 다운로드 동향 확인](https://www.npmtrends.com/)
+
+## npm 사용 유무
+
+```bash
+npm ls nodemon
+npm list nodemon
+npm ll nodemon // 좀 더 상세히 알려줍니다.
+```
+
+- package.json을 보면 되지만 명령어를 사용하는 이유는 우리가 사용하는 npm 안에 사용되는 것도 알려줍니다.
 
 ## yarn
 
