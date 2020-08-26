@@ -1,11 +1,14 @@
 ---
-title: input number
+title: input
 date: 2020-02-08 15:02:74
 category: frontend
 draft: false
 ---
 
+## number
+
 - +, -, ., e은 input type이 number이어도 입력이 가능하기 때문에 onKeyDown에서 keyCode를 확인해서 입력을 막습니다.
+- 아이폰에서 숫자키패드 노출을 하고 싶다면 `type=tel` 이나 `pattern="\d*"`로 사용합니다.
 
 ```tsx
 import * as React from 'react';
@@ -36,4 +39,10 @@ class InputComponent extends React.Component {
       />;)
   }
 }
+```
+
+## input 파일에서 확장자 제한 하기
+
+```html
+<input type="file" format="image/png, image/jpg, image/gif" />
 ```
