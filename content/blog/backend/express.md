@@ -211,6 +211,81 @@ app.use(bodyParser.text());
 
 - 개인의 저장 공간을 만들어 줍니다.
 
+### multer
+
+- form 태그의 enctype이 multipart/form-data인 경우 body-parser로는 요청 본문을 해석할 수 없습니다.
+
+```javascript
+const path = require('path');
+const multer = require('multer');
+const express = require('express');
+const fs = require('fs');
+
+const app = express();
+
+try {
+	fs.readirSync('uploads');
+} catch (error) {
+	cosole.error('uploads 폴더가 없어 uploads 폴더를 생성합니다.');
+	fs.mkdirSync('uploads');
+}
+
+const upload = multer({
+	storage: multer.diskStorage({
+		desination(req, file, done) {
+			done(null, 'uploads/');
+		},
+		filename(req, file, done) {
+			const ext = path.extname(file.originalname);
+			done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+		},
+	}),
+	limits: {
+		fileSize: 5 * 1024 * 1024,
+	},
+});
+
+app.post('/image', upload.single('image'), (req, res, next) => {
+	// 업로드 이미지 정보 표현
+	console.log(req.file, req.body);
+});
+
+// 업로드 이미지들 정보 표현(하나에 input에 mutiple 속성인 경우)
+app.post('/images', upload.array('image'), (req, res, next) => {
+	console.log(req.files, req.body);
+});
+
+app.post(
+	'/',
+	// 업로드 이미지들 정보 표현(여러 input에 name이 다른 경우)
+	upload.fields([
+		{ name: 'image1', limits: 5 },
+		{ name: 'image2' },
+		{ name: 'image3' },
+	]),
+	(req, res, next) => {
+		console.log(
+			req.files,
+			image1,
+			req.files,
+			image2,
+			req.files,
+			image3,
+			req.body
+		);
+	}
+);
+
+// 이미지는 없지만 multipart/form-data인 경우
+app.post('/', upload.none(), (req, res, next) => {
+	console.log(req.body);
+});
+
+app.listen('8080', () => {
+	console.log('서버 시작');
+});
+```
+
 ## 미들웨어 확장법
 
 ```javascript
@@ -223,6 +298,174 @@ app.use('/', (req, res, next) => {
 });
 ```
 
+## Router 객체로 라우터 분리하기
+
+```javascript
+// ./router/index.js
+const express = require('express');
+
+const router = express.Router();
+
+router.get('/', (req, res) => {
+	res.send('Hello Router');
+});
+
+module.exports = router;
+```
+
+```javascript
+const express = require('express');
+const indexRouter = require('./router');
+const app = express();
+
+app.use('/', indexRouter);
+
+app.listen('8080', () => {
+	console.log('서버 시작');
+});
+```
+
+## 라우트 매개변수
+
+- 와일드카드(req.parmas)
+- 쿼리스트링(req.query)
+
+## 라우터 그룹화하기
+
+```javascript
+router
+	.route('/abe')
+	.get((req, res) => {
+		res.send('Get /abc');
+	})
+	.post((req, res) => {
+		res.send('Post /abc');
+	});
+```
+
+## req
+
+- req.app : req 객체를 통해 app에 접근할 수 있습니다. req.app.get('port')와 같은 식으로 사용할 수 있습니다.
+- req.body : body-parser 미들웨어가 만드는 요청의 본문을 해석한 객체입니다.
+- req.cookies : cookie-parser 미들웨어가 만드는 요청의 쿠키를 해석한 객체입니다.
+- req.ip : 요청의 ip 주소가 담겨 있습니다.
+- req.params : 라우트 매개변수에 대한 정보가 담긴 객체입니다.
+- req.query : 쿼리스트링에 대한 정보가 담긴 객체입니다.
+- req.signedCookies : 서명된 쿠기들은 req.cookies 대신 여기에 담겨 있습니다.
+- req.get(헤더 이름) : 헤더의 값을 가져오고 싶을 때 사용하는 메서드입니다.
+
+## res
+
+- res.app : req.app처럼 res 객체를 통해 app 객체에 접근할 수 있습니다.
+- res.cookie(키, 값, 옵션) : 쿠키를 설정하는 메서드입니다.
+- res.clearCookie(키, 값, 옵션) : 쿠키를 제거하는 메서드입니다.
+- res.end() : 데이터 없이 응답을 보냅니다.
+- res.json(JSON) : JSON 형식의 응답을 보냅니다.
+- res.redirect(주소) : 리다이렉트할 주소와 함께 응답을 보냅니다.
+- res.render(뷰, 데이터) : 템플릿 엔진을 렌더링해서 응답할 때 사용하는 메서드입니다.
+- res.send(데이터) : 데이터와 함께 응답을 보냅ㄴ디ㅏ. 데이터는 문자열일 수도 있고, HTML일 수도 있으며, 버퍼일 수도 있고, 객체나 배열일 수도 있습니다.
+- res.sendFile(경로) : 경로에 위치한 파일을 응답합니다.
+- res.set(헤더, 값) : 응답의 헤더를 설정합니다.
+- res.setHeader(헤더, 값) : 응답의 헤더를 설정합니다.
+- res.status(코드) : 응답 시에 HTTP 상태 코드를 지정합니다.
+- 응답은 return을 하지 않기 때문에 한번만 사용해야 합니다.
+- 메서드 체이닝을 지원합니다.
+
+## 템플릿 엔진
+
+### pug
+
+```pug
+//- ./public/index.pug
+
+//- - 대시 뒤에 변수 사용 가능
+- const node = 'Node js'
+
+h1= title
+p Welcome to #{title}
+p= '<strong>이스케이프</strong>'
+//- 변수 값을 이스케이프 하지 않을 수도 있습니다(자동 이스케이프)
+p!= '<strong>이스케이프</strong>'
+button(class=title, type='submit') 전송
+input(placeholder=title + '연습')
+```
+
+```javascript
+const path = require('path');
+const express = require('express');
+
+const app = express();
+
+app.set('views', path.join(__dirname, 'public'));
+app.set('view engine', 'pug');
+
+app.use('/', (req, res) => {
+	res.render('index', { title: 'Express' });
+});
+
+app.use('/locals', (req, res) => {
+	// res.locals 객체에 넣는 것도 가능(미들웨어간 공유됨)
+	res.locals.title = 'Express';
+	res.render('index');
+});
+
+app.listen('8080', () => {
+	console.log('서버 시작');
+});
+```
+
+### nunjucks
+
+```html
+<!--./public/index.html-->
+
+<!-- 변수 사용 가능 -->
+{% set node = 'Node.js' %}
+
+<p>{{node}}</p>
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<p>{{'<strong>이스케이프</strong>'}}</p>
+<!--변수 값을 이스케이프 하지 않을 수도 있습니다(자동 이스케이프)-->
+<p>{{'<strong>이스케이프</strong>' | safe }}</p>
+<button class="{{title}}" type="submit">전송</button>
+<input placeholder="{{title}} 연습" />
+```
+
+```javascript
+const path = require('path');
+const express = require('express');
+const nunjuck = require('nunjuck');
+
+const app = express();
+
+app.set('view engine', 'html');
+
+nunjuck.configure('views', {
+	express: app,
+	watch: true,
+});
+
+app.use('/', (req, res) => {
+	res.render('index', { title: 'Express' });
+});
+
+app.use('/locals', (req, res) => {
+	// res.locals 객체에 넣는 것도 가능(미들웨어간 공유됨)
+	res.locals.title = 'Express';
+	res.render('index');
+});
+
+app.listen('8080', () => {
+	console.log('서버 시작');
+});
+```
+
 ## 참고
 
 - [노드교과서 개정판 6장](https://www.youtube.com/watch?v=kXcJ_gbhTRI&t=2923s)
+- [노드교과서 개정판 6장 2부](https://www.youtube.com/watch?v=dooxPKPMiKw)
+
+```
+
+```
