@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Memo from "../components/memo/Memo";
 import Spinner from '../components/spinner/Spinner';
 import sendGAEvent,{GA_ACTION} from '../utils/ga';
+import {getFireDB, updateFireDB} from '../utils/firebase';
 
 const { v4: uuid } = require('uuid');
 
@@ -21,6 +22,8 @@ const App = () => {
   const [memos, setMemos] = useState([]);
 
   const ref = useRef(null);
+  const mounted = useRef(false);
+  const pull = useRef(false);
 
   const onClickAdd = useCallback(
     event => {
@@ -98,7 +101,7 @@ const App = () => {
     setMemos([
       ...newMomos,
       {
-        id: uuid(),
+        id: memo.id,
         top: memo.top,
         left: memo.left,
         width: memo.width,
@@ -109,16 +112,20 @@ const App = () => {
   }
 
   const getItem = async () => {
-    const result = await axios.get('https://script.google.com/macros/s/AKfycbwn9aYX70mvprKz1IbJezxqzXCDP2-24tjJ9qdjIqlcgOkLsshg/exec');
-    setMemos(JSON.parse(result.data.items[0].name) || [])
     setLoading(false)
   }
   
   const setItem = async (memos) => {
-    await axios.post(`https://script.google.com/macros/s/AKfycbwn9aYX70mvprKz1IbJezxqzXCDP2-24tjJ9qdjIqlcgOkLsshg/exec?data=${memos}`)
-    //window.postMessage('hi', "https://yuni-q.github.io/");
-    window.postMessage(JSON.stringify(memos), "https://yuni-q.github.io/memo/");
-    console.log(444,JSON.stringify(memos))
+    if(!mounted.current) {
+      return mounted.current = true
+    } else {
+      if(!!pull.current) {
+        pull.current = false;
+      } else {
+        updateFireDB(memos)
+      }
+    }
+    
   }
 
   useEffect(() => {
@@ -135,17 +142,15 @@ const App = () => {
   useEffect(() => {
     sendGAEvent('memo', GA_ACTION.EXPOSE, 'memo');
     getItem();
-
-    const getMessage = ((event) => {
-      console.log(111, event.data)
-      console.log(222, JSON.parse(event.data))
-      setMemos(JSON.parse(event.data))
-    });
-  
-    window.addEventListener('message', function(event) {
-      console.log(111, event.data)
-      console.log(222, JSON.parse(event.data))
-    });
+    const ref = getFireDB()
+    ref.on('value', (value) => {  
+      try {
+        pull.current = true
+        setMemos(JSON.parse((value as any).node_.value_));
+      } catch(error) {
+        updateFireDB([])
+      }
+    })
   },[])
   
 

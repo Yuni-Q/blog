@@ -12,7 +12,6 @@ const Memo = ({
 	onClickResize,
 	onChangeText,
 }) => {
-	const [value, setValue] = useState(text);
 	const x = useRef(null);
 	const y = useRef(null);
 	const headerRef = useRef(null);
@@ -85,9 +84,6 @@ const Memo = ({
 		header.addEventListener('mouseup', upMouseHeader, true);
 		blind.addEventListener('mousedown', onClickBlind, true);
 		blind.addEventListener('mouseup', upMouseBlind, true);
-		window.addEventListener('beforeunload', () =>
-			(document.activeElement as any).blur()
-		);
 
 		return () => {
 			header.removeEventListener('mousedown', downMouseHeader, true);
@@ -103,7 +99,7 @@ const Memo = ({
 		onChangeText,
 		upMouseBlind,
 		upMouseHeader,
-		value,
+		text,
 	]);
 	return (
 		<div
@@ -134,12 +130,9 @@ const Memo = ({
 					ref={textareaRef}
 					style={{ width: `${width}px`, height: `${height}px` }}
 					placeholder="메모 하십시오!"
-					value={value}
+					value={text}
 					onChange={e => {
-						setValue(e.target.value);
-					}}
-					onBlur={() => {
-						onChangeText(id, value);
+						onChangeText(id, e.target.value, e.target);
 					}}
 				/>
 				<button className="btn_size" data-blind={true} ref={blindRef}>
