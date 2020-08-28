@@ -142,8 +142,8 @@ const App = () => {
       setMemos(JSON.parse(event.data))
     });
   
-    window.addEventListener('message', getMessage);
-    return window.removeEventListener('message', getMessage)
+    window.addEventListener('message', getMessage,true);
+    return window.removeEventListener('message', getMessage, true)
   },[])
   
 
