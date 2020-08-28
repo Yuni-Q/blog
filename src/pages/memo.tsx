@@ -116,8 +116,8 @@ const App = () => {
   
   const setItem = async (memos) => {
     await axios.post(`https://script.google.com/macros/s/AKfycbwn9aYX70mvprKz1IbJezxqzXCDP2-24tjJ9qdjIqlcgOkLsshg/exec?data=${memos}`)
-    window.postMessage('hi', "https://yuni-q.github.io/");
-    //window.postMessage(JSON.stringify(memos), "https://yuni-q.github.io/");
+    //window.postMessage('hi', "https://yuni-q.github.io/");
+    window.postMessage(JSON.stringify(memos), "https://yuni-q.github.io/");
     console.log(444,JSON.stringify(memos))
   }
 
