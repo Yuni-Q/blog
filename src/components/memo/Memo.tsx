@@ -86,7 +86,7 @@ const Memo = ({
 		blind.addEventListener('mousedown', onClickBlind, true);
 		blind.addEventListener('mouseup', upMouseBlind, true);
 		window.addEventListener('beforeunload', () =>
-			document.activeElement.blur()
+			(document.activeElement as any).blur()
 		);
 
 		return () => {
