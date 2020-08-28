@@ -116,7 +116,7 @@ const App = () => {
   
   const setItem = async (memos) => {
     await axios.post(`https://script.google.com/macros/s/AKfycbwn9aYX70mvprKz1IbJezxqzXCDP2-24tjJ9qdjIqlcgOkLsshg/exec?data=${memos}`)
-    window.postMessage("The user is 'bob' and the password is 'secret'", "https://yuni-q.github.io/");
+    window.postMessage(JSON.stringify(memos), "https://yuni-q.github.io/");
   }
 
   useEffect(() => {
@@ -129,13 +129,20 @@ const App = () => {
     return () => wrapRef.removeEventListener("contextmenu", onClickAdd, true);
   }, [onClickAdd]);
 
+
   useEffect(() => {
     sendGAEvent('memo', GA_ACTION.EXPOSE, 'memo');
     getItem();
-    window.addEventListener('message', function (e) {
-      console.log(111, e)
+
+    const getMessage = ((event) => {
+      console.log(111, event.data)
+      setMemos(event.data)
     });
+  
+    window.addEventListener('message', getMessage);
+    return window.removeEventListener('message', getMessage)
   },[])
+  
 
   return (
     <div
