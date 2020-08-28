@@ -117,8 +117,8 @@ const App = () => {
   const setItem = async (memos) => {
     await axios.post(`https://script.google.com/macros/s/AKfycbwn9aYX70mvprKz1IbJezxqzXCDP2-24tjJ9qdjIqlcgOkLsshg/exec?data=${memos}`)
     window.postMessage('hi', "https://yuni-q.github.io/");
-    window.postMessage(JSON.stringify(memos), "https://yuni-q.github.io/");
-    console.log(3333,JSON.stringify(memos))
+    //window.postMessage(JSON.stringify(memos), "https://yuni-q.github.io/");
+    console.log(444,JSON.stringify(memos))
   }
 
   useEffect(() => {
@@ -142,8 +142,10 @@ const App = () => {
       setMemos(JSON.parse(event.data))
     });
   
-    window.addEventListener('message', getMessage,true);
-    return window.removeEventListener('message', getMessage, true)
+    window.addEventListener('message', function(event) {
+      console.log(111, event.data)
+      console.log(222, JSON.parse(event.data))
+    });
   },[])
   
 
