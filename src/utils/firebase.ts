@@ -1,4 +1,5 @@
-import * as firebase from 'firebase';
+import firebase from "gatsby-plugin-firebase"
+
 let database;
 let config = {
 	apiKey: 'AIzaSyDlYM9tmiCS8cpJNCJDt1ayilldy4ZHcqA',
@@ -15,14 +16,15 @@ export const fire = () => {
 	if (!firebase.apps.length) {
 		firebase.initializeApp(config);
 	}
-	database = firebase.database();
+	database = firebase.database()
 };
 
 export const getFireDB = () => {
+	console.log(firebase)
 	if (!firebase.apps.length) {
 		firebase.initializeApp(config);
 	}
-	database = firebase.database();
+	database = firebase.database()
 	return database.ref('/').child('memo');
 };
 
