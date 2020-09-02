@@ -1,7 +1,8 @@
 ---
-title: 정규표현식
+title: regular expression
 date: 2020-07-23 09:07:56
 category: develop
+tags: ['regular expression']
 draft: true
 ---
 
@@ -495,3 +496,7 @@ str.match(/(?<!a)c/);
 ## 참고
 
 - [정규표현식 완전정복](https://wormwlrm.github.io/2020/07/19/Regular-Expressions-Tutorial.html?fbclid=IwAR16MbpS_qbBA9NdTBwOPczu3_5Ji7S6TJ1wPHUNjzUNLevLjqS7GZ-Cucs)
+
+## 나중에 볼 링크
+
+- [불규칙 속에서 규칙을 찾아내는 정규표현식](https://evan-moon.github.io/2020/07/24/about-regular-expression/?utm_source=gaerae.com&utm_campaign=%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%8A%A4%EB%9F%BD%EB%8B%A4&utm_medium=social&fbclid=IwAR0vBjhK6sU0T-oNVzmTiMyjd7Xxnyuf4i223sKI6S_7S3D5yi9OPGIM1og)
