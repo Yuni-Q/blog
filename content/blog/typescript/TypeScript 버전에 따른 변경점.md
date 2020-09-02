@@ -564,3 +564,7 @@ function f(x: Thing) {
 - 타입스크립트는 노드 생성용 추상 구문 트리(AST-Abstract Syntax Tree) "팩토리" 함수 집합을 제공하는데, 4.0에서는 새로운 팩토리 API를 제공합니다.
 - 타입스크립트 4.0에서는 새로운 API를 사용하도록 하고, 기존에 만들어졌던 함수들은 더이상 사용하지 않도록(deprecated) 결정했습니다.
   - 추상 구문 트리(Abstract Syntax Tree) : 프로그래밍 언어의 문법에 따라 소스 코드 구조를 표시하는 계층적 프로그램 표현(respresentation)합니다.
+
+## 나중에 볼 링크
+
+- [TypeScript 4.0 릴리즈 노트](https://han41858.tistory.com/52?fbclid=IwAR0CF6KIlpxxRF_9sR_tiCa2A9z9oQR8y8YLq8bn2c73tOYeF0FWgUKL9n8)
