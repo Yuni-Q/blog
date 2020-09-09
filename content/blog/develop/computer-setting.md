@@ -8,7 +8,12 @@ draft: true
 
 ## 와이파이 연결
 
+## 마우스
+
+- 속도 및 보조 클릭
+
 ## iCloud 연동
+
 - 메일 세팅
 
 ## TouchID 등록
@@ -16,6 +21,14 @@ draft: true
 ## Dock 설정
 
 ## 배터리 퍼센트 표시 및 날짜 표시 변경
+
+## 트랙패드 설정
+
+- 탭하여 클릭하기
+
+## 편의 기능
+
+- 포인터 제어기 - 트랙패드 옵션 - 드래그 활성화 - 세 손가락으로 드래그 하기
 
 ## Homebrew 설치
 
@@ -30,7 +43,6 @@ brew cask install google-chrome1234
 ```
 
 ### 로그인 해서 북마크 가져오기
-
 
 ## Oh-My-Zsh 설치
 
@@ -68,11 +80,13 @@ brew cask install visual-studio-code
 ```
 
 ## node 설치
+
 ```zsh
 brew install node
 ```
 
 ## intellij-idea 설치
+
 ```zsh
 brew cask install intellij-idea
 ```
@@ -105,11 +119,14 @@ brew cask install clipy
 ```
 
 ## bitbar 설치
+
 ```zsh
 brew cask install bitbar
 ```
+
 - 플러그인 폴더 설정 후 파일 세팅
 - github-contribution.10m.rb 파일 생성 후 작성
+
 ```rb
 #!/usr/bin/env ruby
 # frozen_string_literal: true
@@ -283,7 +300,9 @@ EOM
 end
 end
 ```
-- ~/.bitbarrc 파일을 생성하고 하단의 내용을 입력해줍니다 
+
+- ~/.bitbarrc 파일을 생성하고 하단의 내용을 입력해줍니다
+
 ```vim
 # ~/.bitbarrc
 [github_contribution]
@@ -291,10 +310,10 @@ username = GITHUB_ID_HERE
 max_contributions = 10
 ```
 
-
 ## App Store 로그인
 
 ## mas 설치
+
 ```zsh
 brew install mas
 ```
@@ -305,13 +324,13 @@ brew install mas
 mas search RunCat
 mas install 1429033973
 ```
+
 ## Xcode 설치
 
 ```zsh
 mas search Xcode
 mas install 497799835
 ```
-
 
 ## KakaoTalk 설치
 
@@ -321,23 +340,27 @@ mas install 869223134
 ```
 
 ## LINE 설치
+
 ```zsh
 mas search line
 mas install 539883307
 ```
 
 ## git 설정
+
 ```zsh
 git config --global --edit
 ```
 
 ## ssh 설정
+
 ```zsh
 ssh-keygen
 cat ~/.ssh/id_rsa.pub
 ```
 
 ## BrewFile 사용
+
 ```vim
 # BrewFile
 brew "git"
@@ -349,11 +372,13 @@ mas "KakaoTalk", id: 869223134
 ```
 
 ## Brewfile 생성
+
 ```zsh
 brew bundle dump
 
 cat BrewFile => 확인
 ```
+
 ### BrewFile 실행
 
 ```zsh
