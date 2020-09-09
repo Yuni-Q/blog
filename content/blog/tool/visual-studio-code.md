@@ -46,6 +46,8 @@ draft: false
 
 - 페어링 태그의 이름을 자동으로 바꿉니다.
 
+### [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+
 ### [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 - JS 작성에 도움을 줍니다.
@@ -59,14 +61,6 @@ eslint init
 - .eslintrc.js 파일이 생성 됩니다.
 - .eslintgnore 파일에 ESLint가 무시행야하는 파일이나 디렉터리를 추가할 수 있습니다.
 
-### [htmltagwrap](https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap)
-
-- option + w 를 이용하여 선택한 내용을 HTML(p) 태그로 래핑 합니다.
-
-### [VS Code JavaScript (ES6) snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets)
-
-- ES6 구문의 JavaScript 코드 작성에 도움을 줍니다.
-
 ### [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
 - VScode에서 바로 실행합니다.(5000 포트 사용합니다.)
@@ -75,19 +69,15 @@ eslint init
 
 - Prettier를 사용하여 JavaScript / TypeScript / CSS를 포맷하는 VS 코드 패키지 입니다.
 
-### [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)
+### [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 
-- 괄호를 색깔로 구분 할 수 있습니다.
+### [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
+
+- indent를 보기 쉽게 여러개의 색으로 표현해 줍니다.
 
 ### [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
 
 - vs-code의 아이콘을 바꿔줍니다.
-
-### [Dashboard](https://marketplace.visualstudio.com/items?itemName=kruemelkatze.vscode-dashboard)
-
-- 대시보드를 만들 수 있습니다.
-
-### [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
 
 ### [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 
@@ -95,23 +85,47 @@ eslint init
 
 ### [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 
+### [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+
+### [Placeholder Images](https://marketplace.visualstudio.com/items?itemName=JakeWilson.vscode-placeholder-images)
+
+### [vscode-faker](https://marketplace.visualstudio.com/items?itemName=deerawan.vscode-faker)
+
+### [WordCounter](https://marketplace.visualstudio.com/items?itemName=kirozen.wordcounter)
+
+### [CSS Peek](https://marketplace.visualstudio.com/items?itemName=pranaygp.vscode-css-peek)
+
+- commande + click으로 해당 css가 정의된 곳으로 이동합니다.
+
+### [HTML CSS Support](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css)
+
+- 작업 영역에있는 정의 또는 링크 요소를 통해 참조되는 외부 파일을 기반으로 HTML 클래스 특성에 대해 CSS 클래스 이름 완성을 제공 합니다.
+
+## 사용하지 않게 된 확장 도구들
+
+### [htmltagwrap](https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap)
+
+- option + w 를 이용하여 선택한 내용을 HTML(p) 태그로 래핑 합니다.
+
+### [VS Code JavaScript (ES6) snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets)
+
+- ES6 구문의 JavaScript 코드 작성에 도움을 줍니다.
+
+### [Dashboard](https://marketplace.visualstudio.com/items?itemName=kruemelkatze.vscode-dashboard)
+
+- 대시보드를 만들 수 있습니다.
+
+### [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+
 ### [Typescript React code snippets](https://marketplace.visualstudio.com/items?itemName=infeng.vscode-react-typescript)
 
 ### [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
-
-### [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
 
 ### [jumpy](https://marketplace.visualstudio.com/items?itemName=wmaurer.vscode-jumpy)
 
 ### [Data Preview](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
-### [Placeholder Images](https://marketplace.visualstudio.com/items?itemName=JakeWilson.vscode-placeholder-images)
-
 ### [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
-
-### [vscode-faker](https://marketplace.visualstudio.com/items?itemName=deerawan.vscode-faker)
-
-### [WordCounter](https://marketplace.visualstudio.com/items?itemName=kirozen.wordcounter)
 
 ### [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
 
@@ -119,16 +133,6 @@ eslint init
 
 ### [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens)
 
-### [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
+### [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)
 
-### [CSS Peek](https://marketplace.visualstudio.com/items?itemName=pranaygp.vscode-css-peek)
-
-- commande + click으로 해당 css가 정의된 곳으로 이동합니다.
-
-### [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
-
-- indent를 보기 쉽게 여러개의 색으로 표현해 줍니다.
-
-### [HTML CSS Support](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css)
-
-- 작업 영역에있는 정의 또는 링크 요소를 통해 참조되는 외부 파일을 기반으로 HTML 클래스 특성에 대해 CSS 클래스 이름 완성을 제공 합니다.
+- 괄호를 색깔로 구분 할 수 있습니다.
