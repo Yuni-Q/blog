@@ -57,6 +57,7 @@ lang: 'ko'
 - 운영개선 작업
 - 실행 환경 개선
 - lint 적용
+- 가게 영상/사진 관리 기능
 
 #### ceo-moon-front
 
@@ -74,6 +75,7 @@ lang: 'ko'
 - ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
 - 기존 ceo-selfservice-front 프로젝트를 제거하고 스마트메뉴 시스템 새로 개발(20.07.14 open)
 - 스마트메뉴 시스템 4차 개선 작업
+- lint 적용
 
 #### ceo-web-design-system
 
@@ -83,6 +85,7 @@ lang: 'ko'
 - 프로젝트 초기 React Application Architecture 설계
   - 새로운 프로젝트 개발 환경 및 구조 연구하고 설계 참여
 - 다른 프로젝트에서 사용 될 공통 디자인 시스템 컴포넌트 작성 및 수정
+- lint 적용
 - storybook 도입
 
 #### ceo-selfservice-front
@@ -93,7 +96,7 @@ lang: 'ko'
 - 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
 - 메뉴 타입 설정 기능 개발
 - 메뉴구성 / 메뉴 설정 기능 추가 개발
-- 옵션 최대/최소값 기능 개발
+- 옵션 최대 / 최소값 기능 개발
 - ceo-web-self-service로 병합
 
 #### smartmenu-admin-front
@@ -103,7 +106,7 @@ lang: 'ko'
 - `TypeScript` `React` `Redux` `Redux-Saga` `React-Router` `Antd`
 
 - 메뉴 매핑 정보 체크 가능 개발
-- 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
+- 1인분 메뉴 가격 최소 / 최대값 입력 제한 개발
 - 운영자 권한 관리 라이트버전 개발
 - 시스템 관련 라우팅 분리
 - 프랜차이즈 메뉴 할인 기능 개발
