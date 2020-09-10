@@ -106,6 +106,13 @@ brew install mysql-client
 brew cask install mysqlworkbench
 ```
 
+## brew install redis 설치
+
+```zsh
+brew install redis
+brew services start redis
+```
+
 ## spectacle 설치
 
 ```zsh
