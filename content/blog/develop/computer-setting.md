@@ -353,6 +353,26 @@ mas search line
 mas install 539883307
 ```
 
+## WeatherBug - Weather Forecasts and Alerts 설치
+
+```zsh
+mas search weatherbug
+mas install 1059074180
+```
+
+## itsycal 설치
+
+```zsh
+brew cask install itsycal
+```
+
+## Alfred 설치
+
+```
+mas search alfred
+mas install 405843582
+```
+
 ## git 설정
 
 ```zsh
