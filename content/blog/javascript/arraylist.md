@@ -2,7 +2,7 @@
 title: arrayList
 date: 2020-01-24 20:01:42
 category: javascript
-draft: true
+draft: false
 ---
 
 - 자바스크립트로 arrayList 구현하기
