@@ -493,9 +493,212 @@ str.match(/(?<!a)c/);
 // ["c", index: 2, input: "abc", groups: undefined]
 ```
 
+## 유저의 입력 검증하기
+
+### 이메일 주소 검증하기
+
+```javascript
+const regex = /^[\w!#$%&'*+/=?^_{|}~-]+(?:\.[\w!#$%&'*+/=?^_{|}~-]+)*$/g;
+
+// 영어 + 숫자
+regex.test('bboydart91'); // true
+// 계정 중간이 .으로 나누어짐
+regex.test('bboydart91.test'); // true
+
+// .으로 끝나거나 시작함
+regex.test('.bboydart91'); // false
+regex.test('bboydart91.'); // false
+```
+
+### 도메인
+
+```javascript
+const regex = /^(?:\w+\.)+\w+$/g;
+
+// 호스트와 도메인 식별자가 모두 존재
+regex.test('google.com'); // true
+regex.test('google.co.kr'); //true
+
+// 도메인 식별자가 없음
+regex.test('google.'); // false
+regex.test('google'); // false
+
+// 호스트가 없음
+regex.test('.com'); // false
+regex.test('.co.kr'); // false
+```
+
+### 계정 패턴 표현식과 도메인 패턴 표현식을 합치자
+
+```javascript
+// 계정 패턴: ^[\w!#$%&'*+/=?^_{|}~-]+(?:\.[\w!#$%&'*+/=?^_{|}~-]+)*
+// 도메인 패턴 (?:\w+\.)+\w+$
+const regex = /^[\w!#$%&'*+/=?^_{|}~-]+(?:\.[\w!#$%&'*+/=?^_{|}~-]+)*@(?:\w+\.)+\w+$/g;
+
+regex.test('bboydart91@gmail.com'); // true
+regex.test('bboydart.evan@gmail.com'); // true
+regex.test('bboydart@naver.co.kr'); // true
+
+regex.test('.bboydart91@gmail.com'); // false
+regex.test('bboydart91@gmail'); // false
+regex.test('bboydart91.@gmail.com'); // false
+```
+
+### 전화번호
+
+```javascript
+// 휴대폰 번호를 잡아내는 패턴
+// /010-\d{3,4}-\d{4}/;
+// 01[0|1|6|7|8|9]
+const regex = /^\d{2,3}-?\d{3,4}-?\d{4}$/g;
+
+regex.test('01012341234'); // true
+regex.test('010-1234-1234'); // true
+regex.test('0212341234'); // true
+regex.test('02-1234-1234'); // true
+regex.test('031-123-1234'); // true
+```
+
+### 비밀번호
+
+- 반드시 소문자, 대문자, 숫자, 특수 문자가 하나씩 포함되어야한다.
+- 같은 문자가 3번 이상 반복되면 안된다.
+- 8글자 이상이어야 한다.
+
+```javascript
+const password = 'test1234!';
+
+// 따로 검사
+const hasNumberPattern = /\d/g;
+const hasLowerCasePattern = /[a-z]/g;
+const hasUpperCasePattern = /[A-Z]/g;
+const hasSpecialCharPattern = /\W/g;
+
+if (!hasNumberPattern.test(password)) {
+  console.error('비밀번호에는 숫자가 하나 이상 어쩌고...');
+} else if (!hasLowerCasePattern.test(password)) {
+  console.error('비밀번호에는 영어 소문자가 하나 이상 어쩌고...');
+} else if (...) {}
+```
+
+### Lookaround를 사용하여 유효성 검사하기
+
+```javascript
+// ://이라는 문자 앞에 등장하는 https를 잡아줘!
+const regex = /https(?=:\/\/)/g;
+
+regex.exec('https'); // null
+regex.exec('https://'); // ['https']
+```
+
+| 이름                | 패턴        | 의미                            |
+| ------------------- | ----------- | ------------------------------- |
+| Positive Lookahead  | abc(?=123)  | 123 앞에 오는 abc를 잡아라      |
+| Negative Lookahead  | abc(?!123)  | 123 앞에 오지 않는 abc를 잡아라 |
+| Positive Lookbehind | (?<=123)abc | 123 뒤에 오는 abc를 잡아라      |
+| Negative Lookbehind | (?<!123)abc | 123 뒤에 오지 않는 abc를 잡아라 |
+
+```javascript
+/q(?=u)i/g.exec('quit'); // null
+/q(?=u)u/g.exec('quit'); // ["qu"]
+/(?=\d)./.exec('abc123'); // ["1"]
+```
+
+```javascript
+/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?!.*(.)\1{2}).{8,}/;
+```
+
+| 표현            | 의미                                    |
+| --------------- | --------------------------------------- |
+| (?=.\*\d)       | 연속 또는 하나만 나타날 수 있는 \d      |
+| (?=.\*[a-z])    | 연속 또는 하나만 나타날 수 있는 [a-z]   |
+| (?=.\*[A-Z])    | 연속 또는 하나만 나타날 수 있는 [A-Z]   |
+| (?=.\*[\W])     | 연속 또는 하나만 나타날 수 있는 [\W]    |
+| (?!.\*(.)\1{2}) | 연속적으로 3번 나타나지 않는 모든 문자  |
+| .{8,}           | 위 조건을 모두 통과한 8자리 문자열 패턴 |
+
+## 불규칙한 문자열에서 원하는 정보만 골라내기
+
+### 주어진 문자열 내에서 숫자만 골라내기
+
+```javascript
+const NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const amount = '1,000원'
+	.split('')
+	.filter(v => NUMBERS.includes(v))
+	.join('');
+
+// 또는
+
+const amount = '1,000원'.replace(',', '').replace('원', '');
+
+console.log(Number(amount)); // 1000
+
+const amount = '1,000원'.replace(/[^0-9]/g, '');
+// 또는
+const amount = '1,000원'.replace(/[^\d]/g, '');
+// or
+const amount = '1,000원'.replace(/\D/g, '');
+
+console.log(Number(amount)); // 1000
+```
+
+### 문장 속에서 금액만 추출하기
+
+```javascript
+const string =
+	'현재까지 로또 복권의 총 판매금액은 38조40230억2565만7000원. 2014년 기준 회당 평균 580억원 가량의 로또가 팔린다. 조사에 따르면 1인당 평균 구매액은 9400원으로 19세 이상 성인 인구 기준 매주 약 512만 명이 로또를 구입한다.';
+
+string.match(/(?<=\s)\S*?\d+(?=원)/g); // ["38조40230억2565만7000", "9400"]
+
+// (?<=\s): 공백(\s) 뒤에 있고(?<=)
+// \S*?: 공백이 아닌 문자(\S)가 있을 수도 있고 없을 수도 있으며(*?)
+// \d+: 숫자(\d)가 한 개 이상(+) 조합되어있고
+// (?=원): “원”이라는 글자 앞에 있는(?=원) 녀석들
+```
+
+## 문자열을 내가 원하는 포맷으로 변환하기
+
+### 사용자의 정보 마스킹하기
+
+```javascript
+function mask(str, headCount = 1) {
+	// 문자열 맨 앞의 n 글자를 가져온다
+	const head = new RegExp(`^.{${headCount}}`, 'g').exec(str);
+
+	// head를 제외한 나머지를 마스킹한다
+	const tails = str.replace(head, '').replace(/./g, '*');
+
+	// head와 tails를 합친다
+	return head + tails;
+}
+
+mask('문동욱', 2); // '문동*'
+mask('01047556185', 5); // '01047******'
+```
+
+```javascript
+function enhancedMask(str, headCount = 1) {
+	// \S[\s-]* 패턴이 n번 나오는 경우를 모두 묶어서 head로 할당한다
+	const head = new RegExp(`^(?:\\S[\\s-]*){${headCount}}`, 'g').exec(str);
+
+	// head를 제외한 나머지 부분 중 공백과 -를 제외한 부분을 마스킹한다
+	const tails = str.replace(head, '').replace(/[^\s-]/g, '*');
+
+	// head와 tails를 합친다
+	return head + tails;
+}
+
+mask('E Van Moon', 2); // 'E V** ****'
+mask('010-4755-6185', 5); // '010-47**-****'
+```
+
+## IDE 내에서 원하는 부분만 Replace하기
+
 ## 참고
 
 - [정규표현식 완전정복](https://wormwlrm.github.io/2020/07/19/Regular-Expressions-Tutorial.html?fbclid=IwAR16MbpS_qbBA9NdTBwOPczu3_5Ji7S6TJ1wPHUNjzUNLevLjqS7GZ-Cucs)
+- [정규식은 어떻게 사용되는 것일까?](https://evan-moon.github.io/2020/08/15/regex-example/?fbclid=IwAR2R-kUMPEHOICafsBCB-kN8_byH5T5Gb-AmJkEsCGtOGIBmPUpf8V-L68Q)
 
 ## 나중에 볼 링크
 

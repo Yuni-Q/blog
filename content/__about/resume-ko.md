@@ -58,6 +58,10 @@ lang: 'ko'
 - 실행 환경 개선
 - lint 적용
 - 가게 영상/사진 관리 기능
+- 전통시장카테고리 기능
+- 배민오더 오프라인 정보 기능
+- 가게 편의 정보 기능
+- 전자계약서 e2e TEST(testcafe) 작성
 
 #### ceo-moon-front
 
@@ -76,6 +80,7 @@ lang: 'ko'
 - 기존 ceo-selfservice-front 프로젝트를 제거하고 스마트메뉴 시스템 새로 개발(20.07.14 open)
 - 스마트메뉴 시스템 4차 개선 작업
 - lint 적용
+- e2e TEST(testcafe) 작성
 
 #### ceo-web-design-system
 
