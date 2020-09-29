@@ -16,3 +16,18 @@ draft: false
 - `<`를 `&lt`로 바꿔주는 것으로 막아 줄 수 있습니다.
 - 추가적으로 `&`, `"`,`'`, \`, `=`과 같은 문자도 바꿔주는 것이 좋습니다.
 - react에서도 hrml을 넣을 때 `<div dangerouslySetInnerHTML={{ __html: data }} />`를 사용하지만 이름을 길고 어렵게 작성하고 객체로 만들어 둔 것이 사용을 권장하지 않기 때문이라고 합니다.
+
+### sznitize-html
+
+- 허용하지 않는 html 입력을 맏습니다.
+
+```zsh
+npm i sanitize-html
+```
+
+```javascript
+const sanitizeHtml = require('sanitize-html');
+
+const html = "<script?>location.href = 'https://naver.com'</script>";
+console.log(sanitizeHtml(html)); // ''
+```
