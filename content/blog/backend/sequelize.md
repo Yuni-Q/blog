@@ -1,5 +1,5 @@
 ---
-title: Sequelize
+title: sequalize
 date: 2020-05-09 11:05:70
 category: backend
 draft: true
@@ -144,6 +144,23 @@ User.findAll({
 		[Sequelize.literal('age + 1'), 'age'],
 	],
 }); // SELECT `name` AS `username`, age + 1 AS `age` FROM `users` AS `user`
+```
+
+## transaction
+
+```javascript
+const t = await sequlize.transaction();
+try {
+	const success = await User.findOne({
+		where: {
+			id,
+		},
+		transaction: t,
+	});
+	await t.commit();
+} catch (error) {
+	await t.rollback();
+}
 ```
 
 ## 참고
