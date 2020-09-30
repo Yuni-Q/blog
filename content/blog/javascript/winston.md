@@ -1,7 +1,7 @@
 ---
 title: winston
 date: 2020-09-29 22:09:91
-category: backend
+category: javascript
 tags: ['javascript']
 draft: true
 ---
@@ -34,3 +34,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = logger;
 ```
+
+## 참고
+
+- [노드교과서 개정판 15장 1부](https://www.youtube.com/watch?v=NERZNft9iNg)
