@@ -45,6 +45,7 @@ brew cask install android-studio
 #### 가상 디바이스 생성
 
 - 플레이스토어 마크가 있는 것으로 권장합니다.
+- Configure -> AVD Manager
 
 ### xcode 설치
 
