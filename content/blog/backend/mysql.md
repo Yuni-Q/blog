@@ -107,3 +107,7 @@ DELETE FROM 테이블명 WHERE 조건;
   - ORM : Object Relational Mapping : 객체와 데이터를 매핑(1대1 짝지음)
   - MySQL 외에도 다른 RDB(Maria, Postgre, SQLite, MSSQL)와도 호환됩니다.
   - 자바스크립트 문법으로 데이터베이스 조작이 가능합니다.
+
+## 페이징 처리 시
+
+- offset보다 where을 쓰는 것이 좋습니다.
