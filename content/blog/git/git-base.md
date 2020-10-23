@@ -19,18 +19,23 @@ draft: false
 
 - git clone 주소 : remote에 있는 코드를 로컬에 복사합니다.
 - git pull : 로컬과 remote를 비교하여 로컬 파일 fetch and merge 합니다.
+  - --rebase 옵션이 있습니다.
 
-### 3. branch
+### 3. branch / switch / restore
 
-- git checkout 브랜치명 : 브랜치를 변경합니다.
+- git checkout 브랜치명 : 브랜치를 변경하거나 워킹 트리의 파일을 복원해 주는 역할을 합니다.
+- git switch 브랜치명 : 브랜치를 변경하는 명령어가 추가 되었습니다.
+- git restore 파일명 : 워킹 트리의 파일을 복원해 주는 역할을 합니다.
 
 #### 브랜치 생성 및 변경
 
 - git checkout -b 브랜치명 : 브랜치를 만들고 변경합니다.
+- git switch -c 브랜치명 : 브랜치를 만들고 변경하는 명령어가 추가 되었습니다.
 
 ### 4. merge
 
 - git merge 브랜치명 : 현재 브랜치에 다른 브랜치를 merge 합니다.
+  - --rebase 옵션이 있습니다.
 
 ### 5. Gui
 
@@ -41,3 +46,7 @@ draft: false
 ### 6. GIT LOG를 예쁘게 보는 방법
 
 - git log --graph --oneline --abbrev-commit --decorate
+
+## 참고
+
+- [새 버전에 맞게 git checkout 대신 switch/restore 사용하기](https://blog.outsider.ne.kr/1505)
