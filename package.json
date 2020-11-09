@@ -1,7 +1,7 @@
 {
-	"name": "gatsby-starter-bee",
+	"name": "yuni-q-blog",
 	"private": true,
-	"description": "Gatsby blog starter template",
+	"description": "Yunu-Q blog",
 	"version": "0.1.0",
 	"author": "yuni-q[YunHeeLee]<lyh6425@gmail.com>",
 	"bugs": {
@@ -9,8 +9,8 @@
 	},
 	"dependencies": {
 		"babel-plugin-styled-components": "^1.11.1",
-		"firebase": "^7.19.1",
-		"gatsby": "^2.24.47",
+		"firebase": "^8.0.1",
+		"gatsby": "^2.25.3",
 		"gatsby-image": "^2.4.16",
 		"gatsby-plugin-feed": "^2.5.11",
 		"gatsby-plugin-firebase": "^0.2.0-beta.4",
@@ -40,9 +40,9 @@
 		"lodash": "^4.17.20",
 		"node-sass": "^4.14.1",
 		"prismjs": "^1.21.0",
-		"react": "^16.13.1",
+		"react": "^17.0.1",
 		"react-disqus-comments": "^1.4.0",
-		"react-dom": "^16.13.1",
+		"react-dom": "^17.0.1",
 		"react-helmet": "^5.2.1",
 		"react-switch": "^5.0.0",
 		"react-typography": "^0.16.13",
