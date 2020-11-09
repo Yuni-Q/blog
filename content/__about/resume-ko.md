@@ -62,17 +62,19 @@ lang: 'ko'
 - 배민오더 오프라인 정보 기능
 - 가게 편의 정보 기능
 - 전자계약서 e2e TEST(testcafe) 작성
+- 메뉴 개선 작업
 
 #### ceo-moon-front
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 제외한 부분)
 - 20.06 ~ current
 - `Javascript` `WoowahanJS`
+- 운영개선 작업
 
 #### ceo-web-self-service
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 부분)
-- 20.01 ~ 20.07
+- 20.01 ~ 20.10
 - `TypeScript` `React` `Mobx` `React-Router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
 - ceo-web-design-system를 활용해서 서비스 Front-end 개발/운영개선
@@ -81,11 +83,12 @@ lang: 'ko'
 - 스마트메뉴 시스템 4차 개선 작업
 - lint 적용
 - e2e TEST(testcafe) 작성
+- A/B Test 적용
 
 #### ceo-web-design-system
 
 - B2B서비스채널을 위한 디자인 시스템 구축
-- 19.10 ~ current
+- 19.10 ~ 20.10
 - `TypeScript` `React` `Mobx` `React-Router`
 - 프로젝트 초기 React Application Architecture 설계
   - 새로운 프로젝트 개발 환경 및 구조 연구하고 설계 참여
