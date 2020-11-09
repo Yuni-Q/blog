@@ -23,6 +23,12 @@ draft: true
 npx pm2 start server.js
 ```
 
+## 재시작 명령어
+
+```zsh
+npx pm2 reload server.js
+```
+
 ## 프로세스 목록 확인 명령어
 
 - 재시작 횟수와 status로 서버의 상태를 확인합니다.
@@ -41,7 +47,27 @@ npx pm2 list
 npx pm2 start server.js -i 0
 ```
 
+### scale up/down
+
+- 프로세스 수를 변경합니다.
+
+```zsh
+npx pm2 scale servcer.js 3
+```
+
+## 프로세스 정리 명령어
+
+```zsh
+npx pm2 stop all
+```
+
 ## 프로세스 종료 명령어
+
+## 프로세스 종료 명령어
+
+```zsh
+npx pm2 delete all
+```
 
 ```zsh
 npx pm2 kill
