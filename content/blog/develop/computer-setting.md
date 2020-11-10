@@ -373,6 +373,13 @@ mas search alfred
 mas install 405843582
 ```
 
+## Amphetamine 설치
+
+```
+mas search Amphetamine
+mas install 937984704
+```
+
 ## git 설정
 
 ```zsh
