@@ -47,6 +47,44 @@ draft: false
 
 - git log --graph --oneline --abbrev-commit --decorate
 
+### git 트릭
+
+#### 자동 수정
+
+```zsh
+git config --global help.autocorrect 1
+```
+
+#### 커밋 카운트
+
+```zsh
+git rev-list-count master
+```
+
+#### push/pull이 잦은 저장소 최적화
+
+```zsh
+git gc -prune=now -aggressive
+```
+
+#### 추적하지 않는 파일 백업
+
+```zsh
+git ls-files --others --exclude-standard -z | xargs -O tar rvf ~/backup-untracked.zip
+```
+
+#### 다른 브랜치에 있는 파일 보기
+
+```zsh
+git show main:README.md
+```
+
+#### git에서 검색
+
+```zsh
+git rev-list -all | xargs git grep -F 'font-size: 52px'
+```
+
 ## 참고
 
 - [새 버전에 맞게 git checkout 대신 switch/restore 사용하기](https://blog.outsider.ne.kr/1505)
