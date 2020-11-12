@@ -346,6 +346,12 @@ mas search KakaoTalk
 mas install 869223134
 ```
 
+## gitmoji
+
+```zsh
+brew install gitmoji
+```
+
 ## LINE 설치
 
 ```zsh
