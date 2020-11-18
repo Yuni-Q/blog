@@ -32,6 +32,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.2.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
       - name: npm install
         env:
