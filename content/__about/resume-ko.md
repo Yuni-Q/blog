@@ -52,7 +52,7 @@ lang: 'ko'
 #### super2
 
 - B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영개선
-- 20.07 ~ current
+- 20.07 ~ 20.11
 - `Typescript` `React` `Spring`
 - 운영개선 작업
 - 실행 환경 개선
@@ -70,6 +70,7 @@ lang: 'ko'
 - 20.06 ~ current
 - `Javascript` `WoowahanJS`
 - 운영개선 작업
+- AB Test
 
 #### ceo-web-self-service
 
