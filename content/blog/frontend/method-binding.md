@@ -61,6 +61,7 @@ class Component extends React.Component {
 }
 ```
 
+- bind를 빼먹을 수 있다.
 - 함수 추가 시 호출`()`을 누락하여서 실수할 여지가 있다.
 - constructor에서 호출하면 관심사가 멀어진다.
 - 또한 map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해진다.
@@ -92,6 +93,27 @@ class Component extends React.Component {
 
 - 2번의 방법을 쓰기 힘들다.
 
+### 2-3
+
+```jsx
+import react from 'React';
+
+class Component extends React.Component {
+	constuctor() {
+		this.method2 = this.method2.bind(this);
+	}
+	method2() {
+		console.log('method2');
+	}
+
+	render() {
+		return <button onClick={this.method2}>method2</button>;
+	}
+}
+```
+
+- 사용과 정의가 멀어서 놓치기 쉽다.
+
 ### 3
 
 ```jsx
@@ -109,7 +131,7 @@ class Component extends React.Component {
 ```
 
 - method3는 typescript 컨벤션에서 값이지 메소드가 아니다.
-- readonly를 붙여서 오염을 방지할 수 있지만, protected와 같은 속성을 통해 상속하여 사용하기 힘들다.
+- readonly를 붙여서 오염을 방지할 수 있지만, protected와 같은 접근제어자를 통해 상속하여 사용하기 힘들다.
 
 ### 4
 
@@ -139,9 +161,8 @@ class Component extends React.Component {
 ```jsx
 import react from 'React';
 
-@decorater를
+@decorater
 class Component extends React.Component {
-	@decorater
 	method4() {
 		console.log('method4');
 	}
