@@ -43,11 +43,12 @@ lang: 'ko'
 |              |                                                                       |
 | -----------: | --------------------------------------------------------------------- |
 |   **period** | 19.08 ~ Current                                                       |
-| **position** | B2B 서비스팀 / Front-End Engineer                                     |
+| **position** | 사장님광장팀 / Front-End Engineer                                     |
 | **projects** | ceo-web-design-system / ceo-selfservice-front / smartmenu-admin-front |
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선
 - 배민사장님광장 외 B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영개선
+- 플랫폼실/업주시스템팀, B2B서비스실/B2B서비스팀, B2B서비스실/사장님서비스팀, B2B서비스실/사장님광장팀
 
 #### super2
 
