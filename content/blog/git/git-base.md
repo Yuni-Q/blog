@@ -138,6 +138,18 @@ if [ "${master}" != "${target}" ]; then
 fi
 ```
 
+### rebase 전에는 현재 브랜치 pull을 받자
+
+```json
+{
+	"husky": {
+		"hooks": {
+			"pre-rebase": "branch=$(git branch --show-current) && git pull https://github.com/Yuni-Q/aaa.git ${branch}"
+		}
+	}
+}
+```
+
 ## 참고
 
 - [새 버전에 맞게 git checkout 대신 switch/restore 사용하기](https://blog.outsider.ne.kr/1505)
