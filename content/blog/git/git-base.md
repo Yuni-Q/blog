@@ -85,6 +85,29 @@ git show main:README.md
 git rev-list -all | xargs git grep -F 'font-size: 52px'
 ```
 
+### Branch의 변경사항 파악
+
+- Branch A와 B가 있고 B는 Branch A에 merge 되는 구조일때, Branch B가 Branch A로부터 나온 지점을 merge-base를 통해 찾을 수 있습니다.
+
+```zsh
+git merge-base --fork-point A B
+```
+
+- Branch B는 diff 범위를 merge-base를 통해 얻을 수 있습니다.
+
+```zsh
+git diff $(git merge-base --fork-point A)
+```
+
+- A의 마지막 커밋이 B에 있는지를 확인합니다(=B는 A로 리베이스 되어 있는지 확인 합니다)
+
+```zsh
+hash1=$(git show-ref --heads -s A)
+hash2=$(git merge-base A B)
+[ "${hash1}" = "${hash2}" ] && echo "OK" || echo "Rebase is required"
+```
+
 ## 참고
 
 - [새 버전에 맞게 git checkout 대신 switch/restore 사용하기](https://blog.outsider.ne.kr/1505)
+- [[Git]현재 Branch의 변경사항 파악하기 - merge-base](http://minsone.github.io/git/git-merge-base)
