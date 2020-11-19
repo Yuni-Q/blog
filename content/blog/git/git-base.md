@@ -107,6 +107,37 @@ hash2=$(git merge-base A B)
 [ "${hash1}" = "${hash2}" ] && echo "OK" || echo "Rebase is required"
 ```
 
+### git remote 저장소에서 지워진 브랜치를 로컬에 반영
+
+```zsh
+git fetch --prune
+git pull --prune
+```
+
+- --prune 옵션을 사용하면 됩니다.
+
+```zsh
+git config --global fetch.prune true
+```
+
+- 글로벌하게 지정해 놓으면 fetch나 pull 할 때 사용하지 않아도 됩니다.
+
+### master로 rebase하지 않은 경우 배포 실패하게 하기
+
+```zsh
+master=$(git rev-parse remotes/origin/master)
+target=$(git merge-base remotes/origin/master remotes/origin/${BRANCH_NAME})
+
+echo ${master}
+echo ${target}
+
+if [ "${master}" != "${target}" ]; then
+  echo "master commit & ${BRANCH_NAME} common ancestor commit is not same"
+  echo "리베이스가 되지 않아 실패하였습니다"
+  exit -1
+fi
+```
+
 ## 참고
 
 - [새 버전에 맞게 git checkout 대신 switch/restore 사용하기](https://blog.outsider.ne.kr/1505)
