@@ -175,6 +175,25 @@ draft: true
 - 브런치 이름에는 이슈번호를 적어 작업 중인 이슈가 어떤 것인지를 명확하게 해주는 것이 필요합니다.
 - 작업이 끝나거나 코드 공유가 필요한 시점이면 Merge/pull requsts를 보냅니다.
 
+### 깃 플로우 1
+
+- master / develop / feature / deploy / hofix
+- master : 배포 성공 이후 deploy를 merge
+- develop : feature들을 merge해서 beta test에 이용. master와 이격이 커질 경우 master에서 새로 만든다.
+- feature : `feature/날짜/티켓번호`로 생성 후 develop에 merge해서 test하고 deploy에 merge해서 배포한다.
+- deploy : develop에서 테스트 완료 된 feauture를 merge 후 배포한다. `deploy/날짜`로 브랜치를 생성한다. 보통 배포 전날에 생성한다.
+- hotfix : master에 merge 후 문제가 생기면 hotfix 브랜치 생성에서 배포하여 수정이 완료 되면 master에 머지한다. `hotfix/날짜`로 브랜치를 생성한다.
+- adhoc : 브랜치명을 만들 때 날짜가 명확하지 않을 때 날짜 부분에 대신 사용한다.
+
+### 깃 플로우 2
+
+- master / deploy / feature
+- master : 배포 예정이 deploy 브랜치를 merge 후 태깅하고 태깅이나 master의 마지막 커밋으로 배포한다.
+- deploy : `deploy/날짜`로 브랜치를 생성한다. 해당 날짜에 배포 나갈 feature들을 deploy로 pr하여 리뷰 후 merge하고 최종 테스트까지 브랜치에서 확인한다. jenkins script를 통해 merge-base가 master 최신 커밋과 같은지 확인하고 같지 않다면 배포를 못하게 한다. 이를 해결하기 위해서는 rebase해야 한다. rebase를 하면 force push가 필요하기 때문에 git hook을 이용해서 rebase 전에 브랜치를 pull 받을 수 있게 한다.
+- feature : `feature/날짜/티켓번호`로 생성 후 deploy에 mr을 통해 merge해서 test한다. deploy에 merge 시에 rebase merge를 한다.
+- hotfix : master에 배포 후 문제가 생기면 hotfix 브랜치 생성에서 배포하여 수정이 완료 되면 master에 머지한다. `hotfix/날짜`로 브랜치를 생성한다.
+- adhoc : 브랜치명을 만들 때 날짜가 명확하지 않을 때 날짜 부분에 대신 사용한다.
+
 ## 참고
 
 - [Git 브랜칭 전략 : Git-flow와 Github-flow](https://hellowoori.tistory.com/56)
