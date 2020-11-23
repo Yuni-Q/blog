@@ -41,8 +41,64 @@ class InputComponent extends React.Component {
 }
 ```
 
+- keyCode가 Deprecated 되었습니다...
+
 ## input 파일에서 확장자 제한 하기
 
 ```html
 <input type="file" format="image/png, image/jpg, image/gif" />
+```
+
+## input number spiner 제거
+
+```css
+/* 엣지, 크롬, 사파리 */
+input[type='number']::webkit-inner-spin-button,
+input[type='number']::webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+
+/* 파이어폭스 */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+```
+
+## input에 x표시 제거
+
+```css
+/* IE */
+input::-ms-clear,
+input::-ms-reveal {
+	display: none;
+}
+
+/* 엣지, 크롬, 사파리 */
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-decoration {
+	display: none;
+}
+
+/* 파이어폭스는 기본적으로 뜨지 않음 */
+```
+
+## 플레이스홀더 꾸미기
+
+```css
+::webkit-input-placeholder {
+	color: red;
+}
+::-ms-input-placeholder {
+	color: blue;
+}
+::-moz-placeholder {
+	color: orange;
+}
+
+/* 최신 브라우저 */
+::placeholder {
+	color: pink;
+}
 ```
