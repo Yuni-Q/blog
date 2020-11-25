@@ -40,17 +40,24 @@ lang: 'ko'
 
 ### [우아한형제들](https://www.woowahan.com/)
 
-|              |                                                                       |
-| -----------: | --------------------------------------------------------------------- |
-|   **period** | 19.08 ~ Current                                                       |
-| **position** | 사장님광장팀 / Front-End Engineer                                     |
-| **projects** | ceo-web-design-system / ceo-selfservice-front / smartmenu-admin-front |
+|              |                                   |
+| -----------: | --------------------------------- |
+|   **period** | 19.08 ~ Current                   |
+| **position** | 사장님광장팀 / Front-End Engineer |
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선
 - 배민사장님광장 외 B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영개선
 - 플랫폼실/업주시스템팀, B2B서비스실/B2B서비스팀, B2B서비스실/사장님서비스팀, B2B서비스실/사장님광장팀
 
+### 공통작업
+
+- 운영개선 작업
+- 프로젝트 세팅 개선
+  - spring 기반의 웹 실행 환경 개선
+  - eslint 적용
+
 #### post 배사광
+
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선 프로젝트 리뉴얼
 - 20.11 ~
 - 브랜치 전략 구성
@@ -60,23 +67,19 @@ lang: 'ko'
 - B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영개선
 - 20.07 ~ 20.11
 - `Typescript` `React` `Spring`
-- 운영개선 작업
-- 실행 환경 개선
-- lint 적용
-- 가게 영상/사진 관리 기능
-- 전통시장카테고리 기능
-- 배민오더 오프라인 정보 기능
-- 가게 편의 정보 기능
+- 가게 영상/사진 관리 기능 추가
+- 전통시장카테고리 기능 추가
+- 배민오더 오프라인 정보 기능 추가
+- 가게 편의 정보 기능 추가
 - 전자계약서 e2e TEST(testcafe) 작성
-- 메뉴 개선 작업
+- 전자 계약서 내 메뉴 신청 양식 변경
 
 #### ceo-moon-front
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 제외한 부분)
 - 20.06 ~ current
 - `Javascript` `WoowahanJS`
-- 운영개선 작업
-- AB Test
+- AB Test 구성
 
 #### ceo-web-self-service
 
@@ -87,10 +90,9 @@ lang: 'ko'
 - ceo-web-design-system를 활용해서 서비스 Front-end 개발/운영개선
 - ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
 - 기존 ceo-selfservice-front 프로젝트를 제거하고 스마트메뉴 시스템 새로 개발(20.07.14 open)
-- 스마트메뉴 시스템 4차 개선 작업
-- lint 적용
+  - 스마트메뉴 시스템 4차 개선 작업
 - e2e TEST(testcafe) 작성
-- A/B Test 적용
+- A/B Test 구성
 
 #### ceo-web-design-system
 
@@ -100,7 +102,6 @@ lang: 'ko'
 - 프로젝트 초기 React Application Architecture 설계
   - 새로운 프로젝트 개발 환경 및 구조 연구하고 설계 참여
 - 다른 프로젝트에서 사용 될 공통 디자인 시스템 컴포넌트 작성 및 수정
-- lint 적용
 - storybook 도입
 
 #### ceo-selfservice-front
@@ -112,7 +113,7 @@ lang: 'ko'
 - 메뉴 타입 설정 기능 개발
 - 메뉴구성 / 메뉴 설정 기능 추가 개발
 - 옵션 최대 / 최소값 기능 개발
-- ceo-web-self-service로 병합
+- ceo-web-self-service로 병합 후 프로젝트 종료
 
 #### smartmenu-admin-front
 
