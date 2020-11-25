@@ -43,14 +43,9 @@ draft: false
 
 - 위 특징은 `커링`의 특징과 같습니다.
 
-## -
-
-- 그렇다면 람다란 무엇일까요?
-
 ## 람다 란?
 
-## -
-
+- 그렇다면 람다란 무엇일까요?
 - 우선 람다의 장단점을 알아보겠습니다.
 
 ### 장점
@@ -67,7 +62,7 @@ draft: false
 - 익명함수의 특성상 함수 외부의 캡처를 위해 캡처를 하는 시간제약, 논리제약적인 요소도 고려해야 하며, 디버깅 시 함수 콜스택 `추적이 극도로 어렵습니다`.
 - 람다식을 남용하면 오히려 `코드를 이해하기 어려울 수 있습니다`.
 
-## -
+### 자바스크립트에서 람다란 ?
 
 - 이제 람다의 견해에 대해 살펴보겠습니다.
 - 아래의 내용은 자바스크립트 관점에서만 생각해 보도록 하겠습니다.
@@ -200,5 +195,5 @@ add2(3); // NaN
 
 - [나무위키](https://namu.wiki/w/람다식)
 - [람다, 익명 함수, 클로저](https://hyunseob.github.io/2016/09/17/lambda-anonymous-function-closure/)
-- [Java] 람다식(Lambda Expressions) -> 사용법 & 예제](https://coding-factory.tistory.com/265)
+- [\[Java\] 람다식(Lambda Expressions) -> 사용법 & 예제](https://coding-factory.tistory.com/265)
 - [함수와 람다의 차이점은 무엇입니까?](https://qastack.kr/software/130722/what-is-the-difference-between-a-function-and-a-lambda)
