@@ -49,37 +49,25 @@ lang: 'ko'
 - 배민사장님광장 외 B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영개선
 - 플랫폼실/업주시스템팀, B2B서비스실/B2B서비스팀, B2B서비스실/사장님서비스팀, B2B서비스실/사장님광장팀
 
-### 공통작업
-
-- 운영개선 작업
-- 프로젝트 세팅 개선
-  - spring 기반의 웹 실행 환경 개선
-  - eslint 적용
-
 #### post 배사광
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선 프로젝트 리뉴얼
 - 20.11 ~
-- 브랜치 전략 구성
+- 프로젝트 초기 React Application Architecture 설계
 
 #### super2
 
 - B2B서비스채널(전자계약서, 업주 요청 등의 웹서비스) 개발/운영개선
 - 20.07 ~ 20.11
 - `Typescript` `React` `Spring`
-- 가게 영상/사진 관리 기능 추가
-- 전통시장카테고리 기능 추가
-- 배민오더 오프라인 정보 기능 추가
-- 가게 편의 정보 기능 추가
-- 전자계약서 e2e TEST(testcafe) 작성
-- 전자 계약서 내 메뉴 신청 양식 변경
+- e2e test(testcafe) 작성
 
 #### ceo-moon-front
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 제외한 부분)
 - 20.06 ~ current
 - `Javascript` `WoowahanJS`
-- AB Test 구성
+- AB test 구성
 
 #### ceo-web-self-service
 
@@ -87,32 +75,27 @@ lang: 'ko'
 - 20.01 ~ 20.10
 - `TypeScript` `React` `Mobx` `React-Router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
-- ceo-web-design-system를 활용해서 서비스 Front-end 개발/운영개선
-- ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
-- 기존 ceo-selfservice-front 프로젝트를 제거하고 스마트메뉴 시스템 새로 개발(20.07.14 open)
-  - 스마트메뉴 시스템 4차 개선 작업
-- e2e TEST(testcafe) 작성
-- A/B Test 구성
+- ceo-web-design-system를 활용해서 서비스 Front-end 개발
+- 스마트메뉴 시스템 개선(20.07.14 오픈)
+  - ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
+- e2e test(testcafe) 작성
+- A/B test 구성
 
 #### ceo-web-design-system
 
-- B2B서비스채널을 위한 디자인 시스템 구축
+- B2B서비스채널을 위한 디자인 시스템 구축/운영개선
 - 19.10 ~ 20.10
 - `TypeScript` `React` `Mobx` `React-Router`
 - 프로젝트 초기 React Application Architecture 설계
   - 새로운 프로젝트 개발 환경 및 구조 연구하고 설계 참여
 - 다른 프로젝트에서 사용 될 공통 디자인 시스템 컴포넌트 작성 및 수정
-- storybook 도입
+- Storybook을 통한 UI 검증 프로세스 간소화
 
 #### ceo-selfservice-front
 
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스 웹 서비스 개발/운영개선
 - 19.08 ~ 20.01
 - `TypeScript` `React` `Redux` `Redux-Saga` `React-Router` `JEST`
-- 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
-- 메뉴 타입 설정 기능 개발
-- 메뉴구성 / 메뉴 설정 기능 추가 개발
-- 옵션 최대 / 최소값 기능 개발
 - ceo-web-self-service로 병합 후 프로젝트 종료
 
 #### smartmenu-admin-front
@@ -120,12 +103,6 @@ lang: 'ko'
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스의 회사 내부 관리 웹 서비스 개발/운영개선
 - 19.08 ~ 20.01
 - `TypeScript` `React` `Redux` `Redux-Saga` `React-Router` `Antd`
-
-- 메뉴 매핑 정보 체크 가능 개발
-- 1인분 메뉴 가격 최소 / 최대값 입력 제한 개발
-- 운영자 권한 관리 라이트버전 개발
-- 시스템 관련 라우팅 분리
-- 프랜차이즈 메뉴 할인 기능 개발
 
 ### [미미박스](https://m.memebox.com/)
 
@@ -149,7 +126,6 @@ lang: 'ko'
 - iOS에서는 CSS 속성으로 스크롤이 지워지지 않아 임의의 방법으로 제거
 - Apollo GraphQL 활용
 - React Hooks 도입 리드
-- 인피니티 스크롤 도입 리드
 - carousel에 영상 추가 및 위치에 따른 영상 재생 컨트롤 기능 개발
 - GTM 및 사내 웹 로그 로직 추가 및 모듈화
 - GitLab CI 수정 및 PM2 ecosystem 도입 리드
