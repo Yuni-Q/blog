@@ -209,3 +209,28 @@ div::after {
 - 달라붙는 ( sticky ) : 다음 item이 올때까지 위치 고정합니다.
 - transform: translateX(-50%) : width의 50% 만큼 -x축으로 이동합니다.
 - opacity : 불투명도를 조정합니다.
+
+## block와 inline의 차이
+
+### block
+
+- div, p, ul, li, dl, dt, dd, h1 ~ h6, pre, noscript, table, hr, form, blockquote, address, fieldset
+- 테트리스 블록처럼 층층이 쌓여가는게 특징입니다.
+- 블록요소 안에 블록요소를 포함할 수 있습니다.
+- 블록요소 안에 인라인요소를 포함할 수 있습니다.
+- 일부 블록요소는 블록요소를 포함할 수 없습니다.
+  - address, h1 ~ h6, p 등
+- 기본 가로사이즈가 100% 입니다.
+- 가로, 세로 사이즈 적용 가능합니다.
+- 안쪽 여백(padding), 바깥쪽 여백(margin) 모든 방향 적용 가능합니다.
+
+### lnline
+
+- a, span, input, strong, samp, var, cite, abbr, q, sub, sup, select, b, em, ins, u, i, textarea
+- 한 줄로 선처럼 나열됩니다.
+- 안쪽 여백(padding), 바깥쪽 여백(margin)은 좌(우)측만 적용됩니다.
+- 가로, 세로 사이즈 적용이 안 됩니다.
+- 일부 요소는 적용 가능합니다. - input, textarea, select, img
+- 인라인 요소안에서 인라인 요소만 포함합니다.
+  - 즉, 인라인 요소안에 블럭요소를 포함할 수 없습니다.
+- 자신의 부모의 가로폭보다 현재의 가로폭이 길면 다음 줄로 넘어갑니다.
