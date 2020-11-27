@@ -6,6 +6,12 @@ tags: ['html']
 draft: false
 ---
 
+## HTML Living Standard
+
+- HTML, HyperText Markup Language로 대변되는 이 언어는 단순히 Markup Language라는 이유로 많은 개발자들에게 'HTML은 프로그래밍 언어가 아니다'라는 식으로 조롱받고는 합니다.
+- HTML 4.01이 1999년 12월 표준이 되었고, HTML 5가 2008년 1월 22일 처음 시작되어 2014년 10월 W3C 권고안이 되었습니다.
+- 2020년 기준, 최신 HTML 표준안은 WHATWG(Web Hypertext Application Technology Working Group)에서 [HTML Living Standard](https://html.spec.whatwg.org/) 라는 이름으로 관리하고 있으며, WHATWG에 참여 중인 기업체는 Apple, Google, Mozilla, Microsoft 등입니다.
+
 ## 0. html을 검사
 
 - [http://validator.w3.org/](http://validator.w3.org/)
