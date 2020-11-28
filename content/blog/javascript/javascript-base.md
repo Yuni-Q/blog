@@ -2,7 +2,7 @@
 title: javascript base
 date: 2020-07-29 09:07:57
 category: javascript
-draft: true
+draft: false
 ---
 
 ## 자바스크립트 특징
@@ -16,7 +16,7 @@ draft: true
 - 함수가 일급 객체입니다.
   - 함수는 객체이며, 함수에 함수를 인수로 넘길 수 있습니다. 이 특성을 활용하면 고차 함수를 구현할 수 있어 함수형 프로그래밍이 가능해집니다.
 - 함수가 클로저를 정의합니다.
-  - 클로저로 변수를 은닉하거나 영속성을 보장하는 등 다양한 긴으을 구현할 수 있습니다.
+  - 클로저로 변수를 은닉하거나 영속성을 보장하는 등 다양한 기능을 구현할 수 있습니다.
 
 ## 탄생
 
@@ -89,6 +89,116 @@ draft: true
 - 선언하지 않은 변수 값을 읽으려고 시도하면 참조 오류가 발생합니다.
 - 변수를 선언하지 않은 상태에서 값을 대입하면 자바스크립트 엔진이 그 변수를 자동으로 전역 변수로 선언합니다.
   - strict 모드를 활용하면 선언하지 않은 변수에 값을 대입했을 때 오류가 발생합니다.
+- 같은 이름으로 선언된 변수는 모두 끌어올린 후에 단 하나의 영역에만 할당됩니다.
+  - 변수의 끌어올림([호이스팅](/javascript/hoisting/))은 다른 언어에는 없는 자바스크립트의 고유한 특징입니다.
+  - 같은 이름을 가진 변수를 여러 개 선언하더라도 문제가 발생하지 않는 것은 `var` 뿐 입니다.
+- 변수의 식별자는 다음과 같은 명명 규칙을 따릅니다.
+  - 사용할 수 있는 문자는 유니코드 문자, 숫자(0~9), 밑줄(\_), 달러 기호(\$) 입니다.
+  - 첫 글자로는 숫자를 사용할 수 없습니다. 즉, 글자는 유니코드 문자, 밑줄(\_), 달러 기호(\$) 중 하나여야 합니다.
+  - 예약어를 식별자로 사용할 수 없습니다.
+- 변수는 일반적으로 세 가지 표기법을 많이 사용합니다.
+  - 캐멀 표기법(로어 캐멀 표기법) : 두 번째 이후 단어의 첫 글자를 대문자로 표기하고 나머지는 소문자로 표기합니다. 캐멀 표기법은 대문자 부분이 낙타의 혹처럼 보인다고 해서 붙여진 이름입니다.
+  - 파스칼 표기법(어퍼 캐멀 표기법) : 각 단어의 첫 글자를 대문자로 표기하고 나머지는 소문자로 표기합니다. 프로그래밍 언어인 파스칼(Pascal)에서 사용된 표기법이라서 파스칼 표기법이라고 부릅니다.
+  - 밑줄 표기법(스네이크 표기법) : 모든 단어를 소문자로 표기하고 단어와 단어를 밑줄(\_)로 구분합니다.
+
+## 예약어
+
+- 예약어란 자바스크립트 문법을 규정짓기 위해 자바스크립트 언어 사양에서 사용하는 특수한 키워드를 말합니다.
+- await
+- break
+- case
+- catch
+- class
+- const
+- continue
+- debugger
+- default
+- delete
+- do
+- else
+- enum
+- export
+- extends
+- false
+- finally
+- for
+- funtion
+- if
+- import
+- implements
+- in
+- instanceof
+- interface
+- new
+- null
+- return
+- package
+- protected
+- private
+- public
+- super
+- switch
+- this
+- throw
+- true
+- try
+- typeof
+- var
+- void
+- while
+- with
+- yield
+
+### 미리 정의된 전역 변수와 전역 함수
+
+- 이 이름을 사용해도 오류가 발생하지는 않지만 자바스크립트가 가진 본래 기능을 사용할 수 없게 됩니다.
+- arguments
+- Array
+- Boolean
+- Date
+- decodeURI
+- decodeURIComponent
+- ecodeURI
+- encodeURIComponent
+- Error
+- eval
+- EvalError
+- Function
+- Infinity
+- isFinite
+- isNaN
+- JSON
+- Math
+- NaN
+- Number
+- Object
+- parseFloat
+- parseInt
+- RangeErro
+- ReffernceError
+- RegExp
+- String
+- SyntaxError
+- TypeError
+- undefined
+- URIError
+
+### Web API
+
+- 클라이언트 측 자바스크립트 코드를 작성할 때는 Window 객체 이름과 DOM에서 사용하고 있는 객체 이름도 식별자 이름으로 사용하지 않는 편이 좋습니다.
+- window
+- document
+
+## 데이터 타입
+
+- 실행할 때 변수에 저장된 데이터 타입을 동저긍로 바꿀 수 있는 언어를 가리켜 `동적 타입 언어(dynamic typed language)`라고 부릅니다. 자바스크립트는 동적 타입 언어 입니다.
+  - 변수에 타입이 있는 언어를 가리켜 `정적 타입 언어(static typed language)`라고 부릅니다.
+
+### 데이터 타입의 분류
+
+- 자바스크립트가 처리할 수 있는 뎅터 타입은 크게 두 가지로 나눌 수 있습니다.
+  - 원시 타입(primitive type)
+  - 객체 타입
 
 ## 1. typeof
 
