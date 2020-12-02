@@ -219,3 +219,138 @@ A.prototype.method2();
 5. 함수를 return 안에서 분리하기를 희망합니다(약간 논지에서 벗어난 부분입니다)
    5-1. return 문 안에서 함수를 생성하지 않았으면 합니다.
    5-2. 관심사(?)를 분리하자(요것과 관련해서는 분리할수 잇는것은 모두 분리했으면 좋겟지만... 불가능할거 같긴 합니다...)
+
+- 데코레이터를 선호하지 않는 이유는 proposal2에 머물러 있으며 mobx에서 사용하기에 학습곡선이 낮다는건 타당하지 못하다.
+  - mobx6에서는 데코레이터를 지원하는 않는다.
+- 모든 함수를 arrow function으로 할 것인가?
+  - this의 유무가 아닌 상속에 유무에 따라서 하고 싶다. -> arrow로 했다가 상속이 필요해서 method로 바꾸는 방식은 하위를 위해 상위를 고치는 행위로 위험할 수 있다.
+
+```jsx
+import React from 'react';
+
+export class App extends React.Component {
+	state = {
+		a: {
+			b: 1,
+		},
+	};
+	render() {
+		return (
+			<div>
+				<Base />
+				<A />
+				<B />
+				<C />
+				<D />
+			</div>
+		);
+	}
+}
+
+export default App;
+class Base extends React.Component {
+	state = {
+		a: 1,
+		b: 2,
+		c: 3,
+	};
+
+	method1 = () => {
+		console.log('Base.metho1', this.state.a);
+		this.method2();
+	};
+
+	method2() {
+		console.log('Base.metho2', this.state.b);
+	}
+
+	render() {
+		return <div onClick={this.method1}>Base</div>;
+	}
+}
+
+class A extends Base {
+	state = {
+		d: 4,
+		e: 5,
+	};
+	method2() {
+		super.method2();
+		console.log('A.metho2', this.state.d);
+	}
+
+	render() {
+		return <div onClick={this.method1}>A</div>;
+	}
+}
+
+class B extends Base {
+	state = {
+		f: 6,
+		g: 7,
+	};
+
+	method2() {
+		console.log('B.metho2', this.state.f);
+	}
+
+	render() {
+		return <div onClick={this.method1}>B</div>;
+	}
+}
+
+class C extends Base {
+	state = {
+		h: 8,
+		i: 9,
+	};
+
+	method1 = () => {
+		console.log('C.method1', this.state.h);
+	};
+
+	render() {
+		return <div onClick={this.method1}>C</div>;
+	}
+}
+
+class D extends Base {
+	state = {
+		j: 10,
+		k: 11,
+	};
+
+	method2 = () => {
+		console.log('D.method1', this.state.j);
+	};
+
+	render() {
+		return <div onClick={this.method1}>D</div>;
+	}
+}
+```
+
+- 위의 방식으로 해결해 보려고 했으나 상속 받은 method1의 this.state는 undefined를 리턴할 뿐이였다.
+
+```jsx
+class A extends Base {
+	state = {
+		a: 98,
+		b: 99,
+		d: 4,
+		e: 5,
+	};
+	method2() {
+		super.method2();
+		console.log('A.metho2', this.state.d);
+	}
+
+	render() {
+		return <div onClick={this.method1}>A</div>;
+	}
+}
+```
+
+- 위와 같이 A에 state 값을 넣어주면 정상 동작합니다...
+- arrow function으로 선언한 문제인거 같았으나 method로 선언해도 같습니다...
+- this.state가 있기 때문에 더 이상 위로 갈 필요가 없기 때문에 발생하는 문제인거 같습니다...
