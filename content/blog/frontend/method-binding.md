@@ -333,10 +333,53 @@ class D extends Base {
 - 위의 방식으로 해결해 보려고 했으나 상속 받은 method1의 this.state는 undefined를 리턴할 뿐이였다.
 
 ```jsx
+import React from 'react';
+
+export class App extends React.Component {
+	state = {
+		a: {
+			b: 1,
+		},
+	};
+	render() {
+		return (
+			<div>
+				<Base />
+				<A />
+				<B />
+				<C />
+				<D />
+			</div>
+		);
+	}
+}
+
+export default App;
+class Base extends React.Component {
+	state = {
+		a: 1,
+		b: 2,
+		c: 3,
+	};
+
+	method1 = () => {
+		console.log('Base.metho1', this.state.a);
+		this.method2();
+	};
+
+	method2() {
+		console.log('Base.metho2', this.state.b);
+	}
+
+	render() {
+		return <div onClick={this.method1}>Base</div>;
+	}
+}
+
 class A extends Base {
 	state = {
-		a: 98,
-		b: 99,
+		a: 1,
+		b: 2,
 		d: 4,
 		e: 5,
 	};
@@ -349,8 +392,71 @@ class A extends Base {
 		return <div onClick={this.method1}>A</div>;
 	}
 }
+
+class B extends Base {
+	state = {
+		a: 1,
+		b: 2,
+		f: 6,
+		g: 7,
+	};
+
+	method2() {
+		console.log('B.metho2', this.state.f);
+	}
+
+	render() {
+		return <div onClick={this.method1}>B</div>;
+	}
+}
+
+class C extends Base {
+	state = {
+		a: 1,
+		b: 2,
+		h: 8,
+		i: 9,
+	};
+
+	method1 = () => {
+		console.log('C.method1', this.state.h);
+	};
+
+	render() {
+		return <div onClick={this.method1}>C</div>;
+	}
+}
+
+class D extends Base {
+	state = {
+		a: 1,
+		b: 2,
+		j: 10,
+		k: 11,
+	};
+
+	method2 = () => {
+		console.log('D.method1', this.state.j);
+	};
+
+	render() {
+		return <div onClick={this.method1}>D</div>;
+	}
+}
 ```
 
 - 위와 같이 A에 state 값을 넣어주면 정상 동작합니다...
 - arrow function으로 선언한 문제인거 같았으나 method로 선언해도 같습니다...
-- this.state가 있기 때문에 더 이상 위로 갈 필요가 없기 때문에 발생하는 문제인거 같습니다...
+- this.state가 있기 때문에 더 이상 위로 갈 필요가 없기 때문에 발생하는 문제인거 같습니다... 당연히 a,b가 있는게 맞는거 같습니다... typescript에서는 interface로 필요 state를 정의할 수 있습니다.
+
+- super를 통해 하위에서만 교체... vs 메소드 분리로 인한 상위도 교체
+- 상속(inherit) - 사망한 사람이 상속, 망자와 교감할 수 없다.
+- 증여(bestowal) - 상호작용할 수 있다. 증여 받고도 괴롭히면 싫다. 재산 외적인 교감은 환영
+- 확장(extends) - 유산을 물려받지 말 것. 대리역할을 하지 말 것. 확장하는 쪽이 부분 책임만 질 것.
+
+```
+result = base
+result2 = base + extends
+
+하지만 result가 result3로 바뀌면 base가 base`가 되면서 result2는 망가지게 된다.
+```
