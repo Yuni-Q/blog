@@ -460,3 +460,8 @@ result2 = base + extends
 
 하지만 result가 result3로 바뀌면 base가 base`가 되면서 result2는 망가지게 된다.
 ```
+
+- arrow로 쓰나 method로 쓰나 같다고 한다면 method로 통일하는 것이 좋을 거 같다
+- interface나 handler 함수만 arrow로 정의
+- 그렇다고 한다면 핸드러에 함수를 arrow로 지정하고 그 함수를 메소드로 빼 낸다면 문제는 해결 될 거 같다. arrow로 만들지도 않을지도...
+- 그럼 마지막 interface에 method가 남는데... method로 했을 때 문제가 있는가...?
