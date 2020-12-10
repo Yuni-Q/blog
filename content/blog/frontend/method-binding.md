@@ -465,3 +465,49 @@ result2 = base + extends
 - interface나 handler 함수만 arrow로 정의
 - 그렇다고 한다면 핸드러에 함수를 arrow로 지정하고 그 함수를 메소드로 빼 낸다면 문제는 해결 될 거 같다. arrow로 만들지도 않을지도...
 - 그럼 마지막 interface에 method가 남는데... method로 했을 때 문제가 있는가...?
+- 데코레이터에서 arrow로 간 것도 문법에 의존한 것인데 method가 가장 올바른것 같다... 객체지향 하자...
+
+```tsx
+class some {
+	private proc(value: any, value2: any) {
+		// 실제 로직
+	}
+	// 1
+	public open(error?: any, value?: any, value2?: any) {
+		// 실제 로직
+	}
+	// 5
+	@decorator
+	public decorated(error, value, value2) {
+		if (error) return Dialog.alert(error);
+		this.open(value, value2);
+	}
+	// 3
+	public handleSomeComplete = (error, value, value2) => {
+		if (error) return Dialog.alert(error);
+		this.proc(value!, value2!);
+	};
+	public handleSomeComplete = (value, value2) => this.proc(value!, value2!);
+	render() {
+		return (
+			<SomeOtherComponent
+				onComplete={(error, value, value2) => this.open(error, value, value2)}
+			/>
+		);
+		return (
+			<SomeOtherComponent
+				onComplete={(error, value, value2) => {
+					if (error) return Dialog.alert(error);
+					this.open(value, value2);
+				}}
+			/>
+		);
+		return <SomeOtherComponent onComplete={this.decorated} />;
+		return <SomeOtherComponent onComplete={this.handleSomeComplete} />;
+		// 1
+		return <button onClick={() => this.open()}></button>;
+		// 3 5
+		return <button onClick={this.method}></button>;
+	}
+}
+```
