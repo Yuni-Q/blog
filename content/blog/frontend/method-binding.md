@@ -511,3 +511,5 @@ class some {
 	}
 }
 ```
+
+- 클래스 컴포넌트인만큼 모든 함수를 메소드 형태로 쓰고 return 안의 handler의 경우에만 arrow function을 사용하는 것을 추구하고 있습니다.
