@@ -194,6 +194,33 @@ draft: true
 - hotfix : master에 배포 후 문제가 생기면 hotfix 브랜치 생성에서 배포하여 수정이 완료 되면 master에 머지한다. `hotfix/날짜`로 브랜치를 생성한다.
 - adhoc : 브랜치명을 만들 때 날짜가 명확하지 않을 때 날짜 부분에 대신 사용한다.
 
+#### rebase 하지 않으면 배포를 막자 !!
+
+```bash
+master=$(git rev-parse remotes/origin/master)
+target=$(git merge-base remotes/origin/master remotes/origin/${BRANCH_NAME})
+
+echo ${master}
+echo ${target}
+
+if [ "${master}" != "${target}" ]; then
+   echo "master commit & ${BRANCH_NAME} common ancestor commit is not same"
+   echo "리베이스가 되지 않아 실패하였습니다"
+   exit -1
+fi
+```
+
+#### rebase 할때 현재 브랜치를 최신화 하자 !
+
+- husky 라이브러리의 pre-rebase를 사용합니다.
+
+```bash
+branch=$(git branch --show-current) && git pull https://git.baemin.in/ceo-frontend/ceo-moon-front.git ${branch}
+```
+
+- 브랜치가 충돌이 난 경우 `git rebase --continue` 명령어에도 husky가 작동되어 불편함이 있습니다. 이는
+  husky v5에서 `HUSKY=0` 옵션을 통해 husky를 생략할 수 있습니다.
+
 ## 참고
 
 - [Git 브랜칭 전략 : Git-flow와 Github-flow](https://hellowoori.tistory.com/56)
