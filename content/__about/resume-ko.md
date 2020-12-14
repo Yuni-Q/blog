@@ -54,6 +54,9 @@ lang: 'ko'
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선 프로젝트 리뉴얼
 - 20.11 ~
 - 프로젝트 초기 React Application Architecture 설계
+- 브랜치 전략 구상(master/deploy/feature)
+- 젠킨스 구성(master의 최신 커밋이 base가 아니라면 배포 불가능)
+- 허스키 도입(rebase시 현재 브랜치 최신화 후 진행)
 
 #### super2
 
@@ -61,13 +64,21 @@ lang: 'ko'
 - 20.07 ~ 20.11
 - `Typescript` `React` `Spring`
 - e2e test(testcafe) 작성
+- tslint를 eslint로 변경
+- 슈퍼2 설정 정리 및 실행 환경 간소화
+- 가게 영상/사진 관리 기능 추가
+- 전통시장카테고리 기능 추가
+- 배민오더 오프라인 정보 기능 추가
+- 가게 편의 정보 기능 추가
+- 전자계약서 e2e TEST(testcafe) 작성
+- 전자 계약서 내 메뉴 신청 양식 변경
 
 #### ceo-moon-front
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 제외한 부분)
 - 20.06 ~ current
 - `Javascript` `WoowahanJS`
-- AB test 구성
+- AB test 구성 및 테스트
 
 #### ceo-web-self-service
 
@@ -76,10 +87,13 @@ lang: 'ko'
 - `TypeScript` `React` `Mobx` `React-Router`
 - 사장님 광장 내의 셀프 서비스 오픈(20.02.25일 오픈)
 - ceo-web-design-system를 활용해서 서비스 Front-end 개발
-- 스마트메뉴 시스템 개선(20.07.14 오픈)
+- 메뉴 시스템 개선(20.07.14 오픈)
   - ceo-selfservice-front(react, redux)를 ceo-web-design-system를 활용해서 ceo-web-self-service(react, mobx)로 내제화
+  - 스마트 메뉴 기능 대거 추가
 - e2e test(testcafe) 작성
 - A/B test 구성
+- 로컬 환경에서 https 적용
+- class component method binding 규칙 논의
 
 #### ceo-web-design-system
 
@@ -97,12 +111,21 @@ lang: 'ko'
 - 19.08 ~ 20.01
 - `TypeScript` `React` `Redux` `Redux-Saga` `React-Router` `JEST`
 - ceo-web-self-service로 병합 후 프로젝트 종료
+- 1인분 메뉴 가격 최소, 최대값 입력 제한 개발
+- 메뉴 타입 설정 기능 개발
+- 메뉴구성 / 메뉴 설정 기능 추가 개발
+- 옵션 최대 / 최소값 기능 개발
 
 #### smartmenu-admin-front
 
 - 배달의 민족을 사용하는 사장님들의 메뉴 관리를 위한 서비스의 회사 내부 관리 웹 서비스 개발/운영개선
 - 19.08 ~ 20.01
 - `TypeScript` `React` `Redux` `Redux-Saga` `React-Router` `Antd`
+- 메뉴 매핑 정보 체크 가능 개발
+- 1인분 메뉴 가격 최소 / 최대값 입력 제한 개발
+- 운영자 권한 관리 라이트버전 개발
+- 시스템 관련 라우팅 분리
+- 프랜차이즈 메뉴 할인 기능 개발
 
 ### [미미박스](https://m.memebox.com/)
 
