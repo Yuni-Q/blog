@@ -175,7 +175,7 @@ lang: 'ko'
 - `React` `Redux` `Redux-Saga` `NEXT`
 - [시연 영상](https://www.youtube.com/watch?v=nKn6scRu-hk)
 
-### [Ahobsu-Node-Backend](https://github.com/Yuni-Q/ahobsu-node-backend)
+### [MOTI](https://github.com/Yuni-Q/ahobsu-node-backend)
 
 - 매일 하루에 한 번 받을 질문에 답하면서 자신을 기록하면 단순히 기록에서 그치지 않고 당신이 기록한 일주일은 한 장의 꿈을 담은 카드로 완성해 주는 iOS 앱 입니다.
 - `Node` `Express` `Typescript` `Swagger` `JEST` `JWT` `Sequelize` `MySQL` `EC2` `S3`
@@ -210,3 +210,11 @@ _[2020.01.11]_
 | ----------: | ----------------------------------- |
 |      period | 18.03 ~ 20.04                       |
 | description | 디자이너와 개발자가 함께하는 동아리 |
+
+#### 수상
+
+| 주관                   | 상명                                                           | 일자       |
+| ---------------------- | -------------------------------------------------------------- | ---------- |
+| 멋쟁이사자처럼         | HANAplatform 기반 IoT 고급 개발자 양성 과정(NCS) BestProject상 | 2018.01.19 |
+| 과학기술정보통신부     | 핀테크 x 인슈어테크 해커톤 금융결제원 우수상                   | 2019.12.16 |
+| 한국농수산식품유통공사 | 2020 농식품 빅데이터 온라인 해커톤 우수상                      | 2020.12.14 |
