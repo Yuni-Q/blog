@@ -24,7 +24,8 @@ class Component extends React.Component {
 }
 ```
 
-- this가 제대로 bind 되지 않아서 method1 안에서 this를 사용할 수 없다.
+- this가 제대로 bind 되지 않아서 method1 안에서 this를 사용할 수 없습니다.
+- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해집니다.
 
 ### 1
 
@@ -42,10 +43,12 @@ class Component extends React.Component {
 }
 ```
 
-- constructor에서 bind 해주지 않아도 된다.
-- 함수 추가 시 호출`()`을 누락하여서 실수할 여지가 적다.
+- 화살표 함수는 자신의 this가 없습니다. 대신 화살표 함수를 둘러싸는 렉시컬 범위(lexical scope)의 this가 사용됩니다. 이로 인해 this를 사용할 수 있습니다.
+- handler 함수 기능을 추가할 경우 함수호출`()`을 누락할 여지가 적습니다.
+- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기 쉽습니다.
+- render 시 마다 함수를 만들어서 element라면 괜찮지만 Component에게 함수를 넘길 경우 성능 이슈가 발생할 수 있습니다.
 
-### 2-1
+### 2
 
 ```jsx
 import react from 'React';
@@ -61,12 +64,11 @@ class Component extends React.Component {
 }
 ```
 
-- bind를 빼먹을 수 있다.
-- 함수 추가 시 호출`()`을 누락하여서 실수할 여지가 있다.
-- constructor에서 호출하면 관심사가 멀어진다.
-- 또한 map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해진다.
+- bind를 빼먹을 수 있습니다.
+- handler 함수 기능을 추가할 경우 함수호출`()`을 누락할 여지가 있습니다.
+- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해집니다.
 
-### 2-2
+#### map 같은 함수를 써서 parmameter를 넘길 경우
 
 ```jsx
 import react from 'React';
@@ -91,9 +93,7 @@ class Component extends React.Component {
 }
 ```
 
-- 2번의 방법을 쓰기 힘들다.
-
-### 2-3
+### 3
 
 ```jsx
 import react from 'React';
@@ -112,7 +112,8 @@ class Component extends React.Component {
 }
 ```
 
-- 사용과 정의가 멀어서 놓치기 쉽다.
+- constructor에서 호출하면 관심사가 멀어져서 관리하기 용이하지 않습니다.
+- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해집니다.
 
 ### 3
 
@@ -130,8 +131,10 @@ class Component extends React.Component {
 }
 ```
 
-- method3는 typescript 컨벤션에서 값이지 메소드가 아니다.
-- readonly를 붙여서 오염을 방지할 수 있지만, protected와 같은 접근제어자를 통해 상속하여 사용하기 힘들다.
+- method3는 typescript 컨벤션에서 값이지 메소드가 아닙니다.
+- readonly를 붙여서 오염을 방지할 수 있지만, protected와 같은 접근제어자를 통해 상속 super 같은 것을 사용할 수 없습니다.
+- 상속 개념을 쓰지 않는다면 좋은 방법으로 보입니다.
+- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해집니다.
 
 ### 4
 
@@ -154,7 +157,10 @@ class Component extends React.Component {
 
 - https://github.com/andreypopp/autobind-decorator
   - @boundMethod
-- @decorater를 빼먹을 염려가 있다.
+- method에 decorater를 붙여 bind(this)를 합니다.
+- @decorater를 빼먹을 염려가 있습니다.
+- decorator 스펙이 proposal2에 머물러 있습니다.
+- mobx v6에서 decorator 스펙을 제외했습니다.
 
 ### 5
 
@@ -175,14 +181,15 @@ class Component extends React.Component {
 
 - https://github.com/andreypopp/autobind-decorator
   - @autobind
-- class에 decorater를 붙여 모든 메소드에 decorater를 붙이게 한다.
-- @decorater를 빼먹을 염려가 있다.
-- 성능이 염려스럽다.
+- class에 decorater를 붙여 모든 메소드에 decorater를 붙입니다.
+- @decorater를 빼먹을 염려가 있습니다.
+- decorator 스펙이 proposal2에 머물러 있습니다.
+- mobx v6에서 decorator 스펙을 제외했습니다.
 
 ### 6
 
-- React.Component를 wrapping해서 모든 ClassComponent가 상속 받게 한 후 wrapping한 클래스에 decorater를 붙여 모든 메소드에 decorater를 붙이게 한다.
-- 성능이 염려스럽다.
+- React.Component를 wrapping해서 모든 ClassComponent가 상속 받게 한 후 wrapping한 클래스에 decorater를 붙여 모든 메소드에 decorater를 붙입니다.
+- 성능 이슈가 발생할 수 있습니다.
 
 ## 번외
 
@@ -204,26 +211,40 @@ B.method1();
 A.prototype.method2();
 ```
 
-## 나만의 결론
+## 개인적인 견해
 
+- 선호의 변경 : case3 -> case1 -> case4
 - case3. arrow function을 선호합니다.
+
+### case3
 
 1. this의 binding 해야 하는 수고로움을 덜 수 있습니다.
 2. 상속을 해야하거나 접근 제어자(protected, private)가 필요할 때 method를 사용하여 역할을 좀 더 명확히 구분 하는 용도로 사용할 수 있을 것 같습니다.
-   2-1, readonly를 쓰면 좋겠지만, 덮어쓰는게 실수일거 같아서 굳이 필요할지는 잘 모르겠습니다...
-3. 다른 코드에 영향이 적었으면 좋겠습니다(빠드릴수 있는 사항은 최대한 없애는 것). method에 데코레이터를 쓴다면 basecomponent에서 하고 싶지만(새로운 컴포넌트 생성 시에는 고려하지 않아도 되게끔) 성능저하가 우려됩니다
-   3-1. constructor에서 bind한다거나
-   3-2. 다른 함수를 통해 변화가 일어난다는 등의 일
-   3-3. 하나의 디자인 패턴을 억지로 고수하는 일
-4. arrow function을 통해 this의 bind 문제를 피하는 것이 새롭지 않다고 생각됩니다(class component에서 흔히 사용되는 패턴이라 학습 곡선이 낮을 것으로 추정됩니다. 또한 리액트 뿐만 JS 자체의 문법이라고 생각하기 때문에 받아 들이는데에 있어 거부감이 적을거 같습니다)
-5. 함수를 return 안에서 분리하기를 희망합니다(약간 논지에서 벗어난 부분입니다)
-   5-1. return 문 안에서 함수를 생성하지 않았으면 합니다.
-   5-2. 관심사(?)를 분리하자(요것과 관련해서는 분리할수 잇는것은 모두 분리했으면 좋겟지만... 불가능할거 같긴 합니다...)
 
-- 데코레이터를 선호하지 않는 이유는 proposal2에 머물러 있으며 mobx에서 사용하기에 학습곡선이 낮다는건 타당하지 못하다.
-  - mobx6에서는 데코레이터를 지원하는 않는다.
-- 모든 함수를 arrow function으로 할 것인가?
-  - this의 유무가 아닌 상속에 유무에 따라서 하고 싶다. -> arrow로 했다가 상속이 필요해서 method로 바꾸는 방식은 하위를 위해 상위를 고치는 행위로 위험할 수 있다.
+- readonly를 쓰면 좋겠지만, 덮어쓰는게 실수일거 같아서 굳이 필요할지는 잘 모르겠습니다...
+
+3. 다른 코드에 영향이 적었으면 좋겠습니다(빠드릴수 있는 사항은 최대한 없애는 것). method에 데코레이터를 쓴다면 basecomponent에서 하고 싶지만(새로운 컴포넌트 생성 시에는 고려하지 않아도 되게끔) 성능저하가 우려됩니다
+
+- constructor에서 bind한다거나
+- 다른 함수를 통해 변화가 일어난다는 등의 일
+- 하나의 디자인 패턴을 억지로 고수하는 일
+
+4. arrow function을 통해 this의 bind 문제를 피하는 것이 새롭지 않다고 생각됩니다(class component에서 흔히 사용되는 패턴이라 학습 곡선이 낮을 것으로 추정됩니다. 또한 리액트 뿐만 JS 자체의 문법이라고 생각하기 때문에 받아 들이는데에 있어 거부감이 적을거 같습니다)
+5. 함수의 생성을 return 안에서 분리하기를 희망합니다(약간 논지에서 벗어난 부분입니다)
+
+- return 문 안에서 함수를 생성하지 않았으면 합니다.
+- 관심사(?)를 분리하자(이것과 관련해서는 분리할수 잇는것은 모두 분리했으면 좋겟지만... 불가능할거 같긴 합니다...)
+
+6. 스펙적인 부분에서 선호됩니다.
+
+- 데코레이터를 선호하지 않는 이유는 proposal2에 머물러 있습니다.
+  - mobx v6에서는 데코레이터를 지원하는 않습니다.
+
+7. 모든 함수를 arrow function으로 할 것인가?
+
+- this의 유무가 아닌 상속에 유무에 따라서 하고 싶습니다. -> arrow로 했다가 상속이 필요해서 method로 바꾸는 방식은 하위를 위해 상위를 고치는 행위로 위험할 수 있다.
+
+### case1
 
 ```jsx
 import React from 'react';
@@ -330,7 +351,7 @@ class D extends Base {
 }
 ```
 
-- 위의 방식으로 해결해 보려고 했으나 상속 받은 method1의 this.state는 undefined를 리턴할 뿐이였다.
+- 위의 방식으로 해결해 보려고 했으나 상속 받은 method1의 this.state는 undefined를 리턴할 뿐입니다.
 
 ```jsx
 import React from 'react';
@@ -448,24 +469,12 @@ class D extends Base {
 - 위와 같이 A에 state 값을 넣어주면 정상 동작합니다...
 - arrow function으로 선언한 문제인거 같았으나 method로 선언해도 같습니다...
 - this.state가 있기 때문에 더 이상 위로 갈 필요가 없기 때문에 발생하는 문제인거 같습니다... 당연히 a,b가 있는게 맞는거 같습니다... typescript에서는 interface로 필요 state를 정의할 수 있습니다.
+- arrow로 쓰나 method로 쓰나 같다고 한다면 method로 통일하는 것이 좋을 거 같습니다.
+- element 핸드러에 함수를 축약형 arrow로 지정하고 그 함수를 메소드로 빼 낸다면 문제는 해결 될 거 같습니다.
+- method binding도 arrow function도 this의 bind 문제를 해결하기 때문에 이를 해결하기 위해서는 arrow function이 가장 적합해 보입니다.
+- 클래스 컴포넌트인만큼 모든 함수를 메소드 형태로 쓰고 return 안의 handler의 경우에만 arrow function을 사용하는 것을 추구하고 있습니다.
 
-- super를 통해 하위에서만 교체... vs 메소드 분리로 인한 상위도 교체
-- 상속(inherit) - 사망한 사람이 상속, 망자와 교감할 수 없다.
-- 증여(bestowal) - 상호작용할 수 있다. 증여 받고도 괴롭히면 싫다. 재산 외적인 교감은 환영
-- 확장(extends) - 유산을 물려받지 말 것. 대리역할을 하지 말 것. 확장하는 쪽이 부분 책임만 질 것.
-
-```
-result = base
-result2 = base + extends
-
-하지만 result가 result3로 바뀌면 base가 base`가 되면서 result2는 망가지게 된다.
-```
-
-- arrow로 쓰나 method로 쓰나 같다고 한다면 method로 통일하는 것이 좋을 거 같다
-- interface나 handler 함수만 arrow로 정의
-- 그렇다고 한다면 핸드러에 함수를 arrow로 지정하고 그 함수를 메소드로 빼 낸다면 문제는 해결 될 거 같다. arrow로 만들지도 않을지도...
-- 그럼 마지막 interface에 method가 남는데... method로 했을 때 문제가 있는가...?
-- 데코레이터에서 arrow로 간 것도 문법에 의존한 것인데 method가 가장 올바른것 같다... 객체지향 하자...
+### case5
 
 ```tsx
 class some {
@@ -512,4 +521,8 @@ class some {
 }
 ```
 
-- 클래스 컴포넌트인만큼 모든 함수를 메소드 형태로 쓰고 return 안의 handler의 경우에만 arrow function을 사용하는 것을 추구하고 있습니다.
+- 데코레이터는 this.bind만 해줍니다.
+- 아래의 경우를 해결하기 위해서는 decorator가 가장 적합해 보입니다.
+  - 함수를 넘겨야하는 경우 어떻게 할 것인가...?
+  - 하위의 컴포넌트가 특정 상위의 컴포넌트를 forceUpdate 해야한다면??
+  - 컴포넌트에 함수를 arrow로 만들어서 넘길 경우 성능 이슈가 생길 수 있습니다.
