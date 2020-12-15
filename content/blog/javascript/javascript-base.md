@@ -1360,7 +1360,220 @@ Math.floor(4.9) === 4; //true
 ~~4.9 === 4; //true
 ```
 
+## 알아야 할 25 가지 JavaScript 트릭
+
+### 1. 유형 검사 유틸리티
+
+```javascript
+const isOfType = (() => {
+	// 프로토 타입 없는 일반 객체 생성
+	const type = Object.create(null);
+
+	type.null = x => x === null;
+	type.undefined = x => x === undefined;
+	// null or undefined
+	type.nil = x => type.null(x) || type.undefined(x);
+	type.string = x =>
+		!type.nil(x) && (typeof x === 'string' || x instanceof String);
+	type.number = x =>
+		!type.nil(x) &&
+		((!isNaN(x) && isFinite(x) && typeof x === 'number') ||
+			x instanceof Number);
+	type.boolean = x =>
+		!type.nil(x) && (typeof x === 'boolean' || x instanceof Boolean);
+	type.array = x => !type.nil(x) && Array.isArray(x);
+	type.object = x => ({}.toString.call(x) === '[object Object]');
+	type.type = (x, X) => !type.nil(x) && x instanceof X;
+	type.set = x => type.type(x, Set);
+	type.map = x => type.type(x, Map);
+	type.date = x => type.type(x, Date);
+
+	return type;
+})();
+```
+
+### 2. 비어 있는지 확인
+
+```javascript
+function isEmpty(x) {
+	if (Array.isArray(x) || typeof x === 'string' || x instanceof String) {
+		return x.length === 0;
+	}
+
+	if (x instanceof Map || x instanceof Set) {
+		return x.size === 0;
+	}
+
+	if ({}.toString.call(x) === '[object Object]') {
+		return Object.keys(x).length === 0;
+	}
+
+	return false;
+}
+```
+
+### 3. 마지막 항목 목록 가져 오기
+
+```javascript
+const { lstat } = require('fs-extra');
+
+function lastItem(list) {
+	if (Array.isArray(list)) {
+		return list.slice(-1)[0];
+	}
+
+	if (list instanceof Set) {
+		return Array.from(list).slice(-1)[0];
+	}
+
+	if (list instanceof Map) {
+		return Array.from(list.values()).slice(-1)[0];
+	}
+}
+```
+
+### 4. 범위가 있는 난수 생성
+
+```javascript
+function randomNumber(max = 1, min = 0) {
+	if (min >= max) {
+		return max;
+	}
+
+	return Math.floor(Math.random() * (max - min) + min);
+}
+```
+
+### 5. 랜덤 id 생성
+
+```javascript
+// 현재 시간(밀리 초)부터 고유 ID 생성
+// 요청할 때마다 1씩 증가합니다.
+const uniqueId = () => {
+	const id = (function*() {
+		let mil = new Date().getTime();
+
+		while (true) yield (mil += 1);
+	})();
+
+	return () => id.next().value;
+};
+
+// 제공된 값 또는 0에서 고유 ID 생성
+const uniqueIncrementingId = ((lastId = 0) => {
+	const id = (function*() {
+		let numb = lastId;
+
+		while (true) yield (numb += 1);
+	})();
+
+	return (length = 12) => `${id.next().value}`.padStart(length, '0');
+})();
+
+// 문자와 숫자로 고유 ID 생성
+const uniqueAlphaNumericId = (() => {
+	const heyStack = '0123456789abcdefghijklmnopqrstuvwxyz';
+	const randomInt = () =>
+		Math.floor(Math.random() * Math.floor(heyStack.length));
+
+	return (length = 24) =>
+		Array.from({ length }, () => heyStack[randomInt()]).join('');
+})();
+```
+
+### 6. 숫자 범위 만들기
+
+```javascript
+function range(maxOrStart, end = null, step = null) {
+	if (!end) {
+		return Array.from({ length: maxOrStart }, (_, i) => i);
+	}
+
+	if (end <= maxOrStart) {
+		return [];
+	}
+
+	if (step !== null) {
+		return Array.from(
+			{ length: Math.ceil((end - maxOrStart) / step) },
+			(_, i) => i * step + maxOrStart
+		);
+	}
+
+	return Array.from(
+		{ length: Math.ceil(end - maxOrStart) },
+		(_, i) => i + maxOrStart
+	);
+}
+```
+
+### 7. JSON 문자열 형식화 및 문자열화
+
+```javascript
+const obj = {
+	name: 'Yuni-Q',
+	family: [{ name: 'Yuni-Q' }],
+	something: [12, 3, 45],
+	mothod() {
+		return 'i am ignored';
+	},
+	set: new Set([1, 4, 5]),
+	map: new Map([
+		[1, 4],
+		[5, 10],
+	]),
+	symb: Symbol('test'),
+};
+
+const replacer = (key, val) => {
+	if (typeof val === 'symbol') {
+		return val.toString();
+	}
+
+	if (val instanceof Set) {
+		return Array.from(val);
+	}
+
+	if (val instanceof Map) {
+		return Array.from(val.entries());
+	}
+
+	if (typeof val === 'function') {
+		return val.toString();
+	}
+
+	return val;
+};
+
+console.log(JSON.stringify(obj));
+// {"name":"Yuni-Q","family":[{"name":"Yuni-Q"}],"something":[12,3,45],"set":{},"map":{}}
+console.log(JSON.stringify(obj, null, 4));
+// {
+//   "name": "Yuni-Q",
+//   "family": [
+//       {
+//           "name": "Yuni-Q"
+//       }
+//   ],
+//   "something": [
+//       12,
+//       3,
+//       45
+//   ],
+//   "set": {},
+//   "map": {}
+// }
+console.log(JSON.stringify(obj, replacer));
+// {"name":"Yuni-Q","family":[{"name":"Yuni-Q"}],"something":[12,3,45],"mothod":"mothod() {\n\t\treturn 'i am ignored';\n\t}","set":[1,4,5],"map":[[1,4],[5,10]],"symb":"Symbol(test)"}
+```
+
+### 8. Promise를 순차적으로 실행
+
+```javascript
+```
+
 ## 참고
 
 - [JavaScript로 만나는 세상](https://helloworldjavascript.net)
 - [[번역]ES6 축약코딩 기법 19가지](https://chanspark.github.io/2017/11/28/ES6-%EA%BF%80%ED%8C%81.html)
+- [25 JavaScript Tricks You Need To Know About](https://medium.com/before-semicolon/25-javascript-code-solutions-utility-tricks-you-need-to-know-about-3023f7ed993e)
