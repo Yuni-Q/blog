@@ -213,7 +213,7 @@ A.prototype.method2();
 
 ## 개인적인 견해
 
-- 선호의 변경 : case3 -> case1 -> case4
+- 선호의 변경 : case3 -> case1 -> case5 -> case3
 - case3. arrow function을 선호합니다.
 
 ### case3
@@ -526,3 +526,7 @@ class some {
   - 함수를 넘겨야하는 경우 어떻게 할 것인가...?
   - 하위의 컴포넌트가 특정 상위의 컴포넌트를 forceUpdate 해야한다면??
   - 컴포넌트에 함수를 arrow로 만들어서 넘길 경우 성능 이슈가 생길 수 있습니다.
+
+### case3
+
+- 데코레이터가 하는 일이 this.bind만 하는 것이라면 arrow function이 하는 일과 일치합니다. 그런데 데코레이터를 써야하는 이유를 모르겠습니다. 데코레이터를 붙여야 하는 함수에 arrow function을 쓴다면 어떠한 차이가 있는지 알 수 없습니다.
