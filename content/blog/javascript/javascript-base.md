@@ -1570,6 +1570,421 @@ console.log(JSON.stringify(obj, replacer));
 ### 8. Promise를 순차적으로 실행
 
 ```javascript
+const asyncSequentializer = (() => {
+	const toPromise = x => {
+		if (x instanceof Promise) return x;
+
+		if (typeof x === 'function') {
+			return (async () => await x())();
+		}
+
+		return Promise.resolve(x);
+	};
+
+	return list => {
+		const results = [];
+
+		return list
+			.reduce((lastPromise, currentPromise) => {
+				return lastPromise.then(res => {
+					results.push(res);
+					return toPromise(currentPromise);
+				});
+			}, toPromise(list.shift()))
+			.then(res => Promise.resolve([...results, res]));
+	};
+})();
+```
+
+### 9. 데이터 폴링
+
+```javascript
+const { await } = require('signale');
+
+async function poll(fn, validate, interval = 2500) {
+	const resolver = async (resolve, reject) => {
+		try {
+			const result = await fn();
+			const valid = validate(result);
+
+			if (valid === true) {
+				resolver(result);
+			} else if (valid === false) {
+				setTimeout(resolver, interval, resolve, reject);
+			}
+		} catch (e) {
+			reject(e);
+		}
+	};
+
+	return new Promise(resolver);
+}
+```
+
+## 10. Promise 함수들
+
+```javascript
+const prom1 = Promise.reject(12);
+const prom2 = Promise.resolve(28);
+const prom3 = Promise.resolve(48);
+const prom4 = Promise.reject('error');
+
+Promise.all([prom1, prom2, prom3, prom4])
+	.then(res => console.log('all', res))
+	.catch(err => console.log('all failed', err));
+// all failed 12
+
+Promise.allSettled([prom1, prom2, prom3, prom4])
+	.then(res => console.log('allSettled', res))
+	.catch(err => console.log('allSettled failed', JSON.stringify(err)));
+// allSettled, [{status: "rejected", reason: 12}, {status: "fulfilled", value: 28}, {status: "fulfilled", value: 48}, {reason: 'error', status: 'rejected'}
+Promise.any([prom1, prom2, prom3, prom4])
+	.then(res => console.log('any', res))
+	.catch(err => console.log('any failed', err));
+// any 28
+Promise.race([prom1, prom2, prom3, prom4])
+	.then(res => console.log('race', res))
+	.catch(err => console.log('race failed', err));
+// race failed 12
+```
+
+### 11. 배열값 위치 바꾸기
+
+```javascript
+const array = [12, 24, 48];
+
+const swapOldWay = (arr, i, j) => {
+	const arrayCopy = [...arr];
+
+	let temp = arrayCopy[i];
+	arrayCopy[i] = arrayCopy[j];
+	arrayCopy[j] = temp;
+
+	return arrayCopy;
+};
+
+const swapNewWay = (arr, i, j) => {
+	const arrayCopy = [...arr];
+
+	[arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]];
+
+	return arrayCopy;
+};
+```
+
+### 12. 조건부 객체 키 생성
+
+```javascript
+const condition = true;
+
+const sample = {
+	someProperty: 'some value',
+	...(!!condition ? { newProperty: 'value' } : {}),
+};
+```
+
+### 13. 변수를 객체 키로 사용
+
+```javascript
+const property = 'newValidProp';
+
+const sample = {
+	someProperty: 'some value',
+	[`${property}`]: 'value',
+};
+```
+
+### 14. 객체 키 확인
+
+```javascript
+const sample = {
+	prop: 'value',
+};
+
+console.log('prop' in sample); // true
+console.log('toString' in sample); // true
+
+console.log(sample.hasOwnProperty('prop')); // true
+console.log(sample.hasOwnProperty('toString'); // false
+```
+
+### 15. 중복키 제거
+
+```javascript
+const numberArrays = [
+	undefined,
+	Infinity,
+	12,
+	NaN,
+	false,
+	5,
+	7,
+	null,
+	12,
+	false,
+	5,
+	undefined,
+	89,
+	9,
+	null,
+	Infinity,
+	5,
+	NaN,
+];
+const objArrays = [{ id: 1 }, { id: 4 }, { id: 1 }, { id: 5 }, { id: 4 }];
+console.log(Array.from(new Set(numberArrays))); // 중복 제거
+console.log(Array.from(new Set(objArrays))); // 중복 제거 되지 않음
+
+const idSet = new Set();
+console.log(
+	objArrays.filter(obj => {
+		const existingId = idSet.has(obj.id);
+		idSet.add(obj.id);
+
+		return !existingId;
+	})
+);
+```
+
+### 16. Array forEach에서 "중단"및 "계속"수행
+
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+for (const number of numbers) {
+	if (number % 2 === 0) {
+		continue;
+	}
+
+	if (number > 5) {
+		break;
+	}
+
+	console.log(number);
+}
+
+numbers.some(number => {
+	if (number % 2 === 0) {
+		return false;
+	}
+
+	if (number > 5) {
+		return true;
+	}
+
+	console.log(number);
+});
+```
+
+### 17. 별칭과 기본값
+
+```javascript
+const obj = {
+	dt: { name: 'sample' },
+};
+
+function destructuring({ dt: data }) {
+	console.log(data);
+}
+
+function defaultValues({ dt: { name, id = 10 } }) {
+	console.log(name, id);
+}
+
+destructuring(obj); // { name: 'sample' }
+defaultValues(obj); // sample, 10
+```
+
+### 18. 선택적 체이닝 및 널 병합
+
+```javascript
+const obj = {
+	data: {
+		container: {
+			name: {
+				value: 'sample',
+			},
+			int: {
+				value: 0,
+			},
+		},
+	},
+};
+
+console.log(obj.data.container.int.value || 'no int value'); // 'no int value'
+console.log(obj.data.container.int.value ?? 'no int value'); // 0
+
+console.log(obj.data.wrapper.name || 'no name'); // Uncaught TypeError: Cannot read property 'name' of undefined
+console.log(
+	(obj && obj.data && obj.data.wrapper && obj.data.wrapper.name) || 'no name'
+); // no name
+console.log(obj?.data?.wrapper?.name || 'no name'); // no name
+```
+
+### 19. 함수로 클래스 확장
+
+```javascript
+function Parent() {
+	const privateProps = 12;
+	const privateMethod = () => privateProps + 10;
+
+	this.publicMethod = (x = 0) => privateMethod() + x;
+	this.publicProp = 10;
+}
+
+class Child extends Parent {
+	myProp = 20;
+}
+
+const child = new Child();
+
+console.log(child.myProp); // 20
+console.log(child.publicProp); // 10
+console.log(child.publicMethod(10)); // 32
+console.log(child.privateProps); // undefined0
+console.log(child.privateMethod()); // Uncaught TypeError: child.privateMethod is not a function
+```
+
+### 20. 확장 생성자 함수
+
+```javascript
+function Employee() {
+	this.profession = 'Software Engineer';
+	this.salary = '$150000';
+}
+
+function DeveloperFreelancer() {
+	this.programmingLaguages = ['Javasciprt', 'Python', 'Swift'];
+	this.avgPerHour = '$100';
+}
+
+function Engineer(name) {
+	this.name = name;
+	this.freelancer = {};
+
+	Employee.apply(this);
+	DeveloperFreelancer.apply(this.freelancer);
+}
+
+const yuni = new Engineer('yuni');
+
+console.log(yuni.name); // yuni
+console.log(yuni.profession); // Software Engineer
+console.log(yuni.salary); // $150000
+console.log(yuni.freelancer); // {programmingLaguages: ['Javasciprt', 'Python', 'Swift'], avgPerHour: "$100"}
+```
+
+### 21. 무엇이든 반복
+
+```javascript
+function forEath(list, callback) {
+	let entries;
+	if (list instanceof Map || list instanceof Set) {
+		list = Array.from(list);
+	}
+	entries = Object.entries(list);
+	const len = entries.length;
+
+	for (i = 0; i < len; i++) {
+		const res = callback(entries[i][1], entries[i][0], list);
+
+		if (res === true) break;
+	}
+}
+
+forEath([1, 2, 3], console.log);
+// 1 "0" [1,2,3]
+// 2 "1" [1,2,3]
+// 3 "2" [1,2,3]
+
+forEath(new Set([1, 2, 3]), console.log);
+// 1 "0" [1, 2, 3]
+// 1 "1" [1, 2, 3]
+// 1 "2" [1, 2, 3]
+forEath(
+	new Map([
+		[1, 1],
+		[2, 2],
+		[3, 3],
+	]),
+	console.log
+);
+// [1,2], "0", [[1,1],[2,2],[3,3]]
+forEath('123', console.log);
+// 1 0 123
+// 2 1 123
+// 3 2 123
+forEath({ a: 1, b: 2, c: 3 }, console.log);
+// 1 "a" {a:1,b:2,c:3}
+// 2 "b" {a:1,b:2,c:3}
+// 3 "c" {a:1,b:2,c:3}
+```
+
+### 22. 함수 필수 인수 만들기
+
+```javascript
+function required(argName = 'param') {
+	throw new Error(`"${argName}" is required`);
+}
+
+function iHaveRequiredOptions(arg1 = required('arg1'), arg2 = 10) {
+	console.log(arg1, arg2);
+}
+
+iHaveRequiredOptions(); // Uncaught Error: "arg1" is required
+iHaveRequiredOptions(12); // 12, 10
+iHaveRequiredOptions(12, 24); // 12, 24
+iHaveRequiredOptions(undefined, 24); // Uncaught Error: "arg1" is required
+```
+
+### 23. 모듈 or 싱글톤 만들기
+
+```javascript
+class Service {
+	name = 'service';
+}
+
+const service = (function() {
+	const service = new Service();
+
+	return () => service;
+})();
+
+const element = (function() {
+	const element = document.createElement('DIV');
+
+	return () => element;
+})();
+```
+
+### 24.deep clone object
+
+```javascript
+const deepClone = obj => {
+	let clone = obj;
+	if (obj && typeof obj === 'object') {
+		clone = new obj.constructor();
+
+		Object.getOwnPropertyNames(obj).forEach(
+			prop => (clone[prop] = deepClone(obj[prop]))
+		);
+	}
+
+	return clone;
+};
+```
+
+### 25. Deep freeze object
+
+```javascript
+const deepFreeze = obj => {
+	if (obj && typeof obj === 'object') {
+		if (!Object.isFrozen(obj))
+			Object.getOwnPropertyNames(obj).forEach(prop => deepFreeze(obj[prop]));
+	}
+
+	return obj;
+};
 ```
 
 ## 참고
