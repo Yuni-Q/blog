@@ -85,6 +85,15 @@ npx pm2 monit
 npx pm2 logs --err
 ```
 
+## 실행 시 바로 시작
+
+```zsh
+sudo pm2 start # 실행
+sudo pm2 save # /root/.pm2/dump.pm2에 현재 pm2 상태를 저장
+sudo pm2 startup # 위 경로의 프로세스 상태를 시작
+# sudo pm2 unstartup sysyemd 로 위의 것을 취소
+```
+
 ## PM2 ecosystem 파일 생성
 
 - PM2의 커맨드라인 명령어로 앱 프로세스를 생성하고 관리할 수 있지만 배포를 위해서는 설정 파일을 만들어야 합니다.
