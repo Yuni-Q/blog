@@ -7,6 +7,13 @@ draft: true
 
 ## DOM
 
+- 문자일뿐인 HTML에 의미있는 객체(Node) 형태로 바꿔서 Javascript로 추가적인 작업을 할 수 있게 만들어 줍니다.
+  - DOCUMENT_NODE
+  - ELEMENT_NODE
+  - ATTRIBUTE_NODE
+  - TEXT_NODE
+  - DOCUMENT_FRAGMENT_NODE
+  - DOCUMENT_TYPE_NODE
 - DOM(Document Object Model)은 웹사이트를 유저와 상호작용할 수 있도록 만들기 위해 필수적인 부분입니다. DOM은 프로그래밍 언어가 웹사이트의 내용(content), 구조(structure) 그리고 스타일을 조작할 수 있게 만들어주는 인터페이스입니다. 자바스크립트는 인터넷 브라우저 상의 DOM과 연결해주는 클라이언트 사이드 스크립팅 언어입니다.
 - 가장 기초적인 수준에서 보자면, 웹사이트는 HTML Document라는 것을 포함합니다. 웹사이트를 보기 위해 사용하는 브라우저는 HTML과 CSS를 해석하는 프로그램입니다. 그리고 style, content, structure 등을 우리가 보는 페이지에 렌더링합니다.
 - HTML과 CSS의 structure와 style을 파싱하기 위해서, 브라우저는 Document Object Model이라 불리는 document의 겉모양(representation)을 만듭니다. 이 `모델(model)`은 자바스크립트가 오브젝트로서의 웹사이트 document의 컨텐트와 엘리먼트에 접근할 수 있도록 해줍니다.
@@ -20,6 +27,18 @@ draft: true
 - DOM은 자바스크립트 클라이언트 사이드에 의해 수정됩니다.
 - 브라우저는 소스코드에 존재하는 에러를 자동으로 고칩니다.
   - DOM이 HTML 소스코드와 다른 출력결과를 갖는 또 하나의 사례는 소스코드에 에러가 있을 때입니다. 하나의 공통적인 예시를 들자면 table 태그에는 안에 tbody 태그가 요구됩니다. 하지만 개발자들은 HTML 소스 내부에 좀처럼 잘 추가하지 않습니다. 브라우저는 자동적으로 에러를 찾아주고 DOM을 수정하여 tbody 코드를 추가해줍니다. DOM은 제대로 닫히지 않은 태그에 대해서도 수정해줍니다.
+
+## event 순서
+
+1. Capture phase
+2. Target phase
+3. Bubble phase
+
+- event는 기본적으로 Bubble phase에 동작합니다. Capture phase에 동작하려면 addEventListener의 3번째 인자를 true로 설정합니다.
+- `e.stopPropagation()`을 통해 전파를 막을 수 있습니다.
+  - Bubble phase는 막을 수 있지만 Capture phase를 막을 순 없습니다.
+  - Capture phase `e.stopPropagation()`를 사용하면 Target phase에 접근하지 못할 수 있습니다.
+- `e.preventDefault()`를 통해 기본 동작을 막을 수 있습니다.
 
 ## 참조
 
