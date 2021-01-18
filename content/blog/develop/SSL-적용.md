@@ -1,5 +1,5 @@
 ---
-title: nginx + https 적용하기
+title: SSL 적용
 date: 2020-07-10 12:07:90
 category: develop
 draft: true
