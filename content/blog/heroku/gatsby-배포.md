@@ -44,6 +44,32 @@ heroku buildpacks:add https://github.com/heroku/heroku-buildpack-static.git
 }
 ```
 
+### 누락 된 모듈
+
+- package.json 또는 프로덕션 앱에서 모듈이 누락 된 경우는 Heroku에 의해 제거되었을 수 있습니다.
+- 일반적인 오류는 다음과 같습니다.
+
+```zsh
+internal/modules/cjs/loader.js:960
+  throw err;
+  ^
+
+Error: Cannot find module 'express'
+```
+
+- 앱에 대해 더 작은 슬러그 크기를 만들기 위해 빌드 팩은 빌드가 끝날 때 devDependencies부터 잘라내어 package.json 슬러그가 dependencies 런타임에 나열된 항목만 포함하도록 합니다. 종속성이있는 경우 devDependencies를 dependencies 이동해 제거되지 않도록 합니다.
+- 다른 해결책은 가지 치기를 devDependencies 완전히 끄는 것 입니다. 이렇게 하려면 npm에 다음을 설정합니다.
+
+```zsh
+heroku config:set NPM_CONFIG_PRODUCTION=false
+```
+
+- 앱이 Yarn을 사용하는 경우 다음을 실행합니다.
+
+```zsh
+heroku config:set YARN_PRODUCTION=false
+```
+
 ## 마지막으로 프로젝트의 루트에 static.json 파일을 추가 하여 정적 자산이 위치 할 디렉토리를 정의합니다.
 
 - heroku-buildpack-static 구성에서 이 파일의 모든 옵션을 확인할 수 있습니다.
