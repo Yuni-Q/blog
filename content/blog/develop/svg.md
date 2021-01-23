@@ -163,6 +163,24 @@ marp: true
 
 ---
 
+## AWS S3 올려서 사용 시 주의점
+
+- 다른 이미지 파일(png, jpeg)들 처럼 올리면 Content-Type이 binary/octet-stream으로 설정되어서 src로 표시할 수 없고 다운로드 받게 됩니다.
+- Content-Type을 image / svg + xml로 변경해야 합니다.
+
+```js
+const params = {
+	Bucket: 'bucket',
+	Key: 'key',
+	Body: stream,
+	ACL: 'public-read',
+	ContentType: 'image/svg+xml',
+};
+s3.upload(params, function(err, data) {
+	console.log(err, data);
+});
+```
+
 ## 참고
 
 - [이미지 압축방식 이해하기(bmp, jpeg, jpg, png, svg)](https://dydtjr1128.github.io/image/2019/07/01/Image-compression.html)
