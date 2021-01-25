@@ -308,3 +308,13 @@ ringo.send('Paul, what do you think?', paul);
 ![](./images/after.png)
 ![](./images/Mediator.png)
 ![](./images/Mediator2.png) -->
+
+---
+
+## 참고
+
+- [[자바 디자인 패턴 이해] 16강 중재자 패턴 (Mediator)](https://www.youtube.com/watch?v=7imEWnkVFFg&t=966s)
+- [중재자 패턴(Mediator Pattern)](https://www.crocus.co.kr/1542)
+- [[디자인패턴] Mediator Pattern (중재자 패턴)](https://ganghee-lee.tistory.com/8)
+- [[디자인 패턴] 중재자 패턴(Mediator Pattern)](https://always-intern.tistory.com/5)
+- [[Design Pattern] Mediator Pattern](https://beomseok95.tistory.com/284)
