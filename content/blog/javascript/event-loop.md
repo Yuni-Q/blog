@@ -185,7 +185,7 @@ theme: gaia
 ### 여섯번째는 Close callbacks 입니다.
 
 - socket.on('close', () => {})과 같은 close 이벤트 타입의 핸들러들은 여기서 처리됩니다.
-- Check Phase가 종료된 후에, 이벤트 루프의 다음 목적지는 close나 destory 콜백 타입들을 관리하는 Close callback 입니다.
+- Check Phase가 종료된 후에, 이벤트 루프의 다음 목적지는 close나 destroy 콜백 타입들을 관리하는 Close callback 입니다.
 - 이벤트 루프가 Close callback들과 함께 종료되고나면 이벤트 루프는 다음에 돌아야할 루프가 있는지 다시 체크 하게 됩니다. 만약 아니라면 그대로 이벤트 루프는 종료됩니다. 하지만 만약 더 수행해야할 작업들이 남아 있다면 이벤트 루프는 다음 순회를 돌기 시작하고 다시 Timer Phase부터 시작하게 됩니다.
 
 ---
