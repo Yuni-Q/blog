@@ -65,6 +65,7 @@ theme: gaia
 
 ## 중개자 패턴의 장점을 정리해 보겠습니다.
 
+- 시스템에 들어있는 객체 사이에서 오가는 메시지의 종류를 확 줄이고 단순화시킬 수 있습니다.
 - class들을 느슨한 결합 상태로 유지할 수 있습니다.
 - 객체들 사이에 Mediator를 넣어 연결관계를 캡슐화한다.
 - Mediator는 M:N의 객체관계를 M:1로 전환합니다.
@@ -96,6 +97,7 @@ theme: gaia
 
 ## 적용범위
 
+- 서로 연관된 GUI 구성요소들을 관리하기 위한 용도로 많이 쓰입니다.
 - 커뮤니케이션을 하고자 하는 객체가 있을 때 서로가 커뮤니케이션 하기 복잡한 경우 이를 해결해주고 서로 간 쉽게 해주며 커플링을 약화시켜주는 패턴이다.
 - 객체들간의 상호작용이 복잡해서 서로간의 의존관계가 구조화 되어있지 않고 이해하기 어려울 때. 즉, 서로 관련된 객체 사이의 복잡한 통신과 제어를 한 곳으로 집중시키고자 할 때 사용합니다.
 - 하나의 객체가 많은 다른 객체들을 참조하고 있어 이것을 재사용하기 어려울 때 사용합니다.
@@ -239,6 +241,66 @@ App();
 
 - 옵저버 패턴은 재사용성이 좋습니다. 그러나 복잡한 communication에서는 이해하기 힘듭니다. `1개의 Publisher`와 N개의 Subscriber로 이루어져 있습니다.
 - 중개자 패턴은 재사용성이 안 좋습니다. 복잡한 communication에서 이해하기 쉽습니다. `M개의 Publisher`, N개의 Subscriber 사이의 communication을 `1개의 Mediator`를 이용해 캡슐화하고 있습니다.
+
+---
+
+## 다른 예제
+
+```javascript
+class Participant {
+	constructor(name) {
+		this.name = name;
+		this.chatroom = null;
+	}
+	send(message, to) {
+		this.chatroom.send(message, this, to);
+	}
+	receive(message, from) {
+		console.log(`${from.name} to ${this.name}: ${message}`);
+	}
+}
+
+class Chatroom {
+	constructor() {
+		this.participants = new Set();
+	}
+	register(participant) {
+		participant.chatroom = this;
+		this.participants.add(participant);
+	}
+	send(message, from, to) {
+		if (to) {
+			// single message
+			to.receive(message, from);
+		} else {
+			// broadcast message
+			this.participants.forEach(participant => {
+				if (participant !== from) {
+					participant.receive(message, from);
+				}
+			});
+		}
+	}
+}
+
+const yoko = new Participant('Yoko');
+const john = new Participant('John');
+const paul = new Participant('Paul');
+const ringo = new Participant('Ringo');
+
+const chatroom = new Chatroom();
+
+chatroom.register(yoko);
+chatroom.register(john);
+chatroom.register(paul);
+chatroom.register(ringo);
+
+yoko.send('All you need is love.');
+yoko.send('I love you John.');
+john.send('Hey, no need to broadcast', yoko);
+paul.send('Ha, I heard that!');
+ringo.send('Paul, what do you think?', paul);
+```
 
 <!-- ---
 
