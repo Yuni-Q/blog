@@ -3,7 +3,7 @@ title: event loop
 date: 2020-08-25 22:08:78
 category: javascript
 tags: ['javascript', 'event loop']
-draft: true
+draft: false
 marp: true
 theme: gaia
 ---

@@ -3,7 +3,7 @@ title: Mediator
 date: 2021-01-25 17:01:37
 category: design pattern
 tags: []
-draft: true
+draft: false
 marp: true
 theme: gaia
 ---
