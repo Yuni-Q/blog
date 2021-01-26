@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
 
-const WIDTH = window.innerWidth;
-const HEIGHT = window.innerHeight;
-
 class Particle {
   x: number;
   y: number;
@@ -12,15 +9,20 @@ class Particle {
   dt: number;
   color: string;
   ctx: CanvasRenderingContext2D
-  constructor(ctx: CanvasRenderingContext2D) {
-    this.x = Math.random() * WIDTH;
-    this.y = Math.random() * HEIGHT;
+  width: number;
+  height: number;
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
     this.vx = this.sinRandom() * 30;
     this.vy = this.sinRandom() * 30;
     this.r = Math.abs(this.sinRandom() * 20) + 5;
     this.dt = 0.1;
     this.color = this.randomColor();
     this.ctx = ctx;
+
+    this.width = width;
+    this.height = height;
   }
 
   sinRandom() {
@@ -50,12 +52,12 @@ class Particle {
       this.y = 0;
       this.vy *= -1;
     }
-    if (this.x > WIDTH) {
-      this.x = WIDTH;
+    if (this.x > this.width) {
+      this.x = this.width;
       this.vx *= -1;
     }
-    if (this.y > HEIGHT) {
-      this.y = HEIGHT;
+    if (this.y > this.height) {
+      this.y = this.height;
       this.vy *= -1;
     }
   }
@@ -71,15 +73,19 @@ class App {
   particles: Particle[] = [];
   pause: boolean;
   ctx: CanvasRenderingContext2D;
-  constructor(ctx: CanvasRenderingContext2D) {
+  width: number;
+  height: number;
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
     this.particles = [];
     this.pause = false;
     this.ctx = ctx;
+    this.width = width;
+    this.height = height;
   }
 
   addParticles(n) {
     for (let i = 0; i < n; i++) {
-      const particle = new Particle(this.ctx);
+      const particle = new Particle(this.ctx, this.width, this.height);
       this.particles.push(particle);
     }
   }
@@ -92,7 +98,7 @@ class App {
     if (!!this.pause) {
       return;
     }
-    this.ctx.clearRect(0, 0, WIDTH, HEIGHT);
+    this.ctx.clearRect(0, 0, this.width, this.height);
     this.particles.forEach(particle => {
       this.interact(particle);
       particle.update();
@@ -134,12 +140,16 @@ const ParticleSystem = () => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     document.body.appendChild(canvas);
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
-    ctx.clearRect(0, 0, 400, 400);
+    const WIDTH = window.innerWidth;
+    const HEIGHT = window.innerHeight;
 
-    const app = new App(ctx);
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+    const app = new App(ctx, WIDTH, HEIGHT);
     app.addParticles(100);
     app.loopDelegate();
   }, [])
