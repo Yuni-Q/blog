@@ -1,10 +1,10 @@
 import axios from 'axios';
-import React,{useCallback,useEffect,useRef,useState} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from 'styled-components';
 import Memo from "../components/memo/Memo";
 import Spinner from '../components/spinner/Spinner';
-import sendGAEvent,{GA_ACTION} from '../utils/ga';
-import {getFireDB, updateFireDB} from '../utils/firebase';
+import sendGAEvent, { GA_ACTION } from '../utils/ga';
+import { getFireDB, updateFireDB } from '../utils/firebase';
 
 const { v4: uuid } = require('uuid');
 
@@ -17,7 +17,7 @@ const StyledLoading = styled.div`
   align-items: center;
 `;
 
-const App = () => {
+const MemoPage = () => {
   const [loading, setLoading] = useState(true);
   const [memos, setMemos] = useState([]);
 
@@ -114,18 +114,18 @@ const App = () => {
   const getItem = async () => {
     setLoading(false)
   }
-  
+
   const setItem = async (memos) => {
-    if(!mounted.current) {
+    if (!mounted.current) {
       return mounted.current = true
     } else {
-      if(!!pull.current) {
+      if (!!pull.current) {
         pull.current = false;
       } else {
         updateFireDB(memos)
       }
     }
-    
+
   }
 
   useEffect(() => {
@@ -143,16 +143,16 @@ const App = () => {
     sendGAEvent('memo', GA_ACTION.EXPOSE, 'memo');
     getItem();
     const ref = getFireDB()
-    ref.on('value', (value) => {  
+    ref.on('value', (value) => {
       try {
         pull.current = true
         setMemos(JSON.parse((value as any).node_.value_));
-      } catch(error) {
+      } catch (error) {
         updateFireDB([])
       }
     })
-  },[])
-  
+  }, [])
+
 
   return (
     <div
@@ -164,7 +164,7 @@ const App = () => {
       {!!loading && <StyledLoading><Spinner /></StyledLoading>}
       {!loading && memos &&
         memos.map(memo => {
-          const { id, top, left, width, height,text } = memo;
+          const { id, top, left, width, height, text } = memo;
           return (
             <Memo
               key={id}
@@ -185,4 +185,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default MemoPage;
