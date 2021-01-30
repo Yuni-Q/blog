@@ -180,6 +180,8 @@ sudo service nginx restart
 
 ### 자동갱신
 
+- /etc/cron.d/certbot 파일을 다음과 같이 수정합니다. 파일이 없다면 생성합니다(vim으로)
+
 ```zsh
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
