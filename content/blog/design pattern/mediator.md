@@ -5,7 +5,6 @@ category: design pattern
 tags: []
 draft: false
 marp: true
-theme: gaia
 ---
 
 ## 중재자 패턴은 행동 패턴으로 분류 됩니다.

@@ -5,7 +5,6 @@ category: design pattern
 tags: []
 draft: false
 marp: true
-theme: gaia
 ---
 
 # 복잡한 과장을 간단하게 표현하는 퍼사드 패턴

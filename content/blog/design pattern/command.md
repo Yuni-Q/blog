@@ -5,7 +5,6 @@ category: design pattern
 tags: []
 draft: false
 marp: true
-theme: gaia
 ---
 
 ## 객체의 행위를 클래스로 만들어 캡슐화 하는 패턴
