@@ -211,6 +211,7 @@ lang: 'ko'
 - `Node` `Express` `Typescript` `Swagger` `JEST` `JWT` `Sequelize` `MySQL` `EC2` `S3`
 - [시연 영상](https://www.youtube.com/watch?v=m91rLvwMmXo)
 - [앱 다운로드](https://apps.apple.com/kr/app/moti/id1496912171)
+- [WEB](https://yuni-q.herokuapp.com/)
 
 ### 알아봐요 동물의 숲
 
@@ -218,7 +219,7 @@ lang: 'ko'
   - 물고기, 곤충, 마이디자인, 주민, KK노래 미리듣기
 - `Node` `Express` `Typescript` `Sequelize` `MySQL` `EC2`
 - [시연 영상](https://www.youtube.com/watch?v=38oB4rUzMVM&t=2s)
-- [앱 다운로드](https://apps.apple.com/app/id1506382486?fbclid=IwAR22h2oP6yMONya-WEG-ghBANa6KnbJLMx9knSnhVS8cXWuFiY7SA-EeP-0)
+- 2020년 4월 ~ 2021년 1월까지 서비스
 
 ## Community
 
