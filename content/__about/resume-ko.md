@@ -211,6 +211,7 @@ lang: 'ko'
 - `Node` `Express` `Typescript` `Swagger` `JEST` `JWT` `Sequelize` `MySQL` `EC2` `S3`
 - [시연 영상](https://www.youtube.com/watch?v=m91rLvwMmXo)
 - [앱 다운로드](https://apps.apple.com/kr/app/moti/id1496912171)
+- 2020년 4월 ~ 2021년 1월까지 서비스
 - [WEB](https://yuni-q.herokuapp.com/)
 
 ### 알아봐요 동물의 숲
