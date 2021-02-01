@@ -173,6 +173,10 @@ marp: true
 
 ---
 
+![](./images/command.svg)
+
+---
+
 ## Command interface
 
 ```ts
@@ -186,7 +190,7 @@ interface Command {
 ## Invoker class
 
 ```ts
-class Button {
+class Invoker {
 	private theCommand: Command;
 	// 생성자에서 버튼을 눌렀을 때 필요한 기능을 인지로 받습니다.
 	constructor(theCommand: Command) {
@@ -264,13 +268,13 @@ const alarm = new Alarm();
 // ConcreteCommand
 const alarmStartCommand = new AlarmStartCommand(alarm);
 // Invoker
-const button1 = new Button(lampOnCommand); // 램프 켜는 Command 설정
-button1.pressed(); // 램프 켜는 기능 수행
+const invoker1 = new Invoker(lampOnCommand); // 램프 켜는 Command 설정
+invoker1.pressed(); // 램프 켜는 기능 수행
 // Invoker
-const button2 = new Button(alarmStartCommand); // 알람 울리는 Command 설정
-button2.pressed(); // 알람 울리는 기능 수행
-button2.setCommand(lampOnCommand); // 다시 램프 켜는 Command로 설정
-button2.pressed(); // 램프 켜는 기능 수행
+const invoker2 = new Invoker(alarmStartCommand); // 알람 울리는 Command 설정
+invoker2.pressed(); // 알람 울리는 기능 수행
+invoker2.setCommand(lampOnCommand); // 다시 램프 켜는 Command로 설정
+invoker2.pressed(); // 램프 켜는 기능 수행
 ```
 
 ---
@@ -397,6 +401,8 @@ console.log(carManager.execute('requestInfo', 'Ford Mondeo', '54323'));
 console.log(carManager.execute('requestInfo', 'Ford Escort', '34232'));
 console.log(carManager.execute('buyVehicle', 'Ford Escort', '34232'));
 ```
+
+---
 
 ## 참고
 

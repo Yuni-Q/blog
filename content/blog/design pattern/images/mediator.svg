@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 1440 900" style="enable-background:new 0 0 1440 900;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:none;}
+	.st2{font-family:'Helvetica-Bold';}
+	.st3{font-size:24px;}
+	.st4{font-family:'Helvetica';}
+	.st5{font-size:20px;}
+	.st6{font-size:18.7255px;}
+	.st7{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:bevel;}
+</style>
+<rect x="120.78" y="146.19" class="st0" width="287.42" height="191.29"/>
+<rect x="120.78" y="212.54" class="st0" width="287.42" height="34.48"/>
+<rect x="214.49" y="169.84" class="st1" width="100.01" height="32.18"/>
+<text transform="matrix(1 0 0 1 214.4862 190.4742)" class="st2 st3">Mediator</text>
+<text transform="matrix(1 0 0 1 129.871 282.9789)"><tspan x="0" y="0" class="st4 st5">addColleague(): void</tspan><tspan x="0" y="30" class="st4 st5">+mediate(data: string): void</tspan></text>
+<text transform="matrix(1 0 0 1 453.2716 202.017)" class="st4 st3">Mediator</text>
+<text transform="matrix(1 0 0 1 1061.8125 758.1877)" class="st4 st3">ColleagueB</text>
+<text transform="matrix(1 0 0 1 570.9235 582.6346)" class="st4 st3">ColleagueA</text>
+<rect x="895.53" y="146.19" class="st0" width="287.42" height="246.6"/>
+<text transform="matrix(1 0 0 1 981.8903 190.4737)" class="st2 st3">Colleague</text>
+<g>
+	<text transform="matrix(1 0 0 1 905.0734 312.9788)"><tspan x="0" y="0" class="st4 st5">join(mediator: Mediator): void</tspan><tspan x="0" y="30" class="st4 st5">sendData(data: string): void</tspan><tspan x="0" y="60" class="st4 st5">handle(data: string): void</tspan></text>
+</g>
+<rect x="120.78" y="526.81" class="st0" width="287.42" height="142.95"/>
+<text transform="matrix(1 0 0 1 162.4724 570.9327)" class="st2 st3">ConcreteMediator</text>
+<g>
+	<text transform="matrix(1.0681 0 0 1 129.8711 644.0625)" class="st4 st6">mediate(data: string): void</text>
+</g>
+<text transform="matrix(1 0 0 1 129.8711 236.3079)" class="st4 st5">colleagues: Colleague[]</text>
+<rect x="895.53" y="212.54" class="st0" width="287.42" height="55.7"/>
+<text transform="matrix(1 0 0 1 904.6171 236.3079)"><tspan x="0" y="0" class="st4 st5">mediator: Mediator</tspan><tspan x="0" y="24" class="st4 st5">+id: number</tspan></text>
+<rect x="1064.08" y="526.81" class="st0" width="287.42" height="153.54"/>
+<rect x="1064.08" y="594.16" class="st0" width="287.42" height="33.78"/>
+<rect x="120.78" y="594.16" class="st0" width="287.42" height="8.25"/>
+<text transform="matrix(1 0 0 1 1098.4346 576.4659)" class="st2 st3">ConcreteColleague</text>
+<text transform="matrix(1 0 0 1 1078.2466 660.4142)" class="st4 st5">handle(data: string): void</text>
+<g>
+	<g>
+		<line class="st7" x1="895.53" y1="217.67" x2="410.37" y2="217.67"/>
+		<g>
+			<polygon points="417,209.49 418.36,210.95 411.14,217.66 418.36,224.38 417,225.84 408.2,217.66 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st7" x1="408.2" y1="607.91" x2="730.23" y2="607.91"/>
+		<g>
+			<polygon points="723.6,616.09 722.24,614.63 729.46,607.92 722.24,601.2 723.6,599.74 732.4,607.92 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<line class="st7" x1="264.49" y1="526.81" x2="264.49" y2="351.83"/>
+			<g>
+				<polygon points="274.46,354.75 264.49,337.48 254.52,354.75 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<line class="st7" x1="1039.24" y1="450.79" x2="1039.24" y2="407.14"/>
+			<g>
+				<polygon points="1049.21,410.06 1039.24,392.79 1029.26,410.06 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<polyline class="st8" points="264.49,669.76 264.49,774.95 1207.79,774.95 1207.79,682.52 		"/>
+		<g>
+			<polygon points="1215.97,689.15 1214.51,690.51 1207.8,683.29 1201.08,690.51 1199.62,689.15 1207.8,680.35 			"/>
+		</g>
+	</g>
+</g>
+<polyline class="st7" points="876.11,526.81 876.11,450.79 1207.79,450.79 1207.79,526.81 "/>
+<text transform="matrix(1 0 0 1 1076.9668 618.6514)" class="st4 st5">id: number</text>
+<rect x="732.4" y="526.81" class="st0" width="287.42" height="153.54"/>
+<rect x="732.4" y="594.16" class="st0" width="287.42" height="33.78"/>
+<text transform="matrix(1 0 0 1 766.7519 576.4659)" class="st2 st3">ConcreteColleague</text>
+<text transform="matrix(1 0 0 1 746.5639 660.4142)" class="st4 st5">handle(data: string): void</text>
+<text transform="matrix(1 0 0 1 745.284 618.6514)" class="st4 st5">id: number</text>
+</svg>

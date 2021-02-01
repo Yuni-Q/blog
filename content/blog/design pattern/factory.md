@@ -5,7 +5,7 @@ category: design pattern
 tags: []
 draft: true
 marp: true
-theme: gaia
+# theme: gaia
 ---
 
 ## 바뀔 수 있는 부분을 찾아내서 바뀌지 않는 부분하고 분리시켜야 한다
@@ -14,136 +14,223 @@ theme: gaia
 
 ## 팩토리 패턴은 생성과 관련된 디자인 패턴입니다.
 
-- 생성 패턴을 이용하면 무엇이 생성되고, 누가 이것을 생성하며, 이것이 어떻게 생성되는지, 언제 생성할 것인지 결정하는데 유연성을 확보할 수 있게 됩니다.
-- 생성 패턴 간에는 매우 밀접한 관련성이 있습니다.
-- 생성 패턴은 어떻게 유연한 설계를 할 수 있는지에 대한 해법을 제공합니다.
-- 생성 패턴은 인스턴스를 만드는 절차를 추상화하는 패턴입니다.
-- 생성 패턴에 속하는 패턴들은 객체를 생성, 합성하는 방법이나 객체의 표현 방법을 시스템과 분리해줍니다.
-- 생성 패턴은 시스템이 어떤 Concrete Class를 사용하는지에 대한 정보를 캡슐화합니다.
-- 생성 패턴은 이들 클래스의 인스턴스들이 어떻게 만들고 어떻게 결합하는지에 대한 부분을 완전히 가려줍니다.
-- 생성 패턴은 시스템이 상속(inheritance) 보다 복합(composite) 방법을 사용하는 방향으로 진화되어 가면서 더 중요해지고 있습니다.
+- 생성 패턴을 이용하면 `무엇이 생성`되고, `누가 이것을 생성`하며, 이것이 `어떻게 생성`되는지, `언제 생성`할 것인지 결정하는데 `유연성`을 확보할 수 있게 됩니다.
+  - 생성 패턴은 인스턴스를 만드는 절차를 `추상화`하는 패턴입니다.
+  - 생성 패턴은 시스템이 어떤 Concrete Class를 사용하는지에 대한 정보를 `캡슐화`합니다.
+- 생성 패턴은 시스템이 상속(inheritance) 보다 `복합(composite)` 방법을 사용하는 방향으로 진화되어 가면서 더 중요해지고 있습니다.
 
 ---
 
 ## 팩토리 패턴이 생성 카테고리의 다른 패턴과 다른 점
 
-- `명시적으로 생성자를 사용할 필요가 없다`는 것입니다. 대신 팩토리는 객체를 생성하기위한 일반 인터페이스를 제공 할 수 있으며, 여기서 생성하려는 팩토리 객체의 유형을 지정할 수 있습니다.
+- `명시적으로 생성자를 사용할 필요가 없다`는 것입니다. 대신 팩토리는 객체를 생성하기 위한 일반 인터페이스를 제공 할 수 있으며, 여기서 생성하려는 팩토리 객체의 유형을 지정할 수 있습니다.
 
 ---
 
 ## 팩토리 패턴 기본 정의
 
-- 객체 생성과 관련된 책임만 전담하는 별도의 객체를 추가하고 Client는 이 객체를 사용하도록 만들 수 있습니다. 이처럼 생성과 사용과 사용을 분리하기 위해 객체 생성에 특화된 객체를 FACTORY라고 부릅니다.
-- Client는 오직 사용과 관련된 책임만 지고 생성과 관련된 어떤 지식도 가지지 않을 수 있습니다.
 - 비슷한 객체를 공장에서 찍어내듯이 반복적으로 생성할 수 있게 하는 패턴입니다.
+- `생성과 사용을 분리`하기 위해 `객체 생성에 특화된 객체`를 FACTORY라고 부릅니다.
+- Client는 오직 사용과 관련된 책임만 지고 생성과 관련된 어떤 지식도 가지지 않을 수 있습니다.
+- 구상클래스의 인스턴스를 만드는 부분을 찾아서 `분리`, `캡슐화` 하기 위해서 팩토리 패턴을 사용합니다.
 - 컴파일 시점에 구체적인 타입(클래스)을 몰라도 객체 생성이 가능합니다.
-- 팩토리 패턴의 가장 흔한 사례는 Object() 를 이용한 객체 생성시, 주어지는 값의 타입에 따라 String, Boolean, Number 등으로 객체가 생성되는 것입니다.
-- 생성자(Constructor)를 중복 정의(overload)할 때는 정적 팩토리 메서드를 사용합니다. 메서드는 인수를 설명하는 이름을 사용합니다.
-- 객체의 생성 시기를 직접 결정하려면 main에서 완성된 객체를 던져주기 보다 factory 객체를 만들어서 던져줍니다.
-
----
-
-## 팩토리 패턴
-
-- 팩토리 패턴의 핵심은 클래스의 인스턴스를 만드는 것을 `서브클래스에서 결정`하도록 한다는 것입니다. 즉, new 키워드를 사용하는 부분을 서브클래스에 위임함으로서 `객체 생성을 캡슐화`하고 구상 클래스에 대한 `의존성이 줄어든다는 이점`을 얻을 수 있습니다.
-- 디자인 원칙 중 `추상화된 것에 의존하도록 만들어라. 구상 클래스에 의존하지 않도록 만든다.`에 기인한 패턴입니다.
-- 하나의 클래스나 객체를 생성하는데 쓰이며, 주요로 사용되는 것은 `추상 팩토리`와 `팩토리 매서드 패턴`이 있습니다.
 - Factory class를 Singleton으로 구현해도 되고, 서브클래스를 리턴하는 static 메소드로 구현해도 됩니다.
-- 모든 팩토리 패턴에서는 애플리케이션의 구상 클래스에 대하 의존성을 줄여줌으로써 느슨한 결합을 도와줍니다.
-- 팩토리는 구상 클래스가 아닌 추상 클래스/인터페이스에 맞춰서 코딩할 수 있게 해 주는 강력한 기법입니다.
+- 객체의 생성 시기를 직접 결정하려면 Client에서 완성된 객체를 던져주기 보다 factory 객체를 만들어서 던져줍니다.
 
 ---
 
-## 다형성
+## 사례
 
-- `new` 라는 것은 구상 객체를 뜻합니다. 구상 객체는 구상 클래스의 인스턴스를 만드는 것이고 공통적인 인터페이스가 아닌 특정 구현을 사용하는 것입니다. 구상 클래스를 통해서 객체를 구현 하게 되면 나중에 수정해야 할 상황이 닥치면 모든 구상 클래스를 확인해서 바꾸어야 하는 불상사가 생길 수 있습니다. 인터페이스에 맞춰서 코딩을 한다면, `다형성` 덕분에 시스템에서 일어날 수 있는 여러 변화에 대처할 수 있게 됩니다. 근데, 이 말은 곧 코드에서 구상 클래스(여기서는 인터페이스를 구현 하는 클래스)들이 많아지면 새로운 구상 클래스를 추가할 때 마다 코드를 고쳐야 하기 때문에 많은 문제가 발생 하게 됩니다.
+- 팩토리 패턴의 가장 흔한 사례는 Object() 를 이용한 객체 생성시, 주어지는 값의 타입에 따라 String, Boolean, Number 등으로 객체가 생성되는 것입니다.
+
+---
+
+## 추상화된 것에 의존
+
+- 디자인 원칙 중 `추상화된 것에 의존하도록 만들어라. 구상 클래스에 의존하지 않도록 만든다.`에 기인한 패턴입니다.
+- 팩토리는 구상 클래스가 아닌 추상 클래스(인터페이스)에 맞춰서 코딩할 수 있게 해 주는 강력한 기법입니다.
+- `new` 라는 것은 구상 객체를 뜻합니다. 구상 객체는 구상 클래스의 인스턴스를 만드는 것이고 공통적인 인터페이스가 아닌 특정 구현을 사용하는 것입니다. 구상 클래스를 통해서 객체를 구현 하게 되면 나중에 수정해야 할 상황이 닥치면 모든 구상 클래스를 확인해서 바꾸어야 하는 불상사가 생길 수 있습니다. 인터페이스에 맞춰서 코딩을 한다면, `다형성` 덕분에 시스템에서 일어날 수 있는 여러 변화에 대처할 수 있게 됩니다.
 - `확장에 대해서는 열려 있고 변경에 대해서는 닫혀 있어야 합니다`.
 - 여러 개의 서브 클래스를 가진 슈퍼 클래스가 있을 때 인풋에 따라 하나의 자식 클래스의 인스턴스를 리턴해주는 방식입니다.
-
----
-
-## 의존성 뒤집기 원칙(Dependency Inversion Principle:DI)
-
-- 싱글톤 패턴과 더불어 가장 유명하고 널리 쓰이는 디자인 패턴 중 하나라고 할 수 있다.
-- 구상클래스의 인스턴스를 만드는 부분을 찾아서 `분리`, `캡슐화` 하기 위해서 팩토리 패턴을 사용합니다.
-- `팩토리 메소드 패턴`이 의존성 뒤집기 원칙을 준수하기 위해 쓸 수 있는 유일한 기법은 아니지만 `가장 적합한 벙법 가운데 하나`입니다.
-- 고수준 모듈과 저수준 모듈이 둘다 하나의 추상 클래스에 의존해야 합니다.
-- 이 패턴은 인스턴스화에 대한 `책임`을 객체를 사용하는 클라이언트에서 `팩토리 클래스로 가져옵니다`.
-
----
-
-### 가장 대표적이 DI 프레임워크
-
-- 특히 구상 클래스에 대한 의존성이 줄어드는 것은 의존성 뒤집기 원칙에 기인하는데, DI는 자바 진영에서 널리 쓰이고 있는 `Spring 프레임워크`의 핵심 개념 중 하나입니다.
-
----
-
-## 의존성 뒤집기 원칙에 위배되는 객체지향 디자인을 피하는데 도움이 되는 가이드
-
-- 어떤 변수에도 구상 클래스에 대한 레퍼런스를 지정하지 않습니다.
-  - new 연산자를 사용하면 레퍼런스를 사용하게 됩니다.
-- 구상 클래스에서 유도된 클래스를 만들지 않는습니다.
-  - 구상클래스에서 유도된 클래스를 만들면 특정 구상 클래스에 의존하게 됩니다. 추상화 된것을 사용해야 합니다.
-- 베이스 클래스에 이미 구현되어 있던 메소드를 오버라이드 하지 않습니다.
-  - 이미 구현되어 있는 메소드를 오버라이드 한다는 것은 애초부터 베이스 클래스가 제대로 추상화 된것이 아닙니다. 베이스 클래스에서 메소드를 정의할 때는 모든 서브 클래스에서 공유할 수 있는 것만 정의해야 합니다.
 
 ---
 
 ## 기술적인 결정
 
 - 팩토리는 `도메인 모델에 속하지 않습니다`. 팩토리를 추가한 이유는 `순수하게 기술적인 결정`입니다. 전체적인 결합도를 낮추고 재사용성을 높이기 위해 도메인 개념에게 할당돼 있던 객체 생성 책임을 도메인 개념과는 아무런 상관이 없는 가공의 객체로 이동 시킨 것입니다.
-- 팩토리는 객체의 생성 책임을 `할당할만한 도메인 객체가 존재하지 않을 때` 선택할 수 있는 PURE FABRICATION입니다.
+- 팩토리는 객체의 생성 책임을 `할당할만한 도메인 객체가 존재하지 않을 때` 선택할 수 있는 `PURE FABRICATION`입니다.
 
 ---
 
-## PURE FABRICATION 패턴
+## PURE FABRICATION
 
 - 모든 책임을 도메인 객체에게 할당하면 낮은 응집도, 높은 결합도, 재사용성 저하와 같은 심각한 문제점에 봉착하게 될 가능성이 높아집니다. 이 경우 도메인 개념을 표현한 객체가 아닌 설계자가 편의를 위해 임의로 만들어낸 가공의 객체에게 할당해서 문제를 해결해야 합니다. 책임을 할당하기 위해 창조되는 도메인과 무관한 인공적인 객체를 `PURE FABRICATION(순수한 가공물)`이라고 부릅니다.
 - PURE FABRICATION은 INFORMATION EXPERT 패턴에 따라 책임을 할당한 결과가 바람직하지 않을 경우 대안으로 사용됩니다. 어떤 객체가 책임을 수행하는 데 필요한 많은 정보를 가졌지만 해당 책임을 할당할 경우 응집도가 낮아지고 결합도가 높아진다면 가공의 객체를 추가해서 책임을 옮기는 것을 고민합니다. 순수한 가공물(PURE FABRICATION)이라는 표현은 적절한 대안이 없을 때 사람들이 창조적인 무언가를 만들어 낸다는 것을 의미하는 관용적인 표현입니다.
 
+---
+
+## 팩토리 패턴의 종류
+
+- 주요로 사용되는 것은 `추상 팩토리`와 `팩토리 매서드 패턴`이 있습니다.
+- 그 외에도 `정적 팩토리`, `간단한 팩토리` 등 다양한 종류의 팩토리 패턴이 있습니다.
+
+---
+
 ## 정적 팩토리(static factory)
 
-- 간단한 팩토리를 정적 메소드로 정의하는 기법도 많이 사용 됩니다.
+- 객체를 생성하는 메소드를 만들고, static으로 선언하는 기법입니다.
+- 자바로 코딩할 때 흔하게 볼 수 있는 `valueOf 메서드`가 정적 팩토리 메서드입니다.
+- 생성자(Constructor)를 중복 정의(overload)할 때는 정적 팩토리 메서드를 사용합니다. 메서드는 인수를 설명하는 이름을 사용합니다.
+- `간단한 팩토리`를 정적 메소드로 정의하는 기법도 많이 사용 됩니다.
 - 정적 메소드를 쓰면 객체를 생성하기 위한 메소드를 실행시키기 위해서 객체의 인스턴스를 만들지 않아도 되기 때문입니다. 하지만 서브클래스를 만들어서 객체 생성 메소드의 행동을 변경시킬 수 없다는 단점이 있습니다.
-  생성자 대신 정적 펙터리 메서드를 고려하라.
+- 이펙티브 자바 2판은 '규칙 1'에서 생성자 대신 정적 펙터리 메서드를 고려할 것을 권고합니다.
 
 ### 장점
 
-- 이름을 가질 수 있습니다.
-- 호출될 때마다 인스턴스를 새로 생성하지 않아도 됩니다.
-- 반환 타입의 하위 타입 객체를 반환할 수 있는 능력이 있습니다.
+- 이름이 있으므로 생성자에 비해 가독성이 좋습니다.
+- 호출될 때마다 인스턴스를 새로 생성할 필요가 없습니다.
+- 반환 타입의 하위 타입 객체를 반환할 수 있습니다.
 - 일력 매개 변수에 따라 매번 다른 클래스의 객체를 반환 할 수 있습니다.
 - 정적 팩터리 메서드를 작성하는 시점에는 반활할 객체의 클래스가 존재하지 않아도 됩니다.
 
 ### 단점
 
-- 상속을 하려면 public이나 protected 생성자가 필요하니 정적 팩토리 메서드만 제공하면 하위 클래스를 만들 수 없습니다.
+- 정적 팩토리 메서드만 제공하면 하위 클래스를 만들 수 없습니다.
   - 이 제약은 상속보다 컴포지션을 사용하도록 유도하고 불변타입으로 만들려면 이 제약을 지켜야 한다는 점에서 오히려 장점으로 받아 들일 수도 있습니다.
-- 정적 팩터리 메서드는 프로그래머가 찾기 어렵습니다.
+- 정적 팩토리 메서드는 다른 정적 메서드와 잘 구분되지 않습니다. 그래서 정적 팩터리 메서드는 개발자가 찾기 어렵습니다.
+
+---
+
+## 정적 팩토리 코드
+
+```ts
+class Character {
+	intelligence: number;
+	strength: number;
+	hitPoint: number;
+	magicPoint: number;
+
+	constructor(intelligence, strength, hitPoint, magicPoint) {
+		this.intelligence = intelligence; // 지능
+		this.strength = strength; // 힘
+		this.hitPoint = hitPoint; // HP
+		this.magicPoint = magicPoint; // MP
+	}
+
+	// 정적 팩토리 메소드
+	public static newWarrior(): Character {
+		return new Character(5, 15, 20, 3); // 전사는 힘과 HP가 높다
+	}
+
+	// 정적 팩토리 메소드
+	public static newMage(): Character {
+		return new Character(15, 5, 10, 15); // 마법사는 지능과 MP가 높다
+	}
+}
+
+const warrior = Character.newWarrior();
+const mage = Character.newMage();
+```
 
 ---
 
 ### 핵심 정리
 
-- 정적 팩터리 메서드와 public 생성자는 각자의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 좋습니다. 그렇다고 하더라도 정적 팩터리를 사용하는 게 유리한 경우가 더 많습니다.
+- 정적 팩터리 메서드와 `public 생성자`는 각자의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 좋습니다. 그렇다고 하더라도 정적 팩터리를 사용하는 게 유리한 경우가 더 많습니다.
 
 ---
 
 ## 간단한 팩토리(Simple Factory)
 
-- 간단한 팩토리는 디자인 패턴이라고 할 수는 없습니다. 프로그래밍하는데 있어서 자주 쓰이는 관용구에 가깝습니다.
 - 간단한 팩토리는 엄밀하게 말해서 디자인 패턴은 아니지만, 클라이언트와 구상 클래스를 분리 시키기 위한 간단한 기법으로 활용할 수 있습니다.
+- 관용구 같은 것입니다.
+
+---
+
+## 간단한 팩토리 예제
+
+```ts
+class PizzaFactory {
+	createPizza(type: string) {
+		if (type === 'cheese') {
+			return new CheesePizza();
+		}
+		if (type === 'pepper') {
+			return new PepperoniPizza();
+		}
+		if (type === 'clam') {
+			return new ClamPizza();
+		}
+		if (type === 'veggie') {
+			return new VeggiePizza();
+		}
+		throw new Error('올바른 타입이 아닙니다.');
+	}
+}
+
+class PizzaStore {
+	public orderPizza(type: string): Pizza {
+		const pizza = new PizzaFactory().createPizz(type);
+		pizza.prepare();
+		pizza.bake();
+		pizza.cut();
+		pizza.box();
+		return pizza;
+	}
+
+	abstract createPizza(type: string): Pizza;
+}
+
+abstract class Pizza {
+	name: string;
+	dough: string;
+	sauce: string;
+	toppings: string[];
+
+	prepare() {
+		console.log('Preparing ' + this.name);
+		console.log('Tossing dough... ');
+		console.log('Adding sauce... ');
+		console.log('Adding toppings: ');
+		this.toppings.forEach(topping => {
+			console.log(topping);
+		});
+	}
+	bake() {
+		console.log('Bake for 25 minutes at 350');
+	}
+	cut() {
+		console.log('Cutting the pizza into diagonal slice');
+	}
+	box() {
+		console.log('Place pizza in official PizzaStore box');
+	}
+	public getName(): string {
+		return this.name;
+	}
+}
+
+class NYStyleCheesePizza extends Pizza {
+	constructor() {
+		this.name = 'NY Style Sauce and Cheese Pizza';
+		this.dough = 'Thin Crust Dough';
+		this.sauce = 'Marinara Sauce';
+		this.toppings.push('Grated Regains Cheese');
+	}
+}
+```
 
 ---
 
 ## 간단한 팩토리와 팩토리 메소드 패턴의 차이점
 
-- 팩토리 메소드 패턴이 간단한 팩토리와 상당히 비슷합니다. 하지만 간단한 팩토리는 일회용 처방에 불과한 반면, 팩토리 메소드 패턴을 이용하면 어떤 구현을 사용할지를 서브클래스에서 결정하는 프레임워크를 만들 수 있다는 결정적인 차이점입니다. 간단한 팩토리에서는 객체 생성을 캡슐화하는 방법을 사용하긴 하지만 팩토리 메소드 패턴처럼 강력한 유연성을 제공하진 못합니다. 생성하는 제품을 마음대로 변경할 수 없기 때문입니다.
+- 팩토리 메소드 패턴이 간단한 팩토리와 상당히 비슷합니다. 하지만 간단한 팩토리는 일회용 처방에 불과한 반면, 팩토리 메소드 패턴을 이용하면 `어떤 구현을 사용할지를 서브클래스에서 결정`하는 프레임워크를 만들 수 있다는 결정적인 차이점입니다. 간단한 팩토리에서는 객체 생성을 `캡슐화`하는 방법을 사용하긴 하지만 팩토리 메소드 패턴처럼 강력한 `유연성`을 제공하진 못합니다. 생성하는 제품을 마음대로 변경할 수 없기 때문입니다.
 
 ---
 
 ## 팩토리 메서드 패턴
 
+- 팩토리 패턴의 핵심은 클래스의 인스턴스를 만드는 것을 `서브클래스에서 결정`하도록 한다는 것입니다. 즉, new 키워드를 사용하는 부분을 서브클래스에 위임함으로서 `객체 생성을 캡슐화`하고 구상 클래스에 대한 `의존성이 줄어든다는 이점`을 얻을 수 있습니다.
 - 객체를 생성하기 위한 인터페이스를 정의하는데, 어떤 클래스의 인스턴스를 만들지는 `서브 클래스에서 결정`합니다.
 - 자신이 만들고 있는 클래스가 `바뀔 가능성`이 있다면 팩토리 메소드 패턴 같은 기법을 써서 변경될 수 있는 부분을 `캡슐화` 하여야 합니다.
 - 이름으로 인해 `객체를 생성하는 메소드를 Factory method라 오해`하는 경우가 많습니다.
@@ -164,6 +251,31 @@ theme: gaia
 - 팩토리 메서드는 `부모 클래스에서 타입에 따라 클래스를 생성`하는 방법입니다. 자식 클래스를 생성하는 상황에서 부모 클래스의 팩토리를 호출하여 생성해주는 방식으로 처리하며, 이러한 방법의 장점은 자식 클래스 생성에 대해 `파편화를 막아주며`, 자식 클래스가 늘어나는 상황에서 `효과적으로 코드 수정`을 할 수 있게 도와줍니다.
 - 이를 통해 메인 프로그램에서는 어떤 객체가 생성되었는지 신경 쓸 필요 없이 반환된 객체만 사용하면 되고 클래스에서 변경이 발생해도 `메인 프로그램이 변경되는 것은 최소화`할 수 있습니다.
 - 클라이언트 코드와 인스턴스를 만들어야 할 구상 클래스를 분리시켜야 할 때 유용하며, 어떤 구상 클래스를 필요로 하게 될지 알 수 없는 경우에도 유용합니다.
+
+---
+
+## 의존성 뒤집기 원칙(Dependency Inversion Principle:DI)
+
+- `팩토리 메소드 패턴`이 의존성 뒤집기 원칙을 준수하기 위해 쓸 수 있는 유일한 기법은 아니지만 `가장 적합한 벙법 가운데 하나`입니다.
+- 고수준 모듈과 저수준 모듈이 둘다 하나의 추상 클래스에 의존해야 합니다.
+- 이 패턴은 인스턴스화에 대한 `책임`을 객체를 사용하는 클라이언트에서 `팩토리 클래스로 가져옵니다`.
+
+---
+
+### 가장 대표적이 DI 프레임워크
+
+- 특히 구상 클래스에 대한 의존성이 줄어드는 것은 의존성 뒤집기 원칙에 기인하는데, DI는 자바 진영에서 널리 쓰이고 있는 `Spring 프레임워크`의 핵심 개념 중 하나입니다.
+
+---
+
+## 의존성 뒤집기 원칙에 위배되는 객체지향 디자인을 피하는데 도움이 되는 가이드
+
+- 어떤 변수에도 구상 클래스에 대한 레퍼런스를 지정하지 않습니다.
+  - new 연산자를 사용하면 레퍼런스를 사용하게 됩니다.
+- 구상 클래스에서 유도된 클래스를 만들지 않는습니다.
+  - 구상클래스에서 유도된 클래스를 만들면 특정 구상 클래스에 의존하게 됩니다. 추상화 된것을 사용해야 합니다.
+- 베이스 클래스에 이미 구현되어 있던 메소드를 오버라이드 하지 않습니다.
+  - 이미 구현되어 있는 메소드를 오버라이드 한다는 것은 애초부터 베이스 클래스가 제대로 추상화 된것이 아닙니다. 베이스 클래스에서 메소드를 정의할 때는 모든 서브 클래스에서 공유할 수 있는 것만 정의해야 합니다.
 
 ---
 
@@ -243,11 +355,97 @@ theme: gaia
 
 ---
 
+### Creator
+
+```ts
+class PizzaStore {
+	public orderPizza(type: string): Pizza {
+		const pizza = this.createPizz(type);
+		pizza.prepare();
+		pizza.bake();
+		pizza.cut();
+		pizza.box();
+		return pizza;
+	}
+
+	abstract createPizza(type: string): Pizza;
+}
+```
+
+---
+
+### Concrete Creator
+
+```ts
+class NYPizzaStore extends PizzaStore {
+	createPizza(type: string) {
+		if (type === 'cheese') {
+			return new NYStyleCheesePizza();
+		}
+		if (type === 'pepper') {
+			return new NYStylePepperoniPizza();
+		}
+		if (type === 'clam') {
+			return new NYStyleClamPizza();
+		}
+		if (type === 'veggie') {
+			return new NYStyleVeggiePizza();
+		}
+		throw new Error('올바른 타입이 아닙니다.');
+	}
+}
+
+class ChicagoPizzaStore extends PizzaStore {
+	createPizza(type: string) {
+		if (type === 'cheese') {
+			return new ChicagoStyleCheesePizza();
+		}
+		if (type === 'pepper') {
+			pizza = new ChicagoStylePepperoniPizza();
+		}
+		if (type === 'clam') {
+			pizza = new ChicagoStyleClamPizza();
+		}
+		if (type === 'veggie') {
+			pizza = new ChicagoStyleVeggiePizza();
+		}
+		throw new Error('올바른 타입이 아닙니다.');
+	}
+}
+```
+
+---
+
 ### Product
 
 ```typescript
-interface EmployeeInterface {
-	hourly: string;
+abstract class Pizza {
+	name: string;
+	dough: string;
+	sauce: string;
+	toppings: string[];
+
+	prepare() {
+		console.log('Preparing ' + this.name);
+		console.log('Tossing dough... ');
+		console.log('Adding sauce... ');
+		console.log('Adding toppings: ');
+		this.toppings.forEach(topping => {
+			console.log(topping);
+		});
+	}
+	bake() {
+		console.log('Bake for 25 minutes at 350');
+	}
+	cut() {
+		console.log('Cutting the pizza into diagonal slice');
+	}
+	box() {
+		console.log('Place pizza in official PizzaStore box');
+	}
+	public getName(): string {
+		return this.name;
+	}
 }
 ```
 
@@ -256,49 +454,24 @@ interface EmployeeInterface {
 ### Concrete Product
 
 ```ts
-class FullTime implements EmployeeInterface {
-	hourly: string;
+class NYStyleCheesePizza extends Pizza {
 	constructor() {
-		this.hourly = '$12';
+		this.name = 'NY Style Sauce and Cheese Pizza';
+		this.dough = 'Thin Crust Dough';
+		this.sauce = 'Marinara Sauce';
+		this.toppings.push('Grated Regains Cheese');
 	}
 }
 
-class PartTime implements EmployeeInterface {
-	hourly: string;
-	constructor() {
-		this.hourly = '$11';
+class ChicagoStyleCheesePizza extends Pizza {
+	ChicagoStyleCheesePizza() {
+		this.name = 'Chicago Style Deep Dish Cheese Pizza';
+		this.dough = 'Extra Thick Crust Dough';
+		this.sauce = 'Plum Tomato Sauce';
+		this.toppings.push('Shredded Mozzarella Cheese');
 	}
-}
-
-class Temporary implements EmployeeInterface {
-	hourly: string;
-	constructor() {
-		this.hourly = '$10';
-	}
-}
-```
-
----
-
-### Creator
-
-```ts
-enum EmployeeEnum {
-	FULL_TIME = 'FULL_TIME',
-	PART_TIME = 'PART_TIME',
-	TEMPORARY = 'TEMPORARY',
-}
-
-class Employee {
-	static create(type: EmployeeEnum): EmployeeInterface {
-		switch (type) {
-			case EmployeeEnum.FULL_TIME:
-				return new FullTime();
-			case EmployeeEnum.PART_TIME:
-				return new PartTime();
-			case EmployeeEnum.TEMPORARY:
-				return new Temporary();
-		}
+	cut() {
+		console.log('Cutting the pizza into square slices');
 	}
 }
 ```
@@ -308,16 +481,13 @@ class Employee {
 ### Client
 
 ```ts
-const employees: EmployeeInterface[] = [];
-
-employees.push(Employee.create(EmployeeEnum.FULL_TIME));
-employees.push(Employee.create(EmployeeEnum.PART_TIME));
-employees.push(Employee.create(EmployeeEnum.TEMPORARY));
-
-employees.forEach(employee => console.log(employee.hourly));
-// $12
-// $11
-// $10
+const nyStore = new NYPizzaStore();
+const chicagoStore = new ChicagoPizzaStore();
+const nyStylePizza = nyStore.orderPizza('cheese');
+console.log(nyStylePizza.getName());
+console.log('-------------------------------------------------');
+const chicagoStylePizza = chicagoStore.orderPizza('cheese');
+console.log(chicagoStylePizza.getName());
 ```
 
 ---
@@ -509,5 +679,6 @@ console.log(car); // Car {doors: 6, state: "brand new", color: "yellow"}
 - [정리정리정리](https://jusungpark.tistory.com/14)
 - [[생성 패턴] 팩토리 패턴(Factory Pattern) 이해 및 예제](https://readystory.tistory.com/117)
 - [팩토리 메서드 패턴](https://ko.wikipedia.org/wiki/%ED%8C%A9%ED%86%A0%EB%A6%AC_%EB%A9%94%EC%84%9C%EB%93%9C_%ED%8C%A8%ED%84%B4)
+- [정적 팩토리 메서드(static factory method)](https://johngrib.github.io/wiki/static-factory-method-pattern/)
 
 ---

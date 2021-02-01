@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 1440 900" style="enable-background:new 0 0 1440 900;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
+	.st2{font-family:'Helvetica-Bold';}
+	.st3{font-size:72px;}
+</style>
+<g>
+	<g>
+		<rect x="75.68" y="80" class="st0" width="451.63" height="266.37"/>
+		<path d="M526.82,80.5v265.37H76.19V80.5H526.82 M527.82,79.5H75.19v267.37h452.63V79.5L527.82,79.5z"/>
+	</g>
+	<g>
+		<rect x="912.68" y="553.63" class="st0" width="451.63" height="266.37"/>
+		<path d="M1363.81,554.13V819.5H913.18V554.13H1363.81 M1364.81,553.13H912.18V820.5h452.63V553.13L1364.81,553.13z"/>
+	</g>
+	<g>
+		<rect x="75.68" y="553.63" class="st0" width="451.63" height="266.37"/>
+		<path d="M526.82,554.13V819.5H76.19V554.13H526.82 M527.82,553.13H75.19V820.5h452.63V553.13L527.82,553.13z"/>
+	</g>
+	<g>
+		<rect x="912.68" y="80" class="st0" width="451.63" height="266.37"/>
+		<path d="M1363.81,80.5v265.37H913.18V80.5H1363.81 M1364.81,79.5H912.18v267.37h452.63V79.5L1364.81,79.5z"/>
+	</g>
+	<g>
+		<g>
+			<line class="st1" x1="301.5" y1="368.4" x2="301.5" y2="531.6"/>
+			<g>
+				<polygon points="286.54,372.78 301.5,346.87 316.46,372.78 				"/>
+			</g>
+			<g>
+				<polygon points="286.54,527.22 301.5,553.13 316.46,527.22 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st1" x1="1138.5" y1="368.4" x2="1138.5" y2="531.6"/>
+			<g>
+				<polygon points="1123.54,372.78 1138.5,346.87 1153.46,372.78 				"/>
+			</g>
+			<g>
+				<polygon points="1123.54,527.22 1138.5,553.13 1153.46,527.22 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st1" x1="549.34" y1="213.19" x2="890.66" y2="213.19"/>
+			<g>
+				<polygon points="553.72,228.15 527.82,213.19 553.72,198.23 				"/>
+			</g>
+			<g>
+				<polygon points="886.28,228.15 912.18,213.19 886.28,198.23 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st1" x1="546.79" y1="357.05" x2="893.21" y2="542.95"/>
+			<g>
+				<polygon points="543.57,372.3 527.82,346.87 557.71,345.94 				"/>
+			</g>
+			<g>
+				<polygon points="882.28,554.06 912.18,553.13 896.43,527.7 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st1" x1="893.21" y1="357.05" x2="546.79" y2="542.95"/>
+			<g>
+				<polygon points="882.28,345.94 912.18,346.87 896.43,372.3 				"/>
+			</g>
+			<g>
+				<polygon points="543.57,527.7 527.82,553.13 557.71,554.06 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st1" x1="549.34" y1="686.81" x2="890.66" y2="686.81"/>
+			<g>
+				<polygon points="553.72,701.77 527.82,686.81 553.72,671.85 				"/>
+			</g>
+			<g>
+				<polygon points="886.28,701.77 912.18,686.81 886.28,671.85 				"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 164.057 238.8289)" class="st2 st3">ObjectA</text>
+	<text transform="matrix(1 0 0 1 164.057 717.4525)" class="st2 st3">ObjectB</text>
+	<text transform="matrix(1 0 0 1 1001.0554 238.8289)" class="st2 st3">ObjectC</text>
+	<text transform="matrix(1 0 0 1 1001.0554 717.4525)" class="st2 st3">ObjectD</text>
+</g>
+</svg>

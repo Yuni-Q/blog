@@ -115,6 +115,10 @@ marp: true
 
 ---
 
+![](./images/facade.svg)
+
+---
+
 ```javascript
 class User {
 	constructor(name, age, grade) {

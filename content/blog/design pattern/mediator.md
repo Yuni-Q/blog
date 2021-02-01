@@ -37,6 +37,14 @@ marp: true
 
 ---
 
+![](./images/before.svg)
+
+---
+
+![](./images/after.svg)
+
+---
+
 ## M:1의 장점은 무엇일까요?
 
 - M개의 object 사이에 이들의 관계를 control 하는 Mediator를 하나 넣어서 Mediator가 모든 object들의 communication을 관리하도록 합니다.
@@ -109,11 +117,16 @@ marp: true
 
 ---
 
+![](./images/mediator.svg)
+
+---
+
 ## Colleague
 
 ```ts
 abstract class Colleague {
 	protected mediator: Mediator;
+	abstract id: number;
 
 	join(mediator: Mediator) {
 		this.mediator = mediator;

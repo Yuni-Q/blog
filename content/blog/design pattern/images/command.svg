@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 1440 900" style="enable-background:new 0 0 1440 900;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:none;}
+	.st2{font-family:'Helvetica-Bold';}
+	.st3{font-size:23.2028px;}
+	.st4{font-family:'Helvetica';}
+	.st5{font-size:19.3356px;}
+	.st6{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
+	.st7{fill:#FFFFFF;stroke:#000000;stroke-width:2;stroke-linejoin:bevel;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:12.5416,12.5416;}
+	.st9{fill:#FFFFFF;}
+</style>
+<g>
+	<rect x="477.07" y="647.07" class="st0" width="277.87" height="184.94"/>
+	<rect x="477.07" y="711.22" class="st0" width="277.87" height="33.33"/>
+	<rect x="567.66" y="669.94" class="st1" width="96.69" height="31.11"/>
+	<text transform="matrix(1 0 0 1 583.7758 689.888)" class="st2 st3">Client</text>
+</g>
+<g>
+	<rect x="1069.27" y="552.53" class="st0" width="277.87" height="72.71"/>
+	<rect x="1159.86" y="575.4" class="st1" width="96.69" height="31.11"/>
+	<text transform="matrix(1 0 0 1 1096.9902 595.3452)" class="st2 st3">Recever --&gt; action() </text>
+</g>
+<rect x="468.8" y="70.54" class="st0" width="294.41" height="184.94"/>
+<rect x="468.8" y="134.69" class="st0" width="294.41" height="33.33"/>
+<rect x="567.66" y="93.41" class="st1" width="96.69" height="31.11"/>
+<text transform="matrix(1 0 0 1 574.7349 113.3545)" class="st2 st3">Invoker</text>
+<text transform="matrix(1 0 0 1 481.1443 202.7861)" class="st4 st5">set(command: Command): void</text>
+<text transform="matrix(1 0 0 1 481.1443 231.79)" class="st4 st5">action(): void</text>
+<text transform="matrix(1 0 0 1 481.1443 157.6655)" class="st4 st5">theCommand: Command</text>
+<rect x="866.67" y="70.54" class="st0" width="277.87" height="184.94"/>
+<rect x="866.67" y="134.69" class="st0" width="277.87" height="33.33"/>
+<rect x="957.27" y="93.41" class="st1" width="96.69" height="31.11"/>
+<text transform="matrix(1 0 0 1 957.2625 113.3545)" class="st2 st3">Command</text>
+<text transform="matrix(1 0 0 1 875.4578 202.7861)" class="st4 st5">execute(): void</text>
+<g>
+	<rect x="866.67" y="320.77" class="st0" width="277.87" height="184.94"/>
+	<rect x="866.67" y="384.92" class="st0" width="277.87" height="33.33"/>
+	<text transform="matrix(1 0 0 1 898.5985 363.5832)" class="st2 st3">ConcreteCommand</text>
+	<text transform="matrix(1 0 0 1 888.819 453.0148)" class="st4 st5">execute(): void</text>
+	<text transform="matrix(1 0 0 1 888.819 407.8947)" class="st4 st5">theReceiver: Receiver</text>
+</g>
+<g>
+	<rect x="87.46" y="320.77" class="st0" width="277.87" height="184.94"/>
+	<rect x="87.46" y="384.92" class="st0" width="277.87" height="33.33"/>
+	<text transform="matrix(1 0 0 1 178.0182 363.5832)" class="st2 st3">Receiver</text>
+	<text transform="matrix(1 0 0 1 110.6092 453.0148)" class="st4 st5">action(): void</text>
+</g>
+<g>
+	<g>
+		<g>
+			<line class="st6" x1="1005.61" y1="321.15" x2="1005.61" y2="263.97"/>
+			<g>
+				<polygon points="1011.57,265.7 1005.61,255.48 999.64,265.7 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<line class="st6" x1="866.67" y1="179.4" x2="771.77" y2="179.4"/>
+<rect x="765.72" y="173.35" transform="matrix(0.7071 -0.7071 0.7071 0.7071 99.1911 598.2714)" class="st7" width="12.11" height="12.11"/>
+<g>
+	<g>
+		<line class="st6" x1="367.5" y1="413.24" x2="866.67" y2="413.24"/>
+		<g>
+			<polygon points="374.13,421.42 375.49,419.95 368.27,413.24 375.49,406.53 374.13,405.06 365.33,413.24 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st6" x1="616" y1="647.07" x2="616" y2="257.88"/>
+		<g>
+			<path d="M625.6,271.55c-0.46,0.3-1.08,0.16-1.38-0.31l-8.22-12.9l-8.22,12.9c-0.3,0.47-0.92,0.61-1.38,0.31
+				c-0.46-0.3-0.6-0.92-0.31-1.38l9.06-14.23c0.18-0.29,0.5-0.46,0.84-0.46s0.66,0.18,0.84,0.46l9.06,14.23
+				c0.11,0.17,0.16,0.35,0.16,0.54C626.06,271.04,625.9,271.36,625.6,271.55z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<polyline class="st6" points="1005.61,507.87 1005.61,599.36 226.4,599.36 226.4,507.87 		"/>
+		<g>
+			<polygon points="997.43,514.5 998.89,515.87 1005.61,508.64 1012.32,515.87 1013.79,514.5 1005.61,505.71 			"/>
+		</g>
+		<g>
+			<polygon points="234.57,514.5 233.11,515.87 226.4,508.64 219.68,515.87 218.22,514.5 226.4,505.71 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st6" x1="1034.03" y1="453.99" x2="1039.25" y2="456.94"/>
+		<line class="st8" x1="1050.16" y1="463.12" x2="1197.53" y2="546.49"/>
+		<line class="st6" x1="1202.98" y1="549.58" x2="1208.21" y2="552.53"/>
+		<g>
+			<g>
+				
+					<ellipse transform="matrix(0.1616 -0.9868 0.9868 0.1616 418.9753 1401.5745)" class="st9" cx="1034.4" cy="454.2" rx="7.52" ry="7.52"/>
+				<path d="M1030.2,461.61c4.09,2.31,9.3,0.87,11.61-3.22c2.31-4.09,0.87-9.3-3.22-11.61c-4.09-2.31-9.3-0.87-11.61,3.22
+					C1024.67,454.09,1026.11,459.3,1030.2,461.61C1034.29,463.92,1026.11,459.3,1030.2,461.61z M1037.61,448.52
+					c3.13,1.77,4.23,5.76,2.46,8.88c-1.77,3.13-5.76,4.23-8.88,2.46c-3.13-1.77-4.23-5.76-2.46-8.88
+					C1030.49,447.86,1034.48,446.75,1037.61,448.52C1040.74,450.29,1034.48,446.75,1037.61,448.52z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
