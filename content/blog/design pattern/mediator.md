@@ -37,9 +37,13 @@ marp: true
 
 ---
 
+## M:N
+
 ![](./images/before.svg)
 
 ---
+
+## M:1
 
 ![](./images/after.svg)
 
@@ -116,6 +120,8 @@ marp: true
 ## Mediator Pattern을 구현해 보겠습니다.
 
 ---
+
+## UML
 
 ![](./images/mediator.svg)
 
