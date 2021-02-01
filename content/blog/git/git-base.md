@@ -150,6 +150,14 @@ fi
 }
 ```
 
+## git에서 파일 이름 대소문자만 변경하기
+
+```zsh
+# user.ts 파일을 User.ts 파일로 변경하는 예
+
+$ git mv user.ts User.ts
+```
+
 ## 참고
 
 - [새 버전에 맞게 git checkout 대신 switch/restore 사용하기](https://blog.outsider.ne.kr/1505)
