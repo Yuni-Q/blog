@@ -76,6 +76,48 @@ marp: true
 
 ---
 
+## 일반 팩토리
+
+```ts
+class Factory {
+	orderPizza(): Pizza {
+		const pizza = new Pizza();
+		Pizza.prepare();
+		Pizza.bake();
+		Pizza.cut();
+		Pizza.box();
+		return pizza;
+	}
+}
+
+// 여러 종류 피자를 만들기 위한 수정
+class Factory {
+	orderPizza(type: string): Pizza {
+		// 피자 종류가 바뀔 때 마다 코드를 고쳐야합니다.
+		let pizza;
+		if (type === 'cheese') {
+			pizza = new CheesePizza();
+		} else if (type === 'pepperoni') {
+			pizza = new PepperoniPizza();
+		} else if (type === 'clam') {
+			pizza = new ClamPizza();
+		} else if (type === 'veggie') {
+			pizza = new VeggiePizza();
+		}
+
+		// 피자 종류에 상관없이 바뀌지 않는 부분.
+		Pizza.prepare();
+		Pizza.bake();
+		Pizza.cut();
+		Pizza.box();
+
+		return pizza;
+	}
+}
+```
+
+---
+
 ## 정적 팩토리(static factory)
 
 - 객체를 생성하는 메소드를 만들고, static으로 선언하는 기법입니다.
@@ -85,6 +127,8 @@ marp: true
 - 정적 메소드를 쓰면 객체를 생성하기 위한 메소드를 실행시키기 위해서 객체의 인스턴스를 만들지 않아도 되기 때문입니다. 하지만 서브클래스를 만들어서 객체 생성 메소드의 행동을 변경시킬 수 없다는 단점이 있습니다.
 - 이펙티브 자바 2판은 '규칙 1'에서 생성자 대신 정적 펙터리 메서드를 고려할 것을 권고합니다.
 
+---
+
 ### 장점
 
 - 이름이 있으므로 생성자에 비해 가독성이 좋습니다.
@@ -92,6 +136,8 @@ marp: true
 - 반환 타입의 하위 타입 객체를 반환할 수 있습니다.
 - 일력 매개 변수에 따라 매번 다른 클래스의 객체를 반환 할 수 있습니다.
 - 정적 팩터리 메서드를 작성하는 시점에는 반활할 객체의 클래스가 존재하지 않아도 됩니다.
+
+---
 
 ### 단점
 
@@ -104,32 +150,29 @@ marp: true
 ## 정적 팩토리 코드
 
 ```ts
-class Character {
-	intelligence: number;
-	strength: number;
-	hitPoint: number;
-	magicPoint: number;
+class Factory {
+	static orderPizza(type: string): Pizza {
+		// 피자 종류가 바뀔 때 마다 코드를 고쳐야합니다.
+		let pizza;
+		if (type === 'cheese') {
+			pizza = new CheesePizza();
+		} else if (type === 'pepperoni') {
+			pizza = new PepperoniPizza();
+		} else if (type === 'clam') {
+			pizza = new ClamPizza();
+		} else if (type === 'veggie') {
+			pizza = new VeggiePizza();
+		}
 
-	constructor(intelligence, strength, hitPoint, magicPoint) {
-		this.intelligence = intelligence; // 지능
-		this.strength = strength; // 힘
-		this.hitPoint = hitPoint; // HP
-		this.magicPoint = magicPoint; // MP
-	}
+		// 피자 종류에 상관없이 바뀌지 않는 부분.
+		pizza.prepare();
+		pizza.bake();
+		pizza.cut();
+		pizza.box();
 
-	// 정적 팩토리 메소드
-	public static newWarrior(): Character {
-		return new Character(5, 15, 20, 3); // 전사는 힘과 HP가 높다
-	}
-
-	// 정적 팩토리 메소드
-	public static newMage(): Character {
-		return new Character(15, 5, 10, 15); // 마법사는 지능과 MP가 높다
+		return pizza;
 	}
 }
-
-const warrior = Character.newWarrior();
-const mage = Character.newMage();
 ```
 
 ---
@@ -228,15 +271,19 @@ class NYStyleCheesePizza extends Pizza {
 
 ---
 
-## 팩토리 메서드 패턴
+## 팩토리 메서드 패턴에 대한 오해
+
+- 이름으로 인해 `객체를 생성하는 메소드를 Factory method라 오해`하는 경우가 많습니다.
+
+---
+
+## 팩토리 메서드 패턴이란?
 
 - 팩토리 패턴의 핵심은 클래스의 인스턴스를 만드는 것을 `서브클래스에서 결정`하도록 한다는 것입니다. 즉, new 키워드를 사용하는 부분을 서브클래스에 위임함으로서 `객체 생성을 캡슐화`하고 구상 클래스에 대한 `의존성이 줄어든다는 이점`을 얻을 수 있습니다.
-- 객체를 생성하기 위한 인터페이스를 정의하는데, 어떤 클래스의 인스턴스를 만들지는 `서브 클래스에서 결정`합니다.
 - 자신이 만들고 있는 클래스가 `바뀔 가능성`이 있다면 팩토리 메소드 패턴 같은 기법을 써서 변경될 수 있는 부분을 `캡슐화` 하여야 합니다.
-- 이름으로 인해 `객체를 생성하는 메소드를 Factory method라 오해`하는 경우가 많습니다.
 - 부모(상위) 클래스 코드에 `구체 클래스 이름을 감추기 위한 방법`으로도 사용합니다.
-- 팩토리 메소드 패턴은 팩토리 메소드는 객체를 생성해서 반환하는 것을 말한다. 즉, `결과값이 객체`인 것이다.
-- 가상 생성자(Virtual Constructor)라고도 불립니다.
+- 팩토리 메소드 패턴은 객체를 생성해서 반환하는 것을 말한다. 즉, `결과값이 객체`인 것이다.
+- `가상 생성자(Virtual Constructor)`라고도 불립니다.
 
 ---
 
@@ -246,25 +293,26 @@ class NYStyleCheesePizza extends Pizza {
 
 ---
 
-### 파편화와 변경되는 범위 최소화
+### 파편화 방지와 변경되는 범위 최소화
 
 - 팩토리 메서드는 `부모 클래스에서 타입에 따라 클래스를 생성`하는 방법입니다. 자식 클래스를 생성하는 상황에서 부모 클래스의 팩토리를 호출하여 생성해주는 방식으로 처리하며, 이러한 방법의 장점은 자식 클래스 생성에 대해 `파편화를 막아주며`, 자식 클래스가 늘어나는 상황에서 `효과적으로 코드 수정`을 할 수 있게 도와줍니다.
-- 이를 통해 메인 프로그램에서는 어떤 객체가 생성되었는지 신경 쓸 필요 없이 반환된 객체만 사용하면 되고 클래스에서 변경이 발생해도 `메인 프로그램이 변경되는 것은 최소화`할 수 있습니다.
-- 클라이언트 코드와 인스턴스를 만들어야 할 구상 클래스를 분리시켜야 할 때 유용하며, 어떤 구상 클래스를 필요로 하게 될지 알 수 없는 경우에도 유용합니다.
+- 메인 프로그램에서는 어떤 객체가 생성되었는지 신경 쓸 필요 없이 반환된 객체만 사용하면 되고 클래스에서 변경이 발생해도 `메인 프로그램이 변경되는 것은 최소화`할 수 있습니다.
+- 클라이언트 코드와 인스턴스를 만들어야 할 구상 클래스를 `분리`시켜야 할 때 유용하며, 어떤 구상 클래스를 필요로 하게 될지 알 수 없는 경우에도 유용합니다.
 
 ---
 
 ## 의존성 뒤집기 원칙(Dependency Inversion Principle:DI)
 
+- 구상 클래스에 대한 의존성이 줄어드는 것은 의존성 뒤집기 원칙에 기인합니다.
 - `팩토리 메소드 패턴`이 의존성 뒤집기 원칙을 준수하기 위해 쓸 수 있는 유일한 기법은 아니지만 `가장 적합한 벙법 가운데 하나`입니다.
-- 고수준 모듈과 저수준 모듈이 둘다 하나의 추상 클래스에 의존해야 합니다.
-- 이 패턴은 인스턴스화에 대한 `책임`을 객체를 사용하는 클라이언트에서 `팩토리 클래스로 가져옵니다`.
+- 고수준 모듈과 저수준 모듈이 둘다 하나의 `추상 클래스에 의존`해야 합니다.
+- 인스턴스화에 대한 `책임`을 객체를 사용하는 클라이언트에서 `팩토리 클래스로 가져옵니다`.
 
 ---
 
 ### 가장 대표적이 DI 프레임워크
 
-- 특히 구상 클래스에 대한 의존성이 줄어드는 것은 의존성 뒤집기 원칙에 기인하는데, DI는 자바 진영에서 널리 쓰이고 있는 `Spring 프레임워크`의 핵심 개념 중 하나입니다.
+- DI는 자바 진영에서 널리 쓰이고 있는 `Spring 프레임워크`의 핵심 개념 중 하나입니다.
 
 ---
 
@@ -290,7 +338,7 @@ class NYStyleCheesePizza extends Pizza {
 
 ### 협력 방법
 
-- Creator는 자신의 서브클래스를 통해 실제 필요한 팩토리 메서드를 정의하여 적절한 ConcreteProduct의 인스턴스를 반환할 수 있게 합니다.
+- Creator는 자신의 `서브클래스`를 통해 실제 필요한 팩토리 메서드를 정의하여 적절한 ConcreteProduct의 인스턴스를 반환할 수 있게 합니다.
 
 ---
 
@@ -308,30 +356,32 @@ class NYStyleCheesePizza extends Pizza {
 
 ---
 
-## 구현 1 : 구현 방법이 크게 두가지입니다.
+## 구현 방법이 크게 두가지입니다.
 
-- 첫번째 Creator 클래스를 추상 클래스로 정의하고, 정의한 팩토리 메서드에 대한 구현은 제공하지 않는 경우입니다. 기본 구현을 일부 정의한 추상 클래스로 정의할 수도 있지만, 흔한 일은 아닙니다. 추상 클래스로 정의할 때는 구현을 제공한 서브클래스를 반드시 정의해야 합니다. 이때, 아직 예측할 수 없는 클래스들을 생성해야 하는 문제가 생깁니다.
-- 두번째 Creator가 구체 클래스이고, 팩토리 메서드에 대한 기본 구현을 제공하는 경우입니다. 구체 클래스로 정의할 때는 Creator가 팩토리 메서드를 사용하여 유연성을 보장할 수 있습니다. 이런 규칙이 있습니다. `객체의 생성은 별도의 연산으로 분리하여, 이 연산을 서브클래스에서 재정의하게 합니다.` 이 규칙을 따르면, 서브클래스 설계자는 부모 클래스가 인스턴스를 만드는 객체의 클래스를 변경할 수 있습니다.
-
----
-
-## 구현 2 : 팩토리 메서드를 매개변수화합니다.
-
-- 팩토리 메서드를 이용해서 여러 종류의 제품을 생성하는 방법도 있습니다. 팩토리 메서드가 매개변수를 받아서 어떤 종류의 제품을 생성할지 식별하게 만드는 것입니다. 물론, 팩토리 메서드가 생성하는 모든 객체는 `Product라는 인터페이스`를 만족해야 합니다. 매개변수화된 팩토리 메서드를 오버라이드하면, Creator 클래스가 생성하는 제품을 쉽게 확장하거나 변경할 수 있습니다. 새로운 종류의 제품에 대한 식별자를 추가하거나, 기존의 식별자를 다른 제품과 연결할 수 있습니다.
+- 첫번째 `Creator 클래스를 추상 클래스로 정의`하고, 정의한 팩토리 메서드에 대한 구현은 제공하지 않는 경우입니다. 기본 구현을 일부 정의한 추상 클래스로 정의할 수도 있지만, 흔한 일은 아닙니다. 추상 클래스로 정의할 때는 구현을 제공한 서브클래스를 반드시 정의해야 합니다. 이때, 아직 예측할 수 없는 클래스들을 생성해야 하는 문제가 생깁니다.
+- 두번째 `Creator가 구체 클래스`이고, 팩토리 메서드에 대한 기본 구현을 제공하는 경우입니다. 구체 클래스로 정의할 때는 Creator가 팩토리 메서드를 사용하여 유연성을 보장할 수 있습니다. 이런 규칙이 있습니다. `객체의 생성은 별도의 연산으로 분리하여, 이 연산을 서브클래스에서 재정의하게 합니다.` 이 규칙을 따르면, 서브클래스 설계자는 부모 클래스가 인스턴스를 만드는 객체의 클래스를 변경할 수 있습니다.
 
 ---
 
-## 구현 3 : 언어마다 구현 방법이 조금 다를 수 있습니다.
+## 팩토리 메서드를 매개변수화합니다.
+
+- 팩토리 메서드를 이용해서 여러 종류의 제품을 생성하는 방법도 있습니다. 팩토리 메서드가 `매개변수를 받아서 어떤 종류의 제품을 생성할지 식별`하게 만드는 것입니다. 물론, 팩토리 메서드가 생성하는 모든 객체는 `Product라는 인터페이스`를 만족해야 합니다. 매개변수화된 팩토리 메서드를 오버라이드하면, Creator 클래스가 생성하는 제품을 쉽게 확장하거나 변경할 수 있습니다. 새로운 종류의 제품에 대한 식별자를 추가하거나, 기존의 식별자를 다른 제품과 연결할 수 있습니다.
+
+---
+
+## 언어마다 구현 방법이 조금 다를 수 있습니다.
 
 - 스몰토크 프로그램은 종종 인스턴스화할 객체의 클래스를 반환하는 메서드를 사용합니다. Creator 팩토리 메서드는 이 클래스를 이용해서 제품을 생성하고, ConcreteCreator 클래스는 이 값을 저장하거나 연산합니다. 결과적으로，인스턴스화될 ConcreteProduct 타입과의 바인딩(binding)이 늦게 이루어지게 됩니다.
 
 ---
 
-## 구현 4 : 템플릿을 사용하여 서브클래싱을 피합니다.
+## 템플릿을 사용하여 서브클래싱을 피합니다.
 
 - 팩토리 메서드를 쓰면 생길 수 있는 잠재적인 문제점 중 하나는 그냥 Product 클래스 하나를 추가하려 할 때마다 서브클래싱을 해야 한다는 점입니다. 이로써 클래스 계통의 부피가 확장되는 문제가 생길 수 있습니다. C++에서 이런 문제를 해결할 수 있는 방법 중 하나는 Creator 클래스의 서브클래스가 되는 템플릿 클래스를 정의하고 이것이 Product 클래스로 매개변수화되도록 만드는 것입니다. 이 템플릿 클래스를 이용하면, 사용자는 Creator를 상속받는 서브클래스를 정의할 필요 없이, 적절한 Product 클래스만 준비해 놓으면 됩니다.
 
-## 구현 5 : 명명 규칙을 따르는 것도 매우 중요한 일입니다.
+---
+
+## 명명 규칙을 따르는 것도 매우 중요한 일입니다.
 
 - 팩토리 메서드를 쓴다는 사실을 명확하게 만들어 주는 명명 규칙을 따르는 것이 좋습니다.
 
@@ -345,8 +395,9 @@ class NYStyleCheesePizza extends Pizza {
 
 ---
 
-## 클래스 패턴(Class pattern)
+## 클래스 패턴(Class pattern) vs 객체 패턴(Object patterns)
 
+- 클래스 패턴(Class pattern)입니다.
 - 클래스 패턴에서는 클래스 사이의 관계가 상속을 통해서 어떤 식으로 정의되는지를 다룹니다. 클래스 패턴에서는 컴파일시에 관계가 결정됩니다.
 
 ---
@@ -495,30 +546,31 @@ console.log(chicagoStylePizza.getName());
 ### 팩토리 메소드 패턴의 장점
 
 - 팩토리 패턴은 클라이언트와 구현 객체들 사이에 `추상화`를 제공합니다.
-- 생성 할 클래스를 미리 알지 못해도 팩토리 클래스가 객체 생성 담당할 수 있습니다.
-- 객체의 자료형이 하위클래스에 의해서 결정되어 확장성이 좋아집니다.
-- 동일한 형태로 프로그래밍 가능합니다.
-- 확장성 있는 전체 프로젝트 구성이 가능합니다.
+- `생성 할 클래스를 미리 알지 못해도` 팩토리 클래스가 객체 생성 담당할 수 있습니다.
+- `객체의 자료형이 하위클래스에 의해서 결정`되어 `확장성`이 좋아집니다.
+- `동일한 형태`로 프로그래밍 가능합니다.
+- `확장성` 있는 전체 프로젝트 구성이 가능합니다.
 
 ---
 
 ## 팩토리 메소드 패턴의 주의점
 
-- 객체가 늘어날 때마다 하위클래스 재정의로 인한 불필요하게 많은 클래스를 작성 할 수 있습니다.
-- Factory Method가 중첩되기 시작하면 굉장히 복잡해 질 수 있습니다. 또한 상속을 사용하지만 부모(상위) 클래스를 전혀 확장하지 않습니다. 따라서 이 패턴은 extends 관계를 잘못 이용한 것으로 볼 수 있습니다. extends 관계를 남발하게 되면 프로그램의 엔트로피가 높아질 수 있으므로 Factory Method 패턴의 사용을 주의해야 합니다.
-- 생성 메소드가 모두 Factory method 패턴을 사용하는 것은 아닙니다. `Template Method의 생성 패턴 버전`으로 볼 수 있는데 Template Method를 알지 못한다면 그 패턴을 먼저 이해하는 것이 Factory Method를 이해하기 수월할 것이다.
+- 객체가 늘어날 때마다 하위클래스 재정의로 인한 `불필요하게 많은 클래스`를 작성 할 수 있습니다.
+- Factory Method가 중첩되기 시작하면 굉장히 `복잡`해 질 수 있습니다. 또한 상속을 사용하지만 부모(상위) 클래스를 전혀 `확장하지 않습니다`. 따라서 이 패턴은 extends 관계를 잘못 이용한 것으로 볼 수 있습니다. extends 관계를 남발하게 되면 프로그램의 엔트로피가 높아질 수 있으므로 Factory Method 패턴의 사용을 주의해야 합니다.
+- 생성 메소드가 모두 Factory method 패턴을 사용하는 것은 아닙니다. `Template Method의 생성 패턴 버전`으로 볼 수 있는데 Template Method를 알지 못한다면 그 패턴을 먼저 이해하는 것이 Factory Method를 이해하기 수월할 것입니다.
 
 ---
 
-### 객체 패턴(Object patterns)
+## 관련 패턴
 
-- 객체 패턴(Object patterns)에서는 객체 사이의 관계를 다루며, 객체 상이의 관계는 보통 구성을 통해서 정의 됩니다. 객체 패턴에서는 일반적으로 실행 중에 관계가 생성되기 때문에 더 동적이고 유연 합니다.
+- 팩토리 메서드는 `템플릿 메서드 패턴`에서도 사용될 때가 많습니다.
+- `원형 패턴`은 Creator 클래스의 상속이 필요하지는 않습니다. 그러나 Product 클래스에 정의된 초기화 연산은 필요합니다. Creator 클래스는 객체의 초기화를 위해 초기화 연산을 사용하지만, 팩토리 메서드는 이런 연산이 필요하지 않습니다.
 
 ---
 
-### 관련 패턴
+## 팩토리 메소드 패턴 vs 추상 팩토리 패턴
 
-- 추상 팩토리 패턴은 이 팩토리 메서드를 이용해서 구현할 때가 많습니다. 추상 팩토리 패턴에서도 팩토리 메서드의 모습을 볼 수 있습니다. 팩토리 메서드는 템플릿 메서드 패턴에서도 사용될 때가 많습니다. 원형 패턴은 Creator 클래스의 상속이 필요하지는 않습니다. 그러나 Product 클래스에 정의된 초기화 연산은 필요합니다. Creator 클래스는 객체의 초기화를 위해 초기 화 연산을 사용하지만, 팩토리 메서드는 이런 연산이 필요하지 않습니다.
+- `추상 팩토리 패턴`은 `팩토리 메서드를 이용해서 구현`할 때가 많습니다.
 - 팩토리 메서드 패턴을 이용하여 `객체 생성에 대해 쉽게 관리`를 하고, `관리가 비대해지면` 추상 팩토리 패턴을 이용해 팩토리 메서드로 생성하는 객체를 한 곳에 모아서 객체로 만들어 관리할 수 있습니다.
 - 팩토리 메소도 패턴은 `클래스`를 써서 제품을 만들고, 추상 팩토리 패턴에서는 `객체`를 써서 제품을 만듭니다.
 
@@ -526,16 +578,17 @@ console.log(chicagoStylePizza.getName());
 
 ## 추상 팩토리 패턴 쉬운 설명
 
-- 추상 팩토리 패턴의 참가 객체는 팩토리와 제품입니다. 이 패턴은 클래스의 인스턴스를 직접 만들지 않고서도 관련된 제품 객체의 군을 생성하는 방법을 정의합니다. 제품 객체의 종류(예를 들어, 버튼, 박스,스크롤바 등)는 일정하고, 각 객체의 특성이 특정 제품군마다 차이를 보일 때 매우 좋은 방법입니다. 어떤 특정 팩토리를 지정하여 이를 통해서 제품을 생성하게 하는 방법으로 원하는 제품을 선택합니다. 팩토리의 인스턴스만 바꾸면 전체 제품군을 바꿀 수 있습니다. 추상 팩토리 패턴은 동일 계열의 제품군을 다룰 수 있다는 점에서 다른 생성 패턴과 다릅니다. 다른 생성 패턴은 한 종류의 제품 객체만 상대할 수 있기 때문입니다.
+- 추상 팩토리 패턴의 참가 객체는 `팩토리`와 `제품`입니다. 이 패턴은 클래스의 인스턴스를 직접 만들지 않고서도 관련된 제품 객체의 군을 생성하는 방법을 정의합니다. 제품 객체의 종류는 일정하고, 각 객체의 특성이 특정 `제품군마다 차이`를 보일 때 매우 좋은 방법입니다.
+- `어떤 특정 팩토리를 지정하여 이를 통해서 제품을 생성하게 하는 방법`으로 원하는 제품을 선택합니다. `팩토리의 인스턴스만 바꾸면 전체 제품군을 바꿀 수 있습니다`. 추상 팩토리 패턴은 `동일 계열의 제품군을 다룰 수 있다`는 점에서 다른 생성 패턴과 다릅니다. 다른 생성 패턴은 한 종류의 제품 객체만 상대할 수 있기 때문입니다.
 
 ---
 
 ## 추상 팩토리 패턴
 
-- 추상 팩토리 패턴은 객체의 집합을 만들 때 사용합니다. 관련이 있는 객체를 묶어 하나의 팩토리 클래스로 만든 후, `팩토리를 조건에 따라서 생성하도록 팩토리를 다시 만들어 객체를 생성`합니다.
-- 추상 팩토리 클래스는 `팩토리 메서드 패턴을 이용해서 구현`되는데, 원형 패턴을 이용할 때도 있습니다. 구체 팩토리는 단일체 패턴을 이용해 구현하는 경우가 많습니다.
+- 추상 팩토리 패턴은 `객체의 집합`을 만들 때 사용합니다. 관련이 있는 객체를 묶어 하나의 팩토리 클래스로 만든 후, `팩토리를 조건에 따라서 생성하도록 팩토리를 다시 만들어 객체를 생성`합니다.
+- 추상 팩토리 클래스는 `팩토리 메서드 패턴을 이용해서 구현`되는데, `원형 패턴`을 이용할 때도 있습니다. 구체 팩토리는 `단일체 패턴`을 이용해 구현하는 경우가 많습니다.
 - 추상 팩토리 패턴은 `인터페이스`를 이용하여 서로 연관된, 또는 의존하는 객체를 `구상 클래스를 지정하지 않고`도 생성할 수 있습니다. 즉, `연관된 서브 클래스를 그룹화` 할 수 있고 이것은 이 `그룹을 자유롭게 교체`할 수 있는 패턴입니다.
-- 만약 자세한 구현을 숨기고 싶다면 추상 팩토리 패턴을 사용합니다.
+- `자세한 구현을 숨기고 싶다면` 추상 팩토리 패턴을 사용합니다.
 - `키트(Kit)`라고도 합니다.
 
 ---
@@ -581,39 +634,167 @@ console.log(chicagoStylePizza.getName());
 
 ---
 
-## 구현1 : 팩토리를 단일체로 정의합니다
+## 팩토리를 단일체로 정의합니다
 
 - 전형적으로 응용프로그램은 한 제품군에 대해서 하나의 ConcreteFactory 인스턴스만 있으면 됩니다. 즉, 갖가지 제품의 종류를 만들어 내는 팩토리는 제품군에 대해서 하나면 되는 것입니다. 그러므로 `단일체`로 구현하는 것이 바람직합니다. 이 단일체 역시 생성 패턴의 한 종류 입니다.
 
 ---
 
-## 구현2 : 제품을 생성합니다
+## 제품을 생성합니다
 
-- AbstractFactory는 단지 제품을 생성하기 위한 인터페이스를 선언하는 것이고, 그것을 생성하는 책임은 Product의 서브클래스인 ConcreteProduct에 있습니다. 이를 위한 가장 공통적인 방법은 `각 제품을 위해서 팩토리 메서드를 정의`하는 것입니다. AbstractFactory는 각 제품 생성을 위한 팩토리 메서드를 재정의(overriding)함으로써 각 제품의 인스턴스를 만듭니다. 이 구현은 간단하지만, 제품군이 약간 다르다면 `각 제품군을 위한 새로운 구체 팩토리 서브클래스`가 필요합니다. 많은 제품군이 가능하다면 구체 팩토리는 원형 패턴을 이용해서 구현할 수 있습니다. 구체 팩토리가 한 군내의 각 제품 원형 인스턴스로 초기화되고 원형의 복사를 통해서 인스턴스를 생성합니다. 원형 기반의 접근법은 새로운 제품군별로 `새로운 구체 팩토리를 생성할 필요를 없애줍니다`.
-
----
-
-## 구현3 : 확장 가능한 팩토리들을 정의합니다
-
-- AbstractFactory 에는 생성할 `각 제품의 종류별로 서로 다른 연산`(CreateProductA(), CreateProductB ())을 정의합니다. 이 `제품들의 종류는 연산의 시그니처`를 보면 알 수 있습니다. CreateProductA를 통해 ProductA를 만듭니다. 새로운 종류의 제품이 추가되면 AbstractFactory의 `인터페이스에도 새로운 연산을 추가`해야 합니다. 좀더 유연하게 하려면 `생성할 객체를 매개변수로 만들어 연산에 넘기면 됩니다`. 그리고 `매개변수에다가 생성할 객체의 종류를 표현`합니다. 이렇게 되면 AbstractFactory에는 Make() 연산만 있으면 되고, Make() 연산의 매개변수로 생성할 제품에 대한 식별자를 넘겨주게 됩니다. 이것은 앞에서 설명한 `원형 및 클래스에 기반을 둔 추상 팩토리에서 쓴 기법`입니다.
+- AbstractFactory는 단지 제품을 생성하기 위한 인터페이스를 선언하는 것이고, 그것을 생성하는 책임은 Product의 서브클래스인 ConcreteProduct에 있습니다. 이를 위한 가장 공통적인 방법은 `각 제품을 위해서 팩토리 메서드를 정의`하는 것입니다. AbstractFactory는 각 제품 생성을 위한 팩토리 메서드를 재정의(overriding)함으로써 각 제품의 인스턴스를 만듭니다. 이 구현은 간단하지만, 제품군이 약간 다르다면 `각 제품군을 위한 새로운 구체 팩토리 서브클래스`가 필요합니다.
+- 많은 제품군이 가능하다면 구체 팩토리는 `원형 패턴`을 이용해서 구현할 수 있습니다. 구체 팩토리가 한 군내의 각 제품 원형 인스턴스로 초기화되고 원형의 복사를 통해서 인스턴스를 생성합니다. 원형 기반의 접근법은 새로운 제품군별로 `새로운 구체 팩토리를 생성할 필요를 없애줍니다`.
 
 ---
 
-### 구현3의 문제점
+## 확장 가능한 팩토리들을 정의합니다
 
-- 강제 변환이 필요 없어졌다 하더라도 여전히 태생적 문제는 남아있습니다. 모든 제품 객체가 `사용자 쪽에 반환될 때 반환 타입으로 주어진 것과 동일한 추상 인터페이스를 만족해야 한다`는 것입니다. 사용자는 반환 값으로 이들을 서로 구별할 수 없고, 제품의 클래스에 대한 적절한 가정도 할 수 없습니다. 서브클래스에 국한된 연산의 수행이 필요하다면 추상 클래스를 통해서는 접근할 수 없습니다.
+- AbstractFactory에는 생성할 `각 제품의 종류별로 서로 다른 연산`(CreateProductA(), CreateProductB ())을 정의합니다. 이 `제품들의 종류는 연산의 시그니처`를 보면 알 수 있습니다. CreateProductA를 통해 ProductA를 만듭니다. 새로운 종류의 제품이 추가되면 AbstractFactory의 `인터페이스에도 새로운 연산을 추가`해야 합니다. 좀더 유연하게 하려면 `생성할 객체를 매개변수로 만들어 연산에 넘기면 됩니다`. 그리고 `매개변수에다가 생성할 객체의 종류를 표현`합니다. 이렇게 되면 AbstractFactory에는 Make() 연산만 있으면 되고, Make() 연산의 매개변수로 생성할 제품에 대한 식별자를 넘겨주게 됩니다. 이것은 앞에서 설명한 `원형 및 클래스에 기반을 둔 추상 팩토리에서 쓴 기법`입니다. 하지만 강제 변환이 필요 없어졌다 하더라도 여전히 태생적 문제는 남아있습니다. 모든 제품 객체가 `사용자 쪽에 반환될 때 반환 타입으로 주어진 것과 동일한 추상 인터페이스를 만족해야 한다`는 것입니다. 사용자는 반환 값으로 이들을 서로 구별할 수 없고, 제품의 클래스에 대한 적절한 가정도 할 수 없습니다. 서브클래스에 국한된 연산의 수행이 필요하다면 추상 클래스를 통해서는 접근할 수 없습니다.
+
+---
+
+### 클래스 패턴(Class pattern) vs 객체 패턴(Object patterns)
+
+- 객체 패턴(Object patterns)입니다.
+- 객체 패턴(Object patterns)에서는 객체 사이의 관계를 다루며, 객체 상이의 관계는 보통 구성을 통해서 정의 됩니다. 객체 패턴에서는 일반적으로 실행 중에 관계가 생성되기 때문에 더 동적이고 유연 합니다.
+
+---
+
+## 추상화된 재료 Pizza 재료 공장을 만들기
+
+```ts
+interface PizzaIngredientFactory {
+	createDough(): Dough;
+	createCheese(): Cheese;
+	createBoolgogi(): Boolgogi;
+	createVeggies(): Veggies[];
+}
+```
+
+---
+
+## 지역별로 공장 만들기
+
+```ts
+class IndiaPizzaIngredientFactory implements PizzaIngredientFactory {
+	public createDough(): Dough {
+		return new VeggieDough();
+	}
+
+	public createCheese(): Cheese {
+		return new VeggieCheese();
+	}
+
+	public createBoolgogi(): Boolgogi {
+		return new ChickenBoolgogi();
+	}
+
+	public createVeggies(): Veggies[] {
+		const veggies = [new Garlic(), new Onion(), new Mushroom()];
+		return veggies;
+	}
+}
+```
+
+---
+
+## 피자 클래스
+
+```ts
+abstract class Pizza {
+	 name: String;
+	 dough: Dough;
+	 cheese: Cheese;
+	 boolgogi: Boolgogi;
+	 veggies: Veggies[];
+
+	//원재료 생산공장을 달리하면서 추상화시켯다.
+	public abstract void prepare();
+
+	public void bake() {
+		console.log("굽는중.....");
+	}
+
+	public void cut() {
+		console.log("자르는중.....");
+	}
+
+	public void box() {
+		console.log("박싱중.....");
+	}
+
+	public getName(): string {
+		return this.name;
+	}
+
+	public setName( name: string) {
+		this.name = name;
+	}
+}
+```
+
+---
+
+## 팩토리 메소드와 차별점
+
+```ts
+class BoolGogiPizza extends Pizza {
+	pizzaIngredientFactory: PizzaIngredientFactory;
+
+	public BoolGogiPizza(pizzaIngredientFactory: PizzaIngredientFactory) {
+		this.setName("Korea Style Cutting Pizza");
+		this.pizzaIngredientFactory = pizzaIngredientFactory;
+	}
+
+	public void prepare() {
+		console.log("재료준비중... " +name);
+		const dough = pizzaIngredientFactory.createDough();
+		const cheese = pizzaIngredientFactory.createCheese();
+		const boolgogi = pizzaIngredientFactory.createBoolgogi();
+
+		console.log(dough);
+		console.log(cheese);
+		console.log(boolgogi);
+	}
+}
+```
+
+---
+
+## Store
+
+```ts
+interface PizzaStore {
+	createPizza(type: string): Pizza;
+}
+
+class KorPizzaStore extends PizzaStore {
+	protected createPizza(type: string): Pizza {
+		let pizza;
+		const fac = new KorIngredientPizzaFactory();
+
+		if (type === 'boolgogi') {
+			// 팩토리 메소드와 다른 점은 피자 자체를 store에서 생성해주었지만, 이제는 원재료를 로컬별 IngredientPizzaFactory에서 받아쓰기때문에, IngredientPizzaFactory 객체를 BoolGogiPizza 생성자에 넘겨주어 피자 재료를 달리생성하게된다.
+			pizza = new BoolGogiPizza(fac);
+		}
+
+		return pizza;
+	}
+}
+```
 
 ---
 
 ## 관련 패턴
 
-- 복잡한 객체를 생성해야 할 때 추상 팩토리 패턴은 빌더 패턴과 비슷한 모습을 보입니다. 근본적인 차이가 있다면 빌더 패턴은 복잡한 객체의 단계별 생성에 중점을 둔 반면, 추상 팩토리 패턴은 제품의 유사군들이 존재할 때 유연한 설계에 중점을 둔다는 것입니다. 빌더 패턴은 생성의 마지막 단계에서 생성한 제품을 반환하는 반면, 추상 팩토리 패턴에서는 만드는 즉시 제품을 반환합니다. 추상 팩토리 패턴에서 만드는 제품은 꼭 모여야만 의미 있는 것이 아니라 하나만으로도 의미가 있기 때문입니다.
+- 복잡한 객체를 생성해야 할 때 추상 팩토리 패턴은 `빌더 패턴`과 비슷한 모습을 보입니다. 근본적인 차이가 있다면 빌더 패턴은 복잡한 객체의 `단계별 생성`에 중점을 둔 반면, 추상 팩토리 패턴은 제품의 `유사군들이 존재할 때 유연한 설계`에 중점을 둔다는 것입니다.
+- 빌더 패턴은 생성의 `마지막 단계`에서 생성한 제품을 반환하는 반면, 추상 팩토리 패턴에서는 `만드는 즉시` 제품을 반환합니다. 추상 팩토리 패턴에서 만드는 제품은 꼭 모여야만 의미 있는 것이 아니라 하나만으로도 의미가 있기 때문입니다.
 
 ---
 
 ### 대안
 
-- 원형 패턴은 추상 팩토리 패턴의 대안 패턴입니다.
+- `원형 패턴`은 추상 팩토리 패턴의 대안 패턴입니다.
 
 ---
 
@@ -627,51 +808,6 @@ console.log(chicagoStylePizza.getName());
 
 ---
 
-## javascript로 Factory Pattern 구현
-
-```javascript
-function Car(options) {
-	this.doors = options.doors || 4;
-	this.state = options.state || 'brand new';
-	this.color = options.color || 'silver';
-}
-
-function Truck(options) {
-	this.state = options.state || 'used';
-	this.wheelSize = options.wheelSize || 'large';
-	this.color = options.color || 'blue';
-}
-
-function VehicleFactory() {}
-
-VehicleFactory.prototype.vehicleClass = Car;
-VehicleFactory.prototype.createVehicle = function(options) {
-	switch (options.vehicleType) {
-		case 'car':
-			this.vehicleClass = Car;
-			break;
-		case 'truck':
-			this.vehicleClass = Truck;
-			break;
-		default:
-			this.vehicleClass = Car;
-	}
-	return new this.vehicleClass(options);
-};
-
-const carFactory = new VehicleFactory();
-const car = carFactory.createVehicle({
-	vehicleType: 'car',
-	color: 'yellow',
-	doors: 6,
-});
-
-console.log(car instanceof Car); // true
-console.log(car); // Car {doors: 6, state: "brand new", color: "yellow"}
-```
-
----
-
 ## 참고
 
 - [TypeScript 디자인 패턴 - 팩토리 패턴](https://vallista.kr/2020/05/05/TypeScript-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%ED%8C%A9%ED%86%A0%EB%A6%AC-%ED%8C%A8%ED%84%B4/)
@@ -680,5 +816,6 @@ console.log(car); // Car {doors: 6, state: "brand new", color: "yellow"}
 - [[생성 패턴] 팩토리 패턴(Factory Pattern) 이해 및 예제](https://readystory.tistory.com/117)
 - [팩토리 메서드 패턴](https://ko.wikipedia.org/wiki/%ED%8C%A9%ED%86%A0%EB%A6%AC_%EB%A9%94%EC%84%9C%EB%93%9C_%ED%8C%A8%ED%84%B4)
 - [정적 팩토리 메서드(static factory method)](https://johngrib.github.io/wiki/static-factory-method-pattern/)
+- [흔적s](https://iamreo.tistory.com/entry/abstract-factory-pattern)
 
 ---
