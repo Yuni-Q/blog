@@ -741,7 +741,7 @@ abstract class Pizza {
 class BoolGogiPizza extends Pizza {
 	pizzaIngredientFactory: PizzaIngredientFactory;
 
-	public BoolGogiPizza(pizzaIngredientFactory: PizzaIngredientFactory) {
+	constructor(pizzaIngredientFactory: PizzaIngredientFactory) {
 		this.setName("Korea Style Cutting Pizza");
 		this.pizzaIngredientFactory = pizzaIngredientFactory;
 	}
