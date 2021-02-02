@@ -3,7 +3,7 @@ title: factory
 date: 2021-01-30 23:01:25
 category: design pattern
 tags: []
-draft: true
+draft: false
 marp: true
 # theme: gaia
 ---
