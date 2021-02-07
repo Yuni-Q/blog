@@ -87,7 +87,9 @@ const Apple = () => {
     const drawCanvas = (videoScale: number = 1, triangleMove: number = 0, rectangleMove: number = 0) => {
       context.save()
       context.translate((canvasWidth - phoneWidth * videoScale) * 0.5, (canvasHeight - phoneHeight * videoScale) * 0.5)
-      context.drawImage(elemPhone, 0, 0, phoneWidth * videoScale, phoneHeight * videoScale)
+      if (elemPhone) {
+        context.drawImage(elemPhone, 0, 0, phoneWidth * videoScale, phoneHeight * videoScale)
+      }
       context.restore()
 
       context.fillStyle = 'black';
@@ -148,9 +150,7 @@ const Apple = () => {
 
       elemVideo.current.style.transform = `scale(${videoScale})`;
       context.clearRect(0, 0, canvasWidth, canvasHeight);
-      if (elemPhone) {
-        drawCanvas(videoScale, triangleMove, rectangleMove)
-      }
+      drawCanvas(videoScale, triangleMove, rectangleMove)
 
     }
     const scrollHandler = () => {
@@ -188,7 +188,7 @@ const Apple = () => {
       })
 
       elemPhone = document.createElement('img');
-      elemPhone.src = 'phone.png';
+      elemPhone.src = '/phone.png';
       elemPhone.addEventListener('load', function () {
         drawCanvas();
       });
