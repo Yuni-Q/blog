@@ -135,6 +135,8 @@ marp: true
 
 ## 코드
 
+## ![](./images/observer.png)
+
 ---
 
 ### 1. Observer 인터페이스 정의

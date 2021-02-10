@@ -1,8 +1,8 @@
 ---
-title: command
+title: command pattern
 date: 2021-01-26 01:01:10
 category: design pattern
-tags: []
+tags: [design pattern]
 draft: false
 marp: true
 ---
@@ -183,7 +183,7 @@ marp: true
 
 ```ts
 interface Command {
-	execute: () => void;
+  execute: () => void;
 }
 ```
 
@@ -193,18 +193,18 @@ interface Command {
 
 ```ts
 class Invoker {
-	private theCommand: Command;
-	// 생성자에서 버튼을 눌렀을 때 필요한 기능을 인지로 받습니다.
-	constructor(theCommand: Command) {
-		this.setCommand(theCommand);
-	}
-	public setCommand(newCommand: Command) {
-		this.theCommand = newCommand;
-	}
-	// 버튼이 눌리면 주어진 Command의 execute 메서드를 호출한다.
-	public pressed() {
-		this.theCommand.execute();
-	}
+  private theCommand: Command;
+  // 생성자에서 버튼을 눌렀을 때 필요한 기능을 인지로 받습니다.
+  constructor(theCommand: Command) {
+    this.setCommand(theCommand);
+  }
+  public setCommand(newCommand: Command) {
+    this.theCommand = newCommand;
+  }
+  // 버튼이 눌리면 주어진 Command의 execute 메서드를 호출한다.
+  public pressed() {
+    this.theCommand.execute();
+  }
 }
 ```
 
@@ -215,15 +215,15 @@ class Invoker {
 ```ts
 // Receiver class
 class Lamp {
-	public turnOn() {
-		console.log('Lamp On');
-	}
+  public turnOn() {
+    console.log('Lamp On');
+  }
 }
 
 class Alarm {
-	public start() {
-		console.log('Alarming');
-	}
+  public start() {
+    console.log('Alarming');
+  }
 }
 ```
 
@@ -233,26 +233,26 @@ class Alarm {
 
 ```ts
 class LampOnCommand implements Command {
-	// Receiver
-	private theLamp: Lamp;
-	constructor(theLamp: Lamp) {
-		this.theLamp = theLamp;
-	}
-	// Command 인터페이스의 execute 메서드
-	public execute() {
-		this.theLamp.turnOn();
-	}
+  // Receiver
+  private theLamp: Lamp;
+  constructor(theLamp: Lamp) {
+    this.theLamp = theLamp;
+  }
+  // Command 인터페이스의 execute 메서드
+  public execute() {
+    this.theLamp.turnOn();
+  }
 }
 class AlarmStartCommand implements Command {
-	// Receiver
-	private theAlarm: Alarm;
-	constructor(theAlarm: Alarm) {
-		this.theAlarm = theAlarm;
-	}
-	// Command 인터페이스의 execute 메서드
-	public execute() {
-		this.theAlarm.start();
-	}
+  // Receiver
+  private theAlarm: Alarm;
+  constructor(theAlarm: Alarm) {
+    this.theAlarm = theAlarm;
+  }
+  // Command 인터페이스의 execute 메서드
+  public execute() {
+    this.theAlarm.start();
+  }
 }
 ```
 
@@ -290,66 +290,66 @@ const mul = (x, y) => x * y;
 const div = (x, y) => x / y;
 
 class Command {
-	execute: (x, y) => number;
-	undo: (x, y) => number;
-	value: number;
-	name: string;
-	constructor(execute, undo, value, name) {
-		this.execute = execute;
-		this.undo = undo;
-		this.value = value;
-		this.name = name;
-	}
+  execute: (x, y) => number;
+  undo: (x, y) => number;
+  value: number;
+  name: string;
+  constructor(execute, undo, value, name) {
+    this.execute = execute;
+    this.undo = undo;
+    this.value = value;
+    this.name = name;
+  }
 }
 
 class AddCommand {
-	constructor(value) {
-		return new Command(add, sub, value, 'Add');
-	}
+  constructor(value) {
+    return new Command(add, sub, value, 'Add');
+  }
 }
 
 class SubCommand {
-	constructor(value) {
-		return new Command(sub, add, value, 'Sub');
-	}
+  constructor(value) {
+    return new Command(sub, add, value, 'Sub');
+  }
 }
 
 class MulCommand {
-	constructor(value) {
-		return new Command(mul, div, value, 'Mul');
-	}
+  constructor(value) {
+    return new Command(mul, div, value, 'Mul');
+  }
 }
 
 class DivCommand {
-	constructor(value) {
-		return new Command(div, mul, value, 'Div');
-	}
+  constructor(value) {
+    return new Command(div, mul, value, 'Div');
+  }
 }
 
 class Calculator {
-	current: number;
-	commands: any[];
-	constructor() {
-		this.current = 0;
-		this.commands = [];
-	}
-	action(command) {
-		const name = command.name;
-		return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
-	}
-	execute(command) {
-		this.current = command.execute(this.current, command.value);
-		this.commands.push(command);
-		console.log(`${this.action(command)}: ${command.value}`);
-	}
-	undo() {
-		const command = this.commands.pop();
-		this.current = command.undo(this.current, command.value);
-		console.log(`Undo ${this.action(command)}: ${command.value}`);
-	}
-	getCurrentValue() {
-		return this.current;
-	}
+  current: number;
+  commands: any[];
+  constructor() {
+    this.current = 0;
+    this.commands = [];
+  }
+  action(command) {
+    const name = command.name;
+    return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+  }
+  execute(command) {
+    this.current = command.execute(this.current, command.value);
+    this.commands.push(command);
+    console.log(`${this.action(command)}: ${command.value}`);
+  }
+  undo() {
+    const command = this.commands.pop();
+    this.current = command.undo(this.current, command.value);
+    console.log(`Undo ${this.action(command)}: ${command.value}`);
+  }
+  getCurrentValue() {
+    return this.current;
+  }
 }
 
 const calculator = new Calculator();
@@ -379,22 +379,22 @@ console.log(`Value: ${calculator.getCurrentValue()}`);
 
 ```javascript
 const carManager = {
-	requestInfo: function(model, id) {
-		return `The information for ${model} with ID ${id} is foobar`;
-	},
-	buyVehicle: function(model, id) {
-		return `You have successfully purchased Item ${id}, a model`;
-	},
-	arrangeViewing: function(model, id) {
-		return `You have successfully booked a viewing of ${model} ( ${id} )`;
-	},
+  requestInfo: function (model, id) {
+    return `The information for ${model} with ID ${id} is foobar`;
+  },
+  buyVehicle: function (model, id) {
+    return `You have successfully purchased Item ${id}, a model`;
+  },
+  arrangeViewing: function (model, id) {
+    return `You have successfully booked a viewing of ${model} ( ${id} )`;
+  },
 };
 
-carManager.execute = function(name) {
-	return (
-		carManager[name] &&
-		carManager[name].apply(carManager, [].slice.call(arguments, 1))
-	);
+carManager.execute = function (name) {
+  return (
+    carManager[name] &&
+    carManager[name].apply(carManager, [].slice.call(arguments, 1))
+  );
 };
 
 console.log(carManager.execute('buyVehicle', 'Ford Escort', '453543'));
