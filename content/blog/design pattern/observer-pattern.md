@@ -3,7 +3,7 @@ title: observer pattern
 date: 2021-02-08 00:02:70
 category: design pattern
 tags: [design pattern]
-draft: true
+draft: false
 marp: true
 ---
 
