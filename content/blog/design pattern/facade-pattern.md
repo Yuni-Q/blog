@@ -1,8 +1,8 @@
 ---
-title: Facade
+title: facade-pattern
 date: 2021-01-23 21:01:94
 category: design pattern
-tags: []
+tags: [design pattern]
 draft: false
 marp: true
 ---
@@ -123,44 +123,44 @@ marp: true
 
 ```javascript
 class User {
-	constructor(name, age, grade) {
-		this.name = name;
-		this.age = age;
-		this.grade = grade;
-	}
-	getMoney(amount) {
-		let permissionDenied = '권한이 없습니다.';
-		if (!new Grade(this.grade).check() || !new Age(this.age).get()) {
-			return permissionDenied;
-		}
-		const money = new Money().get();
-		return `${this.name}님은 ${money}원 있습니다.`;
-	}
+  constructor(name, age, grade) {
+    this.name = name;
+    this.age = age;
+    this.grade = grade;
+  }
+  getMoney(amount) {
+    let permissionDenied = '권한이 없습니다.';
+    if (!new Grade(this.grade).check() || !new Age(this.age).get()) {
+      return permissionDenied;
+    }
+    const money = new Money().get();
+    return `${this.name}님은 ${money}원 있습니다.`;
+  }
 }
 
 class Grade {
-	constructor(grade) {
-		this.grade = grade;
-	}
-	check() {
-		return this.grade > 1;
-	}
+  constructor(grade) {
+    this.grade = grade;
+  }
+  check() {
+    return this.grade > 1;
+  }
 }
 
 class Age {
-	constructor(age) {
-		this.age = age;
-	}
-	get() {
-		return this.age > 14;
-	}
+  constructor(age) {
+    this.age = age;
+  }
+  get() {
+    return this.age > 14;
+  }
 }
 
 class Money {
-	constructor() {}
-	get() {
-		return 2021;
-	}
+  constructor() {}
+  get() {
+    return 2021;
+  }
 }
 
 const user = new User('yuni', 15, 2);
@@ -174,32 +174,32 @@ console.log(result2); // '권한이 없습니다'
 ---
 
 ```javascript
-const module = (function() {
-	const _private = {
-		i: 5,
-		get: function() {
-			console.log(`current value ${this.i}`);
-		},
-		set: function(val) {
-			this.i = val;
-		},
-		run: function() {
-			console.log('running');
-		},
-		jump: function() {
-			console.log('jumping');
-		},
-	};
+const module = (function () {
+  const _private = {
+    i: 5,
+    get: function () {
+      console.log(`current value ${this.i}`);
+    },
+    set: function (val) {
+      this.i = val;
+    },
+    run: function () {
+      console.log('running');
+    },
+    jump: function () {
+      console.log('jumping');
+    },
+  };
 
-	return {
-		facade: function(args) {
-			_private.set(args.val);
-			_private.get();
-			if (args.run) {
-				_private.run();
-			}
-		},
-	};
+  return {
+    facade: function (args) {
+      _private.set(args.val);
+      _private.get();
+      if (args.run) {
+        _private.run();
+      }
+    },
+  };
 })();
 
 module.facade({ run: true, val: 10 });

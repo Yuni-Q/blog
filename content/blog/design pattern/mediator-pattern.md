@@ -1,8 +1,8 @@
 ---
-title: Mediator
+title: mediator-pattern
 date: 2021-01-25 17:01:37
 category: design pattern
-tags: []
+tags: [design pattern]
 draft: false
 marp: true
 ---
@@ -11,7 +11,7 @@ marp: true
 
 - 중재자 디자인 패턴은 유연하고 재사용 가능한 객체 지향 소프트웨어를 설계하기 위해 반복되는 디자인 문제를 해결하는 방법 23가지 `GoF 디자인 패턴들 중 하나`입니다.
   - 객체는 구현, 변경, 테스트, 재사용이 쉬워야 합니다.
-- 디자인 패턴 분류인 생성, 구조, 행동, 동시실행 중 프로그램의 실행 행위를 변경할 수 있기 때문에 `행동 패턴`으로 간주됩니다.
+- 디자인 패턴 분류인 생성, 구조, 행위 중 프로그램의 실행 행위를 변경할 수 있기 때문에 `행위 패턴`으로 간주됩니다.
 
 ---
 
@@ -131,22 +131,22 @@ marp: true
 
 ```ts
 abstract class Colleague {
-	protected mediator: Mediator;
-	abstract id: number;
+  protected mediator: Mediator;
+  abstract id: number;
 
-	join(mediator: Mediator) {
-		this.mediator = mediator;
-		mediator.addColleague(this);
-	}
+  join(mediator: Mediator) {
+    this.mediator = mediator;
+    mediator.addColleague(this);
+  }
 
-	sendData(data: string) {
-		if (!this.mediator) {
-			throw new Error('mediator is null');
-		}
-		this.mediator.mediate(data);
-	}
+  sendData(data: string) {
+    if (!this.mediator) {
+      throw new Error('mediator is null');
+    }
+    this.mediator.mediate(data);
+  }
 
-	abstract handle(data: string);
+  abstract handle(data: string);
 }
 ```
 
@@ -156,14 +156,14 @@ abstract class Colleague {
 
 ```ts
 class ConcreteColleague extends Colleague {
-	id: number;
-	constructor() {
-		super();
-		this.id = Math.random();
-	}
-	handle(data: string) {
-		console.log(this.id, data);
-	}
+  id: number;
+  constructor() {
+    super();
+    this.id = Math.random();
+  }
+  handle(data: string) {
+    console.log(this.id, data);
+  }
 }
 ```
 
@@ -173,16 +173,16 @@ class ConcreteColleague extends Colleague {
 
 ```ts
 abstract class Mediator {
-	colleagues: Colleague[] = [];
+  colleagues: Colleague[] = [];
 
-	addColleague(colleague: Colleague) {
-		if (!colleague) {
-			throw new Error('colleague is null');
-		}
-		this.colleagues.push(colleague);
-	}
+  addColleague(colleague: Colleague) {
+    if (!colleague) {
+      throw new Error('colleague is null');
+    }
+    this.colleagues.push(colleague);
+  }
 
-	abstract mediate(data: string);
+  abstract mediate(data: string);
 }
 ```
 
@@ -192,12 +192,12 @@ abstract class Mediator {
 
 ```ts
 class ConcreteMediator extends Mediator {
-	mediate(data: string) {
-		this.colleagues.forEach(colleague => {
-			// 중재 기능 추가
-			colleague.handle(data);
-		});
-	}
+  mediate(data: string) {
+    this.colleagues.forEach((colleague) => {
+      // 중재 기능 추가
+      colleague.handle(data);
+    });
+  }
 }
 ```
 
@@ -207,19 +207,19 @@ class ConcreteMediator extends Mediator {
 
 ```ts
 const App = () => {
-	const mediator = new ConcreteMediator();
+  const mediator = new ConcreteMediator();
 
-	const colleague1 = new ConcreteColleague();
-	const colleague2 = new ConcreteColleague();
-	const colleague3 = new ConcreteColleague();
+  const colleague1 = new ConcreteColleague();
+  const colleague2 = new ConcreteColleague();
+  const colleague3 = new ConcreteColleague();
 
-	colleague1.join(mediator);
-	colleague2.join(mediator);
-	colleague3.join(mediator);
+  colleague1.join(mediator);
+  colleague2.join(mediator);
+  colleague3.join(mediator);
 
-	colleague1.sendData('111');
-	colleague2.sendData('222');
-	colleague3.sendData('333');
+  colleague1.sendData('111');
+  colleague2.sendData('222');
+  colleague3.sendData('333');
 };
 
 App();
@@ -266,39 +266,39 @@ App();
 
 ```javascript
 class Participant {
-	constructor(name) {
-		this.name = name;
-		this.chatroom = null;
-	}
-	send(message, to) {
-		this.chatroom.send(message, this, to);
-	}
-	receive(message, from) {
-		console.log(`${from.name} to ${this.name}: ${message}`);
-	}
+  constructor(name) {
+    this.name = name;
+    this.chatroom = null;
+  }
+  send(message, to) {
+    this.chatroom.send(message, this, to);
+  }
+  receive(message, from) {
+    console.log(`${from.name} to ${this.name}: ${message}`);
+  }
 }
 
 class Chatroom {
-	constructor() {
-		this.participants = new Set();
-	}
-	register(participant) {
-		participant.chatroom = this;
-		this.participants.add(participant);
-	}
-	send(message, from, to) {
-		if (to) {
-			// single message
-			to.receive(message, from);
-		} else {
-			// broadcast message
-			this.participants.forEach(participant => {
-				if (participant !== from) {
-					participant.receive(message, from);
-				}
-			});
-		}
-	}
+  constructor() {
+    this.participants = new Set();
+  }
+  register(participant) {
+    participant.chatroom = this;
+    this.participants.add(participant);
+  }
+  send(message, from, to) {
+    if (to) {
+      // single message
+      to.receive(message, from);
+    } else {
+      // broadcast message
+      this.participants.forEach((participant) => {
+        if (participant !== from) {
+          participant.receive(message, from);
+        }
+      });
+    }
+  }
 }
 
 const yoko = new Participant('Yoko');
