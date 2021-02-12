@@ -6,6 +6,7 @@ const Ladder = () => {
   const [teamMemberList, setTeamMemberList] = useState({});
   const [choiceMemberList, setChoiceMemberList] = useState([]);
   const [choiceTeamMemberList, setChoiceTeamMemberList] = useState({});
+  const [result, setResult] = useState([]);
   useEffect(() => {
     const get = async () => {
       const result = await axios.get(
@@ -163,6 +164,44 @@ const Ladder = () => {
           );
         })}
       </div>
+      {choiceMemberList.map((member) => {
+        return (
+          <div key={member.name}>
+            <input type="text" className="item" />
+          </div>
+        );
+      })}
+      {choiceMemberList.length > 0 && (
+        <button
+          type="button"
+          onClick={() => {
+            const itemList = document.querySelectorAll('.item');
+            let list = [...choiceMemberList];
+            const result = [];
+
+            itemList.forEach((item) => {
+              const value = (item as HTMLInputElement).value;
+              const index = Math.floor(Math.random() * list.length);
+              if (value) {
+                result.push({ name: list[index].name, value });
+              }
+              list = list.filter((_, idx) => {
+                return idx !== index;
+              });
+            });
+            setResult(result);
+          }}
+        >
+          시작!! 하겠습니다 !!
+        </button>
+      )}
+      {result.map((item) => {
+        return (
+          <div key={item.name}>
+            {item.name} : {item.value}
+          </div>
+        );
+      })}
     </div>
   );
 };
