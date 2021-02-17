@@ -107,6 +107,8 @@ eslint init
 - TODO 할 일
 
 ### [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
+
+### [footsteps](https://marketplace.visualstudio.com/items?itemName=Wattenberger.footsteps)
 ## 사용하지 않게 된 확장 도구들
 
 ### [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
