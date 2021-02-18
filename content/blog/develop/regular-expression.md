@@ -695,6 +695,13 @@ mask('010-4755-6185', 5); // '010-47**-****'
 
 ## IDE 내에서 원하는 부분만 Replace하기
 
+## 한글, 영어, 공백만 허용
+
+```js
+const value = '12345 g462623 $^#^$%     asfasad  34513 하하하';
+const result = value..replace(/ +/g, ' ').replace(/([^ㄱ-ㅎㅏ-ㅣ가-힣A-Z\s\u318D\u119E\u11A2\u2022\u2025\u00B7\uFE55\u4E10\u3163\u3161])+/gi, '');
+```
+
 ## 참고
 
 - [정규표현식 완전정복](https://wormwlrm.github.io/2020/07/19/Regular-Expressions-Tutorial.html?fbclid=IwAR16MbpS_qbBA9NdTBwOPczu3_5Ji7S6TJ1wPHUNjzUNLevLjqS7GZ-Cucs)
