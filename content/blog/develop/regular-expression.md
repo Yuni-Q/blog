@@ -698,8 +698,22 @@ mask('010-4755-6185', 5); // '010-47**-****'
 ## 한글, 영어, 공백만 허용
 
 ```js
-const value = '12345 g462623 $^#^$%     asfasad  34513 하하하';
-const result = value..replace(/ +/g, ' ').replace(/([^ㄱ-ㅎㅏ-ㅣ가-힣A-Z\s\u318D\u119E\u11A2\u2022\u2025\u00B7\uFE55\u4E10\u3163\u3161])+/gi, '');
+const value = '  12345 g462623 $^#^$%     asfasad  34513 하하하 ㅡㅡ ㅣㅣ ㅢㅢㅢ ㅁㅇㄴㅁㅎㄹㅁㄹ   ';
+const result = value
+	// 연속된 공백 제거
+	.replace(/ +/g, ' ')
+	.replace(/ +/g, ' ')
+	// 한글, 영어, 공백 이외의 문자 제거
+	.replace(/([^ㄱ-ㅎㅏ-ㅣ가-힣A-Z\s\u318D\u119E\u11A2\u2022\u2025\u00B7\uFE55\u4E10\u3163\u3161])+/gi, '');
+	// 왼쪽 공백 제거
+	.trimStart()
+
+const result2 = value
+	// ㅡ와 ㅣ만 별도로 제거
+	.replace(/[ㅣㅡ]/g, '')
+	// 완성현 한글과 영어 대문자, 공백만 허용
+	.replace(/([^가-힣A-Z\s\u318D\u119E\u11A2\u2022\u2025\u00B7\uFE55\u4E10\u3163\u3161])+/gi, '')
+	.trim()
 ```
 
 ## 참고
