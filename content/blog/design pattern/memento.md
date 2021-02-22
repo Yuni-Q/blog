@@ -3,7 +3,7 @@ title: memento
 date: 2021-02-21 21:02:16
 category: design pattern
 tags: ['design pattern']
-draft: false
+draft: true
 ---
 
 ## 캡슐화를 위배하지 않은 채 내부 상태의 스냅샷을 찍는 패턴
