@@ -52,17 +52,31 @@ lang: 'ko'
 
 #### 주문접수앱 웹뷰
 
+- `Typescript` `React` `Redux` `Express`
+- 20.11 ~ 20.01
 - 배달대행사 연결 및 관리 웹뷰 작업
-- AI배달예상시간안내 웹뷰 작업
+- AI 배달 예상 시간 안내 웹뷰 작업
 
 #### post 배사광
 
+- `Typescript` `React` `Mobx` `SWR`
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선 프로젝트 리뉴얼
 - 20.11 ~
 - 프로젝트 초기 React Application Architecture 설계
 - 브랜치 전략 구상(master/deploy/feature)
 - 젠킨스 구성(master의 최신 커밋이 base가 아니라면 배포 불가능)
 - 허스키 도입(rebase시 현재 브랜치 최신화 후 진행)
+<!-- - 내정보 페이지 및 하위 페이지 작업
+- webpack 및 babel 설정
+- Dialog 추가
+- FormCard 추가
+- swr 도입
+- 글로벌 스타일 추가
+  - boxModel 글로벌 클래스 추가
+  - color 값 정의
+  - color 글로벌 클래스 추가
+  - typo 글로벌 클래스 추가
+- 메인홈 페이지 작업 -->
 
 #### super2
 
@@ -82,7 +96,7 @@ lang: 'ko'
 #### ceo-moon-front
 
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선(셀프서비스 제외한 부분)
-- 20.06 ~ current
+- 20.06 ~ 21.01
 - `Javascript` `WoowahanJS`
 - AB test 구성 및 테스트
 - 배민트렌드 2021 이벤트 페이지
