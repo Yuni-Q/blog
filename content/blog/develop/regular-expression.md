@@ -10,6 +10,51 @@ draft: true
 
 - 정규표현식(Regular Expression, 이하 정규식)의 정의를 간단하게 설명하자면, 주어진 문자열에서 발견할 수 있는 글자 패턴을 표현한 식입니다.
 
+## 간단한 정리
+
+### Groups and ranges
+
+| Character | 뜻                                     |
+| --------- | -------------------------------------- |
+| `\|`      | 또는                                   |
+| `()`      | 그룹                                   |
+| `[]`      | 문자셋, 괄호안의 어떤 문자든           |
+| `[^]`     | 부정 문자셋, 괄호안의 어떤 문가 아닐때 |
+| `(?:)`    | 찾지만 기억하지는 않음                 |
+
+### Quantifiers
+
+| Character   | 뜻                                  |
+| ----------- | ----------------------------------- |
+| `?`         | 없거나 있거나 (zero or one)         |
+| `*`         | 없거나 있거나 많거나 (zero or more) |
+| `+`         | 하나 또는 많이 (one or more)        |
+| `{n}`       | n번 반복                            |
+| `{min,}`    | 최소                                |
+| `{min,max}` | 최소, 그리고 최대                   |
+
+### Boundary-type
+
+| Character | 뜻               |
+| --------- | ---------------- |
+| `\b`      | 단어 경계        |
+| `\B`      | 단어 경계가 아님 |
+| `^`       | 문장의 시작      |
+| `$`       | 문장의 끝        |
+
+### Character classes
+
+| Character | 뜻                           |
+| --------- | ---------------------------- |
+| `\`       | 특수 문자가 아닌 문자        |
+| `.`       | 어떤 글자 (줄바꿈 문자 제외) |
+| `\d`      | digit 숫자                   |
+| `\D`      | digit 숫자 아님              |
+| `\w`      | word 문자                    |
+| `\W`      | word 문자 아님               |
+| `\s`      | space 공백                   |
+| `\S`      | space 공백 아님              |
+
 ## 생성하기
 
 ```javascript
@@ -624,9 +669,9 @@ regex.exec('https://'); // ['https']
 ```javascript
 const NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const amount = '1,000원'
-	.split('')
-	.filter(v => NUMBERS.includes(v))
-	.join('');
+  .split('')
+  .filter((v) => NUMBERS.includes(v))
+  .join('');
 
 // 또는
 
@@ -647,7 +692,7 @@ console.log(Number(amount)); // 1000
 
 ```javascript
 const string =
-	'현재까지 로또 복권의 총 판매금액은 38조40230억2565만7000원. 2014년 기준 회당 평균 580억원 가량의 로또가 팔린다. 조사에 따르면 1인당 평균 구매액은 9400원으로 19세 이상 성인 인구 기준 매주 약 512만 명이 로또를 구입한다.';
+  '현재까지 로또 복권의 총 판매금액은 38조40230억2565만7000원. 2014년 기준 회당 평균 580억원 가량의 로또가 팔린다. 조사에 따르면 1인당 평균 구매액은 9400원으로 19세 이상 성인 인구 기준 매주 약 512만 명이 로또를 구입한다.';
 
 string.match(/(?<=\s)\S*?\d+(?=원)/g); // ["38조40230억2565만7000", "9400"]
 
@@ -663,14 +708,14 @@ string.match(/(?<=\s)\S*?\d+(?=원)/g); // ["38조40230억2565만7000", "9400"]
 
 ```javascript
 function mask(str, headCount = 1) {
-	// 문자열 맨 앞의 n 글자를 가져온다
-	const head = new RegExp(`^.{${headCount}}`, 'g').exec(str);
+  // 문자열 맨 앞의 n 글자를 가져온다
+  const head = new RegExp(`^.{${headCount}}`, 'g').exec(str);
 
-	// head를 제외한 나머지를 마스킹한다
-	const tails = str.replace(head, '').replace(/./g, '*');
+  // head를 제외한 나머지를 마스킹한다
+  const tails = str.replace(head, '').replace(/./g, '*');
 
-	// head와 tails를 합친다
-	return head + tails;
+  // head와 tails를 합친다
+  return head + tails;
 }
 
 mask('문동욱', 2); // '문동*'
@@ -679,14 +724,14 @@ mask('01047556185', 5); // '01047******'
 
 ```javascript
 function enhancedMask(str, headCount = 1) {
-	// \S[\s-]* 패턴이 n번 나오는 경우를 모두 묶어서 head로 할당한다
-	const head = new RegExp(`^(?:\\S[\\s-]*){${headCount}}`, 'g').exec(str);
+  // \S[\s-]* 패턴이 n번 나오는 경우를 모두 묶어서 head로 할당한다
+  const head = new RegExp(`^(?:\\S[\\s-]*){${headCount}}`, 'g').exec(str);
 
-	// head를 제외한 나머지 부분 중 공백과 -를 제외한 부분을 마스킹한다
-	const tails = str.replace(head, '').replace(/[^\s-]/g, '*');
+  // head를 제외한 나머지 부분 중 공백과 -를 제외한 부분을 마스킹한다
+  const tails = str.replace(head, '').replace(/[^\s-]/g, '*');
 
-	// head와 tails를 합친다
-	return head + tails;
+  // head와 tails를 합친다
+  return head + tails;
 }
 
 mask('E Van Moon', 2); // 'E V** ****'
@@ -724,3 +769,4 @@ const result2 = value
 ## 나중에 볼 링크
 
 - [불규칙 속에서 규칙을 찾아내는 정규표현식](https://evan-moon.github.io/2020/07/24/about-regular-expression/?utm_source=gaerae.com&utm_campaign=%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%8A%A4%EB%9F%BD%EB%8B%A4&utm_medium=social&fbclid=IwAR0vBjhK6sU0T-oNVzmTiMyjd7Xxnyuf4i223sKI6S_7S3D5yi9OPGIM1og)
+- [정규표현식 , 더이상 미루지 말자 🤩](https://www.youtube.com/watch?v=t3M6toIflyQ&feature=push-u-sub&attr_tag=sLRtDuJSnRtSAy6c%3A6)
