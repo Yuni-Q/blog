@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
 
 class Particle {
   x: number;
@@ -18,7 +18,7 @@ class Particle {
 
   draw() {
     this.cm.context.beginPath();
-    this.cm.context.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+    this.cm.context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     this.cm.context.fill();
   }
 }
@@ -36,23 +36,23 @@ class Line {
     this.y = y;
     this.height = 300;
 
-
-    const gradientStartY = cm.canvasHeight - (this.height + (cm.canvasHeight - this.y));
+    const gradientStartY =
+      cm.canvasHeight - (this.height + (cm.canvasHeight - this.y));
     this.gradient = cm.context.createLinearGradient(
-      0, gradientStartY,
-      0, this.y
-    )
-    this.gradient.addColorStop(0, `rgba(${cm.colors2[index]}, 0)`)
-    this.gradient.addColorStop(0.5, `rgba(${cm.colors2[index]}, 0.5)`)
-    this.gradient.addColorStop(0.75, `rgba(${cm.colors2[index]}, 0.5)`)
-    this.gradient.addColorStop(1, `rgba(${cm.colors2[index]}, 1)`)
+      0,
+      gradientStartY,
+      0,
+      this.y,
+    );
+    this.gradient.addColorStop(0, `rgba(${cm.colors2[index]}, 0)`);
+    this.gradient.addColorStop(0.5, `rgba(${cm.colors2[index]}, 0.5)`);
+    this.gradient.addColorStop(0.75, `rgba(${cm.colors2[index]}, 0.5)`);
+    this.gradient.addColorStop(1, `rgba(${cm.colors2[index]}, 1)`);
 
     const numberOfParticles = 30;
     this.particles = [];
     for (let i = 0; i < numberOfParticles; i++) {
-      this.particles.push(
-        new Particle(this.x, this.y, cm)
-      );
+      this.particles.push(new Particle(this.x, this.y, cm));
     }
     this.cm = cm;
   }
@@ -73,7 +73,6 @@ class Line {
       particle.draw();
     }
   }
-
 }
 
 class Light {
@@ -104,17 +103,19 @@ class Light {
           this.y,
           cm,
           index,
-        )
+        ),
       );
     }
     this.gradient = cm.context.createLinearGradient(
-      0, cm.canvasHeight - (this.height + (cm.canvasHeight - this.y)),
-      0, this.y
-    )
-    this.gradient.addColorStop(0, `rgba(${cm.colors[index]}, 0)`)
-    this.gradient.addColorStop(0.5, `rgba(${cm.colors[index]}, 0.5)`)
-    this.gradient.addColorStop(0.75, `rgba(${cm.colors[index]}, 0.5)`)
-    this.gradient.addColorStop(1, `rgba(${cm.colors[index]}, 1)`)
+      0,
+      cm.canvasHeight - (this.height + (cm.canvasHeight - this.y)),
+      0,
+      this.y,
+    );
+    this.gradient.addColorStop(0, `rgba(${cm.colors[index]}, 0)`);
+    this.gradient.addColorStop(0.5, `rgba(${cm.colors[index]}, 0.5)`);
+    this.gradient.addColorStop(0.75, `rgba(${cm.colors[index]}, 0.5)`);
+    this.gradient.addColorStop(1, `rgba(${cm.colors[index]}, 1)`);
     this.cm = cm;
   }
 
@@ -124,15 +125,18 @@ class Light {
     this.cm.context.save();
     this.cm.context.filter = 'blur(20px)';
 
-
     this.cm.context.beginPath();
     this.cm.context.ellipse(
       this.x,
       this.y,
-      this.width * 2 + Math.abs(Math.sin(this.angle * Math.PI / 180 * 30)) * 5,
-      this.width * 0.5 + Math.abs(Math.sin(this.angle * Math.PI / 180 * 30)) * 5,
-      0, 0, Math.PI * 2
-    )
+      this.width * 2 +
+        Math.abs(Math.sin(((this.angle * Math.PI) / 180) * 30)) * 5,
+      this.width * 0.5 +
+        Math.abs(Math.sin(((this.angle * Math.PI) / 180) * 30)) * 5,
+      0,
+      0,
+      Math.PI * 2,
+    );
     this.cm.context.fill();
     this.angle++;
 
@@ -143,8 +147,10 @@ class Light {
       this.y,
       this.width,
       this.width * 0.25,
-      0, 0, Math.PI * 2
-    )
+      0,
+      0,
+      Math.PI * 2,
+    );
     this.cm.context.fill();
 
     this.cm.context.fillRect(
@@ -152,7 +158,7 @@ class Light {
       this.cm.canvasHeight - (this.height + (this.cm.canvasHeight - this.y)),
       this.width,
       this.height,
-    )
+    );
 
     this.cm.context.restore();
 
@@ -177,7 +183,7 @@ interface CM {
   charactersSrc: {
     somun: string;
     ji: string;
-  }
+  };
   playedFrame: number;
   currentFrame: number;
 }
@@ -210,54 +216,53 @@ const Land = () => {
     },
     playedFrame: 0,
     currentFrame: 0,
-  }
+  };
   useEffect(() => {
     cm.canvas = document.querySelector('#the-canvas');
     cm.context = cm.canvas.getContext('2d');
     const dpr = window.devicePixelRatio > 1 ? 1 : 1;
     const mouse = { x: 0, y: 0 };
     const lights: Light[] = [];
-    const characters: Character[] = []
-    const allItems: any[] = []
+    const characters: Character[] = [];
+    const allItems: any[] = [];
     let indexOfLight = 0;
 
     const setSize = () => {
-      console.log(window.innerWidth, window.innerHeight)
+      console.log(window.innerWidth, window.innerHeight);
       cm.canvasWidth = window.innerWidth;
       cm.canvasHeight = window.innerHeight;
-      cm.canvas.width = cm.canvasWidth * dpr
-      cm.canvas.height = cm.canvasHeight * dpr
+      cm.canvas.width = cm.canvasWidth * dpr;
+      cm.canvas.height = cm.canvasHeight * dpr;
       if (dpr > 1) {
         cm.context.scale(dpr, dpr);
       }
-    }
+    };
 
     const setCharacters = () => {
       const somun = new Character(
         cm.charactersSrc.somun,
         'underAttack',
-        (cm.canvasWidth * 0.5) - 256 + 64,
-        (cm.canvasHeight * 0.5) - 64,
-        cm
-      )
+        cm.canvasWidth * 0.5 - 256 + 64,
+        cm.canvasHeight * 0.5 - 64,
+        cm,
+      );
       const ji = new Character(
         cm.charactersSrc.ji,
         'attack',
-        (cm.canvasWidth * 0.5) - 64,
-        (cm.canvasHeight * 0.5) - 64,
-        cm
-      )
+        cm.canvasWidth * 0.5 - 64,
+        cm.canvasHeight * 0.5 - 64,
+        cm,
+      );
 
       characters.push(somun);
       characters.push(ji);
 
-      characters.forEach(character => allItems.push(character))
-    }
-
+      characters.forEach((character) => allItems.push(character));
+    };
 
     const draw = () => {
       cm.context.clearRect(0, 0, cm.canvas.width, cm.canvas.height);
-      allItems.forEach(item => {
+      allItems.forEach((item) => {
         if (item instanceof Character) {
           item.draw();
         }
@@ -270,7 +275,7 @@ const Land = () => {
           item.draw();
           cm.context.restore();
         }
-      })
+      });
 
       cm.playedFrame++;
       if (cm.playedFrame % 20 === 0) {
@@ -278,13 +283,13 @@ const Land = () => {
           cm.playedFrame = 0;
         }
         if (cm.currentFrame === 0) {
-          cm.currentFrame = 1
+          cm.currentFrame = 1;
         } else {
-          cm.currentFrame = 0
+          cm.currentFrame = 0;
         }
       }
       requestAnimationFrame(draw);
-    }
+    };
 
     const setup = () => {
       setSize();
@@ -292,7 +297,7 @@ const Land = () => {
         setCharacters();
       }
       draw();
-    }
+    };
 
     const click = (e: MouseEvent) => {
       if (indexOfLight >= cm.colors.length) {
@@ -308,30 +313,28 @@ const Land = () => {
       allItems.push(light);
       allItems.sort((a, b) => {
         return a.yForOrder - b.yForOrder;
-      })
+      });
       indexOfLight++;
 
       if (indexOfLight >= cm.colors.length) {
         characters[0].updateAction('attack');
         characters[1].updateAction('underAttack');
       }
-    }
+    };
 
-    cm.canvas.addEventListener('click', click)
+    cm.canvas.addEventListener('click', click);
 
-    window.addEventListener('resize', setup)
-    window.addEventListener('load', setup)
+    window.addEventListener('resize', setup);
+    window.addEventListener('load', setup);
     setup();
     return () => {
-      window.removeEventListener('click', click)
-      window.removeEventListener('resize', setup)
-      window.removeEventListener('load', setup)
-    }
-  }, [])
+      window.removeEventListener('click', click);
+      window.removeEventListener('resize', setup);
+      window.removeEventListener('load', setup);
+    };
+  }, []);
 
-  return (
-    <Canvas id="the-canvas"></Canvas>
-  );
+  return <Canvas id="the-canvas"></Canvas>;
 };
 
 export default Land;
@@ -350,7 +353,6 @@ class Character {
   endFrame: number;
   frame: number;
   cm: CM;
-
 
   constructor(imageSrc, action, x, y, cm: CM) {
     this.width = 256;
@@ -398,8 +400,14 @@ class Character {
 
     this.cm.context.drawImage(
       this.image,
-      (this.frame * 256), 0, 256, 256,
-      this.x, this.y, this.width, this.height,
-    )
+      this.frame * 256,
+      0,
+      256,
+      256,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+    );
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, VFC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Draggable = () => {
+const Draggable: VFC = () => {
   useEffect(() => {
     const slides = document.querySelector('.slides');
     const allSlides = document.querySelectorAll('.slide');

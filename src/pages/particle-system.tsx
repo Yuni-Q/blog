@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 class Particle {
   x: number;
@@ -8,7 +8,7 @@ class Particle {
   r: number;
   dt: number;
   color: string;
-  ctx: CanvasRenderingContext2D
+  ctx: CanvasRenderingContext2D;
   width: number;
   height: number;
   constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
@@ -95,11 +95,11 @@ class App {
   }
 
   loop() {
-    if (!!this.pause) {
+    if (this.pause) {
       return;
     }
     this.ctx.clearRect(0, 0, this.width, this.height);
-    this.particles.forEach(particle => {
+    this.particles.forEach((particle) => {
       this.interact(particle);
       particle.update();
       particle.draw();
@@ -113,7 +113,7 @@ class App {
   }
 
   interact(other) {
-    this.particles.forEach(particle => {
+    this.particles.forEach((particle) => {
       if (other !== particle) {
         const dx = other.x - particle.x;
         const dy = other.y - particle.y;
@@ -152,11 +152,9 @@ const ParticleSystem = () => {
     const app = new App(ctx, WIDTH, HEIGHT);
     app.addParticles(100);
     app.loopDelegate();
-  }, [])
+  }, []);
 
-  return (
-    <></>
-  );
+  return <></>;
 };
 
 export default ParticleSystem;
