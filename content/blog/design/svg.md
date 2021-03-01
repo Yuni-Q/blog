@@ -1,9 +1,9 @@
 ---
 title: svg
 date: 2020-10-19 13:10:27
-category: develop
+category: design
 tags: []
-draft: true
+draft: false
 marp: true
 ---
 
@@ -170,14 +170,14 @@ marp: true
 
 ```js
 const params = {
-	Bucket: 'bucket',
-	Key: 'key',
-	Body: stream,
-	ACL: 'public-read',
-	ContentType: 'image/svg+xml',
+  Bucket: 'bucket',
+  Key: 'key',
+  Body: stream,
+  ACL: 'public-read',
+  ContentType: 'image/svg+xml',
 };
-s3.upload(params, function(err, data) {
-	console.log(err, data);
+s3.upload(params, function (err, data) {
+  console.log(err, data);
 });
 ```
 
