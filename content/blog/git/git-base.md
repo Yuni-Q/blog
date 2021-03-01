@@ -158,7 +158,26 @@ fi
 $ git mv user.ts User.ts
 ```
 
+## 혼자서도 깃을 잘 쓰는 방법
+- 브랜치는 한 가지 유용한 일만 해야합니다.
+- 모든 커밋은 독립적이어야 합니다. 
+  - 커밋마다 독립적인 테스트를 포함해야 합니다.
+  - 커밋마다 모든 테스트를 통과해야 합니다.
+- 드래프트 커밋도 문제 없습니다.
+- 커밋을 완전히 버려도 좋습니다.
+- 실수를 방어하는 도구들
+  - git commit --amend
+  - git commit --fixup [hash]
+  > fixup 은 squash 와 동일하게 해당 커밋을 이전 커밋과 합치는 명령어지만, 커밋 메시지는 합치지 않는다. 결과적으로 이전 커밋 메시지만 남게 된다. 그 점만 빼면 완벽히 앞의 예제와 동일하므로 예제는 생략하도록 하겠다.
+  - git rebase --interactive main
+  - git stash
+  - git blame
+  > 해당 파일의 수정 이력을 볼 수 있습니다. 커밋해시값, 수정한 사람, 수정 이력이 남겨진 시간, 커밋 메세지를 확인할 수 있습니다.
+
+
+---
 ## 참고
 
 - [새 버전에 맞게 git checkout 대신 switch/restore 사용하기](https://blog.outsider.ne.kr/1505)
 - [[Git]현재 Branch의 변경사항 파악하기 - merge-base](http://minsone.github.io/git/git-merge-base)
+- [Git is my buddy: Effective Git as a solo developer](https://mikkel.ca/blog/git-is-my-buddy-effective-solo-developer/)
