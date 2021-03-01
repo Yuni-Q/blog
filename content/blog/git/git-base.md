@@ -2,7 +2,7 @@
 title: git base
 date: 2020-08-04 10:08:13
 category: git
-draft: false
+draft: true
 ---
 
 ## Git 명령어
