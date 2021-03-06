@@ -3,7 +3,7 @@ title: adapter pattern
 date: 2021-02-28 17:02:34
 category: design pattern
 tags: [design pattern]
-draft: true
+draft: false
 ---
 
 ## 적응자 패턴
@@ -105,8 +105,6 @@ draft: true
 
 ## 구성
 
-- 타입스크립트는 다중 상속을 지원하지 않기 때문에 객체 어댑터 패턴을 사용합니다.
-
 ### Target Interface
 
 Adapter 가 구현(implements) 하는 인터페이스이다. 클라이언트는 Target Interface 를 통해 Adaptee 인 써드파티 라이브러리를 사용하게 된다.
@@ -150,6 +148,7 @@ class MKV implements MediaPackage {
 - Client 와 Adaptee 중간에서 호환성이 없는 둘을 연결시켜주는 역할을 담당한다. Target Interface 를 구현하며, 클라이언트는 Target Interface 를 통해 어댑터에 요청을 보낸다. 어댑터는 클라이언트의 요청을 Adaptee 가 이해할 수 있는 방법으로 전달하고, 처리는 Adaptee 에서 이루어진다.
 
 ```ts
+// 객체 어댑터
 class FormatAdapter implements MediaPlayer {
   media: MediaPackage;
 
@@ -158,8 +157,16 @@ class FormatAdapter implements MediaPlayer {
   }
 
   play(fileName) {
-    console.log('Using Adaper');
+    console.log('Using Adapter');
     this.media.playFile(fileName);
+  }
+}
+
+// 클래스 어댑터
+class FormatAdapter extends MP3 implements MediaPlayer {
+  play(fileName) {
+    console.log('Using Adapter');
+    this.playFile(fileName);
   }
 }
 ```
