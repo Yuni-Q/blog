@@ -84,6 +84,17 @@ draft: false
 - 구성(composition)을 사용하기 때문에 더 뛰어납니다. 어댑티 클래스 뿐 아니라 그 서브 클래스에 대해서도 어댑터 역할을 할 수 있습니다.
 - 상속이 아닌 구성을 활용합니다. 상속을 이용하면 코드 분량을 줄일 수 있긴 하겠지만, 구성을 이용하더라도 어댑티한테 필요한 일을 시키기 위한 코드만 만들면 되기 때문에 별로 코드가 많이 필요한 건 아닙니다. 유연성을 확보할 수 있습니다.
 
+### 클래스 어댑터 vs 객체 어댑터
+
+- 클래스 어댑터는 `다중 상속이 불가능`합니다.
+- 클래스의 상속 기능을 사용할 경우 `조합 폭발이 일어나서 제어 불가능`합니다.
+  - 상속의 남용으로 하나의 기능을 추가하기 위해 필요 이상으로 많은 수의 클래스를 추가해야 하는 경우를 가르켜 `클래스 폭발(class explosion)` 문제 또는 `조합 폭발(combinational explosion)` 문제라고 부릅니다.
+  - 런타임에 타입선택(세트)
+  - 추상메소드로 의존성 역전
+- 객체 어댑터의 경우 `의존성 폭발이 일어나지만 제어 가능`합니다.
+  - 런타임에 합성(조립)
+  - 추가 인터페이스로 의존성 분산
+
 ## 유사 패턴과의 비교
 
 - 어댑터 : 한 인터페이스를 다른 인터페이스로 변환
@@ -149,6 +160,7 @@ class MKV implements MediaPackage {
 
 ```ts
 // 객체 어댑터
+// MP3를 상속하여 사용하는 것도 가능
 class FormatAdapter implements MediaPlayer {
   media: MediaPackage;
 
@@ -163,7 +175,14 @@ class FormatAdapter implements MediaPlayer {
 }
 
 // 클래스 어댑터
-class FormatAdapter extends MP3 implements MediaPlayer {
+// MP3를 상속하여 사용하는 것은 불가능
+class FormatAdapterMP4 extends MP4 implements MediaPlayer {
+  play(fileName) {
+    console.log('Using Adapter');
+    this.playFile(fileName);
+  }
+}
+class FormatAdapterMKV extends MKV implements MediaPlayer {
   play(fileName) {
     console.log('Using Adapter');
     this.playFile(fileName);
@@ -176,12 +195,21 @@ class FormatAdapter extends MP3 implements MediaPlayer {
 - 써드파티 라이브러리나 외부시스템을 사용하려는 쪽이다.
 
 ```ts
+// 객체 어댑터
 const playerMP3 = new MP3();
 playerMP3.play('file.mp3');
 const playerMP4 = new FormatAdapter(new MP4());
 playerMP4.play('file.mp4');
 const playerMKV = new FormatAdapter(new MKV());
 playerMKV.play('file.mkv');
+
+// 클래스 어댑터
+const playerMP3 = new MP3();
+playerMP3.play('file.mp3');
+const playerMP4 = new FormatAdapterMP4();
+playerMP4.play('file.mp4');
+const playerMKV = new FormatAdapterMKV();
+playerMP4.play('file.mkv');
 ```
 
 ## 어댑터 패턴 정리
