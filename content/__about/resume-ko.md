@@ -28,7 +28,7 @@ lang: 'ko'
 |  **GitHub**  | https://github.com/Yuni-Q                                |
 |   **Blog**   | https://yuni-q.github.io                                 |
 |  **E-mail**  | <a href='mailto:lyh6425@gmail.com'>lyh6425@gmail.com</a> |
-| **LinkedIn** | https://www.linkedin.com/in/yuni-q                       |
+| **LinkedIn** | https://www.linkedin.com/in/ yuni-q                      |
 
 <div class="l-Header">
   <h2 class="Title">
@@ -66,7 +66,6 @@ lang: 'ko'
 - 브랜치 전략 구상(master/deploy/feature)
 - 젠킨스 구성(master의 최신 커밋이 base가 아니라면 배포 불가능)
 - 허스키 도입(rebase시 현재 브랜치 최신화 후 진행)
-<!--
 - 내정보 페이지 및 하위 페이지 작업
 - webpack 및 babel 설정
 - Dialog 추가
@@ -78,7 +77,6 @@ lang: 'ko'
   - color 글로벌 클래스 추가
   - typo 글로벌 클래스 추가
 - 메인홈 페이지 작업
-  -->
 
 #### super2
 
@@ -250,7 +248,9 @@ _[2020.01.11]_
 
 ### Activity
 
-<!-- ### Lecture -->
+### Lecture
+
+-
 
 #### [MASH-UP](https://www.facebook.com/mashupgroup/)
 
