@@ -59,14 +59,15 @@ lang: 'ko'
 
 #### post 배사광
 
-- `Typescript` `React` `Mobx` `SWR`
+- `Typescript` `React` `Mobx` `SWR`, `react-hooks-form`
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선 프로젝트 리뉴얼
 - 20.11 ~
 - 프로젝트 초기 React Application Architecture 설계
 - 브랜치 전략 구상(master/deploy/feature)
 - 젠킨스 구성(master의 최신 커밋이 base가 아니라면 배포 불가능)
 - 허스키 도입(rebase시 현재 브랜치 최신화 후 진행)
-<!-- - 내정보 페이지 및 하위 페이지 작업
+<!--
+- 내정보 페이지 및 하위 페이지 작업
 - webpack 및 babel 설정
 - Dialog 추가
 - FormCard 추가
@@ -76,7 +77,8 @@ lang: 'ko'
   - color 값 정의
   - color 글로벌 클래스 추가
   - typo 글로벌 클래스 추가
-- 메인홈 페이지 작업 -->
+- 메인홈 페이지 작업
+  -->
 
 #### super2
 
