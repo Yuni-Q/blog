@@ -9,11 +9,11 @@ draft: false
 
 ```css
 div {
-	overflow: hidden;
-	display: block;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	width: 100px; /* width 값 반드시 필요 */
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100px; /* width 값 반드시 필요 */
 }
 ```
 
@@ -21,13 +21,13 @@ div {
 
 ```css
 div {
-	overflow: hidden;
-	display: -webkit-box;
-	-webkit-line-clamp: 3; /* 원하는 라인 수 */
-	width: 100px; /* width 값 반드시 필요 */
-	height: 66px; /* 높이는 원하는 줄 수와 width에 따라서 맞게 조정해야 합니다. */
-	-webkit-box-orient: vertical;
-	text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 원하는 라인 수 */
+  width: 100px; /* width 값 반드시 필요 */
+  height: 66px; /* 높이는 원하는 줄 수와 width에 따라서 맞게 조정해야 합니다. */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 ```
 
@@ -37,16 +37,22 @@ div {
 ## 한줄에 여러 요소가 있는 경우 나머지 영역을 모두 채우고 ellipsis
 
 ```css
-div {
-	white-space: normal;
-	line-height: 1.5;
-	height: 1.5em;
-	text-align: left;
-	word-wrap: break-word;
-	display: -webkit-box;
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
+.text-ellipsis {
+  white-space: normal;
+  line-height: 1.5;
+  height: 1.5em;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* IE 대응을 위해 추가 */
+_:-ms-fullscreen,
+:root .text-ellipsis {
+  white-space: nowrap;
 }
 ```
 
@@ -56,11 +62,11 @@ div {
 
 ```css
 .text-ellipsis {
-	flex: 1;
-	min-width: 0;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 ```
 
