@@ -1,48 +1,52 @@
-
 ## Flexbox
 
 ```css
-.box{
-  width: 300px;
-  height: 300px;
-  background-color: blue;
-  display: inline-block;
+.box {
+ width: 300px;
+ height: 300px;
+ background-color: blue;
+ display: inline-block;
 }
 ```
+
 > 마전도 있고 간격 조절이 힘듭니다<br>
 
 ```css
 .father {
-  display: flex;
-  /* main axis */
-  justify-content: space-between; 
-  /* cross axis */
-  align-items: center;
-  /* npwrap의 경우 내가 준 가로 길이를 무시 wrap는 가로 길이를 지켜줍니다. */
-  /* 공간이 부족할 때의 설정 */
-  flex-wrap: wrap;
-  /* 축 방향 바꾸기 */
-  flex-direction: row-reverse;
-  
-  height: 100vh;
+ display: flex;
+ /* main axis */
+ justify-content: space-between;
+ /* cross axis */
+ align-items: center;
+ /* npwrap의 경우 내가 준 가로 길이를 무시 wrap는 가로 길이를 지켜줍니다. */
+ /* 공간이 부족할 때의 설정 */
+ flex-wrap: wrap;
+ /* 축 방향 바꾸기 */
+ flex-direction: row-reverse;
+
+ height: 100vh;
 }
 ```
+
 > flex는 알아서 계산해 준다.<br>
 > flex-direction(row, column)을 통해 축을 바꿀 수 있습니다.
 
 ```css
 .box:first-child {
-  align-self: flex-end;
+ align-self: flex-end;
 }
 ```
+
 > flex의 자식이 자신의 위치를 직접 입력 합니다.
 
 ### 참조 (이전자료)
+
 CSS 모던 레이아웃
 플렉스박스(Flexbox)
+
 ```html
 <style>
-.flex-container{
+ .flex-container {
   /* 부모를 flex로 만들면 자식(자손x)이 flex-item이 된다. */
   display: flex;
   /* row가 기본 값 */
@@ -66,6 +70,40 @@ CSS 모던 레이아웃
   /* flex-flow: row nowrap */
   /* 자식들을 order로 컨트롤 가능 */
   /* align-self 아이템 자기 자신만 컨트롤 */
-}
-</style> 
+ }
+</style>
+```
+
+## flex: 1
+
+각 축약형은 다음과 같이 쓰인다.
+
+```css
+# 아무것도 안쓰면;
+flex: 0 1 auto;
+
+# flex: 1;
+flex: 1 1 0%;
+
+# flex: auto;
+flex: 1 1 auto;
+
+# flex: initial;
+flex: 0 1 auto
+```
+
+### 그런데, IE에서는 조금 다르다.
+
+```css
+# 아무것도 안쓰면;
+flex: 0 0 auto;
+
+# flex: 1;
+flex: 1 0 0px;
+
+# flex: auto;
+flex: 1 0 auto;
+
+# flex: initial;
+flex: 0 0 auto
 ```
