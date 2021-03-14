@@ -1,12 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const Ladder = () => {
+  const [loading, setLoading] = useState(0);
   const [memberList, setMemberList] = useState([]);
   const [teamMemberList, setTeamMemberList] = useState({});
   const [choiceMemberList, setChoiceMemberList] = useState([]);
   const [choiceTeamMemberList, setChoiceTeamMemberList] = useState({});
   const [result, setResult] = useState([]);
+  useEffect(() => {
+    let time;
+    if (loading > 0) {
+      time = setInterval(() => {
+        setLoading(loading - 1);
+      }, 1000);
+    }
+    return () => clearInterval(time);
+  }, [loading]);
   useEffect(() => {
     const get = async () => {
       const result = await axios.get(
@@ -40,6 +51,7 @@ const Ladder = () => {
   }, [memberList, choiceMemberList]);
   return (
     <div style={{ display: 'flex' }}>
+      {loading > 0 && <Spinner time={loading} />}
       <div style={{ margin: 16, textAlign: 'center' }}>
         <div
           onClick={() => {
@@ -192,6 +204,7 @@ const Ladder = () => {
           <button
             type="button"
             onClick={() => {
+              setLoading(3);
               const itemList = document.querySelectorAll('.item');
               let list = [...choiceMemberList];
               const result = [];
@@ -227,3 +240,188 @@ const Ladder = () => {
 };
 
 export default Ladder;
+
+const StyledDiv = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  background: fixed;
+`;
+
+const Div = styled.div`
+  background: transparent;
+  /*!
+ * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Licensed under MIT
+ */
+  .spinner {
+    margin: 0 auto;
+    background-color: transparent !important;
+  }
+  .la-ball-pulse,
+  .la-ball-pulse > div {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .la-ball-pulse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0;
+    color: #d7dbe6;
+  }
+  .la-ball-pulse.la-dark {
+    color: #333;
+  }
+  .la-ball-pulse > div {
+    display: inline-block;
+    float: none;
+    background-color: currentColor;
+    border: 0 solid currentColor;
+  }
+  .la-ball-pulse {
+    width: 54px;
+    height: 18px;
+  }
+  .la-ball-pulse > div:nth-child(1) {
+    -webkit-animation-delay: -200ms;
+    -moz-animation-delay: -200ms;
+    -o-animation-delay: -200ms;
+    animation-delay: -200ms;
+  }
+  .la-ball-pulse > div:nth-child(2) {
+    -webkit-animation-delay: -100ms;
+    -moz-animation-delay: -100ms;
+    -o-animation-delay: -100ms;
+    animation-delay: -100ms;
+  }
+  .la-ball-pulse > div:nth-child(3) {
+    -webkit-animation-delay: 0ms;
+    -moz-animation-delay: 0ms;
+    -o-animation-delay: 0ms;
+    animation-delay: 0ms;
+  }
+  .la-ball-pulse > div {
+    width: 8px;
+    height: 8px;
+    margin: 4px;
+    border-radius: 100%;
+    -webkit-animation: ball-pulse 1s ease infinite;
+    -moz-animation: ball-pulse 1s ease infinite;
+    -o-animation: ball-pulse 1s ease infinite;
+    animation: ball-pulse 1s ease infinite;
+  }
+  .la-ball-pulse.la-sm {
+    width: 26px;
+    height: 8px;
+  }
+  .la-ball-pulse.la-sm > div {
+    width: 4px;
+    height: 4px;
+    margin: 2px;
+  }
+  .la-ball-pulse.la-2x {
+    width: 108px;
+    height: 36px;
+  }
+  .la-ball-pulse.la-2x > div {
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+  }
+  .la-ball-pulse.la-3x {
+    width: 162px;
+    height: 54px;
+  }
+  .la-ball-pulse.la-3x > div {
+    width: 30px;
+    height: 30px;
+    margin: 12px;
+  }
+  /*
+  * Animation
+  */
+  @-webkit-keyframes ball-pulse {
+    0%,
+    60%,
+    100% {
+      opacity: 1;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+    30% {
+      opacity: 0.1;
+      -webkit-transform: scale(0.01);
+      transform: scale(0.01);
+    }
+  }
+  @-moz-keyframes ball-pulse {
+    0%,
+    60%,
+    100% {
+      opacity: 1;
+      -moz-transform: scale(1);
+      transform: scale(1);
+    }
+    30% {
+      opacity: 0.1;
+      -moz-transform: scale(0.01);
+      transform: scale(0.01);
+    }
+  }
+  @-o-keyframes ball-pulse {
+    0%,
+    60%,
+    100% {
+      opacity: 1;
+      -o-transform: scale(1);
+      transform: scale(1);
+    }
+    30% {
+      opacity: 0.1;
+      -o-transform: scale(0.01);
+      transform: scale(0.01);
+    }
+  }
+  @keyframes ball-pulse {
+    0%,
+    60%,
+    100% {
+      opacity: 1;
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+    }
+    30% {
+      opacity: 0.1;
+      -webkit-transform: scale(0.01);
+      -moz-transform: scale(0.01);
+      -o-transform: scale(0.01);
+      transform: scale(0.01);
+    }
+  }
+`;
+
+interface Props {
+  time?: number;
+}
+
+// eslint-disable-next-line react/prop-types
+const Spinner: React.FC<Props> = ({ time }) => {
+  return (
+    <StyledDiv>
+      <Div>{time}</Div>
+    </StyledDiv>
+  );
+};
