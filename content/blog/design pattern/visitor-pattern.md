@@ -228,21 +228,25 @@ class Computer implements ComputerPart {
 }
 
 interface ComputerPartVisitor {
-  visit: (target: Computer | Mouse | Keyboard | Monitor) => void;
+  visit: (target: ComputerPart) => void;
 }
 
 class ComputerPartDisplayVisitor implements ComputerPartVisitor {
-  visit(target: Computer | Mouse | Keyboard | Monitor) {
+  visit(target: ComputerPart) {
     if (target instanceof Computer) {
+      // 로직
       console.log('Displaying Computer.');
     }
     if (target instanceof Mouse) {
+      // 로직
       console.log('Displaying Mouse.');
     }
     if (target instanceof Keyboard) {
+      // 로직
       console.log('Displaying Keyboard.');
     }
     if (target instanceof Monitor) {
+      // 로직
       console.log('Displaying Monitor.');
     }
   }
