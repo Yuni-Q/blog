@@ -3,7 +3,7 @@ title: visitor pattern
 date: 2021-03-13 11:03:33
 category: design pattern
 tags: []
-draft: true
+draft: false
 ---
 
 ## 알고리즘을 객체 구조에서 분리시키는 디자인 패턴
