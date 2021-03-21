@@ -59,17 +59,17 @@ const ImageLoader = class extends Github {
 <script src="MdLoader.js"></script>
 
 <script>
-  const img = new ImageLoader(...)
-  img.load(...)
+ const img = new ImageLoader(...)
+ img.load(...)
 
-  const md = new MdLoader(...);
-  md.load(...)
+ const md = new MdLoader(...);
+ md.load(...)
 </script>
 ```
 
 ### 소유 위임
 
-- 와부계약관계로 각각이 독립적인 문제를 해결하며 메시지를 주고 받는 것으로 문제를 해결함
+- 외부계약관계로 각각이 독립적인 문제를 해결하며 메시지를 주고 받는 것으로 문제를 해결함
 - GoF DP 방향성
 - 부가적인 형이 많이 생김
 - STRATEGY PATTERN
@@ -77,26 +77,26 @@ const ImageLoader = class extends Github {
 ```javascript
 // 정의시점 - 변하지 않는 부분
 const Github = class {
-  constructor(id, repo) {
-    this._base = `https://api.github.com/repos${id}/${repo}/contents/`;
-  }
-  load(path) {
-    const id = "callback" + Github._id++;
-    const f = (Github[id] = ({ data: { content } }) => {
-      delete Github[id];
-      document.head.removeChild(s);
-      // 위임부분
-      this._parser(content);
-    });
-    const s = document.createElement("script");
-    s.src = `${this._base + path}?callback=Guthub._${id}`;
-    document.head.appendChild(s);
-  }
-  // 위임객체(STARATEGY OBJECT)
-  // 실행하는 시점 - 변하는 부분
-  set parser(v) {
-    this._parser = v;
-  }
+ constructor(id, repo) {
+  this._base = `https://api.github.com/repos${id}/${repo}/contents/`;
+ }
+ load(path) {
+  const id = 'callback' + Github._id++;
+  const f = (Github[id] = ({ data: { content } }) => {
+   delete Github[id];
+   document.head.removeChild(s);
+   // 위임부분
+   this._parser(content);
+  });
+  const s = document.createElement('script');
+  s.src = `${this._base + path}?callback=Guthub._${id}`;
+  document.head.appendChild(s);
+ }
+ // 위임객체(STARATEGY OBJECT)
+ // 실행하는 시점 - 변하는 부분
+ set parser(v) {
+  this._parser = v;
+ }
 };
 Github._id = 0;
 ```
@@ -105,25 +105,25 @@ Github._id = 0;
 
 ```javascript
 const Github = class {
-  constructor(id, repo) {
-    this._base = `https://api.github.com/repos${id}/${repo}/contents/`;
-  }
-  load(path) {
-    const id = "callback" + Github._id++;
-    const f = (Github[id] = ({ data: { content } }) => {
-      delete Github[id];
-      document.head.removeChild(s);
-      // 커맨드 인보커
-      this._parser[0](content, ...this._parser[1]);
-    });
-    const s = document.createElement("script");
-    s.src = `${this._base + path}?callback=Guthub._${id}`;
-    document.head.appendChild(s);
-  }
-  set parser(f, ...arg) {
-    // 커맨드 객체화
-    this._parser = [f, arg];
-  }
+ constructor(id, repo) {
+  this._base = `https://api.github.com/repos${id}/${repo}/contents/`;
+ }
+ load(path) {
+  const id = 'callback' + Github._id++;
+  const f = (Github[id] = ({ data: { content } }) => {
+   delete Github[id];
+   document.head.removeChild(s);
+   // 커맨드 인보커
+   this._parser[0](content, ...this._parser[1]);
+  });
+  const s = document.createElement('script');
+  s.src = `${this._base + path}?callback=Guthub._${id}`;
+  document.head.appendChild(s);
+ }
+ set parser(f, ...arg) {
+  // 커맨드 객체화
+  this._parser = [f, arg];
+ }
 };
 Github._id = 0;
 ```
@@ -132,29 +132,29 @@ Github._id = 0;
 
 ```javascript
 const Loader = class {
-  constructor(id, repo) {
-    this._git = new Github(id, repo);
-    // 라우팅테이블
-    this._router = new Map();
-  }
-  add(ext, f, ...arg) {
-    ext.split(",").forEach(v => this._router.set(v, [f, ...arg]));
-  }
-  load(v) {
-    const ext = this._v.split(".").pop();
-    if (!this._router.has(ext)) return;
-    // 확장자 경우에 따라 자동분기
-    this._git.setParser(...this._router.get(ext));
-    this._git.load(v);
-  }
+ constructor(id, repo) {
+  this._git = new Github(id, repo);
+  // 라우팅테이블
+  this._router = new Map();
+ }
+ add(ext, f, ...arg) {
+  ext.split(',').forEach((v) => this._router.set(v, [f, ...arg]));
+ }
+ load(v) {
+  const ext = this._v.split('.').pop();
+  if (!this._router.has(ext)) return;
+  // 확장자 경우에 따라 자동분기
+  this._git.setParser(...this._router.get(ext));
+  this._git.load(v);
+ }
 };
 
-const loader = new Loader("hikaMaeng", "codespitz79");
-loader.add("jpg,png,gif", img, el("#a"));
-loader.add("md", md, el("#b"));
+const loader = new Loader('hikaMaeng', 'codespitz79');
+loader.add('jpg,png,gif', img, el('#a'));
+loader.add('md', md, el('#b'));
 
-loader.load("xx.jpg");
-loader.load("xx.md");
+loader.load('xx.jpg');
+loader.load('xx.md');
 ```
 
 ## 상태에 대한 분기는 사라지지 않는다.
@@ -189,4 +189,3 @@ loader.load("xx.md");
 ## 알고리즘 전개에 따른 반복(Recursion)
 
 - COMPOSITE, VISITOR PATTERN
- 
