@@ -3,7 +3,6 @@ title: strategy pattern
 date: 2021-03-21 09:03:48
 category: design pattern
 tags: [design pattern]
-tags: []
 draft: true
 ---
 
