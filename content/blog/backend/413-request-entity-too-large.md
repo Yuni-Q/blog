@@ -20,8 +20,7 @@ vi /etc/nginx/nginx.conf
 
 ```vi
 http {
-  # Set client upload size - 100Mbyte
-  client_max_body_size 100M;
+  client_max_body_size 0;
 }
 ```
 
