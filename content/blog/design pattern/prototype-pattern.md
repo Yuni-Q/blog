@@ -32,17 +32,24 @@ draft: true
 ## 우선 Prototype 패턴을 사용하는 이유에 대해 알아보겠습니다.
 
 1. 종류가 너무 많아서 클래스로 정리할 수 없는 경우
+
+- 제품 클래스 계통과 병렬적으로 만드는 팩토리 클래스를 피하고 싶을 때 사용합니다.
+
 2. 클래스로부터 인스턴스 생성이 어려운 경우
 3. Framework와 생성하는 인스턴스를 분리하고 싶은 경우
 
+- 원형 패턴은 제품의 생성, 복합, 표현 방법에 독립적인 제품을 만들고자 할 때 사용합니다.
+
 ## 이제 프로토타입에 대해 상세히 알아보겠습니다.
 
+- 프로토 타입 상속을 기반으로하고 다른 객체의 프로토 타입으로 작동하는 객체를 생성하는 것으로 생각 할 수 있습니다.
 - 생성할 객체들의 타입이 프로토타입인 인스턴스로부터 결정되도록 하며, 인스턴스는 새 객체를 만들기 위해 자신을 복제(clone)하게 됩니다.
 - 일반화 관계로 표현을 할 때 파생클래스의 개수가 과도히 많아지고 각 클래스의 메서드가 수행하는 알고리즘에서 차이가 없고 생성 시에 개체의 속성에 차이만 있다면 원형 패턴을 사용하는 것이 효과적입니다.
 - 프로토타입 패턴은 새로운 객체는 일반적인 방법(예를 들어, new를 사용해서라든지)으로 객체를 생성(create)하는 고유의 비용이 주어진 응용 프로그램 상황에 있어서 불가피하게 매우 클 때, 이 비용을 감내하지 않을 수 있게 해줍니다.
 - 패턴을 구현하려면, 우선 `clone() 메소드를 선언하는 추상 베이스 클래스`를 하나 만듭니다. 다형적 생성자(polymorphic constructor) 기능이 필요한 클래스가 있다면, 그것을 앞에서 만든 클래스를 상속받게 한 후, clone() 메소드 내의 코드를 구현합니다.
 - 프로토타입 패턴은, 추상 팩토리 패턴과는 반대로, 클라이언트 응용 프로그램 코드 내에서 객체 창조자(creator)를 `서브클래스(subclass)하는 것을 피할 수 있게 해줍니다`.
   - 프로토타입은 서브클래싱을 필요로 하지 않습니다. 하지만 `초기화` 동작을 필요로 합니다. 팩토리 메서드 패턴은 서브클래싱을 필요로 하나, 초기화 동작은 필요로 하지 않습니다.
+  - 클래스의 인스턴스들이 서로 다른 상태 조합 중에 어느 하나일 때 원형 패턴을 사용합니다. 이들을 미리 원현으로 초기화해 두고, 나중에 복제해서 사용하는 것이 매번 필요한 상태 조합의 값들을 수동적으로 초기화하는 것보다 더 편리할 수도 있습니다.
 - 팩토리 메서드를 보면 Creator 클래스의 계통이 처리할 제품 관련 클래스의 계통과 병렬로 복합되는 것을 알 수 있습니다. 원형 패턴에서는 팩토리 메서드에 새로원 객체를 만들어 달라고 요청하는 것이 아니라 원형을 복제하는 것으로, Creator 클래스에 따른 새로운 상속 계층이 필요 없습니다.
 - 프로토타입 패턴과 추상 팩토리 패턴 중 어느 하나가 적용될 수 있는 경우가 있습니다. 추상 팩토리 패턴이 프로토타입들의 집합을 갖고있다가, 클론(clone)한 뒤 프로덕트(product) 객체를 반환할 수도 있습니다.
 - 원칙은 `런타임`에 또 다른 객체를 생성한다는 것이다. 런타임 시점에 가서 클로닝(cloning)을 하는 객체의 `실제 복사본`이 만들어지는 것입니다. 실제 복사본이라는 말은 새로 생성되는 객체가 클로닝(cloning) 당하는 객체의 애트리뷰트와 똑같은 애트리뷰트를 가진다는 것을 의미합니다. 반면에, `new`를 이용해 객체를 생성했다면, 새로이 생성된 객체의 애트리뷰트들은 초기값을 가집니다.
@@ -112,11 +119,16 @@ class Customer {
   }
 }
 
-const proto = new Customer('yuni', 'q', 'ready');
-const prototype = new CustomerPrototype(proto);
+const customer = new Customer('n/a', 'n/a', 'pending');
+const prototype = new CustomerPrototype(customer);
 
-const customer = prototype.clone();
-customer.say();
+const clonedCustomer = prototype.clone();
+clonedCustomer.first = 'yuni';
+clonedCustomer.last = 'q';
+clonedCustomer.status = 'ready';
+
+customer.say(); // name: n/a-n/a, status: pending
+clonedCustomer.say(); // name: yuni-q, status: ready
 ```
 
 ## 자바스크립트의 프로토타입 패턴
@@ -124,6 +136,32 @@ customer.say();
 - 프로토타입 패턴으로 객체를 생성하는 방법은, 자바스크립트의 가장 자연스러운 객체 생성 패턴입니다.
 - new를 사용하여 객체지향 패턴을 흉내낼 수는 있지만, `실제로 자바스크립트의 상속이나 오브젝트간의 연결은 프로토타입으로 구현됩니다`.
 - 자바스크립트 고유의 native한 방법으로 객체를 생성할 수 있다는 점과 이 패턴을 사용한 코드가 많이 있기 때문에 꼭 알고 있어야 합니다.
+
+### ECMAScript 5 이전으로 프로토타입 구현하기
+
+```js
+const vehiclePrototype = {
+  init: function (carModel) {
+    this.model = carModel;
+  },
+  getModel: function () {
+    console.log(`The model of this vehicle is... ${this.model}`);
+  },
+};
+
+const vehicle = (function () {
+  function F() {}
+
+  return function (proto) {
+    F.prototype = proto;
+    return new F();
+  };
+})();
+
+const car = vehicle(vehiclePrototype);
+car.init('Ford');
+car.getModel();
+```
 
 ### 프로토타입 패턴으로 객체 생성하기
 
