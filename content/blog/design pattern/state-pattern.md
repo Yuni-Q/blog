@@ -3,7 +3,7 @@ title: state pattern
 date: 2021-03-21 13:03:24
 category: design pattern
 tags: [design pattern]
-draft: true
+draft: false
 ---
 
 ## 행위 소프트웨어 디자인 패턴

@@ -3,7 +3,7 @@ title: strategy pattern
 date: 2021-03-21 09:03:48
 category: design pattern
 tags: [design pattern]
-draft: true
+draft: false
 ---
 
 ## 전략 패턴(strategy pattern) 또는 정책 패턴(policy pattern)에 대해 알아 보겠습니다.
