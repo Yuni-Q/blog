@@ -227,7 +227,8 @@ lang: 'ko'
 ### [MOTI](https://github.com/Yuni-Q/ahobsu-node-backend)
 
 - 매일 하루에 한 번 받을 질문에 답하면서 자신을 기록하면 단순히 기록에서 그치지 않고 당신이 기록한 일주일은 한 장의 꿈을 담은 카드로 완성해 주는 iOS 앱 입니다.
-- `Node` `Express` `Typescript` `Swagger` `JEST` `JWT` `Sequelize` `MySQL` `EC2` `S3`
+- V1 : `Node` `Express` `Typescript` `Swagger` `JEST` `JWT` `Sequelize` `MySQL` `EC2` `S3`
+- [V2](https://github.com/Yuni-Q/moti-backend) : `Nest` `TypeORM`
 - [시연 영상](https://www.youtube.com/watch?v=m91rLvwMmXo)
 - [앱 다운로드](https://apps.apple.com/kr/app/moti/id1496912171)
 - 2020년 4월 ~ 2021년 1월까지 서비스
