@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const Ladder = () => {
@@ -9,11 +9,18 @@ const Ladder = () => {
   const [choiceMemberList, setChoiceMemberList] = useState([]);
   const [choiceTeamMemberList, setChoiceTeamMemberList] = useState({});
   const [result, setResult] = useState([]);
+  const drumRef = useRef(null);
+  const goodRef = useRef(null);
   useEffect(() => {
     let time;
     if (loading > 0) {
       time = setInterval(() => {
-        setLoading(loading - 1);
+        setLoading((loading) => {
+          if (loading - 1 === 0) {
+            (goodRef.current as HTMLAudioElement).play();
+          }
+          return loading - 1;
+        });
       }, 1000);
     }
     return () => clearInterval(time);
@@ -51,6 +58,8 @@ const Ladder = () => {
   }, [memberList, choiceMemberList]);
   return (
     <div style={{ display: 'flex' }}>
+      <audio ref={drumRef} src="/drum.mp3" />
+      <audio ref={goodRef} src="/good.mp3" />
       {loading > 0 && <Spinner time={loading} />}
       <div style={{ margin: 16, textAlign: 'center' }}>
         <div
@@ -204,7 +213,8 @@ const Ladder = () => {
           <button
             type="button"
             onClick={() => {
-              setLoading(3);
+              setLoading(5);
+              (drumRef.current as HTMLAudioElement).play();
               const itemList = document.querySelectorAll('.item');
               let list = [...choiceMemberList];
               const result = [];
