@@ -1,5 +1,5 @@
 ---
-title: sum 함수 만들기
+title: 코드 작성시 설계(디자인)의사결정 언어를 의도(유지보수성이 높아지게 디자인하여)에 맞게 사용하기
 date: 2021-03-27 22:03:77
 category: javascript
 tags: []
@@ -298,6 +298,231 @@ const a = [1, 'abc', true, undefined, null, (_) => 3, Symbol()];
 const arrayStringify = (a) => {};
 JSON.stringify(a) === arrayStringify(a);
 ```
+
+### 기본 구성
+
+```js
+const stringCheck = [
+  [/[\r\n\1]/g, '\\n'],
+  [/"/g, '\\"'],
+  [/\t/g, '\\t'],
+];
+const el = {
+  number: (v) => v.toString(),
+  boolean: (v) => v.toString(),
+  string: (v) =>
+    `"${stringCheck.reduce((acc, curr) => acc.replace(curr[0], curr[1]), v)}"`,
+  stringify(v) {
+    return this[typeof v]?.(v) ?? 'null';
+  },
+};
+const recursive = (arr, acc, i) =>
+  i < arr.length
+    ? recursive(arr, acc + `,${el.stringify(arr[i])}`, i + 1)
+    : `[${acc.substr(1)}]`;
+
+const stringify = (arr) => {
+  if (!Array.isArray(arr)) throw 'invalid arr';
+  return arr.length === 0 ? '[]' : recursive(arr, '', 0);
+};
+
+stringify([1, 'a', 3]);
+```
+
+### 기계적인 번역
+
+```js
+const stringCheck = [
+  [/[\r\n\1]/g, '\\n'],
+  [/"/g, '\\"'],
+  [/\t/g, '\\t'],
+];
+const el = {
+  number: (v) => v.toString(),
+  boolean: (v) => v.toString(),
+  string: (v) =>
+    `"${stringCheck.reduce((acc, curr) => acc.replace(curr[0], curr[1]), v)}"`,
+  stringify(v) {
+    return this[typeof v]?.(v) ?? 'null';
+  },
+};
+
+const EMPTY = {};
+
+const stringify = (arr) => {
+  if (!Array.isArray(arr)) throw 'invalid arr';
+
+  let result = EMPTY;
+  if (arr.length === 0) result = '[]';
+  else {
+    let acc = '';
+    let i = 0;
+    while (i < arr.length) {
+      acc = acc + `,${el.stringify(arr[i])}`;
+      i = i + 1;
+    }
+    result = `[${acc.substr(1)}]`;
+  }
+  if (result === EMPTY) throw 'no processed';
+
+  return result;
+};
+
+stringify([1, 'a', 3]);
+```
+
+### 역할 분리
+
+```js
+const stringCheck = [
+  [/[\r\n\1]/g, '\\n'],
+  [/"/g, '\\"'],
+  [/\t/g, '\\t'],
+];
+const el = {
+  number: (v) => v.toString(),
+  boolean: (v) => v.toString(),
+  string: (v) =>
+    `"${stringCheck.reduce((acc, curr) => acc.replace(curr[0], curr[1]), v)}"`,
+  stringify(v) {
+    return this[typeof v]?.(v) ?? 'null';
+  },
+};
+
+const arrValidate = (arr) => {
+  if (!Array.isArray(arr)) throw 'invalid arr';
+};
+const EMPTY = {};
+
+const stringify = (arr) => {
+  arrValidate(arr);
+  let result = EMPTY;
+  if (arr.length === 0) result = '[]';
+  else {
+    let acc = '';
+    let i = 0;
+    while (i < arr.length) {
+      acc = acc + `,${el.stringify(arr[i])}`;
+      i = i + 1;
+    }
+    result = `[${acc.substr(1)}]`;
+  }
+  if (result === EMPTY) throw 'no processed';
+
+  return result;
+};
+
+stringify([1, 'a', 3]);
+```
+
+#### OCP
+
+- 수정에는 닫혀있고, 확장에는 열려 있습니다.
+- OCP의 기준은 모듈, 코드, 패키지 수준에 따라 다릅니다.
+- 코드 레벨에서 수정은 코드 수정이고 확장은 케이스(switch의 병렬조건) 확장입니다.
+  - switch문을 쓰지 않습니다. 혹은 오늘은 if else일줄 알았는데 내일이 오니 3개의 케이스였습니다.
+  - el.stringify를 switch를 사용했다면 코드를 수정해야만 case를 확장 할 수 있지만 `this.[typeof v]?.(v)`를 사용함으로써 대상 코드 수정을 하지 않고 확장 할 수 있습니다.
+  - 라우터와 라우팅 테이블을 만들어서 OCP를 지킬 수 있습니다.
+
+```js
+// 데이터와 라우터는 같이 있어야 합니다. OCP도 준수하게 됩니다.
+const stringCheck = {
+  table: [
+    [/[\r\n\1]/g, '\\n'],
+    [/"/g, '\\"'],
+    [/\t/g, '\\t'],
+  ],
+  convertRouter(v) {
+    return this.table.reduce((acc, curr) => acc.replace(curr[0], curr[1]), v);
+  },
+};
+
+// OCP를 준수하고 있습니다.
+const el = {
+  // 라우터보다 상대적으로 자주 바뀝니다.
+  table: {
+    number: (v) => v.toString(),
+    boolean: (v) => v.toString(),
+    string: (v) => `"${stringCheck.convertRouter(v)}"`,
+  },
+  // 테이블보다 상대적으로 덜 바뀝니다.
+  // 테이블이 확장되는 동안 라우터는 수정하지 않아도 됩니다.
+  // 라우터를 수정해야하면, OCP가 깨진다? 테이블까지 전면 검토해야 합니다.
+  // 라우터의 로직에 맞춰 라우터 테이블이 존재하므로 라우터를 수정하면 테이블을 반드시 다 검토해야 합니다. === 트랜젝션
+  stringifyRouter(v) {
+    return this.table[typeof v]?.(v) ?? 'null';
+    // switch문으로 작성할 경우 코드를 건드리면 모든 인수 테스트를 진행해야 합니다.
+    // switch (typeof v) {
+    //   case 'number':
+    //     v = v.toString();
+    //   case 'boolean':
+    //     v = v.toString();
+    //   case 'string':
+    //     v = `"${stringCheck.convert(v)}"`;
+    //   default:
+    //     v = 'null';
+    // }
+    // return v;
+  },
+};
+
+const arrValidate = (arr) => {
+  if (!Array.isArray(arr)) throw 'invalid arr';
+};
+
+const err = (v) => {
+  throw v;
+};
+
+// 라우팅 테이블을 만들어 OCP를 지키게 합니다.
+const resultProcess = {
+  table: {
+    true: (arr) => '[]',
+    false: (arr) => {
+      let acc = '';
+      let i = 0;
+      while (i < arr.length) {
+        acc = acc + `,${el.stringifyRouter(arr[i])}`;
+        i = i + 1;
+      }
+      return `[${acc.substr(1)}]`;
+    },
+  },
+  processRouter(arr) {
+    return this.table[arr.length === 0](arr) ?? err('no case');
+  },
+};
+
+const stringify = (arr) => {
+  arrValidate(arr);
+  return resultProcess.processRouter(arr);
+};
+
+stringify([1, 'a', 3]);
+```
+
+- OCP는 커맨드 패턴으로 작성됩니다. 커맨드 패턴은 제어`문을 커맨드 객체로 식`으로 만듭니다.
+- 이론상으로 모든 if는 제거가 가능합니다.
+  - 도메인 자체의 if는 제거되지 않습니다. 라우터에 존재합니다. 라우팅테이블은 OCP를 준수할 수 있지만 라우터는 OCP를 준수 할 수 없습니다.
+- 모든 케이스는 반드시 라우터와 라우팅 테이블로 대체할 수 있습니다. 라우터는 제어를 가지게 됩니다(invasion of Control, 제어역전). 다만 변화율이 라우팅테이블보다 낮습니다. 역할 모델은 변화율로 구분합니다.
+  - 제어센터(control center) = 라우터는 제어센터
+  - 제어를 중복해서 사용하지 않기 위해서 함수를 만들어 사용합니다.
+- 라우터는 반드시 mandatory여야 합니다.
+
+1. 정당한 if는 절대로 사라지지 않습니다.
+2. if의 단계별 구성요소를 분서갷서, 변화율에 따라 OCP를 준수할 수 있는 라우터와 라우팅테이블로 번역합니다. 유지보수가 변화율에 따라 OCP 준수해서 관리성이 좋아집니다.
+
+- 코드를 작성할때 설계 또는 디자인이란 유지보수, 기능 추가 등에 유리하도록(변화율이 동일한 코드끼리 묶어서 ocp를 이루도록) (함수, 클래스, 객체 등의 구조물을 이용해서 )`코드를 재배치` 하는 것입니다.
+
+### 귀납적 사고를 통해 이전 결과를 이용해서 어떻게 현재 값이 나왔는지 파악합니다.
+
+1. `어떤걸 반복`해서 만들어진 것인지 파악합니다.
+2. 각 반복은 `이전 결과`에 무엇을 해서 얻어진 것인지 파악합니다.
+3. 꼬리재귀를 이용하여 문제를 해결합니다.
+4. 기계적으로 루프로 변환합니다.
+
+- 현상을 보고 연역적으로 일반화된 원리를 찾습니다.
+- 연역적 사고 === 추론 === 패턴 발견 === 아이큐 === 프로그래밍 가능
 
 ---
 
