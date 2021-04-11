@@ -17,7 +17,9 @@ const Ladder = () => {
       time = setInterval(() => {
         setLoading((loading) => {
           if (loading - 1 === 0) {
-            (goodRef.current as HTMLAudioElement).play();
+            const goodSound = goodRef.current as HTMLAudioElement;
+            goodSound.volume = 0.005;
+            goodSound.play();
           }
           return loading - 1;
         });
@@ -214,7 +216,9 @@ const Ladder = () => {
             type="button"
             onClick={() => {
               setLoading(5);
-              (drumRef.current as HTMLAudioElement).play();
+              const drumSound = drumRef.current as HTMLAudioElement;
+              drumSound.volume = 0.005;
+              drumSound.play();
               const itemList = document.querySelectorAll('.item');
               let list = [...choiceMemberList];
               const result = [];
