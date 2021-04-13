@@ -12,6 +12,11 @@ draft: false
 - HTML 4.01이 1999년 12월 표준이 되었고, HTML 5가 2008년 1월 22일 처음 시작되어 2014년 10월 W3C 권고안이 되었습니다.
 - 2020년 기준, 최신 HTML 표준안은 WHATWG(Web Hypertext Application Technology Working Group)에서 [HTML Living Standard](https://html.spec.whatwg.org/) 라는 이름으로 관리하고 있으며, WHATWG에 참여 중인 기업체는 Apple, Google, Mozilla, Microsoft 등입니다.
 
+## 태그란?
+
+- HTML문서를 구성하고 있는 요소 입니다.
+- 태그는 이름과 속성이 있습니다.
+
 ## 0. html을 검사
 
 - [http://validator.w3.org/](http://validator.w3.org/)
@@ -176,6 +181,8 @@ ex) <source media="(min-width: 650px)" srcset="images/kitten-stretching.png">)
 
 - marquee element는 스크롤 되는 영역을 지정합니다.
 - duplicate 된 것으로 보입니다.
+
+## 22. a 태그 안에서는 a 태그를 사용할 수 없습니다.
 
 ## HTML5 API
 
