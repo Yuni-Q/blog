@@ -2,7 +2,7 @@
 title: prototype pattern
 date: 2021-04-04 16:04:10
 category: design pattern
-tags: []
+tags: [design pattern]
 draft: true
 ---
 

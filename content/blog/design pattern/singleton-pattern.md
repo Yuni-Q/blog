@@ -1,0 +1,139 @@
+---
+title: singleton pattern
+date: 2021-04-14 21:04:89
+category: design pattern
+tags: [design pattern]
+draft: true
+---
+
+## 생성 패턴
+
+- 디자인 패턴 분류인 생성, 구조, 행위 중 객체 생성에 관련 된 `생성 패턴`으로 간주됩니다.
+- 생성 패턴은 객체의 생성과 조합을 캡슐화해 특정 객체가 생성되거나 변경되어도 프로그램 구조에 영향을 크게 받지 않도록 유연성을 제공합니다.
+
+## 단 `하나`의 인스턴스를 생성해 사용하는 디자인 패턴
+
+- 애플리케이션이 시작될 때 어떤 클래스가 `최초 한번만` 메모리를 할당하고(static) 그 메모리에 인스턴스를 만들어 사용하는 디자인패턴입니다.
+  - 전역 변수를 사용하지 않고 `객체를 하나만 생성` 하도록 하며, 생성된 객체를 `어디에서든지 참조`할 수 있습니다.
+  - 생성자가 여러 차례 호출되더라도 실제로 생성되는 객체는 `하나`고 최초 생성 이후에 호출된 생성자는 `최초에 생성한 객체를 반환`합니다.
+
+## 장점
+
+- 고정된 메모리 영역을 얻으면서 한번의 new로 인스턴스를 사용하기 때문에 `메모리 낭비를 방지` 할 수 있습니다.
+  - 두 번째 이용시부터는 객체 로딩 시간이 현저하게 줄어 성능이 좋아지는 장점이 있습니다.
+- 싱글톤으로 만들어진 클래스의 인스턴스는 전역 인스턴스이기 때문에 다른 클래스의 인스턴스들이 `데이터를 공유`하기 쉽습니다.
+- 인스턴스가 절대적으로 한개만 존재하는 것을 보증하기에 개발 시 실수를 줄일 수 있습니다.
+- 싱글톤 객체를 사용하지 않는 경우 인스턴스를 생성하지 않을 수 있습니다.
+- 싱글톤을 상속시킬 수 있습니다.
+
+## 단점
+
+- 싱글톤의 역할이 커질수록 결합도가 높아져 객체 지향 설계 원칙에 어긋날 수 있다.
+  - 싱글톤 객체가 변경되면 이를 참조하고 있는 모든 값들이 변경됩니다.
+  - 수정이 어려워지고 테스트하기 어려워집니다. 싱글톤 인스턴스가 너무 많은 일을 하거나 많은 데이터를 공유시킬 경우 다른 클래스의 인스턴스들 간에 결합도가 높아져 `개방-폐쇄 원칙` 을 위배하게 됩니다.
+- 멀티쓰레드환경에서 동기화 처리를 하지 않으면 인스턴스가 두개가 생성되는 문제가 발생할 수 있습니다.
+  - 경합 조건 문제가 발생 할 수 있습니다. `경합 조건`이란 메모리와 같은 동일한 자원을 2개 이상의 스레드가 이용하려고 경합하는 현상입니다.
+  - 다중 스레드 애플리케이션에서 발생하는 문제를 해결하는 방법은 정적 변수에 인스턴스를 만들어 바로 초기화하는 방법 (Eager Initialization)과 인스턴스를 만드는 메서드에 동기화하는 방법 (Thread-Safe Initialization)이 있습니다.
+- 전역변수보다 사용하기가 불편합니다.
+- 객체의 파괴 시점을 컨트롤하기 어려울 수 있습니다.
+
+## 활용처
+
+- 인스턴스가 오직 1개만 생성되야 하는 경우 사용합니다.
+- DBCP(DataBase Connection Pool)처럼 공통된 객체를 여러개 생성해서 사용해야하는 상황에서 많이 사용합니다.
+  - 쓰레드풀, 캐시, 대화상자, 사용자 설정, 레지스트리 설정, 로그 기록 객체 등
+- 안드로이드 앱 같은 경우 각 액티비티나 클래스별로 주요 클래스들을 일일이 전달하기가 번거롭기 때문에 싱글톤 클래스를 만들어 어디서나 접근하도록 설계하는 것이 편합니다.
+- 인스턴스가 절대적으로 한개만 존재하는 것을 보증하고 싶을 경우 사용합니다.
+- 레지스트리 같은 설정 파일의 경우 객체가 여러개 생성되면 설정 값이 변경될 위험이 생길 수 있기 때문에 사용하면 좋습니다.
+
+## 정적 메서드로만 이루어진 정적 클래스를 사용하면 싱글턴과 동일한 효과를 얻을 수 있습니다.
+
+- 정적 클래스를 이용하면 객체를 전혀 생성하지 않고 메서드를 사용합니다.
+- 정적 메서드를 사용하므로 일반적으로 실행할 때 바인딩되는(컴파일 타임에 바인딩되는) 인스턴스 메서드를 사용하는 것보다 성능 면에서 우수합니다.
+
+### 정적 클래스를 사용할 수 없는 경우
+
+- 인터페이스를 구현해야 하는 경우, 정적 메서드는 인터페이스에서 사용할 수 없습니다.
+- 인터페이스를 사용하는 주된 이유는 대체 구현이 필요한 경우입니다.
+  - Mock 객체를 사용해 단위 테스트를 수행하는 경우입니다.
+
+## 예제
+
+- 싱글턴 패턴의 공통적인 특징은 `private constructor`를 가진다는 것과, `static method`를 사용한다는 점입니다.
+  - private 생성자
+  - static 변수로 객체 생성
+  - 객체의 getter 구현
+
+```ts
+class Printer {
+  // 외부에 제공할 자기 자신의 인스턴스
+  private static printer: Printer = null;
+  private constructor() {
+    console.log('Printer constructor');
+  }
+  // 자기 자신의 인스턴스를 외부에 제공
+  public static getPrinter(): Printer {
+    if (this.printer == null) {
+      // Printer 인스턴스 생성
+      this.printer = new Printer();
+    }
+    return this.printer;
+  }
+  public print(str: string) {
+    console.log(str);
+  }
+}
+
+class User {
+  private name: string;
+  public constructor(name: string) {
+    this.name = name;
+  }
+  public print() {
+    const printer = Printer.getPrinter();
+    printer.print(this.name + ' print using ');
+  }
+}
+const USER_NUM = 5;
+const user = [];
+for (let i = 0; i < USER_NUM; i++) {
+  // User 인스턴스 생성
+  user[i] = new User((i + 1).toString());
+  user[i].print();
+}
+```
+
+### Eager Initialization(이른 초기화, Thread-safe)
+
+- 이른 초기화 방식은 클래스 로더에 의해 클래스가 최초로 로딩 될 때 객체가 생성되기때문에 Thread-safe 합니다.
+
+```ts
+class Printer {
+  // static 변수에 외부에 제공할 자기 자신의 인스턴스를 만들어 초기화
+  private static printer: Printer = new Printer();
+  private constructor() {
+    console.log('constructor');
+  }
+  // 자기 자신의 인스턴스를 외부에 제공
+  public static getPrinter(): Printer {
+    return this.printer;
+  }
+  public print(str: string) {
+    console.log(str);
+  }
+}
+```
+
+## 언어별 구현
+
+- 파이썬의 모듈은 그 자체로 싱글턴입니다.
+- 자바는 생성자를 private으로 선언하여 상속이 불가능함을 지정하기도 합니다.
+
+---
+
+## 참고
+
+- [\[Design Pattern\] 싱글턴 패턴이란](https://gmlwjd9405.github.io/2018/07/06/singleton-pattern.html)
+- [기본기를 쌓는 정아마추어 코딩블로그](https://jeong-pro.tistory.com/86)
+- [싱글턴 패턴](https://ko.wikipedia.org/wiki/%EC%8B%B1%EA%B8%80%ED%84%B4_%ED%8C%A8%ED%84%B4)
+- [\[Design Pattern\] 싱글톤 패턴(Singleton Pattern)에 대하여](https://coding-factory.tistory.com/709)
