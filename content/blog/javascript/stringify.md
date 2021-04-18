@@ -524,6 +524,318 @@ stringify([1, 'a', 3]);
 - 현상을 보고 연역적으로 일반화된 원리를 찾습니다.
 - 연역적 사고 === 추론 === 패턴 발견 === 아이큐 === 프로그래밍 가능
 
+## day4
+
+### 1차안
+
+- 일반화는 모든 경우의 수를 처리하는 알고리즘입니다.
+
+```js
+const recursive = (arr, acc, i, stack) => {
+  if (Array.isArray(arr[i])) {
+    stack.push([arr, i]);
+    return recursive(arr[i], acc + '[', 0, stack);
+  } else {
+    if (i < arr.length) {
+      return recursive(arr, acc + arr[i] + ',', i + 1, stack);
+    } else {
+      if (stack.length) {
+        const [prevArr, prevIndex] = stack.pop();
+        return recursive(prevArr, acc.substr(-1)) + '],', prevIndex + 1, stack;
+      } else {
+        return acc.substr(-1) + ']';
+      }
+    }
+  }
+};
+const stringify = (arr) => recursive(arr, '[', 0, []);
+```
+
+### 2안
+
+```js
+const recursive = (arr, acc, i, stack) => {
+  // 원소판정보다 인덱스 판정을 먼저 해야합니다.
+  if (i < arr.length) {
+    // 원소 처리를 시작합니다.
+    const currEl = arr[i];
+    if (Array.isArray(currEl)) {
+      // 응집력을 높입니다.
+      stack.push([arr, i + 1]);
+      return recursive(currEl, acc + '[', 0, stack);
+    } else {
+      return recursive(arr, acc + toString(arr[i]) + ',', i + 1, stack);
+    }
+  } else {
+    // 그만합니다.
+    const prev = stack.pop();
+    if (prev) {
+      const [prevArr, prevIndex] = prev;
+      // stack에 push 할때 index를 더해 주었기 때문에 이 부분에서 더할 필요가 없습니다.
+      return recursive(prevArr, acc.substr(-1)) + '],', prevIndex, stack;
+    } else {
+      return acc.substr(-1) + ']';
+    }
+  }
+};
+const stringify = (arr) => recursive(arr, '[', 0, []);
+```
+
+### 완성된 코드
+
+```js
+// 유지 보수를 위한 분리
+const arrToString = (acc) => {
+  let accStr = '';
+  // 원소를 결합하는 로직이 한번만 나옵니다.
+  for (const v of acc) accStr += ',' + v;
+  // 문자열을 결합하는 로직이 한번만 나옵니다.
+  return '[' + accStr.substr(1) + ']';
+};
+const elementToString = (v) => '' + v;
+const recursive = (arr, acc, i, stack) => {
+  if (i < arr.length) {
+    // 각 원소를 문자열로 환원하여 다른 배열에 담아둡니다.
+    const currEl = arr[i];
+    // 원소가 배열인 경우는 스택을 이용해서 일반화된 재귀가 모두 해결하게(스택머신을 이용해) 그 경우를 다 끼워넣습니다.
+    if (Array.isArray(currEl)) {
+      stack.push([arr, acc, i + 1]);
+      return recursive(currEl, [], 0, stack);
+    } else {
+      // 개별 원소를 문자열 처리하는 곳
+      acc.push(elementToString(arr[i]));
+      return recursive(arr, acc, i + 1, stack);
+    }
+  } else {
+    // 원소별 문자열로 환원된 배열을 이용해서 통합 문자열을 만듭니다.
+    let accStr = arrToString(acc);
+    const prev = stack.pop();
+    if (prev) {
+      const [prevArr, prevAcc, prevIndex] = prev;
+      prevAcc.push(accStr);
+      return recursive(prevArr, prevAcc, prevIndex, stack);
+    } else {
+      return accStr;
+    }
+  }
+};
+const stringify = (arr) => recursive(arr, [], 0, []);
+stringify([1, 2, [3, 4], 5, [6, [7, [8]]]]);
+```
+
+1. 변수의 라이프사이클은 코드의 형태와 일치하는 것은 아닙니다.
+2. 설계에 일치합니다.
+3. 원하는 의도에 맞게 변수를 설정합니다.
+
+### 추가적 if 제거
+
+```js
+const arrToString = (acc) => {
+  let accStr = '';
+  for (const v of acc) accStr += ',' + v;
+  return '[' + accStr.substr(1) + ']';
+};
+const table = {
+  // 전략패턴
+  array: (v, arr, acc, i, stack) => {
+    // 전략객체1
+    stack.push([arr, acc, i + 1]);
+    return [arr[i], [], 0];
+  },
+  number: (v, arr, acc, i, stack) => {
+    // 전략객체2
+    acc.push('' + v);
+    return [arr, acc, i + 1];
+  },
+};
+const elementToString = (v, arr, acc, i, stack) =>
+  table[typeof v](v, arr, acc, i, stack);
+const recursive = (arr, acc, i, stack) => {
+  if (i < arr.length) {
+    const currEl = arr[i];
+    const [resultArr, resultAcc, resultIndex] = elementToString(
+      currEl,
+      arr,
+      acc,
+      i,
+      stack,
+    );
+    return recursive(resultArr, resultAcc, resultIndex, stack);
+  } else {
+    let accStr = arrToString(acc);
+    const prev = stack.pop();
+    if (prev) {
+      const [prevArr, prevAcc, prevIndex] = prev;
+      prevAcc.push(accStr);
+      return recursive(prevArr, prevAcc, prevIndex, stack);
+    } else {
+      return accStr;
+    }
+  }
+};
+const stringify = (arr) => recursive(arr, [], 0, []);
+stringify([1, 2, [3, 4], 5, [6, [7, [8]]]]);
+```
+
+- if를 제거하는 방법
+  - 선행해서 모든 전략객체가 같은 인터페이스(인자의 모양관 반환값의 모양)를 갖도록 조정합니다.
+  - 원래 분기해야할 경우의 수만큼 전략 객체를 만들고 기준 상태를 판정하여 적합한 전략객체를 매핑(라우터)합니다.
+- if를 제거하는 이유
+  - OCP를 준수하기 위해
+  - IOC : 제어를 역전하기 위해서
+  - 복잡성 정복 : 격리를 통해 한번에 다룰 복잡성을 줄입니다. 결합도가 낮은 독립적인 모듈로 만들어서 정복합니다.
+- 문을 식(함수값, 전략객체, 커맨드객체)으로 변경합니다. 원래 제어문이었던 것을 함수라는 그르셍 담아 값으로 변경한 뒤 원하는 함수값을 필요시마다 선택해서 사용합니다. 장점은 문은 코드 작성시 확정되므로 변경하려면 코드를 변경하고 확인해야하나, 함수화된 값은 코드 실행시 원하는 함수를 선택할 수 있으므로 필요한 코드를 대입할때 사용하는 측의 코드는 변경할 필요가 없습니다.(OCP 원리)
+- 함수의 본질은 문을 담아 식으로 사용할 수 있는 그릇입니다.
+- 문을 식으로 만들면 1. 반복적으로 그 제어문을 사용할 수 있고 2. 일반화만 시키면 인자에 따라 여러 문제를 하나의 로직으로 해결할 수 있고 3. 필요할때까지 실행을 안 시킬 수 있고 4. 여러개를 만들어 필요시마다 다른 제어문을 사용할 수 있습니다.
+
+### stack 제거
+
+```js
+const arrToString = (acc) => {
+  let accStr = '';
+  for (const v of acc) accStr += ',' + v;
+  return '[' + accStr.substr(1) + ']';
+};
+
+const elementToString = (v) => '' + v;
+const recursive = (arr, acc, i, prev) => {
+  if (i < arr.length) {
+    const currEl = arr[i];
+    if (Array.isArray(currEl)) {
+      return recursive(currEl, [], 0, [arr, acc, i + 1, prev]);
+    } else {
+      // 개별 원소를 문자열 처리하는 곳
+      acc.push(elementToString(arr[i]));
+      return recursive(arr, acc, i + 1, prev);
+    }
+  } else {
+    let accStr = arrToString(acc);
+    if (prev) {
+      const [prevArr, prevAcc, prevIndex, prevPrev] = prev;
+      prevAcc.push(accStr);
+      return recursive(prevArr, prevAcc, prevIndex, prevPrev);
+    } else {
+      return accStr;
+    }
+  }
+};
+const stringify = (arr) => recursive(arr, [], 0, null);
+stringify([1, 2, [3, 4], 5, [6, [7, [8]]]]);
+```
+
+### acc 배열제거
+
+```js
+const arrToString = (finalNode) => {
+  let accStr = '';
+  let curr = finalNode;
+  const arr = [];
+  do {
+    arr.unshift(curr.value);
+  } while ((curr = curr.prev));
+  for (const v of arr) accStr += ',' + v;
+  return '[' + accStr.substr(1) + ']';
+};
+
+const elementToString = (v) => '' + v;
+const recursive = (arr, acc, i, prev) => {
+  if (i < arr.length) {
+    const currEl = arr[i];
+    if (Array.isArray(currEl)) {
+      return recursive(currEl, null, 0, [arr, acc, i + 1, prev]);
+    } else {
+      // 개별 원소를 문자열 처리하는 곳
+      return recursive(
+        arr,
+        { prev: acc, value: elementToString(arr[i]) },
+        i + 1,
+        prev,
+      );
+    }
+  } else {
+    let accStr = arrToString(acc);
+    if (prev) {
+      const [prevArr, prevAcc, prevIndex, prevPrev] = prev;
+      return recursive(
+        prevArr,
+        { prev: prevAcc, value: accStr },
+        prevIndex,
+        prevPrev,
+      );
+    } else {
+      return accStr;
+    }
+  }
+};
+const stringify = (arr) => recursive(arr, null, 0, null);
+stringify([1, 2, [3, 4], 5, [6, [7, [8]]]]);
+```
+
+### while로 바꾸기
+
+```js
+const arrToString = (finalNode) => {
+  let accStr = '';
+  let curr = finalNode;
+  const arr = [];
+  do {
+    arr.unshift(curr.value);
+  } while ((curr = curr.prev));
+  for (const v of arr) accStr += ',' + v;
+  return '[' + accStr.substr(1) + ']';
+};
+
+const elementToString = (v) => '' + v;
+const whileLoop = (array) => {
+  let arr = array;
+  let acc = null;
+  let i = 0;
+  let prev = null;
+  while (true) {
+    if (i < arr.length) {
+      const currEl = arr[i];
+      if (Array.isArray(currEl)) {
+        prev = [arr, acc, i + 1, prev];
+        arr = arr[i];
+        acc = null;
+        i = 0;
+      } else {
+        arr = arr;
+        prev = prev;
+        acc = { prev: acc, value: elementToString(arr[i]) };
+        i = i + 1;
+      }
+    } else {
+      let accStr = arrToString(acc);
+      if (prev) {
+        const [prevArr, prevAcc, prevIndex, prevPrev] = prev;
+        arr = prevArr;
+        prev = prevPrev;
+        acc = { prev: prevAcc, value: accStr };
+        i = prevIndex;
+      } else {
+        return accStr;
+      }
+    }
+  }
+};
+whileLoop([1, 2, [3, 4], 5, [6, [7, [8]]]]);
+```
+
+- 컬렉션의 책임은 단일 값보다 큽니다.
+- 반드시 필요한 경우가 아니면 컬렉션을 사용하지 않습니다.
+
+```js
+// 1.
+parent.children = [child, child];
+
+// 2.
+child1.parent = p1;
+child2.parent = p1;
+```
+
+- 2번이 더 좋은 구조입니다. 1번이 책임이 더 무겁기 때문입니다.
+
 ---
 
 ## 참고
