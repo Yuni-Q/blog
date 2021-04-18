@@ -3,7 +3,7 @@ title: singleton pattern
 date: 2021-04-14 21:04:89
 category: design pattern
 tags: [design pattern]
-draft: true
+draft: false
 ---
 
 ## 생성 패턴
