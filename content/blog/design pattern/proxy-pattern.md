@@ -15,7 +15,7 @@ draft: true
 ## 실제 기능을 수행하는 객체(Real Object) 대신 가상의 객체(Proxy Object)를 사용해 로직의 흐름을 제어하는 디자인 패턴입니다.
 
 - Proxy는 대리자, 대변인 이라는 뜻입니다. 대리자, 대변인은 다른 누군가를 대신해서 그 역할을 수행하는 존재입니다.
-- 프록시 패턴도 `어떤 일을 대신 시키는 것`입니다.
+- 어떤 다른 객체로 접근하는 것을 통제하기 위해서 그 객체의 대리자(surrogate) 또는 자리채움자(placeholder)를 제공하는 패턴입니다. `어떤 일을 대신 시키는 것`입니다.
 - 클라이언트 입장에선 실제 실행시킬 클래스 객체의 메서드를 호출하고 반환값을 받는지, 대리자 객체의 메서드를 호출하고 반환값을 받는지 전혀 모르게 처리하는 것입니다.
 - 일반적으로 프록시는 `다른 무언가와 이어지는 인터페이스의 역할`을 하는 클래스입니다.
   - 프록시는 어떠한 것(이를테면 네트워크 연결, 메모리 안의 커다란 객체, 파일, 또 복제할 수 없거나 수요가 많은 리소스)과도 인터페이스의 역할을 수행할 수 있습니다.
@@ -25,6 +25,7 @@ draft: true
 - 주체 클래스에게 요청을 위임하기 위해서 프록시는 주체 클래스와 같은 인터페이스를 구현하게 되는데 이는 `Polymorphism(다형성)`을 가지게 됩니다.
   - 이로 인해 OCP, DIP 설계 원칙이 녹아져 있습니다.
 - 복합적인 오브젝트들의 다수의 복사본이 존재해야만 하는 상황에서 프록시 패턴은 애플리케이션의 메모리 사용량을 줄이기 위해서 `플라이웨이트 패턴과 결합된 형태`로 나올 수도 있습니다.
+- 프록시 패턴은 단순한 포인터보다는 조금 더 다방면에 활용할 수 있거나 정교한 객체 참조가 필요한 때 적용할 수 있습니다.
 
 ## Proxy 패턴에 특징
 
@@ -205,11 +206,167 @@ console.log(proxy.runSomething());
 
 ### 지연 복사 프록시 (Copy-On-Write Proxy)
 
-- 클라이언트에서 필요로 할 때까지 객체가 복사되는 것을 지연시킴으로써 객체의 복사를 제어합니다. `변형된 가상 프록시`라고 할 수 있으며, Java5의 CopyOnWriteArrayList에서 쓰입니다.
+- 클라이언트에서 필요로 할 때까지 객체가 복사되는 것을 지연시킴으로써 객체의 복사를 제어합니다.
+- 변형된 가상 프록시라고 할 수 있습니다.
 
 ## 데코레이터 패턴 VS 프록시 패턴
 
 - 데코레이터(Decorator) 패턴에서는 `객체에 행동을 추가`하지만, 프록시(Proxy)패턴에서는 `접근을 제어`합니다.
+
+## 어댑터와 프록시의 차이
+
+- 공통점 : 클라이언트와 다른 객체 사이에 끼어들어서 클라이언트로부터 `요청을 받아와서 다른 객체한테 전달해주는 역할`을 합니다.
+- 어댑터 패턴 : `다른 객체의 인터페이스`를 바꿔줍니다.
+- 프록시 패턴 : `똑같은 인터페이스`를 사용합니다.
+- 보호 프록시 : 보호 프록시에서는 클라이언트의 역할에 따라서 객체에 있는 특정 메소드에 대한 클라이언트 접근을 제어합니다. 그러다 보니 보호 프록시에서는 클라이언트한테 인터페이스의 일부분만을 제공할 수 있습니다. 이런 점은 어댑터하고 비슷하다고 할 수 있습니다.
+
+## 프록시(Proxy) 예제
+
+```javascript
+class GeoCoder {
+  getLatLng(address) {
+    switch (address) {
+      case 'Amsterdam':
+        return '52.3700° N, 4.8900° E';
+      case 'London':
+        return '51.5171° N, 0.1062° W';
+      case 'Paris':
+        return '48.8742° N, 2.3470° E';
+      case 'Berlin':
+        return '52.5233° N, 13.4127° E';
+      default:
+        return '';
+    }
+  }
+}
+
+class GeoProxy {
+  constructor() {
+    this.geoCoder = new GeoCoder();
+    this.geoCache = new Map();
+  }
+
+  getLatLng(address) {
+    if (!this.geoCache.has(address)) {
+      this.geoCache.set(address, this.geoCoder.getLatLng(address));
+    }
+    console.log(`${address}: ${this.geoCache.get(address)}`);
+    return this.geoCache.get(address);
+  }
+
+  getCount() {
+    return this.geoCache.size;
+  }
+}
+
+const geo = new GeoProxy();
+
+geo.getLatLng('Paris');
+geo.getLatLng('London');
+geo.getLatLng('London');
+geo.getLatLng('London');
+geo.getLatLng('London');
+geo.getLatLng('Amsterdam');
+geo.getLatLng('Amsterdam');
+geo.getLatLng('Amsterdam');
+geo.getLatLng('Amsterdam');
+geo.getLatLng('London');
+geo.getLatLng('London');
+
+console.log(`Cache size: ${geo.getCount()}`);
+
+// Paris: 48.8742° N, 2.3470° E
+// London: 51.5171° N, 0.1062° W
+// London: 51.5171° N, 0.1062° W
+// London: 51.5171° N, 0.1062° W
+// London: 51.5171° N, 0.1062° W
+// Amsterdam: 52.3700° N, 4.8900° E
+// Amsterdam: 52.3700° N, 4.8900° E
+// Amsterdam: 52.3700° N, 4.8900° E
+// Amsterdam: 52.3700° N, 4.8900° E
+// London: 51.5171° N, 0.1062° W
+// London: 51.5171° N, 0.1062° W
+// Cache size: 3
+```
+
+```javascript
+const fetchGeo = (address) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      switch (address) {
+        case 'Amsterdam':
+          resolve('52.3700° N, 4.8900° E');
+          break;
+        case 'London':
+          resolve('51.5171° N, 0.1062° W');
+          break;
+        case 'Paris':
+          resolve('48.8742° N, 2.3470° E');
+          break;
+        case 'Berlin':
+          resolve('52.5233° N, 13.4127° E');
+          break;
+      }
+    }, 100);
+  });
+
+const fetchGeoProxy = new Proxy(
+  fetchGeo,
+  (() => {
+    const geoCache = new Map();
+
+    return {
+      apply(target, thisArgs, [address]) {
+        return new Promise((resolve) => {
+          if (geoCache.has(address)) {
+            resolve(geoCache.get(address));
+          } else {
+            fetchGeo(address).then((geo) => {
+              geoCache.set(address, geo);
+              resolve(geo);
+            });
+          }
+        });
+      },
+    };
+  })(),
+);
+
+(async () => {
+  console.time('getCoder');
+  await fetchGeo('Paris');
+  await fetchGeo('London');
+  await fetchGeo('London');
+  await fetchGeo('London');
+  await fetchGeo('London');
+  await fetchGeo('Amsterdam');
+  await fetchGeo('Amsterdam');
+  await fetchGeo('Amsterdam');
+  await fetchGeo('Amsterdam');
+  await fetchGeo('London');
+  await fetchGeo('London');
+  console.timeEnd('getCoder');
+})();
+
+(async () => {
+  console.time('fetchGeoProxy');
+  await fetchGeoProxy('Paris');
+  await fetchGeoProxy('London');
+  await fetchGeoProxy('London');
+  await fetchGeoProxy('London');
+  await fetchGeoProxy('London');
+  await fetchGeoProxy('Amsterdam');
+  await fetchGeoProxy('Amsterdam');
+  await fetchGeoProxy('Amsterdam');
+  await fetchGeoProxy('Amsterdam');
+  await fetchGeoProxy('London');
+  await fetchGeoProxy('London');
+  console.timeEnd('fetchGeoProxy');
+})();
+
+// fetchGeoProxy: 304.528ms
+// getCoder: 1121.958ms
+```
 
 ---
 
