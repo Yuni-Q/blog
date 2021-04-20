@@ -18,6 +18,13 @@ const WordRelay: React.VFC = () => {
   }, []);
   return (
     <form
+      style={{
+        height: '100vh',
+        flexDirection: 'column',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
       onSubmit={(e) => {
         e.preventDefault();
         if (
@@ -41,6 +48,7 @@ const WordRelay: React.VFC = () => {
         제시어 : <span>{word}</span>
       </div>
       <input
+        style={{ margin: '8px 0' }}
         ref={inputRef}
         type="text"
         value={newWord}
