@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const Ladder = () => {
+  const [sound, setSound] = useState(0.05);
   const [loading, setLoading] = useState(0);
   const [memberList, setMemberList] = useState([]);
   const [teamMemberList, setTeamMemberList] = useState({});
@@ -18,7 +19,7 @@ const Ladder = () => {
         setLoading((loading) => {
           if (loading - 1 === 0) {
             const goodSound = goodRef.current as HTMLAudioElement;
-            goodSound.volume = 0.005;
+            goodSound.volume = sound;
             goodSound.play();
           }
           return loading - 1;
@@ -59,197 +60,207 @@ const Ladder = () => {
     setChoiceTeamMemberList(choiceList);
   }, [memberList, choiceMemberList]);
   return (
-    <div style={{ display: 'flex' }}>
-      <audio ref={drumRef} src="/drum.mp3" />
-      <audio ref={goodRef} src="/good.mp3" />
-      {loading > 0 && <Spinner time={loading} />}
-      <div style={{ margin: 16, textAlign: 'center' }}>
-        <div
-          onClick={() => {
-            setChoiceMemberList([...memberList, ...choiceMemberList]);
-            setMemberList([]);
-          }}
-        >
-          <div
-            style={{
-              background: 'chartreuse',
-              whiteSpace: 'nowrap',
-              padding: 4,
-            }}
-          >
-            모두 선택
-          </div>
-        </div>
-
-        <div>
-          {Object.keys(teamMemberList).map((key) => {
-            if (teamMemberList[key].length === 0) {
-              return;
-            }
-            return (
-              <div
-                key={key}
-                onClick={() => {
-                  const newMemberList = memberList.filter((member) => {
-                    let isExist = false;
-                    teamMemberList[key].map((item) => {
-                      if (item.name === member.name) {
-                        isExist = true;
-                      }
-                    });
-                    return !isExist;
-                  });
-                  setMemberList(newMemberList);
-                  const newChoiceMemberList = [
-                    ...choiceMemberList,
-                    ...teamMemberList[key],
-                  ];
-                  setChoiceMemberList([...newChoiceMemberList]);
-                }}
-              >
-                <div style={{ background: 'aqua' }}>{key}</div>
-                {teamMemberList[key].map((user) => {
-                  return (
-                    <div
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        const newChoiceMemberList = [
-                          ...choiceMemberList,
-                          user,
-                        ].filter((item, i, a) => {
-                          return i == a.indexOf(item);
-                        });
-                        setChoiceMemberList([...newChoiceMemberList]);
-                        setMemberList(
-                          memberList.filter((member) => {
-                            return member.name !== user.name;
-                          }),
-                        );
-                      }}
-                      key={user.name}
-                    >
-                      {user.name}
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <div style={{ margin: 16, textAlign: 'center' }}>
-        <div>
+    <>
+      <input
+        type="range"
+        min="0"
+        step="0.05"
+        max="1"
+        value={sound}
+        onChange={(e) => setSound(parseFloat(e.target.value))}
+      />
+      <div style={{ display: 'flex' }}>
+        <audio ref={drumRef} src="/drum.mp3" />
+        <audio ref={goodRef} src="/good.mp3" />
+        {loading > 0 && <Spinner time={loading} />}
+        <div style={{ margin: 16, textAlign: 'center' }}>
           <div
             onClick={() => {
-              setChoiceMemberList([]);
-              setMemberList([...memberList, ...choiceMemberList]);
+              setChoiceMemberList([...memberList, ...choiceMemberList]);
+              setMemberList([]);
             }}
           >
             <div
-              style={{ background: 'gray', whiteSpace: 'nowrap', padding: 4 }}
+              style={{
+                background: 'chartreuse',
+                whiteSpace: 'nowrap',
+                padding: 4,
+              }}
             >
-              선택받은 사람들
+              모두 선택
             </div>
           </div>
-          {Object.keys(choiceTeamMemberList).map((key) => {
-            if (choiceTeamMemberList[key].length === 0) {
-              return;
-            }
-            return (
-              <div
-                key={key}
-                onClick={() => {
-                  const newChoiceMemberList = choiceMemberList.filter(
-                    (member) => {
+
+          <div>
+            {Object.keys(teamMemberList).map((key) => {
+              if (teamMemberList[key].length === 0) {
+                return;
+              }
+              return (
+                <div
+                  key={key}
+                  onClick={() => {
+                    const newMemberList = memberList.filter((member) => {
                       let isExist = false;
-                      choiceTeamMemberList[key].map((item) => {
+                      teamMemberList[key].map((item) => {
                         if (item.name === member.name) {
                           isExist = true;
                         }
                       });
                       return !isExist;
-                    },
-                  );
-                  setChoiceMemberList(newChoiceMemberList);
-                  const newMemberList = [
-                    ...memberList,
-                    ...choiceTeamMemberList[key],
-                  ];
-                  setMemberList([...newMemberList]);
-                }}
+                    });
+                    setMemberList(newMemberList);
+                    const newChoiceMemberList = [
+                      ...choiceMemberList,
+                      ...teamMemberList[key],
+                    ];
+                    setChoiceMemberList([...newChoiceMemberList]);
+                  }}
+                >
+                  <div style={{ background: 'aqua' }}>{key}</div>
+                  {teamMemberList[key].map((user) => {
+                    return (
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const newChoiceMemberList = [
+                            ...choiceMemberList,
+                            user,
+                          ].filter((item, i, a) => {
+                            return i == a.indexOf(item);
+                          });
+                          setChoiceMemberList([...newChoiceMemberList]);
+                          setMemberList(
+                            memberList.filter((member) => {
+                              return member.name !== user.name;
+                            }),
+                          );
+                        }}
+                        key={user.name}
+                      >
+                        {user.name}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div style={{ margin: 16, textAlign: 'center' }}>
+          <div>
+            <div
+              onClick={() => {
+                setChoiceMemberList([]);
+                setMemberList([...memberList, ...choiceMemberList]);
+              }}
+            >
+              <div
+                style={{ background: 'gray', whiteSpace: 'nowrap', padding: 4 }}
               >
-                <div style={{ background: 'aquamarine' }}>{key}</div>
-                {choiceTeamMemberList[key].map((user) => {
-                  return (
-                    <div
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        const newMemberList = [...memberList, user];
-                        setMemberList([...newMemberList]);
-                        setChoiceMemberList(
-                          choiceMemberList.filter((member) => {
-                            return member.name !== user.name;
-                          }),
-                        );
-                      }}
-                      key={user.name}
-                    >
-                      {user.name}
-                    </div>
-                  );
-                })}
+                선택받은 사람들
+              </div>
+            </div>
+            {Object.keys(choiceTeamMemberList).map((key) => {
+              if (choiceTeamMemberList[key].length === 0) {
+                return;
+              }
+              return (
+                <div
+                  key={key}
+                  onClick={() => {
+                    const newChoiceMemberList = choiceMemberList.filter(
+                      (member) => {
+                        let isExist = false;
+                        choiceTeamMemberList[key].map((item) => {
+                          if (item.name === member.name) {
+                            isExist = true;
+                          }
+                        });
+                        return !isExist;
+                      },
+                    );
+                    setChoiceMemberList(newChoiceMemberList);
+                    const newMemberList = [
+                      ...memberList,
+                      ...choiceTeamMemberList[key],
+                    ];
+                    setMemberList([...newMemberList]);
+                  }}
+                >
+                  <div style={{ background: 'aquamarine' }}>{key}</div>
+                  {choiceTeamMemberList[key].map((user) => {
+                    return (
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const newMemberList = [...memberList, user];
+                          setMemberList([...newMemberList]);
+                          setChoiceMemberList(
+                            choiceMemberList.filter((member) => {
+                              return member.name !== user.name;
+                            }),
+                          );
+                        }}
+                        key={user.name}
+                      >
+                        {user.name}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div style={{ margin: 16, textAlign: 'center' }}>
+          {choiceMemberList.map((member) => {
+            return (
+              <div key={member.name}>
+                <input type="text" className="item" />
+              </div>
+            );
+          })}
+          {choiceMemberList.length > 0 && (
+            <button
+              type="button"
+              onClick={() => {
+                setLoading(5);
+                const drumSound = drumRef.current as HTMLAudioElement;
+                drumSound.volume = sound;
+                drumSound.play();
+                const itemList = document.querySelectorAll('.item');
+                let list = [...choiceMemberList];
+                const result = [];
+
+                itemList.forEach((item) => {
+                  const value = (item as HTMLInputElement).value;
+                  const index = Math.floor(Math.random() * list.length);
+                  if (value) {
+                    result.push({ name: list[index].name, value });
+                  }
+                  list = list.filter((_, idx) => {
+                    return idx !== index;
+                  });
+                });
+                setResult(result);
+              }}
+            >
+              시작!! 하겠습니다 !!
+            </button>
+          )}
+        </div>
+        <div style={{ margin: 16, textAlign: 'center' }}>
+          {result.map((item) => {
+            return (
+              <div key={item.name} style={{ whiteSpace: 'nowrap' }}>
+                {item.name} : {item.value}
               </div>
             );
           })}
         </div>
       </div>
-      <div style={{ margin: 16, textAlign: 'center' }}>
-        {choiceMemberList.map((member) => {
-          return (
-            <div key={member.name}>
-              <input type="text" className="item" />
-            </div>
-          );
-        })}
-        {choiceMemberList.length > 0 && (
-          <button
-            type="button"
-            onClick={() => {
-              setLoading(5);
-              const drumSound = drumRef.current as HTMLAudioElement;
-              drumSound.volume = 0.005;
-              drumSound.play();
-              const itemList = document.querySelectorAll('.item');
-              let list = [...choiceMemberList];
-              const result = [];
-
-              itemList.forEach((item) => {
-                const value = (item as HTMLInputElement).value;
-                const index = Math.floor(Math.random() * list.length);
-                if (value) {
-                  result.push({ name: list[index].name, value });
-                }
-                list = list.filter((_, idx) => {
-                  return idx !== index;
-                });
-              });
-              setResult(result);
-            }}
-          >
-            시작!! 하겠습니다 !!
-          </button>
-        )}
-      </div>
-      <div style={{ margin: 16, textAlign: 'center' }}>
-        {result.map((item) => {
-          return (
-            <div key={item.name} style={{ whiteSpace: 'nowrap' }}>
-              {item.name} : {item.value}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    </>
   );
 };
 
