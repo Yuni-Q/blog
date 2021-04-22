@@ -85,6 +85,12 @@ brew cask install visual-studio-code
 brew install node
 ```
 
+## gh 설치
+
+```zsh
+brew install gh
+```
+
 ## intellij-idea 설치
 
 ```zsh
