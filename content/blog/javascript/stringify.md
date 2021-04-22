@@ -836,6 +836,212 @@ child2.parent = p1;
 
 - 2번이 더 좋은 구조입니다. 1번이 책임이 더 무겁기 때문입니다.
 
+## day5
+
+### 제네레이터에 대해 알아보기
+
+```js
+const objectEntries = function* (obj) {
+  for (const k in obj) {
+    if (obj.hasOwnProperty(k)) {
+      yield [k, obj[k]];
+    }
+  }
+};
+const test = objectEntries({ a: 3, b: 5 });
+const call0 = test.next();
+const call1 = test.next();
+const call2 = test.next();
+console.log(call0, call1, call2);
+
+const test2 = objectEntries({ a: 3, b: 5 });
+const [...a] = test2;
+console.log(a);
+
+const test3 = objectEntries({ a: 3, b: 5 });
+for (const [k, v] of test3) {
+  console.log(k, v);
+}
+
+const test4 = objectEntries({ a: 3, b: 5 });
+const action = (...a) => console.log(a);
+action(...test4);
+
+const [...b] = [1, 2, 3][Symbol.iterator]();
+console.log(b);
+```
+
+### 반복횟수 줄이기
+
+- 2pass strategy or pipe
+- 최초 루프 때 정리만하고 2번째에 한가지 로직으로 일괄처리합니다.
+
+```js
+// 아래 함수는 총 11회 수행됩니다. 이를 7회 수행만으로 해결해야합니다.
+[1, 2, 3, 4, 5, 6, 7].filter((it) => it % 2).map((it) => it * 2);
+```
+
+### day5 진행
+
+```js
+// const stringify = (obj) => recursive(Object.entries(obj), '', 0);
+const objectEntries = function* (obj) {
+  for (const k in obj) {
+    if (obj.hasOwnProperty(k)) {
+      yield [k, obj[k]];
+    }
+  }
+};
+const toString = (v) => '' + v;
+const join = (acc) => {
+  if (!acc) {
+    return '{}';
+  } else {
+    let result = '';
+    do {
+      result = `,"${target.k}":${toString(target.v)}`;
+    } while ((target = result.prev));
+    return '{' + result.substr(1) + '}';
+  }
+};
+const recursive = (iter, acc) => {
+  const { done, value: [k, v] = [] } = [];
+  return done ? join(acc) : recursive(iter, { prev: acc, k, v });
+};
+const stringify = (obj) => recursive(objectEntries(obj), null);
+```
+
+### 기계적인 번역
+
+```js
+const objectEntries = function* (obj) {
+  for (const k in obj) {
+    if (obj.hasOwnProperty(k)) {
+      yield [k, obj[k]];
+    }
+  }
+};
+const toString = (v) => '' + v;
+const join = (acc) => {
+  if (!acc) {
+    return '{}';
+  } else {
+    let result = '';
+    do {
+      result = `,"${target.k}":${toString(target.v)}`;
+    } while ((target = result.prev));
+    return '{' + result.substr(1) + '}';
+  }
+};
+
+const stringify = (obj) => {
+  let acc = null;
+  let iter = objectEntries(obj);
+  while (true) {
+    const { done, value: [k, v] = [] } = iter.next();
+    if (done) return join(acc);
+    else acc = { prev: acc, k, v };
+  }
+};
+// 작성하다가 중단
+```
+
+### 배열과 객체 모두 있을 경우
+
+```js
+// 코루틴 : 값이 오브젝트인 경우 이터레이터로 변환하기
+const objectEntries = function* (obj) {
+  for (const k in obj) {
+    if (obj.hasOwnProperty(k)) {
+      yield [k, obj[k]];
+    }
+  }
+};
+// 쌓여있는 링크드리스트를 이용해 문자열로 종합하기
+// 각 노드의 모양은
+// {
+//   prev: 이전 노드 링크,
+//   isObject: 오브젝트의 값인지 배열값인지,
+//   element: 문자열로 바꿀값(오브젝트인 경우는 [k, v]),
+// },
+const arrToString = (isObject, acc) => {
+  // 여닫는 문자열 확정. 문자열은 우너래 이터레이터라서 분해가 됩니다.
+  const [START, END] = isObject ? '{}' : '[]';
+  if (acc.prev) {
+    let curr = acc;
+    let = result = '';
+    do {
+      result =
+        ',' +
+        (isObject
+          ? `"${curr.value[0]}":${curr.value[1]}`
+          : elementToString(curr.value)) +
+        result;
+      // 최초 시작시에도 acc는 있으므로 그 acc.prev가 없는지로 더 갈지 판단
+    } while ((curr = curr.prev));
+    result = result.substr(1);
+  }
+  return START + result + END;
+};
+// 하나의 값을 문자열로 바꾸기
+const elementToString = (v) => '' + v;
+const recursive = (iter, isObject, acc, prev) => {
+  const { done, value } = iter.next();
+  if (!done) {
+    const v = isObject ? value[1] : value;
+    switch (true) {
+      case Array.isArray(v):
+        return recursive(v[Symbol.iterator](), false, null, {
+          target: iter,
+          isObject,
+          acc,
+          k: isObject ? value[0] : '',
+          prev,
+        });
+      case v && typeof v == 'object':
+        return recursive(objectEntries(v), true, null, {
+          target: iter,
+          isObject,
+          acc,
+          k: isObject ? value[0] : '',
+          prev,
+        });
+      default:
+        return recursive(
+          iter,
+          isObject,
+          {
+            prev: acc,
+            value,
+          },
+          prev,
+        );
+    }
+  } else {
+    let accStr = arrToString(isObject, acc);
+    if (prev) {
+      return recursive(
+        prev.target,
+        prev.isObject,
+        { prev: prev.acc, value: prev.isObject ? [prev.k, accStr] : accStr },
+        prev.prev,
+      );
+    } else {
+      return accStr;
+    }
+  }
+};
+const stringify = (v) =>
+  recursive(
+    Array.isArray(v) ? v[Symbol.iterator]() : objectEntries(v),
+    !Array.isArray(v),
+    null,
+    null,
+  );
+// stringify({ a: 3, b: 5, c: [1, 2, [3, 4, { a: 4, b: 5 }, 7], 3], d: 3 });
+stringify({ a: [1, 2], b: 3 });
+```
+
 ---
 
 ## 참고
