@@ -20,7 +20,9 @@ const NumberBaseball: React.VFC = () => {
     return true;
   }, [value, tries]);
   useEffect(() => {
-    const nums = new Array(9).fill(0).map((_, index) => index + 1);
+    const nums = Array(9)
+      .fill(0)
+      .map((_, index) => index + 1);
     const newNumbers = [];
     for (let i = 0; i < 4; i++) {
       const index = Math.floor(Math.random() * nums.length);
