@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import './index.scss'
+import './index.scss';
 
 export const ThumbnailContainer = React.memo(({ children }) => (
   <div className="thumbnail-container">{children}</div>
-))
+));

@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import './index.scss'
+import './index.scss';
 
 export const TwitterIcon = ({ onClick }) => (
   <a
@@ -22,4 +22,4 @@ export const TwitterIcon = ({ onClick }) => (
       <span className="service-label">Share on Twitter</span>
     </div>
   </a>
-)
+);

@@ -1,5 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-import './index.scss'
+import './index.scss';
 
-export const Hr = () => <hr className="custom-hr" />
+export const Hr = () => <hr className="custom-hr" />;

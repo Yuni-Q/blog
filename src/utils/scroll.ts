@@ -1,28 +1,28 @@
-import SmoothScroll from 'smooth-scroll/dist/smooth-scroll.min'
+import SmoothScroll from 'smooth-scroll/dist/smooth-scroll.min';
 
-let scroll
+let scroll;
 
 export function init() {
   scroll = new SmoothScroll('a[href*="#"]', {
     speed: 500,
     speedAsDuration: true,
-  })
-  return scroll
+  });
+  return scroll;
 }
 
 export function destroy() {
-  if (!scroll) throw Error('Not founded SmoothScroll instance')
+  if (!scroll) throw Error('Not founded SmoothScroll instance');
 
-  scroll.destroy()
-  scroll = null
+  scroll.destroy();
+  scroll = null;
 
-  return scroll
+  return scroll;
 }
 
 export function go(dest) {
-  if (!scroll) throw Error('Not founded SmoothScroll instance')
+  if (!scroll) throw Error('Not founded SmoothScroll instance');
 
-  scroll.animateScroll(dest)
+  scroll.animateScroll(dest);
 
-  return scroll
+  return scroll;
 }

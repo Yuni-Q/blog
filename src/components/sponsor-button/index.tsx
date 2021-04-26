@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import './index.scss'
+import './index.scss';
 
 export const SponsorButton = ({ sponsorId }) => (
   <div className="sponsor-button">
@@ -17,4 +17,4 @@ export const SponsorButton = ({ sponsorId }) => (
       <span>Buy me a coffee</span>
     </a>
   </div>
-)
+);

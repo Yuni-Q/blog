@@ -13,8 +13,12 @@ export default sendGAEvent;
 export const GA_ACTION = {
   EXPOSE: '화면진입',
   CLICK: '클릭',
-}
+};
 
-export const GAClickEvent = (category, action = GA_ACTION.CLICK, label = '') => (e) => {
+export const GAClickEvent = (
+  category,
+  action = GA_ACTION.CLICK,
+  label = '',
+) => (e) => {
   sendGAEvent(category, action, label);
-}
+};

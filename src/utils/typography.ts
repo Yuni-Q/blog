@@ -1,5 +1,5 @@
-import Typography from 'typography'
-import GitHubTheme from 'typography-theme-github'
+import Typography from 'typography';
+import GitHubTheme from 'typography-theme-github';
 
 GitHubTheme.overrideThemeStyles = () => {
   return {
@@ -38,16 +38,16 @@ GitHubTheme.overrideThemeStyles = () => {
     li: {
       marginBottom: '2px',
     },
-  }
-}
+  };
+};
 
-const typography = new Typography(GitHubTheme)
+const typography = new Typography(GitHubTheme);
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
-  typography.injectStyles()
+  typography.injectStyles();
 }
 
-export default typography
-export const rhythm = typography.rhythm
-export const scale = typography.scale
+export default typography;
+export const rhythm = typography.rhythm;
+export const scale = typography.scale;

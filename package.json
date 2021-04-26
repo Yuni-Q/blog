@@ -91,7 +91,7 @@
   "scripts": {
     "post": "node ./cli/create-new-post.js",
     "dev": "gatsby develop",
-    "lint": "eslint --fix --ext .js,.jsx --ignore-pattern public .",
+    "lint": "eslint --fix --ext .ts,.tsx,.js,.jsx --ignore-pattern public .",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
     "develop": "gatsby develop",
     "start": "npm run develop",
