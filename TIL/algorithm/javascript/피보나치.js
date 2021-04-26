@@ -1,12 +1,11 @@
 function fibonacci(num) {
-  var answer = 0;
-  if (num <= 1) {
-    return num;
-  }
-  else if (num > 1) {
-    answer = fibonacci(num - 1) + fibonacci(num - 2);
-  }
-  return answer;
+ var answer = 0;
+ if (num <= 1) {
+  return num;
+ } else if (num > 1) {
+  answer = fibonacci(num - 1) + fibonacci(num - 2);
+ }
+ return answer;
 }
 // 아래는 테스트로 출력해 보기 위한 코드입니다.
 console.log(fibonacci(6));
@@ -30,19 +29,19 @@ console.log(fibonacci(6));
 // * n은 1이상, 100000이하인 자연수입니다.
 
 function solution(n) {
-  var answer = 0;
-  if(n < 3) {
-      return 1;
-  }
-  var a = 1;
-  var b = 1;
-  var c = 0;
-  for(var i = 3 ; i <= n  ; i += 1){
-      c = b;
-      b = (a + b) % 1234567;
-      a = c
-  }
-  return b % 1234567;
+ var answer = 0;
+ if (n < 3) {
+  return 1;
+ }
+ var a = 1;
+ var b = 1;
+ var c = 0;
+ for (var i = 3; i <= n; i += 1) {
+  c = b;
+  b = (a + b) % 1234567;
+  a = c;
+ }
+ return b % 1234567;
 }
 
 // 재귀로 작성하면 안되게 만들어 놓은 문제

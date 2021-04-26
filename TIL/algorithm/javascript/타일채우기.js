@@ -6,10 +6,10 @@ var n = parseInt(input[0]);
 var r = [1, 0, 3];
 
 for (var i = 3; i <= n; i++) {
-  r[i] = r[i - 2] * 3;
-  for (var m = 4; i - m >= 0; m += 2) {
-    r[i] += r[i - m] * 2;
-  }
+ r[i] = r[i - 2] * 3;
+ for (var m = 4; i - m >= 0; m += 2) {
+  r[i] += r[i - m] * 2;
+ }
 }
 
 console.log(r[n]);

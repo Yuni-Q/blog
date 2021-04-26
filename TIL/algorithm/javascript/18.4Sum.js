@@ -21,29 +21,29 @@
  * @return {number[][]}
  */
 const fourSum = (nums, target) => {
-  const res = [];
-  const newNums = nums.sort((a, b) => a - b);
-  for (let i = 0; i < newNums.length - 3; i++) {
-    if (i > 0 && newNums[i - 1] == newNums[i]) continue;
-    for (let j = i + 1; j < newNums.length - 2; j++) {
-      if (j > i + 1 && newNums[j - 1] === newNums[j]) continue;
-      let k = j + 1;
-      let m = newNums.length - 1;
-      while (k < m) {
-        let sum = newNums[i] + newNums[j] + newNums[k] + newNums[m];
-        if (sum === target) {
-          res.push([newNums[i], newNums[j], newNums[k], newNums[m]]);
-          ++k;
-          --m;
-          while (k < m && newNums[k - 1] === newNums[k]) ++k;
-          while (k < m && newNums[m] === newNums[m + 1]) --m;
-        } else if (sum < target) {
-          ++k;
-        } else {
-          --m;
-        }
-      }
+ const res = [];
+ const newNums = nums.sort((a, b) => a - b);
+ for (let i = 0; i < newNums.length - 3; i++) {
+  if (i > 0 && newNums[i - 1] == newNums[i]) continue;
+  for (let j = i + 1; j < newNums.length - 2; j++) {
+   if (j > i + 1 && newNums[j - 1] === newNums[j]) continue;
+   let k = j + 1;
+   let m = newNums.length - 1;
+   while (k < m) {
+    let sum = newNums[i] + newNums[j] + newNums[k] + newNums[m];
+    if (sum === target) {
+     res.push([newNums[i], newNums[j], newNums[k], newNums[m]]);
+     ++k;
+     --m;
+     while (k < m && newNums[k - 1] === newNums[k]) ++k;
+     while (k < m && newNums[m] === newNums[m + 1]) --m;
+    } else if (sum < target) {
+     ++k;
+    } else {
+     --m;
     }
+   }
   }
-  return res;
+ }
+ return res;
 };

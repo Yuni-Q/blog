@@ -20,33 +20,32 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
- function addTwoNumbers(l1, l2, carry) {
-    // Break case (end of lists)
-    if (!l1 && !l2 && !carry) {
-        return null;
-    }
-    
+function addTwoNumbers(l1, l2, carry) {
+ // Break case (end of lists)
+ if (!l1 && !l2 && !carry) {
+  return null;
+ }
 
-    // This allows us to carry numbers over
-    carry = carry || 0;
-    
-    // Add values (either node could not exist (or both if carry))
-    let valRes = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry;
-    
-    // The carry for the next call
-    let nextCarry = 0;
-    
-    // Only single digits are allowed
-    if (valRes >= 10) {
-        nextCarry = ~~(valRes / 10);
-        valRes = valRes % 10;
-    }
-    
-    // Create the new node
-    let l3 = new ListNode(valRes);
-    
-    // Set the new nodes next node
-    l3.next = addTwoNumbers((l1 ? l1.next : null), (l2 ? l2.next : null), nextCarry);
-    
-    return l3;
-};
+ // This allows us to carry numbers over
+ carry = carry || 0;
+
+ // Add values (either node could not exist (or both if carry))
+ let valRes = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry;
+
+ // The carry for the next call
+ let nextCarry = 0;
+
+ // Only single digits are allowed
+ if (valRes >= 10) {
+  nextCarry = ~~(valRes / 10);
+  valRes = valRes % 10;
+ }
+
+ // Create the new node
+ let l3 = new ListNode(valRes);
+
+ // Set the new nodes next node
+ l3.next = addTwoNumbers(l1 ? l1.next : null, l2 ? l2.next : null, nextCarry);
+
+ return l3;
+}

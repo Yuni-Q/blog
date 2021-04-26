@@ -1,15 +1,15 @@
-import React from 'react'
-import { StaticQuery, graphql, Link } from 'gatsby'
-import Image from 'gatsby-image'
+import React from 'react';
+import { StaticQuery, graphql, Link } from 'gatsby';
+import Image from 'gatsby-image';
 
-import './index.scss'
-import sendGAEvent, { GA_ACTION } from '../../utils/ga'
+import './index.scss';
+import sendGAEvent, { GA_ACTION } from '../../utils/ga';
 
-export const Bio = () => (
+export const Bio: React.VFC = () => (
   <StaticQuery
     query={bioQuery}
-    render={data => {
-      const { author, social, introduction } = data.site.siteMetadata
+    render={(data) => {
+      const { author, social, introduction } = data.site.siteMetadata;
 
       return (
         <div className="bio">
@@ -25,35 +25,54 @@ export const Bio = () => (
               />
               <div className="author-name">
                 <span className="author-name-prefix">Written by</span>
-                <Link to={'/about'} className="author-name-content" onClick={() => {
-                  sendGAEvent('button', GA_ACTION.CLICK, 'resume')
-
-                }}>
+                <Link
+                  to={'/about'}
+                  className="author-name-content"
+                  onClick={() => {
+                    sendGAEvent('button', GA_ACTION.CLICK, 'resume');
+                  }}
+                >
                   <span>@{author}</span>
                 </Link>
                 <div className="author-introduction">{introduction}</div>
                 <p className="author-socials">
                   {social.github && (
-                    <a href={`https://github.com/${social.github}`} onClick={() => {
-                      sendGAEvent('button', GA_ACTION.CLICK, 'github')
-                    }}>GitHub</a>
+                    <a
+                      href={`https://github.com/${social.github}`}
+                      onClick={() => {
+                        sendGAEvent('button', GA_ACTION.CLICK, 'github');
+                      }}
+                    >
+                      GitHub
+                    </a>
                   )}
                   {social.medium && (
-                    <a href={`https://medium.com/${social.medium}`} onClick={() => {
-                      sendGAEvent('button', GA_ACTION.CLICK, 'medium')
-                    }}>Medium</a>
+                    <a
+                      href={`https://medium.com/${social.medium}`}
+                      onClick={() => {
+                        sendGAEvent('button', GA_ACTION.CLICK, 'medium');
+                      }}
+                    >
+                      Medium
+                    </a>
                   )}
                   {social.twitter && (
-                    <a href={`https://twitter.com/${social.twitter}`} onClick={() => {
-                      sendGAEvent('button', GA_ACTION.CLICK, 'Twitter')
-                    }}>
+                    <a
+                      href={`https://twitter.com/${social.twitter}`}
+                      onClick={() => {
+                        sendGAEvent('button', GA_ACTION.CLICK, 'Twitter');
+                      }}
+                    >
                       Twitter
                     </a>
                   )}
                   {social.facebook && (
-                    <a href={`https://www.facebook.com/${social.facebook}`} onClick={() => {
-                      sendGAEvent('button', GA_ACTION.CLICK, 'facebook')
-                    }}>
+                    <a
+                      href={`https://www.facebook.com/${social.facebook}`}
+                      onClick={() => {
+                        sendGAEvent('button', GA_ACTION.CLICK, 'facebook');
+                      }}
+                    >
                       Facebook
                     </a>
                   )}
@@ -62,10 +81,10 @@ export const Bio = () => (
             </div>
           </div>
         </div>
-      )
+      );
     }}
   />
-)
+);
 
 const bioQuery = graphql`
   query BioQuery {
@@ -89,6 +108,6 @@ const bioQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default Bio
+export default Bio;

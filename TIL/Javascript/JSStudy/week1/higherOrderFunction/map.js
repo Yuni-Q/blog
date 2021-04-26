@@ -2,7 +2,7 @@ let numbers = [1, 4, 9];
 
 // 배열을 순회하며 각 요소에 대하여 인자로 주어진 콜백함수를 실행
 let roots = numbers.map((item) => {
-  return Math.sqrt(item);
+ return Math.sqrt(item);
 });
 
 // 위 코드의 축약표현은 아래와 같다.
@@ -17,7 +17,7 @@ numbers = [1, 4, 9];
 
 // 배열을 순회하며 각 요소에 대하여 인자로 주어진 콜백함수를 실행
 roots = numbers.map((item) => {
-  return ++item;
+ return ++item;
 });
 
 // map 메소드는 새로운 배열을 반환한다

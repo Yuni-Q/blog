@@ -43,12 +43,10 @@
 // p = "mis*is*p*."
 // Output: false
 
-
-var isMatch = function(s, p) {
-  // var a = new RegExp(`/${p}/`);
-  var a = new RegExp(p);
-  // console.log(/mis*is*p*./.test('mississippi'));
-  // return a.test(s);
-  return  ("/^"+p+"$/").test(s)
-
+var isMatch = function (s, p) {
+ // var a = new RegExp(`/${p}/`);
+ var a = new RegExp(p);
+ // console.log(/mis*is*p*./.test('mississippi'));
+ // return a.test(s);
+ return ('/^' + p + '$/').test(s);
 };

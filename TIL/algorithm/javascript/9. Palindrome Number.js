@@ -19,11 +19,11 @@
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function(x) {
-  let a = JSON.stringify(x).split('').reverse().join('');
-  if(x == a){
-      return true;
-  } else {
-      return false;
-  }
+var isPalindrome = function (x) {
+ let a = JSON.stringify(x).split('').reverse().join('');
+ if (x == a) {
+  return true;
+ } else {
+  return false;
+ }
 };

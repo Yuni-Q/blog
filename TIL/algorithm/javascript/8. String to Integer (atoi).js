@@ -31,7 +31,7 @@
 
 // Input: "words and 987"
 // Output: 0
-// Explanation: The first non-whitespace character is 'w', which is not a numerical 
+// Explanation: The first non-whitespace character is 'w', which is not a numerical
 //              digit or a +/- sign. Therefore no valid conversion could be performed.
 // Example 5:
 
@@ -44,17 +44,17 @@
  * @param {string} str
  * @return {number}
  */
-var myAtoi = function(str) {
-  // let a = str
-      let a = parseInt(str);
-      if(Number.isNaN(a)){
-          a = 0;
-      }
-      if(a > (2**31)-1){
-          return (2**31-1);
-      }
-      if(a < -(2**31)){
-          return -(2**31);
-      }
-      return a;
-  };
+var myAtoi = function (str) {
+ // let a = str
+ let a = parseInt(str);
+ if (Number.isNaN(a)) {
+  a = 0;
+ }
+ if (a > 2 ** 31 - 1) {
+  return 2 ** 31 - 1;
+ }
+ if (a < -(2 ** 31)) {
+  return -(2 ** 31);
+ }
+ return a;
+};

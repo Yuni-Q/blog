@@ -28,31 +28,31 @@
  * @return {string[]}
  */
 var binaryTreePaths = function (root) {
-    // console.log(root)
-    const paths = []
-    if (!root) return []
-    if (!root.left && !root.right) {
-        const val = JSON.stringify(root.val)
-        paths.push(val)
-        return paths
-    }
-    let stack = [root, root.val]
-    while (stack.length > 0) {
-        let path = stack.pop();
-        let node = stack.pop();
-        if (!node.left && !node.right) {
-            paths.push(path)
-            console.log(path)
-        }
+ // console.log(root)
+ const paths = [];
+ if (!root) return [];
+ if (!root.left && !root.right) {
+  const val = JSON.stringify(root.val);
+  paths.push(val);
+  return paths;
+ }
+ let stack = [root, root.val];
+ while (stack.length > 0) {
+  let path = stack.pop();
+  let node = stack.pop();
+  if (!node.left && !node.right) {
+   paths.push(path);
+   console.log(path);
+  }
 
-        if (node.right) {
-            stack.push(node.right)
-            stack.push(`${path}->${node.right.val}`)
-        }
-        if (node.left) {
-            stack.push(node.left)
-            stack.push(`${path}->${node.left.val}`)
-        }
-    }
-    return paths
+  if (node.right) {
+   stack.push(node.right);
+   stack.push(`${path}->${node.right.val}`);
+  }
+  if (node.left) {
+   stack.push(node.left);
+   stack.push(`${path}->${node.left.val}`);
+  }
+ }
+ return paths;
 };

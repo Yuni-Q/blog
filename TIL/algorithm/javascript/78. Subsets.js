@@ -1,4 +1,3 @@
-
 // Given a set of distinct integers, nums, return all possible subsets (the power set).
 
 // Note: The solution set must not contain duplicate subsets.
@@ -23,18 +22,18 @@
  * @return {number[][]}
  */
 var subsets = function (nums) {
-  let result = [];
+ let result = [];
 
-  const recursiveSubsets = (nums, cur, index) => {
-    result.push(cur.slice());
-    for (let i = index; i < nums.length; i++) {
-      cur.push(nums[i]);
-      console.log(cur)
-      recursiveSubsets(nums, cur, i + 1);
-      cur.pop();
-    }
-  };
+ const recursiveSubsets = (nums, cur, index) => {
+  result.push(cur.slice());
+  for (let i = index; i < nums.length; i++) {
+   cur.push(nums[i]);
+   console.log(cur);
+   recursiveSubsets(nums, cur, i + 1);
+   cur.pop();
+  }
+ };
 
-  recursiveSubsets(nums, [], 0);
-  return result;
+ recursiveSubsets(nums, [], 0);
+ return result;
 };

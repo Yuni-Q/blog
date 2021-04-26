@@ -17,6 +17,7 @@ const Screen = styled.div<{ color: string }>`
 const ResponseCheck: React.VFC = () => {
   const [color, setColor] = useState(WAITE_COLOR);
   const [recodes, setRecodes] = useState([]);
+  const [recode, setRecode] = useState(0);
   const date = useRef(null);
   const timeoutId = useRef(null);
   const onClick = useCallback(() => {
@@ -35,7 +36,12 @@ const ResponseCheck: React.VFC = () => {
     }
     if (color === NOW_COLOR) {
       const endTime = new Date().getTime();
-      setRecodes((recodes) => [endTime - date.current, ...recodes]);
+      const newTime = endTime - date.current;
+      setRecodes((recodes) => {
+        const newRecodes = [newTime, ...recodes];
+        return newRecodes.sort((a, b) => a - b);
+      });
+      setRecode(newTime);
       setColor(WAITE_COLOR);
     }
   }, [color]);
@@ -59,12 +65,14 @@ const ResponseCheck: React.VFC = () => {
       <div>
         <div>
           {recodes.length > 0 &&
-            `평균 : ${
+            `햔재 ${recode}ms / 평균 : ${
               recodes.reduce((prev, curr) => prev + curr, 0) / recodes.length
             }ms`}
         </div>
         {recodes.map((recode, idx) => {
-          return <div key={`${recode}-${idx}`}>{`${recode}ms`}</div>;
+          return (
+            <div key={`${recode}-${idx}`}>{`${idx + 1}위 : ${recode}ms`}</div>
+          );
         })}
       </div>
     </div>

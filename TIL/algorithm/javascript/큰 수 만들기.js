@@ -1,4 +1,3 @@
-
 // 문제 설명
 // 어떤 숫자에서 k개의 수를 제거했을 때 얻을 수 있는 가장 큰 숫자를 구하려 합니다.
 
@@ -16,34 +15,34 @@
 // 4177252841	4	775841
 
 function solution(number, k) {
-    var answer = '';
-    let num = number[0];
-    let index = 0;
-    let len = number.length-(number.length-k)+1
-    // let max = Math.max(...number)
-    for(let i = 1 ; i < len ; i+=1) {
-        if(num < number[i]) {
-            num = number[i];
-            index = i;
-        }
-        if(num == 9){
-            break;
-        }
-    }
-    answer += num;
-    for(let j = 1 ; j < number.length-k ; j+=1){
-        len++
-        num = 0;
-        for(let i = index+1 ; i < len ; i+=1) {
-            if(num < number[i]) {
-                num = number[i];
-                index = i;
-            }
-            if(num == 9){
-                break;
-            }
-        }
-        answer += num;
-    }
-    return answer;
-};
+ var answer = '';
+ let num = number[0];
+ let index = 0;
+ let len = number.length - (number.length - k) + 1;
+ // let max = Math.max(...number)
+ for (let i = 1; i < len; i += 1) {
+  if (num < number[i]) {
+   num = number[i];
+   index = i;
+  }
+  if (num == 9) {
+   break;
+  }
+ }
+ answer += num;
+ for (let j = 1; j < number.length - k; j += 1) {
+  len++;
+  num = 0;
+  for (let i = index + 1; i < len; i += 1) {
+   if (num < number[i]) {
+    num = number[i];
+    index = i;
+   }
+   if (num == 9) {
+    break;
+   }
+  }
+  answer += num;
+ }
+ return answer;
+}

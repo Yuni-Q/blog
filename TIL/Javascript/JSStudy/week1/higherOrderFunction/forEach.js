@@ -3,8 +3,8 @@ let testArray = [1, 3, 5, 7, 9];
 
 // forEach 메소드는 원본 배열을 변경하지 않는다.
 testArray.forEach(function (item, index, array) {
-  console.log(`[${index}] =  + ${item}`);
-  total += item;
+ console.log(`[${index}] =  + ${item}`);
+ total += item;
 });
 
 console.log(total); // 25
@@ -14,7 +14,7 @@ testArray = [1, 2, 3, 4];
 
 // 원본 배열을 변경하려면 콜백 함수의 3번째 인자를 사용한다.
 testArray.forEach((item, index, array) => {
-  array[index] = Math.pow(item, 2);
+ array[index] = Math.pow(item, 2);
 });
 
 console.log(testArray); // [ 1, 4, 9, 16 ]
@@ -27,6 +27,6 @@ console.log(testArray); // [ 1, 4, 9, 16 ]
 
 total = 0;
 for (let i = 0; i < testArray.length; i += 1) {
-  console.log(`${i} = + ${testArray[i]}`);
-  total += testArray[i];
+ console.log(`${i} = + ${testArray[i]}`);
+ total += testArray[i];
 }

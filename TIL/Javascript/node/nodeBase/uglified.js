@@ -1,1 +1,4 @@
-function hello(l){console.log("Hi,"+l)}hello(yun);
+function hello(l) {
+ console.log('Hi,' + l);
+}
+hello(yun);

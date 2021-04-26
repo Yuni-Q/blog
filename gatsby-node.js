@@ -1,110 +1,111 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require(`path`);
 const _ = require('lodash');
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = ({ graphql, actions }) => {
-	const { createPage } = actions;
+  const { createPage } = actions;
 
-	const blogPostTemplate = path.resolve(`./src/templates/blog-post.tsx`);
-	const tagTemplate = path.resolve(`./src/templates/tags.tsx`);
+  const blogPostTemplate = path.resolve(`./src/templates/blog-post.tsx`);
+  const tagTemplate = path.resolve(`./src/templates/tags.tsx`);
 
-	return graphql(
-		`
-			{
-				allMarkdownRemark(
-					sort: { fields: [frontmatter___date], order: DESC }
-					limit: 1000
-				) {
-					edges {
-						node {
-							fields {
-								slug
-							}
-							frontmatter {
-								title
-								category
-								tags
-								draft
-							}
-						}
-					}
-				}
-			}
-		`
-	).then(result => {
-		if (result.errors) {
-			throw result.errors;
-		}
+  return graphql(
+    `
+      {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                category
+                tags
+                draft
+              }
+            }
+          }
+        }
+      }
+    `,
+  ).then((result) => {
+    if (result.errors) {
+      throw result.errors;
+    }
 
-		// Create blog posts pages.
-		const posts = result.data.allMarkdownRemark.edges.filter(
-			({ node }) => !node.frontmatter.draft && !!node.frontmatter.category
-		);
+    // Create blog posts pages.
+    const posts = result.data.allMarkdownRemark.edges.filter(
+      ({ node }) => !node.frontmatter.draft && !!node.frontmatter.category,
+    );
 
-		posts.forEach((post, index) => {
-			const previous =
-				index === posts.length - 1 ? null : posts[index + 1].node;
-			const next = index === 0 ? null : posts[index - 1].node;
+    posts.forEach((post, index) => {
+      const previous =
+        index === posts.length - 1 ? null : posts[index + 1].node;
+      const next = index === 0 ? null : posts[index - 1].node;
 
-			createPage({
-				path: post.node.fields.slug,
-				component: blogPostTemplate,
-				context: {
-					slug: post.node.fields.slug,
-					previous,
-					next,
-					tag: post.node.frontmatter.tags,
-				},
-			});
-		});
+      createPage({
+        path: post.node.fields.slug,
+        component: blogPostTemplate,
+        context: {
+          slug: post.node.fields.slug,
+          previous,
+          next,
+          tag: post.node.frontmatter.tags,
+        },
+      });
+    });
 
-		// Tag pages:
-		let tags = [];
-		// Iterate through each post, putting all found tags into `tags`
-		_.each(posts, edge => {
-			if (_.get(edge, 'node.frontmatter.tags')) {
-				tags = tags.concat(edge.node.frontmatter.tags);
-			}
-		});
-		// Eliminate duplicate tags
-		tags = _.uniq(tags);
+    // Tag pages:
+    let tags = [];
+    // Iterate through each post, putting all found tags into `tags`
+    _.each(posts, (edge) => {
+      if (_.get(edge, 'node.frontmatter.tags')) {
+        tags = tags.concat(edge.node.frontmatter.tags);
+      }
+    });
+    // Eliminate duplicate tags
+    tags = _.uniq(tags);
 
-		// Make tag pages
-		tags.forEach(tag => {
-			createPage({
-				path: `/tags/${tag}/`,
-				component: tagTemplate,
-				context: {
-					tag,
-				},
-			});
-		});
+    // Make tag pages
+    tags.forEach((tag) => {
+      createPage({
+        path: `/tags/${tag}/`,
+        component: tagTemplate,
+        context: {
+          tag,
+        },
+      });
+    });
 
-		return null;
-	});
+    return null;
+  });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-	const { createNodeField } = actions;
+  const { createNodeField } = actions;
 
-	if (node.internal.type === `MarkdownRemark`) {
-		const value = createFilePath({ node, getNode });
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode });
 
-		createNodeField({
-			name: `slug`,
-			node,
-			value,
-		});
-	}
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    });
+  }
 };
 
 // for React-Hot-Loader: react-🔥-dom patch is not detected
 exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
-	const config = getConfig();
-	if (stage.startsWith('develop') && config.resolve) {
-		config.resolve.alias = {
-			...config.resolve.alias,
-			'react-dom': '@hot-loader/react-dom',
-		};
-	}
+  const config = getConfig();
+  if (stage.startsWith('develop') && config.resolve) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react-dom': '@hot-loader/react-dom',
+    };
+  }
 };

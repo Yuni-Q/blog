@@ -1,6 +1,6 @@
-function hello(name){
-    console.log('Hi,' + name)
-};
+function hello(name) {
+ console.log('Hi,' + name);
+}
 hello(yun);
 
 // uglifyjs 파일이름.js // 필요 없는것 줄이기

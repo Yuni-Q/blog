@@ -15,18 +15,16 @@
 // [3, 30, 34, 5, 9]
 
 function solution(numbers) {
-    var answer = '';
-    var nums = numbers.sort(
-        function(a, b){
-            var e = a + '' + b;
-            var f = b + '' + a;
-            return f - e;
-        }
-    )
-    console.log(nums)
-    for(let i = 0 ; i < nums.length; i+=1) {
-        answer += nums[i];
-    }
-    if(answer[0] === "0") return "0";
-    return answer;
+ var answer = '';
+ var nums = numbers.sort(function (a, b) {
+  var e = a + '' + b;
+  var f = b + '' + a;
+  return f - e;
+ });
+ console.log(nums);
+ for (let i = 0; i < nums.length; i += 1) {
+  answer += nums[i];
+ }
+ if (answer[0] === '0') return '0';
+ return answer;
 }

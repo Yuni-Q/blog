@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const metaConfig = require('./gatsby-meta-config');
 
 module.exports = {

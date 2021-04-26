@@ -22,22 +22,22 @@
  * @param {string[]} words
  * @return {number}
  */
-var longestStrChain = function(words) {
-  let map = new Map();
-  let res = 0;
-  words.sort((a, b) => a.length - b.length);
+var longestStrChain = function (words) {
+ let map = new Map();
+ let res = 0;
+ words.sort((a, b) => a.length - b.length);
 
-  for (let word of words) {
-    let level = 1;
-    for (let i = 0; i < word.length; i++) {
-      let prev = word.slice(0, i) + word.slice(i + 1);
-      if (map.has(prev)) {
-        level = map.get(prev) + 1;
-        continue;
-      }
-    }
-    map.set(word, level);
-    res = Math.max(res, level);
+ for (let word of words) {
+  let level = 1;
+  for (let i = 0; i < word.length; i++) {
+   let prev = word.slice(0, i) + word.slice(i + 1);
+   if (map.has(prev)) {
+    level = map.get(prev) + 1;
+    continue;
+   }
   }
-  return res;
+  map.set(word, level);
+  res = Math.max(res, level);
+ }
+ return res;
 };

@@ -34,28 +34,28 @@
  * @param {string} p
  * @return {number[]}
  */
-var findAnagrams = function(s, p) {
-  if (!s.length) return [];
-  let uniqCharCount = 0;
-  let arr = new Array(26).fill(0);
-  for (let i = 0; i < p.length; i++) {
-    let c = p.charCodeAt(i) - 97;
-    if (arr[c] === 0) uniqCharCount++;
-    arr[c]++;
+var findAnagrams = function (s, p) {
+ if (!s.length) return [];
+ let uniqCharCount = 0;
+ let arr = new Array(26).fill(0);
+ for (let i = 0; i < p.length; i++) {
+  let c = p.charCodeAt(i) - 97;
+  if (arr[c] === 0) uniqCharCount++;
+  arr[c]++;
+ }
+ let out = [];
+ for (let i = 0; i < s.length; i++) {
+  let c = s.charCodeAt(i) - 97;
+  arr[c]--;
+  if (arr[c] === 0) uniqCharCount--;
+  if (i >= p.length) {
+   let c = s.charCodeAt(i - p.length) - 97;
+   arr[c]++;
+   if (arr[c] > 0) uniqCharCount++;
   }
-  let out = [];
-  for (let i = 0; i < s.length; i++) {
-    let c = s.charCodeAt(i) - 97;
-    arr[c]--;
-    if (arr[c] === 0) uniqCharCount--;
-    if (i >= p.length) {
-      let c = s.charCodeAt(i - p.length) - 97;
-      arr[c]++;
-      if (arr[c] > 0) uniqCharCount++;
-    }
-    if (uniqCharCount === 0) {
-      out.push(i - p.length + 1);
-    }
+  if (uniqCharCount === 0) {
+   out.push(i - p.length + 1);
   }
-  return out;
+ }
+ return out;
 };

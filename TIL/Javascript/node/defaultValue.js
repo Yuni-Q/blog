@@ -1,9 +1,8 @@
-
 function a(a, b) {
-  console.log('a', a);
-  if (b) {
-    console.log('b', b);
-  }
+ console.log('a', a);
+ if (b) {
+  console.log('b', b);
+ }
 }
 
 a(1, 2);

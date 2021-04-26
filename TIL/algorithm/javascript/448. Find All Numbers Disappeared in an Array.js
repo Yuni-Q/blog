@@ -1,4 +1,3 @@
-
 // Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
 
 // Find all the elements of [1, n] inclusive that do not appear in this array.
@@ -18,24 +17,24 @@
  * @return {number[]}
  */
 var findDisappearedNumbers = function (nums) {
-    const result = {
-        4: true,
-        3: true,
-        2: true,
-        7: true,
-        8: true,
-        1: true,
-    };
-    const result2 = []
-    for (let i = 0; i < nums.length; i += 1) {
-        result[nums[i]] = true;
-    }
-    // const max = Math.max.apply(null, nums);
-    // console.log(result)
-    for (let i = 1; i <= nums.length; i += 1) {
-        if (result[i] !== true) {
-            result2.push(i)
-        }
-    }
-    return result2
+ const result = {
+  4: true,
+  3: true,
+  2: true,
+  7: true,
+  8: true,
+  1: true,
+ };
+ const result2 = [];
+ for (let i = 0; i < nums.length; i += 1) {
+  result[nums[i]] = true;
+ }
+ // const max = Math.max.apply(null, nums);
+ // console.log(result)
+ for (let i = 1; i <= nums.length; i += 1) {
+  if (result[i] !== true) {
+   result2.push(i);
+  }
+ }
+ return result2;
 };

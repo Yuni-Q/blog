@@ -23,48 +23,50 @@
 // 1차 시도 - 시간 초과
 
 function solution(routes) {
-  var answer = 0;
-  let lastRoutes = routes.sort(
-      function(a,b) {
-          return a[0]-b[0]
-      }
-  ).pop()
+ var answer = 0;
+ let lastRoutes = routes
+  .sort(function (a, b) {
+   return a[0] - b[0];
+  })
+  .pop();
+ answer++;
+ let filterRoutes = routes.filter((num) => num[1] < lastRoutes[0]);
+ while (filterRoutes.length > 0) {
+  lastRoutes = filterRoutes
+   .sort(function (a, b) {
+    return a[0] - b[0];
+   })
+   .pop();
   answer++;
-  let filterRoutes = routes.filter(num => num[1] < lastRoutes[0]);
-  while(filterRoutes.length > 0) {
-      lastRoutes = filterRoutes.sort(
-          function(a,b) {
-              return a[0]-b[0]
-          }
-      ).pop()
-      answer++;
-      filterRoutes = filterRoutes.filter(num => num[1] < lastRoutes[0]);
-  }
-  console.log(routes)
-  console.log(filterRoutes)
-  
-  return answer;
+  filterRoutes = filterRoutes.filter((num) => num[1] < lastRoutes[0]);
+ }
+ console.log(routes);
+ console.log(filterRoutes);
+
+ return answer;
 }
 
-// 정답 
+// 정답
 
 function solution(routes) {
-  routes.sort((a,b) => {return a[0] - b[0]})
-  var arr = []
-  var now = routes[0]
-  var type = 0
-  for(var i=0;i<routes.length-1;i++){
-      var nxt = routes[i+1]
-      if(now[1] >= nxt[0]){
-          now = [nxt[0],Math.min(now[1],nxt[1])]
-          if(type === 0) arr.push(now)
-          type = 1
-      } else {
-          if(type === 0) arr.push(now)
-          now = nxt
-          type = 0
-      }
+ routes.sort((a, b) => {
+  return a[0] - b[0];
+ });
+ var arr = [];
+ var now = routes[0];
+ var type = 0;
+ for (var i = 0; i < routes.length - 1; i++) {
+  var nxt = routes[i + 1];
+  if (now[1] >= nxt[0]) {
+   now = [nxt[0], Math.min(now[1], nxt[1])];
+   if (type === 0) arr.push(now);
+   type = 1;
+  } else {
+   if (type === 0) arr.push(now);
+   now = nxt;
+   type = 0;
   }
-  if(type === 0) arr.push(now)
-  return arr.length
+ }
+ if (type === 0) arr.push(now);
+ return arr.length;
 }

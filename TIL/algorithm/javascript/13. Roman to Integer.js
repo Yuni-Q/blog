@@ -1,4 +1,3 @@
-
 // Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
 // Symbol       Value
@@ -13,8 +12,8 @@
 
 // Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
 
-// I can be placed before V (5) and X (10) to make 4 and 9. 
-// X can be placed before L (50) and C (100) to make 40 and 90. 
+// I can be placed before V (5) and X (10) to make 4 and 9.
+// X can be placed before L (50) and C (100) to make 40 and 90.
 // C can be placed before D (500) and M (1000) to make 400 and 900.
 // Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
 
@@ -46,39 +45,39 @@
  * @return {number}
  */
 const mapping = [
-  [1000, 'M'],
-  [900, 'CM'],
-  [500, 'D'],
-  [400, 'CD'],
-  [100, 'C'],
-  [90, 'XC'],
-  [50, 'L'],
-  [40, 'XL'],
-  [10, 'X'],
-  [9, 'IX'],
-  [5, 'V'],
-  [4, 'IV'],
-  [1, 'I']
+ [1000, 'M'],
+ [900, 'CM'],
+ [500, 'D'],
+ [400, 'CD'],
+ [100, 'C'],
+ [90, 'XC'],
+ [50, 'L'],
+ [40, 'XL'],
+ [10, 'X'],
+ [9, 'IX'],
+ [5, 'V'],
+ [4, 'IV'],
+ [1, 'I'],
 ];
 var romanToInt = function (s) {
-  let str = s.split('');
-  let result = 0;
-  for (let i = 0; i < mapping.length; i += 1) {
-    const [val, char] = mapping[i];
-    if (str[0] === char) {
-      while (str[0] === char) {
-        result += val;
-        str.shift();
-      }
-    }
-    if (str[0] + str[1] === char) {
-      while (str[0] + str[1] === char) {
-        result += val;
-        str.shift();
-        str.shift();
-      }
-    }
+ let str = s.split('');
+ let result = 0;
+ for (let i = 0; i < mapping.length; i += 1) {
+  const [val, char] = mapping[i];
+  if (str[0] === char) {
+   while (str[0] === char) {
+    result += val;
+    str.shift();
+   }
   }
+  if (str[0] + str[1] === char) {
+   while (str[0] + str[1] === char) {
+    result += val;
+    str.shift();
+    str.shift();
+   }
+  }
+ }
 
-  return result;
+ return result;
 };

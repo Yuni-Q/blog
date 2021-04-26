@@ -24,18 +24,18 @@
  * @return {number}
  */
 var minSwapsCouples = function (row) {
-  const pos = {};
-  for (let i = 0; i < row.length; i++) {
-    pos[row[i]] = i;
-  }
+ const pos = {};
+ for (let i = 0; i < row.length; i++) {
+  pos[row[i]] = i;
+ }
 
-  let count = 0;
-  for (let i = 1; i < row.length; i += 2) {
-    while ((row[i] ^ 1) !== row[i - 1]) {
-      let idx = pos[row[i] ^ 1] ^ 1;
-      [row[i], row[idx]] = [row[idx], row[i]];
-      count++;
-    }
+ let count = 0;
+ for (let i = 1; i < row.length; i += 2) {
+  while ((row[i] ^ 1) !== row[i - 1]) {
+   let idx = pos[row[i] ^ 1] ^ 1;
+   [row[i], row[idx]] = [row[idx], row[i]];
+   count++;
   }
-  return count;
+ }
+ return count;
 };

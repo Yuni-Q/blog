@@ -1,12 +1,11 @@
-
 function Person(name, age) {
-  this.name = name
-  this.age = age
-};
+ this.name = name;
+ this.age = age;
+}
 
-const person = {}
+const person = {};
 
-Person('Kim')
+Person('Kim');
 
 console.log(name);
 

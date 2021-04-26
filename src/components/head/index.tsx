@@ -7,7 +7,7 @@ export function Head({ description, lang, meta, keywords, title }) {
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
+      render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description;
         return (
@@ -58,10 +58,10 @@ export function Head({ description, lang, meta, keywords, title }) {
               .concat(
                 keywords.length > 0
                   ? {
-                    name: `keywords`,
-                    content: keywords.join(`, `),
-                  }
-                  : []
+                      name: `keywords`,
+                      content: keywords.join(`, `),
+                    }
+                  : [],
               )
               .concat(meta)}
           />
@@ -86,13 +86,13 @@ Head.propTypes = {
 };
 
 const detailsQuery = graphql`
-	query DefaultSEOQuery {
-		site {
-			siteMetadata {
-				title
-				description
-				author
-			}
-		}
-	}
+  query DefaultSEOQuery {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
 `;

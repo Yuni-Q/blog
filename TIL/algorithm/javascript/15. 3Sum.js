@@ -19,46 +19,45 @@
  * @return {number[][]}
  */
 var threeSum = function (nums) {
-  var rtn = [];
-  if (nums.length < 3) {
-    return rtn;
-  }
-  nums = nums.sort(function (a, b) {
-    return a - b;
-  });
-  for (var i = 0; i < nums.length - 2; i++) {
-    if (nums[i] > 0) {
-      return rtn;
-    }
-    if (i > 0 && nums[i] == nums[i - 1]) {
-      continue;
-    }
-    for (var j = i + 1, k = nums.length - 1; j < k;) {
-      if (nums[i] + nums[j] + nums[k] === 0) {
-        rtn.push([nums[i], nums[j], nums[k]]);
-        j++;
-        k--;
-        while (j < k && nums[j] == nums[j - 1]) {
-          j++;
-        }
-        while (j < k && nums[k] == nums[k + 1]) {
-          k--;
-        }
-      } else if (nums[i] + nums[j] + nums[k] > 0) {
-        k--;
-      } else {
-        j++;
-      }
-    }
-  }
+ var rtn = [];
+ if (nums.length < 3) {
   return rtn;
+ }
+ nums = nums.sort(function (a, b) {
+  return a - b;
+ });
+ for (var i = 0; i < nums.length - 2; i++) {
+  if (nums[i] > 0) {
+   return rtn;
+  }
+  if (i > 0 && nums[i] == nums[i - 1]) {
+   continue;
+  }
+  for (var j = i + 1, k = nums.length - 1; j < k; ) {
+   if (nums[i] + nums[j] + nums[k] === 0) {
+    rtn.push([nums[i], nums[j], nums[k]]);
+    j++;
+    k--;
+    while (j < k && nums[j] == nums[j - 1]) {
+     j++;
+    }
+    while (j < k && nums[k] == nums[k + 1]) {
+     k--;
+    }
+   } else if (nums[i] + nums[j] + nums[k] > 0) {
+    k--;
+   } else {
+    j++;
+   }
+  }
+ }
+ return rtn;
 };
 
 // /**
 //  * @param {number[]} nums
 //  * @return {number[][]}
 //  */
-
 
 // var threeSum = function (nums) {
 //   const result = [];
@@ -123,39 +122,38 @@ var threeSum = function (nums) {
 //         // console.log(a,b)
 // 	return a ;
 // }, []) ; // <-- 초기값 빈 배열 세팅!
-return result//.sort()
-  // const rslt = [];
-  // nums = nums.sort()
-  // for(let i = 0 ; i < nums.length ; i++){ if(i == 0 || (i > 0 && nums[i-1] != nums[i])){
-  //             let low = i+1;
-  //             let high = nums.length - 1;
-  //             let sum = nums[i] * -1;
-  //             while(low < high){
-  //                 if(nums[low] + nums[high] == sum){
-  //                     rslt.push([nums[i], nums[low], nums[high]]);
-  //                     while(low < high && nums[low] == nums[low+1])   low++;
-  //                     while(low < high && nums[high] == nums[high-1]) high--;
-  //                     low++;
-  //                     high--;
-  //                 }else if(nums[low] + nums[high] < sum){
-  //                     while(low < high && nums[low] == nums[low+1])   low++;
-  //                     low++;
-  //                 }else{
-  //                     while(low < high && nums[high] == nums[high-1]) high--;
-  //                     high--;
-  //                 }
-  //             }
-  //         }
-  //     }
+return result; //.sort()
+// const rslt = [];
+// nums = nums.sort()
+// for(let i = 0 ; i < nums.length ; i++){ if(i == 0 || (i > 0 && nums[i-1] != nums[i])){
+//             let low = i+1;
+//             let high = nums.length - 1;
+//             let sum = nums[i] * -1;
+//             while(low < high){
+//                 if(nums[low] + nums[high] == sum){
+//                     rslt.push([nums[i], nums[low], nums[high]]);
+//                     while(low < high && nums[low] == nums[low+1])   low++;
+//                     while(low < high && nums[high] == nums[high-1]) high--;
+//                     low++;
+//                     high--;
+//                 }else if(nums[low] + nums[high] < sum){
+//                     while(low < high && nums[low] == nums[low+1])   low++;
+//                     low++;
+//                 }else{
+//                     while(low < high && nums[high] == nums[high-1]) high--;
+//                     high--;
+//                 }
+//             }
+//         }
+//     }
 
-  // return rslt.sort();
+// return rslt.sort();
 // };
 
 // /**
 //  * @param {number[]} nums
 //  * @return {number[][]}
 //  */
-
 
 // var threeSum = function (nums) {
 //   const result = [];
@@ -175,7 +173,6 @@ return result//.sort()
 //     return QuickSort(left).concat(middle, QuickSort(right));
 //   }
 //   //
-
 
 //     nums = QuickSort(nums)
 //     const len = nums.length
@@ -206,7 +203,6 @@ return result//.sort()
 //   }
 //   return result
 // };
-
 
 // var threeSum = function(nums) {
 //   let num = nums.sort()

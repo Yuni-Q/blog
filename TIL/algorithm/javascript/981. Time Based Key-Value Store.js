@@ -38,8 +38,8 @@
 /**
  * Initialize your data structure here.
  */
-var TimeMap = function() {
-  this.map = new Map();
+var TimeMap = function () {
+ this.map = new Map();
 };
 
 /**
@@ -48,10 +48,10 @@ var TimeMap = function() {
  * @param {number} timestamp
  * @return {void}
  */
-TimeMap.prototype.set = function(key, value, timestamp) {
-  var arr = this.map.get(key) || [];
-  arr[timestamp] = value;
-  this.map.set(key, arr);
+TimeMap.prototype.set = function (key, value, timestamp) {
+ var arr = this.map.get(key) || [];
+ arr[timestamp] = value;
+ this.map.set(key, arr);
 };
 
 /**
@@ -59,15 +59,15 @@ TimeMap.prototype.set = function(key, value, timestamp) {
  * @param {number} timestamp
  * @return {string}
  */
-TimeMap.prototype.get = function(key, timestamp) {
-  if (!this.map.has(key)) return "";
-  var arr = this.map.get(key);
-  for (var i = timestamp; i >= 0; i--) {
-    if (!!arr[i]) {
-      return arr[i];
-    }
+TimeMap.prototype.get = function (key, timestamp) {
+ if (!this.map.has(key)) return '';
+ var arr = this.map.get(key);
+ for (var i = timestamp; i >= 0; i--) {
+  if (arr[i]) {
+   return arr[i];
   }
-  return "";
+ }
+ return '';
 };
 
 /**

@@ -16,22 +16,22 @@
  * @return {number}
  */
 var majorityElement = function (nums) {
-  let result = nums[0];
-  let count = 0;
-  nums = nums.sort();
-  let num = nums[0];
-  let temp = 1;
-  for (let i = 1; i < nums.length; i += 1) {
-    if (num === nums[i]) {
-      temp++;
-    } else {
-      num = nums[i];
-      temp = 1;
-    }
-    if (temp > count) {
-      count = temp;
-      result = nums[i]
-    }
+ let result = nums[0];
+ let count = 0;
+ nums = nums.sort();
+ let num = nums[0];
+ let temp = 1;
+ for (let i = 1; i < nums.length; i += 1) {
+  if (num === nums[i]) {
+   temp++;
+  } else {
+   num = nums[i];
+   temp = 1;
   }
-  return result
+  if (temp > count) {
+   count = temp;
+   result = nums[i];
+  }
+ }
+ return result;
 };

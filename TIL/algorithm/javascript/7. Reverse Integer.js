@@ -19,33 +19,33 @@
  * @param {number} x
  * @return {number}
  **/
-var reverse = function(x) {
-  if (x === 0) return 0;
-  let a = 1;
-  if(x < 0) {
-      a = -1;
-      x =  x * -1;
-  }
-  let c = JSON.stringify(x);
-  // console.log('c1',c)
-  let b = c.split("").reverse().join("");
-  while(true){
-      if(b[0] == '0') {
-          b = b.slice(1, b.length)
-      } else {
-          break;
-      }
-  }
-  console.log(b)
-  c = JSON.parse(b);
-  // console.log('c2',c)
-  c = a * c;
-  
-  if(c > (2 **31) -1){
-      return 0
-  } else if (c < -(2 **31)) {
-      return 0;    
+var reverse = function (x) {
+ if (x === 0) return 0;
+ let a = 1;
+ if (x < 0) {
+  a = -1;
+  x = x * -1;
+ }
+ let c = JSON.stringify(x);
+ // console.log('c1',c)
+ let b = c.split('').reverse().join('');
+ while (true) {
+  if (b[0] == '0') {
+   b = b.slice(1, b.length);
   } else {
-      return c;
+   break;
   }
+ }
+ console.log(b);
+ c = JSON.parse(b);
+ // console.log('c2',c)
+ c = a * c;
+
+ if (c > 2 ** 31 - 1) {
+  return 0;
+ } else if (c < -(2 ** 31)) {
+  return 0;
+ } else {
+  return c;
+ }
 };

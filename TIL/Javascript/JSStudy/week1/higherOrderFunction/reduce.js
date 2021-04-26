@@ -7,15 +7,14 @@ currentIndex : 인덱스
 array        : 순회할 배열
 */
 const sum = arr.reduce((previousValue, currentValue, currentIndex, array) => {
-  console.log(`${previousValue} + ${currentValue} = ${(previousValue + currentValue)}`);
-  return previousValue + currentValue; // 결과는 다음 콜백의 첫번째 인자로 전달된다
+ console.log(`${previousValue} + ${currentValue} = ${previousValue + currentValue}`);
+ return previousValue + currentValue; // 결과는 다음 콜백의 첫번째 인자로 전달된다
 });
 
 console.log(sum);
 
-
 const max = arr.reduce((prev, cur) => {
-  return prev > cur ? prev : cur;
+ return prev > cur ? prev : cur;
 });
 
 console.log(max);

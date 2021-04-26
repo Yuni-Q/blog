@@ -18,14 +18,14 @@
  * @return {boolean}
  */
 var detectCapitalUse = function (word) {
-  if (word.toUpperCase() == word) {
-    return true;
-  }
-
-  for (let i = 1; i < word.length; i += 1) {
-    if (word.charCodeAt(i) < 97) {
-      return false;
-    }
-  }
+ if (word.toUpperCase() == word) {
   return true;
+ }
+
+ for (let i = 1; i < word.length; i += 1) {
+  if (word.charCodeAt(i) < 97) {
+   return false;
+  }
+ }
+ return true;
 };
