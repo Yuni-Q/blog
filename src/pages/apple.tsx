@@ -26,7 +26,7 @@ const Video = styled.video`
   transform: scale(1);
 `;
 
-const Apple = () => {
+const Apple: React.VFC = () => {
   const elemCanvas = useRef<HTMLCanvasElement>(null);
   const elemVideo = useRef<HTMLVideoElement>(null);
   useEffect(() => {
@@ -68,7 +68,7 @@ const Apple = () => {
       totalScrollHeight = 0;
       pixelDuration = 0.5 * windowHeight;
 
-      keyframes.forEach((keyframe) => {
+      keyframes.forEach(() => {
         totalScrollHeight += windowHeight;
       });
 
