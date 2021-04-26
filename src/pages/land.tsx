@@ -188,7 +188,7 @@ interface CM {
   currentFrame: number;
 }
 
-const Land = () => {
+const Land: React.VFC = () => {
   const cm: CM = {
     canvas: undefined,
     context: undefined,
@@ -224,7 +224,7 @@ const Land = () => {
     const mouse = { x: 0, y: 0 };
     const lights: Light[] = [];
     const characters: Character[] = [];
-    const allItems: any[] = [];
+    const allItems: (Character | Light)[] = [];
     let indexOfLight = 0;
 
     const setSize = () => {

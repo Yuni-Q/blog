@@ -14,20 +14,48 @@ import * as ScrollManager from '../utils/scroll';
 import * as Storage from '../utils/storage';
 import * as IOManager from '../utils/visible';
 
-const DEST_POS = 316;
+// const DEST_POS = 316;
 const BASE_LINE = 80;
 
 function getDistance(currentPos) {
   return Dom.getDocumentHeight() - currentPos;
 }
 
-export default ({ data, location }) => {
+interface Props {
+  data: {
+    allMarkdownRemark: {
+      edges: {
+        node: {
+          excerpt: string;
+          fields: {
+            slug: string;
+          };
+          frontmatter: {
+            category: string;
+            date: string;
+            draft: boolean;
+            tags: string[];
+            title: string;
+          };
+        };
+      }[];
+    };
+    site: {
+      siteMetadata: {
+        configs: { countOfInitialPost: number };
+        keywords: string[];
+      };
+      title: string;
+    };
+  };
+}
+
+const Index: React.VFC<Props> = ({ data }) => {
   const initialCount = Storage.getCount(1);
   const initialCategory = Storage.getCategory(CATEGORY_TYPE.ALL);
   const [count, setCount] = useState(initialCount);
   const countRef = useRef(count);
   const [category, setCategory] = useState(initialCategory);
-
   const { siteMetadata } = data.site;
   const { countOfInitialPost } = siteMetadata.configs;
   const posts = data.allMarkdownRemark.edges;
@@ -78,7 +106,7 @@ export default ({ data, location }) => {
   };
 
   return (
-    <Layout location={location}>
+    <Layout>
       <Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
       <Bio />
       <Category
@@ -100,6 +128,7 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
+        keywords
         title
         configs {
           countOfInitialPost
@@ -128,3 +157,5 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export default Index;

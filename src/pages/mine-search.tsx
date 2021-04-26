@@ -1,12 +1,12 @@
 import React, {
-  useEffect,
-  useReducer,
   createContext,
-  useMemo,
-  useCallback,
   memo,
-  useState,
+  useCallback,
   useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
 } from 'react';
 
 // 상태값 저장
@@ -278,7 +278,7 @@ const reducer = (state, action) => {
 };
 
 // 게임
-const MineSearch = () => {
+const MineSearch: React.VFC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { tableData, halted, timer, result } = state;
 
@@ -520,7 +520,7 @@ const RealTd = memo(
     data,
   }: {
     onClickTd: () => void;
-    onRightClickTd: (e: any) => void;
+    onRightClickTd: (e: React.MouseEvent<HTMLTableDataCellElement>) => void;
     data: string;
   }) => {
     return (

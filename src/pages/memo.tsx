@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { v4 as uuid } from 'uuid';
 import Memo from '../components/memo/Memo';
 import Spinner from '../components/spinner/Spinner';
 import { getFireDB, updateFireDB } from '../utils/firebase';
 import sendGAEvent, { GA_ACTION } from '../utils/ga';
-
-const { v4: uuid } = require('uuid');
 
 const StyledLoading = styled.div`
   width: 100vw;
@@ -16,7 +15,13 @@ const StyledLoading = styled.div`
   align-items: center;
 `;
 
-const MemoPage = () => {
+interface DataSnapshot {
+  index_;
+  node_;
+  ref_;
+}
+
+const MemoPage: React.VFC = () => {
   const [loading, setLoading] = useState(true);
   const [memos, setMemos] = useState([]);
 
@@ -25,15 +30,15 @@ const MemoPage = () => {
   const pull = useRef(false);
 
   const onClickAdd = useCallback(
-    (event) => {
+    (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
-      if (event.target.dataset.wrap) {
+      if ((event.target as HTMLElement).dataset.wrap) {
         setMemos([
           ...memos,
           {
             id: uuid(),
-            top: (window.event as any).clientY,
-            left: (window.event as any).clientX,
+            top: (window.event as MouseEvent).clientY,
+            left: (window.event as MouseEvent).clientX,
             width: 200,
             height: 100,
             text: '',
@@ -141,9 +146,11 @@ const MemoPage = () => {
     getItem();
     const ref = getFireDB();
     ref.on('value', (value) => {
+      console.log(222, value);
+
       try {
         pull.current = true;
-        setMemos(JSON.parse((value as any).node_.value_));
+        setMemos(JSON.parse((value as DataSnapshot).node_.value_));
       } catch (error) {
         updateFireDB([]);
       }

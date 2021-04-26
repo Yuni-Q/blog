@@ -135,7 +135,7 @@ class App {
   }
 }
 
-const ParticleSystem = () => {
+const ParticleSystem: React.VFC = () => {
   useEffect(() => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');

@@ -12,7 +12,7 @@ const StyledCalculator = styled.div`
   }
 `;
 
-const Calculator = () => {
+const Calculator: React.VFC = () => {
   const [numOne, setNumOne] = useState('');
   const [numTwo, setNumTwo] = useState('');
   const [operator, setOperator] = useState('');

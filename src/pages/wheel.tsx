@@ -25,7 +25,7 @@ const Page = styled.div`
   }
 `;
 
-const Wheel = () => {
+const Wheel: React.VFC = () => {
   const wrapper = useRef<HTMLDivElement>(null);
   useEffect(() => {
     let posX = 0;

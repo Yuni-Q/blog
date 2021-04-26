@@ -27,7 +27,7 @@ const Grid = styled.div`
   }
 `;
 
-const SpaceInvaders = () => {
+const SpaceInvaders: React.VFC = () => {
   const ref = useRef(null);
 
   useEffect(() => {

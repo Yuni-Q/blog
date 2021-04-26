@@ -73,7 +73,7 @@ const Draggable: VFC = () => {
     const lastSlide = allSlides[allSlides.length - 1];
 
     const cloneFirstSlide = firstSlide.cloneNode(true);
-    const clonelastSlide = lastSlide.cloneNode(true);
+    const cloneLastSlide = lastSlide.cloneNode(true);
 
     const dragMove = (e) => {
       if (e.type === 'touchmove') {
@@ -103,14 +103,14 @@ const Draggable: VFC = () => {
     };
     slides.addEventListener('touchend', dragEnd);
 
-    const dragStart = (e: any) => {
+    const dragStart = (e: Event) => {
       e.preventDefault();
       initialPosition = (slides as HTMLDivElement).offsetLeft;
 
       if (e.type == 'touchstart') {
-        posX1 = e.touches[0].clientX;
+        posX1 = (e as TouchEvent).touches[0].clientX;
       } else {
-        posX1 = e.clientX;
+        posX1 = (e as MouseEvent).clientX;
 
         document.onmouseup = dragEnd;
         document.onmousemove = dragMove;
@@ -120,7 +120,7 @@ const Draggable: VFC = () => {
     slides.addEventListener('touchstart', dragStart);
 
     slides.appendChild(cloneFirstSlide);
-    slides.insertBefore(clonelastSlide, firstSlide);
+    slides.insertBefore(cloneLastSlide, firstSlide);
 
     const checkIndex = () => {
       slides.classList.remove('transition');

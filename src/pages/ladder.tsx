@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-const Ladder = () => {
+const Ladder: React.VFC = () => {
   const [sound, setSound] = useState(0.05);
   const [loading, setLoading] = useState(0);
   const [memberList, setMemberList] = useState([]);

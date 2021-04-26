@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-const GuGuDan = () => {
+const GuGuDan: React.VFC = () => {
   const [first, setFirst] = useState(Math.ceil(Math.random() * 9));
   const [second, setSecond] = useState(Math.ceil(Math.random() * 9));
   const [value, setValue] = useState('');

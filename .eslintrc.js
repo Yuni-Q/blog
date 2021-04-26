@@ -26,6 +26,7 @@ module.exports = {
   rules: {
     'react/jsx-key': 2,
     'react/display-name': 0,
+    'react/prop-types': 0,
     // semi: [2, 'never'],
   },
 };
