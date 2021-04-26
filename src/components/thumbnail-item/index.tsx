@@ -7,7 +7,7 @@ import { TARGET_CLASS } from '../../utils/visible';
 import './index.scss';
 import sendGAEvent, { GA_ACTION } from '../../utils/ga';
 
-const StlyedLink = styled(Link)`
+const StyledLink = styled(Link)`
   display: inline-block;
   border-radius: 8px;
   margin-right: 8px;
@@ -58,7 +58,7 @@ export const ThumbnailItem = ({ node }) => {
       </Link>
       <div>
         {(node.frontmatter.tags || []).map((tag, index) => (
-          <StlyedLink
+          <StyledLink
             theme={state.theme}
             key={index}
             to={`/tags/${tag}/`}
@@ -67,7 +67,7 @@ export const ThumbnailItem = ({ node }) => {
             }}
           >
             {`#${tag}`}
-          </StlyedLink>
+          </StyledLink>
         ))}
       </div>
     </StyledThumbnailItem>
