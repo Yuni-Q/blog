@@ -41,20 +41,13 @@ const CandyCrushWalkThrough: React.VFC = () => {
       for (let i = 0; i < 62; i++) {
         const { array, notValid } = check(i);
         const decidedColor = newColor[i];
-        const isBlank = newColor[i] === '';
         if (notValid.includes(i)) {
           continue;
         }
-        if (
-          array.every((index) => newColor[index] === decidedColor && !isBlank)
-        ) {
-          setScore((score) => {
-            return score + array.length;
-          });
+        if (array.every((index) => colors[index] === decidedColor)) {
           array.forEach((index) => {
             newColor[index] = '';
           });
-          setColors(newColor);
         }
       }
     };
@@ -108,12 +101,22 @@ const CandyCrushWalkThrough: React.VFC = () => {
     checkBox(checkFourColumnIndexArray);
     checkBox(checkThreeRowIndexArray);
     checkBox(checkThreeColumnIndexArray);
+
+    if (JSON.stringify(colors) !== JSON.stringify(newColor)) {
+      const newScore = newColor.reduce((prev, curr) => {
+        if (curr === '') {
+          return prev + 1;
+        }
+        return prev;
+      }, 0);
+      setScore((score) => {
+        return score + newScore;
+      });
+      setColors(newColor);
+    }
   }, [colors]);
   useEffect(() => {
-    if (endMove === true) {
-      checkGrid();
-      setEndMove(false);
-    }
+    checkGrid();
   }, [endMove]);
   useEffect(() => {
     const newColor = [...colors];
@@ -134,9 +137,10 @@ const CandyCrushWalkThrough: React.VFC = () => {
       if (JSON.stringify(colors) !== JSON.stringify(newColor)) {
         setColors(newColor);
       } else {
-        setEndMove(true);
+        setEndMove((endMove) => !endMove);
       }
     };
+
     setTimeout(moveDown, 50);
   }, [colors]);
   return (
@@ -211,4 +215,5 @@ const CandyCrushWalkThrough: React.VFC = () => {
 
 export default CandyCrushWalkThrough;
 
-// TODO : 3:3 시 같이 없어지기
+// 4각형 없애기
+// 아이템 만들기
