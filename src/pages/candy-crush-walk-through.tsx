@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Grid = styled.div`
@@ -140,8 +140,7 @@ const CandyCrushWalkThrough: React.VFC = () => {
         setEndMove((endMove) => !endMove);
       }
     };
-
-    setTimeout(moveDown, 50);
+    moveDown();
   }, [colors]);
   return (
     <Grid>
