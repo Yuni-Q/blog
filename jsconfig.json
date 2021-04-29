@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es2015",
+    "lib": ["dom", "es2019"],
+    "jsx": "react-jsx"
+  },
+  "include": ["src/**/*"]
+}
