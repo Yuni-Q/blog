@@ -18,6 +18,7 @@ export const CODE = {
   QUESTION_MINE: -4,
   FLAG_MINE: -5,
   CLICKED_MINE: -6,
+  OPEN_MINE: -8,
   OPENED: 0, // 0 이상이면 다 opened
 };
 
@@ -26,6 +27,7 @@ export const TableContext = createContext({
   tableData: [],
   halted: true,
   dispatch: null,
+  openedCount: 0,
 });
 
 // 초기값
@@ -106,6 +108,54 @@ const reducer = (state, action) => {
         tableData[i] = [...row];
       });
 
+      if (
+        !state.openedCount &&
+        CODE.MINE === tableData[action.row][action.cell]
+      ) {
+        const searched = [];
+        for (let i = 0; i < state.data.row; i++) {
+          const rowData = [];
+          searched.push(rowData);
+          for (let j = 0; j < state.data.cell; j++) {
+            rowData.push(false);
+          }
+        }
+        let end = false;
+        const transferMine = (rowIndex: number, cellIndex: number) => {
+          if (end) {
+            return;
+          }
+          if (
+            rowIndex < 0 ||
+            rowIndex >= state.data.row ||
+            cellIndex < 0 ||
+            cellIndex >= state.data.cell
+          ) {
+            return;
+          }
+          if (searched[rowIndex][cellIndex]) {
+            return;
+          }
+          searched[rowIndex][cellIndex] = true;
+          if (CODE.NORMAL === tableData[rowIndex]?.[cellIndex]) {
+            tableData[rowIndex][cellIndex] = CODE.MINE;
+            end = true;
+            return;
+          } else {
+            transferMine(rowIndex - 1, cellIndex - 1);
+            transferMine(rowIndex - 1, cellIndex);
+            transferMine(rowIndex - 1, cellIndex + 1);
+            transferMine(rowIndex, cellIndex - 1);
+            transferMine(rowIndex, cellIndex + 1);
+            transferMine(rowIndex + 1, cellIndex - 1);
+            transferMine(rowIndex + 1, cellIndex);
+            transferMine(rowIndex + 1, cellIndex + 1);
+          }
+        };
+        transferMine(action.row, action.cell);
+        tableData[action.row][action.cell] = CODE.NORMAL;
+      }
+
       const checked = [];
       let openedCount = 0;
       const checkAround = (row: number, cell: number) => {
@@ -116,8 +166,9 @@ const reducer = (state, action) => {
           cell < 0 ||
           cell >= tableData[0].length
         ) {
-          return;
+          return { ...state };
         }
+
         // 닫힌 칸만 수행
         if (
           [
@@ -219,7 +270,21 @@ const reducer = (state, action) => {
     }
     case CLICK_MINE: {
       const tableData = [...state.tableData];
-      tableData[action.row] = [...state.tableData[action.row]];
+      tableData.forEach((row, i) => {
+        tableData[i] = [...row];
+      });
+
+      tableData.forEach((row, rowIndex) => {
+        row.forEach((cell, cellIndex) => {
+          if (
+            tableData[rowIndex][cellIndex] === CODE.MINE ||
+            tableData[rowIndex][cellIndex] === CODE.FLAG_MINE ||
+            tableData[rowIndex][cellIndex] === CODE.QUESTION_MINE
+          ) {
+            tableData[rowIndex][cellIndex] = CODE.OPEN_MINE;
+          }
+        });
+      });
       tableData[action.row][action.cell] = CODE.CLICKED_MINE;
       return {
         ...state,
@@ -278,13 +343,15 @@ const reducer = (state, action) => {
 };
 
 // 게임
+// TODO : 마우스 양쪽 클릭 구현하기
 const MineSearch: React.VFC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { tableData, halted, timer, result } = state;
+  const { tableData, halted, timer, result, openedCount } = state;
 
-  const value = useMemo(() => ({ tableData, halted, dispatch }), [
+  const value = useMemo(() => ({ tableData, halted, dispatch, openedCount }), [
     tableData,
     halted,
+    openedCount,
   ]);
 
   useEffect(() => {
@@ -403,6 +470,10 @@ const getTdStyle = (code) => {
       return {
         background: 'red',
       };
+    case CODE.OPEN_MINE:
+      return {
+        background: 'white',
+      };
     case CODE.OPENED:
       return {
         background: 'white',
@@ -431,6 +502,7 @@ const getTdText = (code) => {
     case CODE.MINE:
       return 'X';
     case CODE.CLICKED_MINE:
+    case CODE.OPEN_MINE:
       return '펑';
     case CODE.FLAG_MINE:
     case CODE.FLAG:
@@ -445,12 +517,19 @@ const getTdText = (code) => {
 
 const Td = memo(
   ({ rowIndex, cellIndex }: { rowIndex: number; cellIndex: number }) => {
-    const { tableData, dispatch, halted } = useContext(TableContext);
+    const { tableData, dispatch, halted, openedCount } = useContext(
+      TableContext,
+    );
 
     const onClickTd = useCallback(() => {
       if (halted) {
         return;
       }
+      if (!openedCount) {
+        dispatch({ type: OPEN_CELL, row: rowIndex, cell: cellIndex });
+        return;
+      }
+
       switch (tableData[rowIndex][cellIndex]) {
         // 아래 케이스일 경우 모두 무시
         case CODE.OPENED:
@@ -471,7 +550,7 @@ const Td = memo(
         default:
           return;
       }
-    }, [tableData[rowIndex][cellIndex], halted]);
+    }, [tableData[rowIndex][cellIndex], halted, openedCount]);
 
     // 우클릭 시 이벤트
     const onRightClickTd = useCallback(
