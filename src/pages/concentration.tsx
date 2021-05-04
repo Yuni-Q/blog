@@ -122,10 +122,8 @@ const Concentration: React.VFC = () => {
       }
     }
     if (index.current > cards.length + 1 && flipped.every((f) => !!f)) {
-      console.log(index.current, 'cards.length', cards.length);
-
       const endTime = new Date().getTime();
-      const newTime = endTime - startTime.current;
+      const newTime = Math.floor((endTime - startTime.current) / 1000);
       setTime(newTime);
       setTimeout(() => {
         alert('축하합니다.');
@@ -174,7 +172,7 @@ const Concentration: React.VFC = () => {
         <div>
           {!!time && (
             <div style={{ marginBottom: 8 }}>
-              <div>{time}ms</div>
+              <div>{time}초</div>
               <button
                 onClick={() => {
                   setCards([]);
