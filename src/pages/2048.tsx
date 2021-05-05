@@ -211,40 +211,36 @@ const Game2048: React.VFC = () => {
   }, []);
   const moveCells = useCallback(
     (direction: 'up' | 'down' | 'left' | 'right') => {
-      setData((data) => {
-        if (!data?.[0]) {
-          return data;
-        }
-        let result = { newData: data, score: 0 };
-        switch (direction) {
-          case 'left':
-            result = moveLeft(data);
-            break;
-          case 'right':
-            result = moveRight(data);
-            break;
-          case 'up':
-            result = moveUp(data);
-            break;
-          case 'down':
-            result = moveDown(data);
-            break;
-          default:
-            result = { newData: data, score: 0 };
-        }
+      console.log(2222);
+      if (!data?.[0]) {
+        return data;
+      }
+      let result = { newData: data, score: 0 };
+      switch (direction) {
+        case 'left':
+          result = moveLeft(data);
+          break;
+        case 'right':
+          result = moveRight(data);
+          break;
+        case 'up':
+          result = moveUp(data);
+          break;
+        case 'down':
+          result = moveDown(data);
+          break;
+        default:
+          result = { newData: data, score: 0 };
+      }
 
-        if (
-          !add2.current &&
-          JSON.stringify(data) !== JSON.stringify(result.newData)
-        ) {
-          prevData.current.data = data;
-          add2.current = true;
-          setScore((score) => score + result.score);
-        }
-        return result.newData;
-      });
+      if (JSON.stringify(data) !== JSON.stringify(result.newData)) {
+        prevData.current.data = data;
+        add2.current = true;
+        setScore((score) => score + result.score);
+      }
+      setData(result.newData);
     },
-    [],
+    [data],
   );
 
   const checkLoose = useCallback(() => {
@@ -283,9 +279,10 @@ const Game2048: React.VFC = () => {
     setData(newData);
     add2.current = true;
   }, []);
-
   useEffect(() => {
     startGame();
+  }, []);
+  useEffect(() => {
     const keyDownEvent = (event) => {
       if (event.key === 'ArrowUp') {
         moveCells('up');
@@ -331,7 +328,7 @@ const Game2048: React.VFC = () => {
       window.removeEventListener('mousedown', mouseDownEvent);
       window.removeEventListener('mouseup', mouseUpEvent);
     };
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     if (
