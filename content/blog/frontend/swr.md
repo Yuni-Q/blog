@@ -149,6 +149,22 @@ const SwrComponent = () => {
 };
 ```
 
+### url을 null로 사용 시 문제점
+
+- url이 null이 되면 결과가 늘 undefined이기 때문에 url이 null인 경우는 api 요청 중이 아니기 때문에 값을 지정해 주어야 합니다.
+- 분리해서 사용할 경우 객체로 값을 넘기면 리랜더가 많이 되는 이슈가 있기 때문에 null을 사용하는 것이 좋아 보입니다.
+
+```tsx
+const SwrComponent = () => {
+  const isTrue = true;
+  const { data } = useSwr(isTrue ? 'url' : null, (url) => {
+    return fetch(url).then((res) => res.json());
+  });
+  const myData = url ? data : null;
+  return <div>{myData}</div>;
+};
+```
+
 ## swr이 redux에 비해 가지는 장점
 
 - 상태와 변이방법을 정의하기 위한 리듀서와 액션의 코딩량이 적습니다.
