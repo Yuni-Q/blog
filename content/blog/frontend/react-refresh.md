@@ -6,6 +6,18 @@ tags: []
 draft: true
 ---
 
+## 패키지 설치
+
+```zsh
+npm install -D @pmmmwh/react-refresh-webpack-plugin react-refresh
+```
+
+## 프로젝트 초기에 적용되다가 중간에 적용이 멈췄던 문제
+
+- webpack 설정에서 `target: 'web'` 추가로 해결했습니다.
+
+## 전체 코드
+
 ```js
 // babel.config.js
 module.exports = {
@@ -81,3 +93,5 @@ module.exports = {
   ].filter(Boolean),
 };
 ```
+
+## [TROUBLESHOOTING](https://github.com/pmmmwh/react-refresh-webpack-plugin/blob/main/docs/TROUBLESHOOTING.md)
