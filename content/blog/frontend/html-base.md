@@ -652,26 +652,106 @@ draft: false
 #### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/button' target="\_blank">button</a>
 
 - 표준 버튼 컨트롤을 만드는 태그입니다.
-- type를 넣지 않거나 submit으로 하면 form이 동작합니다.
+- \<buttion>태그는 \<input>태그보다 css디자인을 적용하기 훨씬 쉽습니다.
+  - \<input>태그는 value 속성에 텍스트값 밖에 지정할 수 없지만, \<button>태그는 내부에 HTML 콘텐츠(\<em>, \<strong> 심지어 \<img>)도 포함할 수 있습니다.
+  - '::aftet', '::before' 가상 클래스까지 사용하는 복잡한 렌더링도 가능합니다.
+- type : 버튼의 행동 방식. 'submit', 'reset', 'button'의 세가지 값을 가질 수 있습니다.
+  - submit : 버튼을 누르면 양식의 데이터를 서버로 제출합니다. type속성의 기본값이다. \<input type=submit> 태그에서 사용되는 속성과 동일하게 사용됩니다. (formaction, formenctype, formmethod, formnovalidate, formtarget)
+  - reset : 버튼을 누르면 모든 컨트롤의 입력값을 초깃값으로 되돌립니다.
+  - button : 기본 행동이 없는 버튼을 만듭니다.
+- menu : menu 타입은 실험적 기능으로 대부분의 브라우저에서 아직 지원하지 않습니다.
+- value : 버튼의 초깃값. 제출할 때 값/이름 쌍(value/name pair)으로 서버에 전송됩니다.
+  - input태그에서는 value 값이 곧 버튼의 label이지만 button 태그에서는 내부의 텍스트 요소가 버튼의 label입니다.
+- name : 버튼의 이름. 제출할 때 값/이름 쌍(value/name pair)으로 서버에 전송됩니다.
+- form : 버튼과 연결할 form 태그의 id를 값으로 가집니다.
+  - 조상 중에 form 태그가 있다면 그 값을 상속 받습니다.
+- disabled : 버튼의 활성화 여부를 나타냅니다. boolean 값입니다.
 
-### 문서의 섹션 및 메인 요소 구조화
+### 구조를 만드는 시멘틱 태그
 
-- section 일반 섹션 요소
-- article 독립 섹션 요소
-- aside 보조 섹션 요소
-- nav 내비게이션 섹션 요소
-- main 메인 요소
+- 웹 표준인 HTML5가 제정되기 전까지는 문서 구조를 \<div>태그로 잡고 id 속성으로 구분했습니다. 이 방식의 문제점은 다음과 같습니다.
+  - 1. 문서 구조를 한눈에 파악하기 어려워서 이후에 유지보수 하기가 어렵스빈다.
+  - 2. 웹 접근성 도구나 검색 엔진이 문서의 구조를 파악하기 어렵습니다.
+- 이러한 문제를 해결하기 위해서 HTML 표준안에서 웹 문서의 일반적인 구조를 표현하는 시멘틱 태그들이 추가되었습니다.
+- 시멘틱 태그들은 이런 표준화된 웹 문서 레이아웃을 표시하는데 도움을 줍니다.
 
-### 그룹핑 요소
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/header' target="\_blank">header</a>
 
-- address : 사람(들), 기업의 정보 제공 요소입니다.
+- 문서의 머릿말 부분을 나타내는 태그입니다.
+- 전체 페이지에 대한 소개나 탐색을 위한 내용이 포함됩니다.
+- \<header>태그는 주로 \<body>태그의 자식으로 사용되지만 꼭 그래야하는 건 아닙니다. 단, \<header>태그는 \<address>나 \<footer>, \<header>태그의 자손일 순 없습니다. 또한, \<header>태그는 \<footer>나 \<header> 태그의 조상이 될 수 없습니다.
+- 구획 콘텐츠가 아니므로 자체적으로 구획을 생성하지 않습니다.
+  - 개요에 표시되는 구획으로 나누려면 내부에 제목 태그 (h1~h6)나, \<section>등의 구획 태그를 사용해야 합니다.
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/nav' target="\_blank">nav</a>
+
+- 동일한 사이트 내의 다른 문서나 다른 사이트의 문서로 연결하는 링크 모음을 나타내는 태그입니다.
+- \<nav>태그는 주로 \<header>의 자손으로 사용되지만 꼭 그래야만 하는 것은 아닙니다.
+- 사이드바에서 메뉴 카테고리를 표시할 수도 있고, 푸터에서 사이트맵을 표시할 수도 있습니다.
+- 구획 콘텐츠 태그이므로 구획을 생성합니다.
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/footer' target="\_blank">footer</a>
+
+- 문서의 꼬리말 부분을 나타내는 태그입니다.
+- 주로 구획의 작성자, 저작권 정보, 관련 문서 등의 내용이 포함됩니다.
+- \<footer>태그는 주로 \<body>태그의 자식으로 사용되지만 꼭 그래야하는 건 아닙니다. 단, \<footer>태그는 \<address>, \<header>, \<footer>태그의 자손일 순 없습니다. 또한, \<footer>태그는 \<header>와 \<footer>의 조상이 될 순 없습니다.
+- 구획 콘텐츠가 아니므로 자체적으로 구획을 생성하지 않습니다.
+- 개요에 표시되는 구획으로 나누려면 내부에 제목 태그 (h1~h6)나, \<section>등의 구획 태그를 사용해야 합니다.
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/address' target="\_blank">address</a>
+
+- 문서와 관련된 단체, 조직 등에 대한 연락처 정보를 나타내는 태그입니다.
+- 브라우저 기본 스타일로 기울임체가 적용됩니다.
+- 주로 \<footer> 태그의 자식으로 사용되지만 \<header>나 각각의 \<article>에도 사용할 수 있습니다. 단, \<address>태그는 \<address>태그의 조상이나 자손이 될 수 없습니다. 또한, \<address>태그 내부에는 제목 콘텐츠나 구획 콘텐츠, \<header>나 \<footer>태그는 사용할 수 없습니다.
+- 구획 콘텐츠가 아니며 구획을 나누는 태그를 가질 수 없으므로 개요에 표시되지 않습니다.
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/section' target="\_blank">section</a>
+
+- HTML 문서에서 독립적인 구획을 나타내며, 문서의 흐름 중 내용을 주제에 따라 묶을때 사용됩니다.
+- 주로 \<header>와 \<footer>, \<aside> 부분을 제외한 본문 영역을 구분짓기 위해서 사용합니다.
+- 구획 태그이므로 개요에 표시되는 구획을 나타내지만 이를 식별한 수단으로 제목 태그를 사용하는 걸 추천합니다.
+- 필요하다면 \<section>태그를 \<header>안에 쓸 수도 있고, \<header>안에 \<section>태그를 넣을 수도 있습니다. 단, \<section>태그를 \<address>의 자손으로 쓰는건 허용되지 않습니다.
+- 주제에 따른 분류가 아니라 단순히 스타일링이 목적이라면 <div>를 쓰는 걸 추천합니다.
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/article' target="\_blank">article</a>
+
+- 문서 내에서 독립적으로 구분해서 배포하거나 재사용 가능한 구획을 나타냅니다.
+- 주로 본문 영역을 나타내는 \<section>태그 내부에서 독립적인 내용들을 나타나는데 사용됩니다.
+- 구획 태그이므로 개요에 표시되는 구획을 나타내지만 이를 식별한 수단으로 제목 태그를 사용하는 걸 추천합니다.
+- \<article>태그를 \<section>태그 내부에 쓸 수도 있고, 그 반대도 가능합니다. 단, \<article>태그를 \<address>태그의 자손으로 쓰는건 허용되지 않습니다.
+- \<article>태그를 중첩해서 사용할 경우 내부 \<article>은 외부 \<article>과 관련된 글을 나타냅니다.
+  - ex) 글의 댓글을 나타내는 \<article>은 글을 나타내는 \<article>요소에 중첩한 \<article>로 나타낼 수 있습니다.
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/aside' target="\_blank">aside</a>
+
+- 문서의 주요 내용과 직접적인 연관이 없는 부분을 나타냅니다.
+- 디자인적으로는 주로 사이드바 혹은 콜아웃 박스로 표현합니다.
+- \<aside>태그의 요소는 문서의 주요 내용과는 관련이 없으므로 문서의 주요 개요엔 포함되지 않습니다.
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/main' target="\_blank">main</a>
+
+- 문서 \<body>의 주요 콘텐츠를 나타냅니다.
+- 주요 콘텐츠 영역은 문서의 핵심 주제나 앱의 핵심 기능에 직접적으로 연결됐거나 확장하는 콘텐츠로 이루어집니다.
+
+### 요약문을 만드는 태그
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/details' target="\_blank">details</a>
+
+- "열림" 상태일 때만 내부 정보를 보여주는 정보 공개 위젯을 만듭니다.
+- "닫힘" 상태일 때 보여줄 요약이나 레이블은 \<summary> 태그를 통해서 제공할 수 있습니다.
+- 열림, 닫힌 상태는 레이블 옆의 작은 삼각형이 돌아가면서 표시됩니다.
+- 이 마커는 css의 ::marker 가상 요소를 이용해서 스타일링 할 수 있습니다.
+- Boolean값인 open 속성을 사용하여 초기 상태를 열림 상태로 바꿀 수 있습니다.
+
+#### <a href='https://developer.mozilla.org/ko/docs/Web/HTML/Element/summary' target="\_blank">summary</a>
+
+- 디테일 태그 내부에 사용하여 "닫힘" 상태일 때 보여줄 요약이나 레이블을 표시합니다.
+- 사용하지 않을 경우 브라우저 기본값으로 자동 생성됩니다.
 
 ### 임베디드 요소
 
-picture HiDPI 반응형 이미지 대응 요소 ( 사이즈 별로 이미지 설정 -
-
-ex) <source media="(min-width: 650px)" srcset="images/kitten-stretching.png">)
-
+- picture HiDPI 반응형 이미지 대응 요소입니다.
+  - ( 사이즈 별로 이미지 설정 - <source media="(min-width: 650px)" srcset="images/kitten-stretching.png">)
 - source : 다중 미디어 리소스 지정 요소입니다.
 - video : 동영상 콘텐츠 요소입니다.
 - audio : 오디오 콘텐츠 요소입니다.
