@@ -181,10 +181,44 @@ $ git mv user.ts User.ts
 git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
 ```
 
+## GitHub 멀티 어카운트를 사용할 때 유용한 Git 설정
+
+### 글로벌로 설정된 사용자 이름과 이메일 정보 삭제하기
+
+```zsh
+git config --global --unset user.name
+git config --global --unset user.email
+```
+
+### Git 사용자 이름과 이메일 정보가 없을 때 커밋을 막는 방법
+
+```zsh
+git config --global user.useConfigOnly true
+```
+
+### 특정 디렉터리 아래 저장소들의 사용자 정보 설정하기
+
+```zsh
+# ~/.gitconfig
+[includeIf "gitdir:[DIR]/"]
+    path = [DIR]/.gitconfig
+```
+
+#### 먼저 ~/[DIR]/.gitconfig 예제
+
+```zsh
+[user]
+    name = yuni
+    email = yuni@mycompany.com
+
+
+```
+
 ---
 
 ## 참고
 
 - [새 버전에 맞게 git checkout 대신 switch/restore 사용하기](https://blog.outsider.ne.kr/1505)
-- [[Git]현재 Branch의 변경사항 파악하기 - merge-base](http://minsone.github.io/git/git-merge-base)
+- [\[Git\]현재 Branch의 변경사항 파악하기 - merge-base](http://minsone.github.io/git/git-merge-base)
 - [Git is my buddy: Effective Git as a solo developer](https://mikkel.ca/blog/git-is-my-buddy-effective-solo-developer/)
+- [GitHub 멀티 어카운트를 사용할 때 유용한 Git 설정](https://www.lainyzine.com/ko/article/useful-git-settings-when-using-github-multi-account/)
