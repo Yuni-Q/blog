@@ -1042,6 +1042,374 @@ const stringify = (v) =>
 stringify({ a: [1, 2], b: 3 });
 ```
 
+## day 6
+
+### iterable
+
+```js
+const iterable = {
+  [Symbol.iterator]() {
+    const arr = [1, 2, 3, 4];
+    let cursor = 0;
+    return {
+      next() {
+        return {
+          done: cursor >= arr.length,
+          value: cursor < arr.length ? arr[cursor++] : undefined,
+        };
+      },
+    };
+  },
+};
+
+const iter1 = iterable[Symbol.iterator]();
+const iter2 = iterable[Symbol.iterator]();
+
+console.log(iter1.next());
+console.log(iter1.next());
+console.log(iter1.next());
+console.log(iter1.next());
+console.log(iter1.next());
+
+console.log(iter2.next());
+console.log(iter2.next());
+console.log(iter2.next());
+console.log(iter2.next());
+console.log(iter2.next());
+
+const arr = [...iterable];
+console.log(arr);
+```
+
+### filter
+
+```js
+const filter = (iter, block) => ({
+  next() {
+    let { done, value } = iter.next();
+    while (!done) {
+      if (block(value)) return { done: false, value };
+      ({ done, value } = iter.next());
+    }
+    return { done };
+  },
+});
+```
+
+### map
+
+```js
+const map = (iter, block) => ({
+  next() {
+    let { done, value } = iter.next();
+    if (!done) return { done: false, value: block(value) };
+    else return { done };
+  },
+});
+```
+
+### 코드 사용
+
+```js
+const filter = (iter, block) => ({
+  next() {
+    let { done, value } = iter.next();
+    while (!done) {
+      if (block(value)) return { done: false, value };
+      ({ done, value } = iter.next());
+    }
+    return { done };
+  },
+});
+
+const map = (iter, block) => ({
+  next() {
+    let { done, value } = iter.next();
+    if (!done) return { done: false, value: block(value) };
+    else return { done };
+  },
+});
+
+const iter = (iter) => ({
+  [Symbol.iterator]() {
+    return iter;
+  },
+});
+const f = [
+  ...iter(
+    map(
+      filter([1, 2, 3, 4, 5][Symbol.iterator](), (v) => v % 2),
+      (v) => v * 2,
+    ),
+  ),
+];
+```
+
+### 중첩된 배열 문자열 파싱
+
+- 전제 조건 : 왼쪽에서 오른쪽으로 파싱해야 합니다.
+
+1. 대괄호 열기가 온다 => 새 배열을 만든다. 지금 배열은 스택으로 넣어버린다.
+2. 대괄호 닫기가 온다 => 지금 배열을 종료하고, 스택을 이전으로 돌아간다.
+3. 적합한 원소가 온다 => 원소는 컴마를 포함하거나 하지 않는다.(마지막 원소인 경우) => 현재 배열에 값을 추가한다.
+
+```js
+const rNum = /^\s*([0-9]+)\s*[,]?/;
+
+const parser = (str, acc, stack) => {
+  const v = str.trim();
+  if (!v) return acc;
+  switch (v[0]) {
+    case '[':
+      stack.push(acc);
+      return parser(v.substr(1), [], stack);
+    case ']':
+      const prev = stack.pop();
+      prev.push(acc);
+      return parser(v.substr(1), prev, stack);
+    default:
+      const value = rNum.exec(v);
+      if (!value) throw 'invalid value' + v;
+      acc.push(parseFloat(value[1]));
+      return parser(v.substr(value[0].length), acc, stack);
+  }
+};
+parser('[1,2,3,[1,2,[3,4,]]]', [], []);
+```
+
+### 정규식
+
+- 결합, 선택, 그룹으로 구성되어 있습니다.
+- 정규식이 바라보는 문자 => 단일문자 1개 그룹진 문자를 하나의 문자로 본다. 문자의 위치도 문자다.
+- 그룹은 괄호를 이용한다.
+- 결합 연산자는 생략한다. 결합은 연속으로 나와야 한다.
+- 선택연산자(|)는 결합 연산자보다 약하다.
+- 그룹은 하나의 문자열로 인식 됩니다.
+- 선택그룹연산자는 대괄호를 통해 표현한다.
+  - (a|b|c|d) === [abcd]
+- 정규식은 최대한 많이 일치시키려고 하지만 물음표(?)를 이용하면 최소한의 일치로 변경할 수 있다.
+
+## day 7
+
+```js
+const valueTest = Symbol();
+const valueConvert = Symbol();
+
+class StringParser {
+  #reg = /"([^"]|\\")+"/;
+  [valueTest](v) {
+    return this.#reg.test(v);
+  }
+  [valueConvert](v) {
+    return this.#reg.exec(v)[1];
+  }
+}
+
+class NumberParser {
+  #reg = /[0-9]+/;
+  [valueTest](v) {
+    return this.#reg.test(v);
+  }
+  [valueConvert](v) {
+    return this.#reg.exec(v)[1];
+  }
+}
+
+class DateParser {
+  // #reg = //
+  [valueTest](v) {
+    return this.#reg.test(v);
+  }
+  [valueConvert](v) {
+    return new Date(this.#reg.exec(v)[1]);
+  }
+}
+
+class Test {
+  #a;
+  #b;
+  #c;
+
+  constructor(a, b, c) {
+    this.#a = a;
+    this.#b = b;
+    this.#c = c;
+  }
+  toJSON() {
+    return new TestParser(this.#a, this.#b, this.#c);
+  }
+}
+
+class TestParser {
+  #reg = /"@Test\{([0-9]+),([0-9]+),([0-9]+)\}/;
+  [valueTest](v) {
+    return this.#reg.test(v);
+  }
+  [valueConvert](v) {
+    const [, ...arg] = this.#reg.exec(v);
+    return new Test(arg.map((it) => parseFloat(it)));
+  }
+  toJSON(a, b, c) {
+    return `"@Test{${a},${b},${c}}"`;
+  }
+}
+
+const router = {
+  type: [
+    new StringParser(),
+    new NumberParser(),
+    new DateParser(),
+    new TestParser(1, 2, 3),
+  ],
+  router(v) {
+    let result;
+    if (
+      this.type.some((converter) => {
+        if (converter.test(v)) {
+          result = converter.convert(v);
+          return true;
+        } else {
+          return false;
+        }
+      })
+    ) {
+      return result;
+    } else {
+      throw 'invalid ValueType:' + v;
+    }
+  },
+};
+```
+
+### -
+
+```js
+const rNum = /^\s*([0-9]+)\s*[,]?/;
+const rKey = /^\s*"((?:\\"|[^"])*)"\s*:\s*/;
+
+const parse = (str, acc, k, stack) => {
+  let v = str.trim();
+  if (!v.length) return acc;
+  switch (v[0]) {
+    case '[':
+    case '{':
+      stack.push({ acc, k });
+      return parse(v.substr(1), v[0] == '[' ? [] : {}, null, stack);
+    case ']':
+    case '}':
+      if (!stack.length) throw 'invalid json' + v;
+      const { acc: prev, k: key } = stack.pop();
+      if (!prev) return acc;
+      else {
+        if (prev instanceof Array) prev.push(acc);
+        else prev[key] = acc;
+        v = v.substr(1).trim();
+        if (v[0] == ',') {
+          v = v.substr(1).trim();
+          if (']}'.indexOf(v[0]) != -1) throw 'invalid json' + v;
+        }
+        return parse(v[0] == ',' ? v.substr(1) : v, prev, null, stack);
+      }
+    default:
+      if (acc instanceof Array) {
+        const value = rNum.exec(v);
+        if (!value) throw 'invalid array value:' + v;
+        acc.push(parseFloat(value[1]));
+        return parse(v.substr(value[0].length), acc, null, stack);
+      } else {
+        if (k === null) {
+          const key = rKey.exec(v);
+          if (!key) throw 'invalid key:' + v;
+          return parse(v.substr(key[0].length), acc, key[1], stack);
+        } else {
+          const value = rNum.exec(v);
+          if (!value) throw 'invalid object value:' + v;
+          acc[k] = parseFloat(value[1]);
+          return parse(v.substr(value[0].length), acc, null, stack);
+        }
+      }
+  }
+};
+
+parse(`{"a":[1,2,[3,4],5], "b":{"a":123,"b":456}})`, null, null, []);
+```
+
+### 정규식에 도메인 넣지 않을 수 있다.
+
+```js
+const rNum = /^\s*([0-9]+)\s*?/;
+const rBool = /^\s*(true|false)\s*?/;
+const strString = `\\s*"((?:\\\\"|[^"])*)"\\s*`;
+const rKey = new RegExp(`^${strString}:\\s*`);
+const rString = new RegExp(`^${strString}`);
+
+const checkTrailingComma = (v) => {
+  if (v[0] == ',') {
+    v = v.substr(1).trim();
+    if (']}'.indexOf(v[0]) != -1) throw 'invalid json' + v;
+  }
+  return v;
+};
+const parse = (str, acc, k, stack) => {
+  const v = checkTrailingComma(str.trim());
+  if (!v.length) return acc;
+  switch (v[0]) {
+    case '[':
+    case '{':
+      stack.push({ acc, k });
+      return parse(v.substr(1), v[0] == '[' ? [] : {}, null, stack);
+    case ']':
+    case '}':
+      if (!stack.length) throw 'invalid json' + v;
+      if (acc instanceof Array && v[0] == '}') throw 'invalid';
+      const { acc: prev, k: key } = stack.pop();
+      if (!prev) return acc;
+      else {
+        if (prev instanceof Array) prev.push(acc);
+        else prev[key] = acc;
+        return parse(v.substr(1), prev, null, stack);
+      }
+    default:
+      if (acc instanceof Array) {
+        const value = rNum.exec(v);
+        if (!value) throw 'invalid array value:' + v;
+        acc.push(parseFloat(value[1]));
+        return parse(v.substr(value[0].length), acc, null, stack);
+      } else {
+        if (k === null) {
+          const key = rKey.exec(v);
+          if (!key) throw 'invalid key:' + v;
+          return parse(v.substr(key[0].length), acc, key[1], stack);
+        } else {
+          const value = rNum.exec(v);
+          if (!value) throw 'invalid object value:' + v;
+          acc[k] = parseFloat(value[1]);
+          return parse(v.substr(value[0].length), acc, null, stack);
+        }
+      }
+  }
+};
+
+parse(`{"a":[1,2,[3,4],5], "b":{"a":123,"b":456}})`, null, null, []);
+```
+
+### 정리
+
+- 귀납적 사고방식에 따르면 현재의 특정 상태는 일반화된(표준화된) 알고리즘을 반복하면 얻을 수 있다라고 본다.
+- 반복하는 전체 과정중 한단계만 잘라서 그 구조를 파악한다. 전체 과정을 전지적으로 파악하는 것은 어려움.
+- 한단계 내에서 다양한 국면이 있는 것을 전부 찾아내서 mandatory로 로직을 작성한다.
+- 일반화란 하나의 유일한 인생의 답을 찾는 것이 아니다.
+- 발생 가능한 모든 경우의 수를 빈틈없이 처리한 것이 그 국면에서의 일반화 그 국면에 발생가능한 모든 경우의 수(패턴)을 발견할 머릭다 되나는 훈련을 통해 성장시킨다.
+- 각 국면을 나누고 국면의 모든 경우의 수를 커버하는 일반화 알고리즘을 반복시킨다.
+
+#### -
+
+- 1단계 : 제어문, 함수 + 변수의 라이프사이클과 스코프
+- 2단계 : 객체지향 구조물 + 함수형 구조물
+- 3단계 : 동시성에 대한 이해
+- 4단계 : 디자인과 레이어구조의 대한 이해
+- 5단계 : 시스템셀계
+
 ---
 
 ## 참고
