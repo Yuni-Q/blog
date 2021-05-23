@@ -7,8 +7,6 @@ draft: true
 marp: true
 ---
 
----
-
 # 배사광 리뉴얼 프로젝트
 
 ---
@@ -89,6 +87,22 @@ fi
 ---
 
 ## mobx가 있는데 swr을 쓴 이유
+
+- 데이터를 가져오기 위한 React Hook 라이브러리입니다.
+- 원격상태의 데이터를 내부적으로 캐시하고 다른 컴포넌트에서 동일한 상태를 사용하고자 할 경우 이전에 캐시했던 상태를 그대로 리턴해 주기 때문에 서로 다른 컴포넌트가 동일한 상태를 공유할 수 있습니다.
+- User Focus, Network Reconnect, 탭 전환, 절전 모드 해제 시 자동으로 revalidate 합니다.
+
+---
+
+### 장점
+
+- 상태와 변이방법을 정의하기 위한 리듀서와 액션의 코딩량이 적습니다.
+- 효과적으로 상태를 초기화하기 위한 고민이 적습니다.
+- 지속적으로 로컬 스토어 상태를 원격 서버 상태와 동기화해야 하는 추가 작업이 가능합니다.
+
+---
+
+## swr 활용처
 
 ---
 
@@ -494,10 +508,19 @@ flex: 0 0 auto
 
 ---
 
-## Presentational and Container Components
+## 고민 해 볼 것들
+
+- function component의 hooks는 class component를 대체할 수 있는가?
+  - 상속 구조를 가져가는 것이 합성보다 좋은가?
+  - 함께 쓴다면 역할을 어떻게 나눠야 할까?
+  - 새로 만드는 컴포넌트를 class로 만들 것인가?
+
+---
+
+### Presentational and Container Components
 
 - https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 
 ```
-Update from 2019: I wrote this article a long time ago and my views have since evolved. In particular, I don’t suggest splitting your components like this anymore. If you find it natural in your codebase, this pattern can be handy. But I’ve seen it enforced without any necessity and with almost dogmatic fervor far too many times. The main reason I found it useful was because it let me separate complex stateful logic from other aspects of the component. Hooks let me do the same thing without an arbitrary division. This text is left intact for historical reasons but don’t take it too seriously.
+2019 년 업데이트 :이 기사를 오래 전에 썼고 그 이후로 내 견해가 발전했습니다. 특히 더 이상 이렇게 구성 요소를 분할하지 않는 것이 좋습니다. 코드베이스에서 자연스럽게 발견되면이 패턴이 유용 할 수 있습니다. 그러나 나는 그것이 필요하지 않고 거의 독단적 인 열정으로 너무 많이 시행되는 것을 보았습니다. 내가 유용하다고 생각한 주된 이유는 복잡한 상태 논리를 구성 요소의 다른 측면과 분리 할 수 ​​있기 때문입니다. 후크를 사용하면 임의의 분할없이 동일한 작업을 수행 할 수 있습니다. 이 텍스트는 역사적 이유로 그대로 남아 있지만 너무 심각하게 받아들이지는 마십시오.
 ```

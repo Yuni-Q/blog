@@ -33,38 +33,38 @@ chmod +x certbot-auto
 
 ```typescript
 if (process.env.NODE_ENV === 'production') {
-	const lex = require('greenlock-express').create({
-		version: 'draft-11', // 버전2
-		configDir: '/etc/letsencrypt', // 또는 ~/letsencrypt/etc
-		server: 'https://acme-v02.api.letsencrypt.org/directory',
-		approveDomains: (
-			opts: { domains: string[]; email: string; agreeTos: boolean },
-			certs: any,
-			cb: any
-		) => {
-			if (certs) {
-				opts.domains = ['moti.company', 'www.moti.company'];
-			} else {
-				opts.email = 'lyh6425@gamil.com';
-				opts.agreeTos = true;
-			}
-			cb(null, { options: opts, certs });
-		},
-		renewWithin: 81 * 24 * 60 * 60 * 1000,
-		renewBy: 80 * 24 * 60 * 60 * 1000,
-	});
-	https
-		.createServer(lex.httpsOptions, lex.middleware(app))
-		.listen(process.env.SSL_PORT || 443);
-	http
-		.createServer(lex.middleware(require('redirect-https')()))
-		.listen(process.env.PORT || 80);
+  const lex = require('greenlock-express').create({
+    version: 'draft-11', // 버전2
+    configDir: '/etc/letsencrypt', // 또는 ~/letsencrypt/etc
+    server: 'https://acme-v02.api.letsencrypt.org/directory',
+    approveDomains: (
+      opts: { domains: string[]; email: string; agreeTos: boolean },
+      certs: any,
+      cb: any,
+    ) => {
+      if (certs) {
+        opts.domains = ['moti.company', 'www.moti.company'];
+      } else {
+        opts.email = 'lyh6425@gamil.com';
+        opts.agreeTos = true;
+      }
+      cb(null, { options: opts, certs });
+    },
+    renewWithin: 81 * 24 * 60 * 60 * 1000,
+    renewBy: 80 * 24 * 60 * 60 * 1000,
+  });
+  https
+    .createServer(lex.httpsOptions, lex.middleware(app))
+    .listen(process.env.SSL_PORT || 443);
+  http
+    .createServer(lex.middleware(require('redirect-https')()))
+    .listen(process.env.PORT || 80);
 } else {
-	const server = http.createServer(app);
-	server.listen(process.env.PORT || port, () =>
-		console.log(`http://localhost:${port}, ${process.env.NODE_ENV}`)
-	);
-	server.on('error', onError);
+  const server = http.createServer(app);
+  server.listen(process.env.PORT || port, () =>
+    console.log(`http://localhost:${port}, ${process.env.NODE_ENV}`),
+  );
+  server.on('error', onError);
 }
 ```
 
@@ -166,6 +166,10 @@ sudo certbot --nginx
 ```zsh
 server {
   location / {
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $http_host;
+		proxy_set_header X-NginX-Proxy true;
     proxy_pass http://127.0.0.1:8000;
     proxy_redirect off;
   }
@@ -205,13 +209,13 @@ const express = require('express');
 const app = express();
 
 const options = {
-	key: fs.readFileSync('./local.yuniq.com+3-key.pem', 'utf-8'),
-	cert: fs.readFileSync('./local.yuniq.com+3.pem', 'utf-8'),
+  key: fs.readFileSync('./local.yuniq.com+3-key.pem', 'utf-8'),
+  cert: fs.readFileSync('./local.yuniq.com+3.pem', 'utf-8'),
 };
 
 https
-	.createServer(options, app)
-	.listen(8000, () => console.log('App listening on port 8000!'));
+  .createServer(options, app)
+  .listen(8000, () => console.log('App listening on port 8000!'));
 ```
 
 ## 참고
