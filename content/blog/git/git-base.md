@@ -208,8 +208,8 @@ git config --global user.useConfigOnly true
 
 ```zsh
 [user]
-    name = yuni
-    email = yuni@mycompany.com
+  name = yuni
+  email = yuni@mycompany.com
 
 
 ```
