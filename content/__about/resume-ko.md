@@ -50,18 +50,23 @@ lang: 'ko'
 - 플랫폼실/업주시스템팀, B2B서비스실/B2B서비스팀, B2B서비스실/사장님서비스팀, B2B서비스실/사장님광장팀
 - DR 서포터즈 2기
 
+#### 배민 통합 결제 플랫폼
+- `Typescript` `React` `Mobx`
+- 21.06 ~
+
 #### 주문접수앱 웹뷰
 
 - `Typescript` `React` `Redux` `Express`
-- 20.11 ~ 20.01
+- 20.11 ~ 21.01
 - 배달대행사 연결 및 관리 웹뷰 작업
 - AI 배달 예상 시간 안내 웹뷰 작업
+
 
 #### post 배사광
 
 - `Typescript` `React` `Mobx` `SWR`, `react-hooks-form`
 - 배달의민족 대표 B2B서비스채널인 '배민사장님광장' 웹서비스 Front-end 개발/운영개선 프로젝트 리뉴얼
-- 20.11 ~
+- 20.11 ~ 21.05
 - 프로젝트 초기 React Application Architecture 설계
 - 브랜치 전략 구상(master/deploy/feature)
 - 젠킨스 구성(master의 최신 커밋이 base가 아니라면 배포 불가능)
@@ -82,6 +87,7 @@ lang: 'ko'
 - 개인 정보 페이지 브라우저 뒤로가기 버튼으로 인해 이동 시 새로고침
   - 사파리에서 새로고침이 되지 않는 이슈 해결
 - 배사광 리뉴얼 배포(3/24)
+- 리팩토링 작업
 
 #### super2
 
