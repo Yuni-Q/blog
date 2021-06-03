@@ -100,6 +100,7 @@ eslint init
 - 작업 영역에있는 정의 또는 링크 요소를 통해 참조되는 외부 파일을 기반으로 HTML 클래스 특성에 대해 CSS 클래스 이름 완성을 제공 합니다.
 
 ### [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+
 - \* 강조 표시된 텍스트
 - ! 오류 및 경고
 - ? 질의 및 질문
@@ -109,6 +110,11 @@ eslint init
 ### [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
 
 ### [footsteps](https://marketplace.visualstudio.com/items?itemName=Wattenberger.footsteps)
+
+### [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+
+---
+
 ## 사용하지 않게 된 확장 도구들
 
 ### [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
