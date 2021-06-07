@@ -8,12 +8,16 @@ import './index.scss';
 export const SocialShare = ({ title, author }) => {
   useEffect(() => {
     setTimeout(() => {
-      const addthisScript = document.createElement('script');
-      addthisScript.setAttribute(
-        'src',
-        'http:////s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60bcf43de82361a8',
-      );
-      if (document.body) document.body.appendChild(addthisScript);
+      if (!(window as any).addthis) {
+        const addthisScript = document.createElement('script');
+        addthisScript.setAttribute(
+          'src',
+          'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60bcf43de82361a8',
+        );
+        if (document.body) document.body.appendChild(addthisScript);
+      } else {
+        (window as any).addthis.layers.refresh();
+      }
     });
   }, []);
   const text = `Recommend on "${title}" written by @${author}`;
@@ -33,10 +37,6 @@ export const SocialShare = ({ title, author }) => {
     <div className="social-share" style={{ marginTop: 32 }}>
       <div className="addthis_inline_share_toolbox_7fpx"></div>
       {/* <!-- Go to www.addthis.com/dashboard to customize your tools --> */}
-      <script
-        type="text/javascript"
-        src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60bcf43de82361a8"
-      ></script>
       {/* <FacebookIcon onClick={onClickFacebookIcon} />
       <TwitterIcon onClick={onClickTwitterIcon} /> */}
     </div>
