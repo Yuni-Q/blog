@@ -30,15 +30,17 @@ export default ({ data, pageContext, location }) => {
   const { disqusShortName, utterances } = comment;
 
   useEffect(() => {
-    if (!document.querySelector('#adFit')) {
-      const adFit = document.createElement('script');
-      adFit.id = 'adFit';
-      adFit.async = true;
-      adFit.type = 'text/javascript';
-      adFit.src = 'https://t1.daumcdn.net/kas/static/ba.min.js';
-      if (document.body) document.body.appendChild(adFit);
+    if (document.querySelector('#adFit')) {
+      const prevAdFit = document.querySelector('#adFit');
+      if (document.body) document.body.removeChild(prevAdFit);
     }
-  }, []);
+    const adFit = document.createElement('script');
+    adFit.id = 'adFit';
+    adFit.async = true;
+    adFit.type = 'text/javascript';
+    adFit.src = 'https://t1.daumcdn.net/kas/static/ba.min.js';
+    if (document.body) document.body.appendChild(adFit);
+  });
 
   return (
     <Layout location={location}>
