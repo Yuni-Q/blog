@@ -29,6 +29,17 @@ export default ({ data, pageContext, location }) => {
   const { title, comment, siteUrl, author, sponsor } = metaData;
   const { disqusShortName, utterances } = comment;
 
+  useEffect(() => {
+    if (!document.querySelector('#adFit')) {
+      const adFit = document.createElement('script');
+      adFit.id = 'adFit';
+      adFit.async = true;
+      adFit.type = 'text/javascript';
+      adFit.src = 'https://t1.daumcdn.net/kas/static/ba.min.js';
+      if (document.body) document.body.appendChild(adFit);
+    }
+  }, []);
+
   return (
     <Layout location={location}>
       <Head title={post.frontmatter.title} description={post.excerpt} />
@@ -47,11 +58,6 @@ export default ({ data, pageContext, location }) => {
         data-ad-width="320"
         data-ad-height="50"
       ></ins>
-      <script
-        type="text/javascript"
-        src="//t1.daumcdn.net/kas/static/ba.min.js"
-        async
-      ></script>
       <Elements.Hr />
       <Bio />
       <PostNavigator pageContext={pageContext} />
