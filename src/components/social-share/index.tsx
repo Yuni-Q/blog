@@ -7,18 +7,16 @@ import './index.scss';
 
 export const SocialShare = ({ title, author }) => {
   useEffect(() => {
-    setTimeout(() => {
-      if (!(window as any).addthis) {
-        const addthisScript = document.createElement('script');
-        addthisScript.setAttribute(
-          'src',
-          'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60bcf43de82361a8',
-        );
-        if (document.body) document.body.appendChild(addthisScript);
-      } else {
-        (window as any).addthis.layers.refresh();
-      }
-    });
+    if (!(window as any).addthis) {
+      const addthisScript = document.createElement('script');
+      addthisScript.setAttribute(
+        'src',
+        'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60bcf43de82361a8',
+      );
+      if (document.body) document.body.appendChild(addthisScript);
+    } else {
+      (window as any).addthis.layers.refresh();
+    }
   }, []);
   const text = `Recommend on "${title}" written by @${author}`;
 

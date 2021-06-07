@@ -22,11 +22,6 @@ export default class HTML extends React.Component<Props> {
             content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1, maximum-scale=2"
           />
           {this.props.headComponents}
-          <script
-            data-ad-client="ca-pub-2667251850399676"
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          ></script>
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
