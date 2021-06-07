@@ -40,6 +40,18 @@ export default ({ data, pageContext, location }) => {
       {!!sponsor.buyMeACoffeeId && (
         <SponsorButton sponsorId={sponsor.buyMeACoffeeId} />
       )}
+      <ins
+        className="kakao_ad_area"
+        style={{ display: 'none' }}
+        data-ad-unit="DAN-tzy6JQMnGdkMHytZ"
+        data-ad-width="320"
+        data-ad-height="50"
+      ></ins>
+      <script
+        type="text/javascript"
+        src="//t1.daumcdn.net/kas/static/ba.min.js"
+        async
+      ></script>
       <Elements.Hr />
       <Bio />
       <PostNavigator pageContext={pageContext} />
