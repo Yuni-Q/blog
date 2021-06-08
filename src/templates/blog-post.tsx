@@ -40,11 +40,28 @@ export default ({ data, pageContext, location }) => {
     adFit.type = 'text/javascript';
     adFit.src = 'https://t1.daumcdn.net/kas/static/ba.min.js';
     if (document.body) document.body.appendChild(adFit);
+
+    try {
+      ((window as any).adsbygoogle || []).push({
+        google_ad_client: 'ca-pub-2667251850399676',
+        enable_page_level_ads: true,
+      });
+    } catch (e) {
+      console.log('adsbygoogle error', e.message);
+    }
   });
 
   return (
     <Layout location={location}>
       <Head title={post.frontmatter.title} description={post.excerpt} />
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'none' }}
+        data-ad-client="ca-pub-2667251850399676"
+        data-ad-slot="9586629994"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
       <PostTitle title={post.frontmatter.title} />
 
       <PostToc tableOfContents={tableOfContents} />

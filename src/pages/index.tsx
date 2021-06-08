@@ -63,7 +63,7 @@ const Index: React.VFC<Props> = ({ data }) => {
 
   useEffect(() => {
     try {
-      (window as any).adsbygoogle = ((window as any).adsbygoogle || []).push({
+      ((window as any).adsbygoogle || []).push({
         google_ad_client: 'ca-pub-2667251850399676',
         enable_page_level_ads: true,
       });
