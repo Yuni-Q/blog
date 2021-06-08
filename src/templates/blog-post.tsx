@@ -11,6 +11,7 @@ import { SocialShare } from '../components/social-share';
 import { SponsorButton } from '../components/sponsor-button';
 import { Utterences } from '../components/utterances';
 import { Layout } from '../layout';
+import { Ins } from '../pages/index';
 import '../styles/code.scss';
 import sendGAEvent, { GA_ACTION } from '../utils/ga';
 import * as ScrollManager from '../utils/scroll';
@@ -42,10 +43,7 @@ export default ({ data, pageContext, location }) => {
     if (document.body) document.body.appendChild(adFit);
 
     try {
-      ((window as any).adsbygoogle || []).push({
-        google_ad_client: 'ca-pub-2667251850399676',
-        enable_page_level_ads: true,
-      });
+      ((window as any).adsbygoogle || []).push({});
     } catch (e) {
       console.log('adsbygoogle error', e.message);
     }
@@ -54,14 +52,15 @@ export default ({ data, pageContext, location }) => {
   return (
     <Layout location={location}>
       <Head title={post.frontmatter.title} description={post.excerpt} />
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'none' }}
-        data-ad-client="ca-pub-2667251850399676"
-        data-ad-slot="9586629994"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
+      <div style={{ marginBottom: 24 }}>
+        <Ins
+          className="adsbygoogle"
+          data-ad-client="ca-pub-2667251850399676"
+          data-ad-slot="9586629994"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></Ins>
+      </div>
       <PostTitle title={post.frontmatter.title} />
 
       <PostToc tableOfContents={tableOfContents} />

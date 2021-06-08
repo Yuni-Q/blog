@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import _ from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 import { Bio } from '../components/bio';
 import { Category } from '../components/category';
 import { Contents } from '../components/contents';
@@ -15,6 +16,14 @@ import * as Storage from '../utils/storage';
 import * as IOManager from '../utils/visible';
 
 // const DEST_POS = 316;
+
+export const Ins = styled.ins`
+  display: block;
+  min-width: 320px;
+  min-height: 0;
+  margin: 0px auto;
+  background: lightgray;
+`;
 const BASE_LINE = 80;
 
 function getDistance(currentPos) {
@@ -63,14 +72,10 @@ const Index: React.VFC<Props> = ({ data }) => {
 
   useEffect(() => {
     try {
-      ((window as any).adsbygoogle || []).push({
-        google_ad_client: 'ca-pub-2667251850399676',
-        enable_page_level_ads: true,
-      });
+      ((window as any).adsbygoogle || []).push({});
     } catch (e) {
       console.log('adsbygoogle error', e.message);
     }
-
     sendGAEvent(HOME_TITLE, GA_ACTION.EXPOSE, HOME_TITLE);
     window.addEventListener(`scroll`, onScroll, { passive: false });
     IOManager.init();
@@ -118,14 +123,15 @@ const Index: React.VFC<Props> = ({ data }) => {
     <Layout>
       <Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
       <Bio />
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'none' }}
-        data-ad-client="ca-pub-2667251850399676"
-        data-ad-slot="4831328462"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
+      <div style={{ marginBottom: 24 }}>
+        <Ins
+          className="adsbygoogle"
+          data-ad-client="ca-pub-2667251850399676"
+          data-ad-slot="4831328462"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></Ins>
+      </div>
       <Category
         categories={categories}
         category={category}

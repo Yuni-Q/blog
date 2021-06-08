@@ -23,9 +23,13 @@ export default class HTML extends React.Component<Props> {
           />
           {this.props.headComponents}
           <script
+            id="ads"
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
           ></script>
+          <script>
+            (adsbygoogle=window.adsbygoogle||[]).requestNonPersonalizedAds=1;
+          </script>
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
