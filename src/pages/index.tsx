@@ -62,6 +62,15 @@ const Index: React.VFC<Props> = ({ data }) => {
   const categories = _.uniq(posts.map(({ node }) => node.frontmatter.category));
 
   useEffect(() => {
+    try {
+      (window as any).adsbygoogle = ((window as any).adsbygoogle || []).push({
+        google_ad_client: 'ca-pub-2667251850399676',
+        enable_page_level_ads: true,
+      });
+    } catch (e) {
+      console.log('adsbygoogle error', e.message);
+    }
+
     sendGAEvent(HOME_TITLE, GA_ACTION.EXPOSE, HOME_TITLE);
     window.addEventListener(`scroll`, onScroll, { passive: false });
     IOManager.init();
@@ -109,6 +118,14 @@ const Index: React.VFC<Props> = ({ data }) => {
     <Layout>
       <Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
       <Bio />
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'none' }}
+        data-ad-client="ca-pub-2667251850399676"
+        data-ad-slot="4831328462"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
       <Category
         categories={categories}
         category={category}
