@@ -8,9 +8,9 @@ draft: true
 
 ## 고민해볼 요소들
 
-- 다양한 사용 사례에 맞게 재사용 가능한 구성 요소를 어떻게 구축 합니까?
-- 사용하기 쉬운 간단한 API로 구성 요소를 어떻게 빌드 합니까?
-- UI 및 기능 측면에서 확장 가능한 구성 요소를 어떻게 빌드 합니까?
+- 어떻게 하면 재사용가능한 컴포넌트를 각각 다른 use case들에 맞도록 만들 수 있을까?
+- 어떻게 하면 컴포넌트를 간단한 API로 쓰기 쉽게 만들 수 있을까?
+- 어떻게 하면 UI와 기능성의 측면에서 확장 가능한 컴포넌트를 만들 수 있을까?
 
 ## [1. Compound Components Pattern](https://github.com/alex83130/advanced-react-patterns/tree/main/src/patterns/compound-component)
 
@@ -188,15 +188,11 @@ import { useCounter } from './useCounter';
 const MAX_COUNT = 10;
 
 function Usage() {
-  const {
-    count,
-    getCounterProps,
-    getIncrementProps,
-    getDecrementProps,
-  } = useCounter({
-    initial: 0,
-    max: MAX_COUNT,
-  });
+  const { count, getCounterProps, getIncrementProps, getDecrementProps } =
+    useCounter({
+      initial: 0,
+      max: MAX_COUNT,
+    });
 
   const handleBtn1Clicked = () => {
     console.log('btn 1 clicked');
@@ -313,3 +309,4 @@ export { Usage };
 ## 참고
 
 - [5 Advanced React Patterns](https://javascript.plainenglish.io/5-advanced-react-patterns-a6b7624267a6)
+- [유용한 리액트 패턴 5가지](https://velog.io/@dnr6054/%EC%9C%A0%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%8C%A8%ED%84%B4-5%EA%B0%80%EC%A7%80)
