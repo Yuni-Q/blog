@@ -20,18 +20,18 @@ draft: true
 ```javascript
 var i;
 for (i = 0; i < 10; i++) {
-	setTimeout(function() {
-		console.log(i);
-	}, 100);
+  setTimeout(function () {
+    console.log(i);
+  }, 100);
 }
 
 var i;
 for (i = 0; i < 10; i++) {
-	(function(j) {
-		setTimeout(function() {
-			console.log(j);
-		}, 100);
-	})(i);
+  (function (j) {
+    setTimeout(function () {
+      console.log(j);
+    }, 100);
+  })(i);
 }
 ```
 
@@ -43,10 +43,10 @@ for (i = 0; i < 10; i++) {
 
 ```javascript
 function hello(name) {
-	var _name = name;
-	return function() {
-		console.log('Hello, ' + _name);
-	};
+  var _name = name;
+  return function () {
+    console.log('Hello, ' + _name);
+  };
 }
 
 var hello1 = hello('yuni');
@@ -64,6 +64,10 @@ hello3 = null;
 ```
 
 - 메모리 관리에 있어서 약점이 있지만 추가로 스코프 체인을 검색하는 시간과 새로운 스코프를 생성하는데 드는 비용도 감안하지 않을 수 없습니다.
+
+## 클로저를 사용하는 이유
+
+- 지연처리를 가능하게 함으로써 코드의 가독성을 높일 수도 있고 런타임 시에 함수를 만들어 낼 수 있습니다.
 
 ## 참고
 
