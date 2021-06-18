@@ -417,6 +417,7 @@ function combination() {
 ## 그래서 결론이 뭐야
 
 - Redux에서 상태관리를 할 때 (subscribe와 getState로만 값을 관리한다면) 불변상태를 꼭 유지할 필요는 없습니다. 하지만 React-Redux에서 사용할 것을 고려하였기 때문에 불변상태를 유지할 필요가 있고 이를 지원하기 위해 combineReducers combination를 사용합니다.
+- 추가로 reducer에서 default에서 state를 return 할 때는 객체를 새로 만들지 않아야 할거 같습니다.
 
 ## 참고
 
