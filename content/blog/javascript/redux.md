@@ -245,7 +245,7 @@ function combination() {
     const previousStateForKey = state[key];
     const nextStateForKey = reducer(previousStateForKey, action); // 2
     nextState[key] = nextStateForKey;
-    hasChanged = hasChanged || nextStateForKey !== previousStateForKey; // 3
+    hasChanged = hasChanged || nextStaeteForKey !== previousStateForKey; // 3
   }
   hasChanged =
     hasChanged || finalReducerKeys.length !== Object.keys(state).length;
@@ -418,6 +418,9 @@ function combination() {
 
 - Redux에서 상태관리를 할 때 (subscribe와 getState로만 값을 관리한다면) 불변상태를 꼭 유지할 필요는 없습니다. 하지만 React-Redux에서 사용할 것을 고려하였기 때문에 불변상태를 유지할 필요가 있고 이를 지원하기 위해 combineReducers combination를 사용합니다.
 - 추가로 reducer에서 default에서 state를 return 할 때는 객체를 새로 만들지 않아야 할거 같습니다.
+- redux 자체에서 state를 새로운 객체로 만들어서 준다면 combineReducers combination에서 늘 새로운 객체만 주기 때문에 오히려 성능에 악영향을 줄거 같습니다.
+- combineReducers combination에서 새 객체를 만들지 여부를 reducer의 return 시에 새 객체를 줄지 기존 객체(default에서)를 줄지에 따라 결정되기 때문에 redux 자체에서 state를 새로운 객체로 만들어 주면 안 됩니다.
+- React-Redux의 성능을 위해서 redux는 state를 새로 만들어서 넘기지 않고 reducer에서 결정하게 끔 유도하는 것 같습니다.
 
 ## 참고
 
