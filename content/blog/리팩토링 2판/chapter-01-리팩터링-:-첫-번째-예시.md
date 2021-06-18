@@ -1,5 +1,5 @@
 ---
-title: CHAPTER 01 리팩터링 : 첫 번째 예시
+title: CHAPTER 01 리팩터링 - 첫 번째 예시
 date: 2021-06-14 01:06:03
 category: 리팩토링 2판
 tags: []
