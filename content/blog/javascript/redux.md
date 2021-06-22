@@ -24,27 +24,34 @@ draft: true
 ## 민태님의 테크러닝 4기 중 리덕스 만들어 보기
 
 ```js
-function createStore(reducer) {
+function createStore(reducer, middleware = []) {
   let state;
-  let handler = [];
+
+  const dispatch = (action) => {
+    state = reducer(state, action);
+  };
+
+  let backupDispatch = dispatch;
 
   reducer(state, { type: '@@__init__@@' });
 
-  return {
-    dispatch: (action) => {
-      state = reducer(state, action);
-
-      handler.forEach((h) => {
-        h();
-      });
-    },
+  const store = {
+    dispatch: backupDispatch,
 
     subscribe: (listener) => {
-      handler.push(listener);
+      middleware.push(listener);
     },
 
     getState: () => state,
   };
+
+  middleware.reverse().forEach((m) => {
+    backupDispatch = m(store)(backupDispatch);
+  });
+
+  store.dispatch = backupDispatch;
+
+  return store;
 }
 
 const InitState = {
@@ -57,6 +64,7 @@ const InitState = {
 };
 
 function reducer(state = InitState, action) {
+  console.log('reducer', action.type);
   switch (action.type) {
     case 'counter':
       return {
@@ -73,7 +81,24 @@ function reducer(state = InitState, action) {
   }
 }
 
-const store = createStore(reducer);
+const loggerA = (store) => (next) => (action) => {
+  console.log('logger A =>  ', action.type);
+  next(action);
+};
+
+const loggerB = (store) => (next) => (action) => {
+  console.log('logger B =>  ', action.type);
+  if (action.type === 'action') {
+    setTimeout(() => {
+      next({ type: 'response' });
+    }, 3000);
+  } else {
+    next(action);
+  }
+  next(action);
+};
+
+const store = createStore(reducer, [loggerA, loggerB]);
 
 store.subscribe(() => {
   console.log('바꼈나????', store.getState());
@@ -94,12 +119,12 @@ function foo() {
   counter(1);
 }
 
-function zoo() {
+function bar() {
   store.dispatch(actionCreator('action', { action: 'fetch' }));
 }
 
 foo();
-zoo();
+bar();
 ```
 
 ---
