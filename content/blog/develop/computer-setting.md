@@ -66,7 +66,7 @@ vi ~./zshrc
 ZSH_THEME="refined" # 현재 사용 중인 테마
 ```
 
-### ## zsh-syntax-highlighting ( 명령어에 색 입히기)
+### zsh-syntax-highlighting (명령어에 색 입히기)
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git

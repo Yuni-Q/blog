@@ -18,10 +18,10 @@ draft: true
 
 ```css
 button {
-	border: none;
-	background-color: transparent;
-	cursor: pointer;
-	color: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: inherit;
 }
 ```
 
@@ -29,7 +29,7 @@ button {
 
 ```css
 h1 {
-	margin: 0;
+  margin: 0;
 }
 ```
 
@@ -37,7 +37,7 @@ h1 {
 
 ```css
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 ```
 
@@ -47,13 +47,13 @@ h1 {
 
 ```css
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 a:hover,
 a:focus {
-	color: inherit;
+  color: inherit;
 }
 ```
 
@@ -61,13 +61,13 @@ a:focus {
 
 ```css
 .a11y-hidden {
-	overflow: hidden;
-	width: 1px;
-	height: 1px;
-	background-color: red;
-	position: absolute;
-	clip: rect(0, 0, 0, 0);
-	margin: -1px;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  background-color: red;
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
 }
 ```
 
@@ -75,9 +75,9 @@ a:focus {
 
 ```css
 .clearfix::after {
-	content: '';
-	display: block;
-	clear: both;
+  content: '';
+  display: block;
+  clear: both;
 }
 ```
 
@@ -85,19 +85,19 @@ a:focus {
 
 ```css
 body.show-grid::before {
-	content: '';
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 940px;
-	height: 400vh;
-	background: repeating-linear-gradient(
-		90deg,
-		rgba(0, 200, 150, 0.2),
-		rgba(0, 200, 150, 0.2) 60px,
-		rgba(255, 255, 255, 0) 60px,
-		rgba(255, 255, 255, 0) 80px
-	);
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 940px;
+  height: 400vh;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 200, 150, 0.2),
+    rgba(0, 200, 150, 0.2) 60px,
+    rgba(255, 255, 255, 0) 60px,
+    rgba(255, 255, 255, 0) 80px
+  );
 }
 ```
 
@@ -168,7 +168,7 @@ body.show-grid::before {
 *,
 *::after,
 *::before {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 ```
 
@@ -192,9 +192,9 @@ body.show-grid::before {
 
 ```css
 div::after {
-	content: '';
-	display: block;
-	clear: both;
+  content: '';
+  display: block;
+  clear: both;
 }
 ```
 
@@ -224,7 +224,7 @@ div::after {
 - 가로, 세로 사이즈 적용 가능합니다.
 - 안쪽 여백(padding), 바깥쪽 여백(margin) 모든 방향 적용 가능합니다.
 
-### lnline
+### ln-line
 
 - a, span, input, strong, samp, var, cite, abbr, q, sub, sup, select, b, em, ins, u, i, textarea
 - 한 줄로 선처럼 나열됩니다.
@@ -234,3 +234,43 @@ div::after {
 - 인라인 요소안에서 인라인 요소만 포함합니다.
   - 즉, 인라인 요소안에 블럭요소를 포함할 수 없습니다.
 - 자신의 부모의 가로폭보다 현재의 가로폭이 길면 다음 줄로 넘어갑니다.
+
+## [the-new-css-reset](https://github.com/elad2412/the-new-css-reset/blob/main/css/reset.css)
+
+```css
+/*** The new CSS Reset - version 1.2.0 (last updated 23.7.2021) ***/
+
+/* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+```
