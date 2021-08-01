@@ -235,6 +235,64 @@ div::after {
   - 즉, 인라인 요소안에 블럭요소를 포함할 수 없습니다.
 - 자신의 부모의 가로폭보다 현재의 가로폭이 길면 다음 줄로 넘어갑니다.
 
+## supports
+
+- 브라우저가 CSS를 지원하는지 체크할 수 있습니다.
+
+```css
+/* 지원할 경우 */
+@supports (display: grid) {
+  div {
+    display: grid;
+  }
+}
+
+/* 지원하지 않을 경우 */
+@supports not (display: grid) {
+  div {
+    display: flex;
+  }
+}
+```
+
+## css scroll snap
+
+```css
+/* 부모 */
+#container {
+  scroll-snap-type: y mandatory;
+}
+
+/* 자식 */
+.item {
+  scroll-snap-align: center;
+}
+```
+
+## :is
+
+```css
+header button,
+nav button,
+form button {
+  background-color: red;
+}
+
+/* 위를 아래와 같이 간소화 할 수 있습니다. */
+:is(header, nav, form) button {
+  background-color: red;
+}
+```
+
+## Flex Box Gap
+
+```css
+.container {
+  display: flex;
+  gap: 10px 5px;
+}
+```
+
 ## [the-new-css-reset](https://github.com/elad2412/the-new-css-reset/blob/main/css/reset.css)
 
 ```css
