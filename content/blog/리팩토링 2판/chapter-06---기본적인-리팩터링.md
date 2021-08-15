@@ -307,3 +307,17 @@ let area = height * width;
 - 변수 이름 바꾸기의 가장 간단한 예시는 임시 변수나 인수처럼 유효범위가 함수 하나로 국한된 변수입니다.
 - 함수 밖에서도 참조할 수 있는 변수라면 조심해야 합니다.
 - 상수이름 바꾸기
+
+## 매개변수 객체 만들기(Introduce Parameter Object)
+
+```js
+// as-is
+function amountInvoiced(startDate, endDate) {
+  // ...
+}
+
+// to-be
+function amountInvoiced(aDataRange) {
+  // ...
+}
+```
