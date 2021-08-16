@@ -1049,6 +1049,7 @@ const Wrapper = styled.div`
   }
   a {
     color: #4d75f0;
+    word-break: break-all;
   }
   li {
     color: #858585;
