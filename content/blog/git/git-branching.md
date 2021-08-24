@@ -3,7 +3,7 @@ title: git branching
 date: 2020-11-10 08:11:52
 category: git
 tags: []
-draft: true
+draft: false
 ---
 
 ## 대표적인 브랜칭(branching) 전략
@@ -173,19 +173,23 @@ draft: true
 
 - Issue 트러커와 연결하여 사용하는 것을 말합니다. 긴 시간 동안 작업을 할 경우, 이슈를 생성하여 작업을 진행합니다.
 - 브런치 이름에는 이슈번호를 적어 작업 중인 이슈가 어떤 것인지를 명확하게 해주는 것이 필요합니다.
-- 작업이 끝나거나 코드 공유가 필요한 시점이면 Merge/pull requsts를 보냅니다.
+- 작업이 끝나거나 코드 공유가 필요한 시점이면 Merge/pull requests를 보냅니다.
 
-### 깃 플로우 1
+### 나의 깃 플로우 1
 
-- master / develop / feature / deploy / hofix
+- master / develop / feature / deploy / hotfix
 - master : 배포 성공 이후 deploy를 merge
 - develop : feature들을 merge해서 beta test에 이용. master와 이격이 커질 경우 master에서 새로 만든다.
 - feature : `feature/날짜/티켓번호`로 생성 후 develop에 merge해서 test하고 deploy에 merge해서 배포한다.
-- deploy : develop에서 테스트 완료 된 feauture를 merge 후 배포한다. `deploy/날짜`로 브랜치를 생성한다. 보통 배포 전날에 생성한다.
+- deploy : develop에서 테스트 완료 된 feature를 merge 후 배포한다. `deploy/날짜`로 브랜치를 생성한다. 보통 배포 전날에 생성한다.
 - hotfix : master에 merge 후 문제가 생기면 hotfix 브랜치 생성에서 배포하여 수정이 완료 되면 master에 머지한다. `hotfix/날짜`로 브랜치를 생성한다.
 - adhoc : 브랜치명을 만들 때 날짜가 명확하지 않을 때 날짜 부분에 대신 사용한다.
 
-### 깃 플로우 2
+#### 사용하는 이유
+
+- 다양한 팀이 하나의 프로젝트에서 개발할 경우 beta 환경을 누가 사용하고 있던지 관계 없이 배포 가능하게 하기 위해 사용합니다.
+
+### 나의 깃 플로우 2
 
 - master / deploy / feature
 - master : 배포 예정이 deploy 브랜치를 merge 후 태깅하고 태깅이나 master의 마지막 커밋으로 배포한다.
