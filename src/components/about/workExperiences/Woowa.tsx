@@ -18,16 +18,17 @@ export const Woowa: VFC = () => {
         <tbody>
           <tr>
             <th>period</th>
-            <td>19.08 ~ Current</td>
+            <td>19.08.26 ~ Current</td>
           </tr>
           <tr>
             <th>position</th>
-            <td>Front-End Engineer</td>
+            <td>결제서비스개발팀 / FrontEnd Engineer</td>
           </tr>
         </tbody>
       </table>
       <ul>
         <li>배달의민족 주문하기 및 결제하기 웹뷰 개발/운영개선</li>
+        <li>배민페이머니 웹뷰 개발</li>
         <li>
           배달의민족 대표 B2B서비스채널인 `배민사장님광장` 웹서비스 Front-end
           개발/운영개선
@@ -38,7 +39,14 @@ export const Woowa: VFC = () => {
         </li>
         <li>배달의 민족 주문접수 앱 웹뷰 개발</li>
       </ul>
-      {/* 플랫폼실/업주시스템팀, B2B서비스실/B2B서비스팀, B2B서비스실/사장님서비스팀, B2B서비스실/사장님광장팀, 배민결제서비스실/결제서비스개발팀 */}
+      {/**
+       * 플랫폼실/업주시스템팀,
+       * B2B서비스실/B2B서비스팀,
+       * B2B서비스실/사장님서비스팀,
+       * B2B서비스실/사장님광장팀,
+       * 배민결제서비스실/결제서비스개발팀,
+       * 페이먼트서비스실/결제서비스개발팀
+       * */}
       <div style={{ textAlign: 'right' }}>
         <Button
           show={show}
@@ -85,15 +93,15 @@ export const Woowa: VFC = () => {
           </table>
           <ul>
             <li>문서 최신화, 정리 및 실행환경 개선</li>
-            <li>린트, 프리티어 수정</li>
-            <li>pay-platform 브랜치 정리 및 브랜치 전략 수정</li>
-            <li>작업 방식 정리</li>
-            <li>배포 프로세스 및 알람 정리</li>
-            <li>서브모듈 제거</li>
-            <li>젠킨스 제거 및 배포 프로세스 개선</li>
+            <li>린트, 프리티어 수정, 서브모듈 제거</li>
+            <li>브랜치 정리 및 브랜치 전략 수정</li>
+            <li>배포 프로세스 개선, 알람 정리 및 작업 방식 정리</li>
             <li>센트리 소스맵 추가로 인해 디거핑 편의성 증가</li>
             <li>앱 웹뷰 지원(최소 버전 안드로이드 4.x)</li>
-            <li>프로젝트 재구성</li>
+            <li>
+              복잡한 이해관계에 의해 통일성 없는 코드를 새로운 프로젝트 재구성
+            </li>
+            <li>CI/CD 구성</li>
           </ul>
         </section>
         <section>
@@ -204,8 +212,8 @@ export const Woowa: VFC = () => {
             </tbody>
           </table>
           <ul>
-            <li>배달대행사 연결 및 관리 웹뷰 작업</li>
-            <li>AI 배달 예상 시간 안내 웹뷰 작업</li>
+            <li>배달대행사 연결 및 관리 페이지</li>
+            <li>AI 배달 예상 시간 안내 페이지</li>
           </ul>
         </section>
         <section>
@@ -330,7 +338,7 @@ export const Woowa: VFC = () => {
           </table>
           <ul>
             <li>AB test 구성 및 테스트</li>
-            <li>배민트렌드 2021 이벤트 페이지</li>
+            <li>이벤트 페이지</li>
           </ul>
         </section>
         <section>
