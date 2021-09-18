@@ -549,6 +549,17 @@ class some {
 - Why? A bind call in the render path creates a brand new function on every single render. Do not use arrow functions in class fields, because it makes them challenging to test and debug, and can negatively impact performance, and because conceptually, class fields are for data, not logic.
 
 ```js
+// bad
+class extends React.Component {
+  onClickDiv() {
+    // do stuff
+  }
+
+  render() {
+    return <div onClick={this.onClickDiv.bind(this)} />;
+  }
+}
+
 // very bad
 class extends React.Component {
   onClickDiv = () => {
