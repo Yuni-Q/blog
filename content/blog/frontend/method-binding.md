@@ -3,140 +3,140 @@ title: method binding
 date: 2020-11-17 17:11:91
 category: frontend
 tags: []
-draft: true
+draft: false
 ---
 
 ## Method binding 방법
 
-### 0
+### case 0
 
 ```jsx
 import react from 'React';
 
 class Component extends React.Component {
-	method1() {
-		console.log('method1');
-	}
+  method1() {
+    console.log('method1');
+  }
 
-	render() {
-		return <button onClick={this.method1}>button</button>;
-	}
+  render() {
+    return <button onClick={this.method1}>button</button>;
+  }
 }
 ```
 
 - this가 제대로 bind 되지 않아서 method1 안에서 this를 사용할 수 없습니다.
-- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해집니다.
+- map 같은 함수를 써서 parameter를 넘길 경우 사용하기에 모호해집니다.
 
-### 1
+### case 1
 
 ```jsx
 import react from 'React';
 
 class Component extends React.Component {
-	method1() {
-		console.log('method1');
-	}
+  method1() {
+    console.log('method1');
+  }
 
-	render() {
-		return <button onClick={() => this.method1()}>button</button>;
-	}
+  render() {
+    return <button onClick={() => this.method1()}>button</button>;
+  }
 }
 ```
 
 - 화살표 함수는 자신의 this가 없습니다. 대신 화살표 함수를 둘러싸는 렉시컬 범위(lexical scope)의 this가 사용됩니다. 이로 인해 this를 사용할 수 있습니다.
 - handler 함수 기능을 추가할 경우 함수호출`()`을 누락할 여지가 적습니다.
-- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기 쉽습니다.
+- map 같은 함수를 써서 parameter를 넘길 경우 사용하기 쉽습니다.
 - render 시 마다 함수를 만들어서 element라면 괜찮지만 Component에게 함수를 넘길 경우 성능 이슈가 발생할 수 있습니다.
 
-### 2
+### case 2
 
 ```jsx
 import react from 'React';
 
 class Component extends React.Component {
-	method2() {
-		console.log('method2');
-	}
+  method2() {
+    console.log('method2');
+  }
 
-	render() {
-		return <button onClick={this.method2.bind(this)}>button</button>;
-	}
+  render() {
+    return <button onClick={this.method2.bind(this)}>button</button>;
+  }
 }
 ```
 
 - bind를 빼먹을 수 있습니다.
 - handler 함수 기능을 추가할 경우 함수호출`()`을 누락할 여지가 있습니다.
-- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해집니다.
+- map 같은 함수를 써서 parameter를 넘길 경우 사용하기에 모호해집니다.
 
-#### map 같은 함수를 써서 parmameter를 넘길 경우
+#### map 같은 함수를 써서 parameter를 넘길 경우
 
 ```jsx
 import react from 'React';
 
 class Component extends React.Component {
-	method2() {
-		console.log('method2');
-	}
+  method2() {
+    console.log('method2');
+  }
 
-	render() {
-		const users = [
-			{ name: 'L', age: 11 },
-			{ name: 'Y', age: 21 },
-			{ name: 'H', age: 31 },
-		];
-		return users.map(user => {
-			return (
-				<button onClick={() => this.method2(user.name)}>{user.name}</button>
-			);
-		});
-	}
+  render() {
+    const users = [
+      { name: 'L', age: 11 },
+      { name: 'Y', age: 21 },
+      { name: 'H', age: 31 },
+    ];
+    return users.map((user) => {
+      return (
+        <button onClick={() => this.method2(user.name)}>{user.name}</button>
+      );
+    });
+  }
 }
 ```
 
-### 3
+### case 3
 
 ```jsx
 import react from 'React';
 
 class Component extends React.Component {
-	constuctor() {
-		this.method2 = this.method2.bind(this);
-	}
-	method2() {
-		console.log('method2');
-	}
+  constructor() {
+    this.method2 = this.method2.bind(this);
+  }
+  method2() {
+    console.log('method2');
+  }
 
-	render() {
-		return <button onClick={this.method2}>method2</button>;
-	}
+  render() {
+    return <button onClick={this.method2}>method2</button>;
+  }
 }
 ```
 
 - constructor에서 호출하면 관심사가 멀어져서 관리하기 용이하지 않습니다.
-- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해집니다.
+- map 같은 함수를 써서 parameter를 넘길 경우 사용하기에 모호해집니다.
 
-### 3
+### case 4
 
 ```jsx
 import react from 'React';
 
 class Component extends React.Component {
-	method3 = () => {
-		console.log('method3');
-	};
+  method3 = () => {
+    console.log('method3');
+  };
 
-	render() {
-		return <button onClick={this.method3}>button</button>;
-	}
+  render() {
+    return <button onClick={this.method3}>button</button>;
+  }
 }
 ```
 
-- method3는 typescript 컨벤션에서 값이지 메소드가 아닙니다.
+- method3은 typescript 컨벤션에서 값이지 메소드가 아닙니다.
 - readonly를 붙여서 오염을 방지할 수 있지만, protected와 같은 접근제어자를 통해 상속 super 같은 것을 사용할 수 없습니다.
 - 상속 개념을 쓰지 않는다면 좋은 방법으로 보입니다.
-- map 같은 함수를 써서 parmameter를 넘길 경우 사용하기에 모호해집니다.
+- map 같은 함수를 써서 parameter를 넘길 경우 사용하기에 모호해집니다.
 
-### 4
+### case 5
 
 - https://github.com/andreypopp/autobind-decorator
 
@@ -144,14 +144,14 @@ class Component extends React.Component {
 import react from 'React';
 
 class Component extends React.Component {
-	@decorater
-	method4() {
-		console.log('method4');
-	}
+  @decorater
+  method4() {
+    console.log('method4');
+  }
 
-	render() {
-		return <button onClick={this.method4}>button</button>;
-	}
+  render() {
+    return <button onClick={this.method4}>button</button>;
+  }
 }
 ```
 
@@ -162,20 +162,20 @@ class Component extends React.Component {
 - decorator 스펙이 proposal2에 머물러 있습니다.
 - mobx v6에서 decorator 스펙을 제외했습니다.
 
-### 5
+### case 6
 
 ```jsx
 import react from 'React';
 
 @decorater
 class Component extends React.Component {
-	method4() {
-		console.log('method4');
-	}
+  method4() {
+    console.log('method4');
+  }
 
-	render() {
-		return <button onClick={this.method4}>button</button>;
-	}
+  render() {
+    return <button onClick={this.method4}>button</button>;
+  }
 }
 ```
 
@@ -186,7 +186,7 @@ class Component extends React.Component {
 - decorator 스펙이 proposal2에 머물러 있습니다.
 - mobx v6에서 decorator 스펙을 제외했습니다.
 
-### 6
+### case 7
 
 - React.Component를 wrapping해서 모든 ClassComponent가 상속 받게 한 후 wrapping한 클래스에 decorater를 붙여 모든 메소드에 decorater를 붙입니다.
 - 성능 이슈가 발생할 수 있습니다.
@@ -195,14 +195,14 @@ class Component extends React.Component {
 
 ```javascript
 class A {
-	val = 1;
-	method1() {
-		console.log(this.val, '사용가능');
-	}
+  val = 1;
+  method1() {
+    console.log(this.val, '사용가능');
+  }
 }
 
-A.prototype.method2 = function() {
-	console.log(this.val, '사용불가능');
+A.prototype.method2 = function () {
+  console.log(this.val, '사용불가능');
 };
 
 A.method1(); // Uncaught TypeError: a.method1 is not a function
@@ -213,8 +213,8 @@ A.prototype.method2();
 
 ## 개인적인 견해
 
-- 선호의 변경 : case3 -> case1 -> case5 -> case3
-- case3. arrow function을 선호합니다.
+- 선호의 변경 : case4 -> case1 -> case6 -> case4 -> case1
+- arrow function을 선호했으나 상속구조를 사용하기 위해서 case1을 선호하게 되었습니다.
 
 ### case3
 
@@ -223,7 +223,7 @@ A.prototype.method2();
 
 - readonly를 쓰면 좋겠지만, 덮어쓰는게 실수일거 같아서 굳이 필요할지는 잘 모르겠습니다...
 
-3. 다른 코드에 영향이 적었으면 좋겠습니다(빠드릴수 있는 사항은 최대한 없애는 것). method에 데코레이터를 쓴다면 basecomponent에서 하고 싶지만(새로운 컴포넌트 생성 시에는 고려하지 않아도 되게끔) 성능저하가 우려됩니다
+3. 다른 코드에 영향이 적었으면 좋겠습니다(빠드릴수 있는 사항은 최대한 없애는 것). method에 데코레이터를 쓴다면 baseComponent에서 하고 싶지만(새로운 컴포넌트 생성 시에는 고려하지 않아도 되게끔) 성능저하가 우려됩니다
 
 - constructor에서 bind한다거나
 - 다른 함수를 통해 변화가 일어난다는 등의 일
@@ -242,7 +242,7 @@ A.prototype.method2();
 
 7. 모든 함수를 arrow function으로 할 것인가?
 
-- this의 유무가 아닌 상속에 유무에 따라서 하고 싶습니다. -> arrow로 했다가 상속이 필요해서 method로 바꾸는 방식은 하위를 위해 상위를 고치는 행위로 위험할 수 있다.
+- this의 유무가 아닌 상속에 유무에 따라서 하고 싶습니다. -> arrow로 했다가 상속이 필요해서 method로 바꾸는 방식은 하위를 위해 상위를 고치는 행위로 위험할 수 있습니다.
 
 ### case1
 
@@ -250,104 +250,104 @@ A.prototype.method2();
 import React from 'react';
 
 export class App extends React.Component {
-	state = {
-		a: {
-			b: 1,
-		},
-	};
-	render() {
-		return (
-			<div>
-				<Base />
-				<A />
-				<B />
-				<C />
-				<D />
-			</div>
-		);
-	}
+  state = {
+    a: {
+      b: 1,
+    },
+  };
+  render() {
+    return (
+      <div>
+        <Base />
+        <A />
+        <B />
+        <C />
+        <D />
+      </div>
+    );
+  }
 }
 
 export default App;
 class Base extends React.Component {
-	state = {
-		a: 1,
-		b: 2,
-		c: 3,
-	};
+  state = {
+    a: 1,
+    b: 2,
+    c: 3,
+  };
 
-	method1 = () => {
-		console.log('Base.metho1', this.state.a);
-		this.method2();
-	};
+  method1 = () => {
+    console.log('Base.metho1', this.state.a);
+    this.method2();
+  };
 
-	method2() {
-		console.log('Base.metho2', this.state.b);
-	}
+  method2() {
+    console.log('Base.metho2', this.state.b);
+  }
 
-	render() {
-		return <div onClick={this.method1}>Base</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>Base</div>;
+  }
 }
 
 class A extends Base {
-	state = {
-		d: 4,
-		e: 5,
-	};
-	method2() {
-		super.method2();
-		console.log('A.metho2', this.state.d);
-	}
+  state = {
+    d: 4,
+    e: 5,
+  };
+  method2() {
+    super.method2();
+    console.log('A.metho2', this.state.d);
+  }
 
-	render() {
-		return <div onClick={this.method1}>A</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>A</div>;
+  }
 }
 
 class B extends Base {
-	state = {
-		f: 6,
-		g: 7,
-	};
+  state = {
+    f: 6,
+    g: 7,
+  };
 
-	method2() {
-		console.log('B.metho2', this.state.f);
-	}
+  method2() {
+    console.log('B.metho2', this.state.f);
+  }
 
-	render() {
-		return <div onClick={this.method1}>B</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>B</div>;
+  }
 }
 
 class C extends Base {
-	state = {
-		h: 8,
-		i: 9,
-	};
+  state = {
+    h: 8,
+    i: 9,
+  };
 
-	method1 = () => {
-		console.log('C.method1', this.state.h);
-	};
+  method1 = () => {
+    console.log('C.method1', this.state.h);
+  };
 
-	render() {
-		return <div onClick={this.method1}>C</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>C</div>;
+  }
 }
 
 class D extends Base {
-	state = {
-		j: 10,
-		k: 11,
-	};
+  state = {
+    j: 10,
+    k: 11,
+  };
 
-	method2 = () => {
-		console.log('D.method1', this.state.j);
-	};
+  method2 = () => {
+    console.log('D.method1', this.state.j);
+  };
 
-	render() {
-		return <div onClick={this.method1}>D</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>D</div>;
+  }
 }
 ```
 
@@ -357,112 +357,112 @@ class D extends Base {
 import React from 'react';
 
 export class App extends React.Component {
-	state = {
-		a: {
-			b: 1,
-		},
-	};
-	render() {
-		return (
-			<div>
-				<Base />
-				<A />
-				<B />
-				<C />
-				<D />
-			</div>
-		);
-	}
+  state = {
+    a: {
+      b: 1,
+    },
+  };
+  render() {
+    return (
+      <div>
+        <Base />
+        <A />
+        <B />
+        <C />
+        <D />
+      </div>
+    );
+  }
 }
 
 export default App;
 class Base extends React.Component {
-	state = {
-		a: 1,
-		b: 2,
-		c: 3,
-	};
+  state = {
+    a: 1,
+    b: 2,
+    c: 3,
+  };
 
-	method1 = () => {
-		console.log('Base.metho1', this.state.a);
-		this.method2();
-	};
+  method1 = () => {
+    console.log('Base.metho1', this.state.a);
+    this.method2();
+  };
 
-	method2() {
-		console.log('Base.metho2', this.state.b);
-	}
+  method2() {
+    console.log('Base.metho2', this.state.b);
+  }
 
-	render() {
-		return <div onClick={this.method1}>Base</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>Base</div>;
+  }
 }
 
 class A extends Base {
-	state = {
-		a: 1,
-		b: 2,
-		d: 4,
-		e: 5,
-	};
-	method2() {
-		super.method2();
-		console.log('A.metho2', this.state.d);
-	}
+  state = {
+    a: 1,
+    b: 2,
+    d: 4,
+    e: 5,
+  };
+  method2() {
+    super.method2();
+    console.log('A.metho2', this.state.d);
+  }
 
-	render() {
-		return <div onClick={this.method1}>A</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>A</div>;
+  }
 }
 
 class B extends Base {
-	state = {
-		a: 1,
-		b: 2,
-		f: 6,
-		g: 7,
-	};
+  state = {
+    a: 1,
+    b: 2,
+    f: 6,
+    g: 7,
+  };
 
-	method2() {
-		console.log('B.metho2', this.state.f);
-	}
+  method2() {
+    console.log('B.metho2', this.state.f);
+  }
 
-	render() {
-		return <div onClick={this.method1}>B</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>B</div>;
+  }
 }
 
 class C extends Base {
-	state = {
-		a: 1,
-		b: 2,
-		h: 8,
-		i: 9,
-	};
+  state = {
+    a: 1,
+    b: 2,
+    h: 8,
+    i: 9,
+  };
 
-	method1 = () => {
-		console.log('C.method1', this.state.h);
-	};
+  method1 = () => {
+    console.log('C.method1', this.state.h);
+  };
 
-	render() {
-		return <div onClick={this.method1}>C</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>C</div>;
+  }
 }
 
 class D extends Base {
-	state = {
-		a: 1,
-		b: 2,
-		j: 10,
-		k: 11,
-	};
+  state = {
+    a: 1,
+    b: 2,
+    j: 10,
+    k: 11,
+  };
 
-	method2 = () => {
-		console.log('D.method1', this.state.j);
-	};
+  method2 = () => {
+    console.log('D.method1', this.state.j);
+  };
 
-	render() {
-		return <div onClick={this.method1}>D</div>;
-	}
+  render() {
+    return <div onClick={this.method1}>D</div>;
+  }
 }
 ```
 
@@ -478,46 +478,46 @@ class D extends Base {
 
 ```tsx
 class some {
-	private proc(value: any, value2: any) {
-		// 실제 로직
-	}
-	// 1
-	public open(error?: any, value?: any, value2?: any) {
-		// 실제 로직
-	}
-	// 5
-	@decorator
-	public decorated(error, value, value2) {
-		if (error) return Dialog.alert(error);
-		this.open(value, value2);
-	}
-	// 3
-	public handleSomeComplete = (error, value, value2) => {
-		if (error) return Dialog.alert(error);
-		this.proc(value!, value2!);
-	};
-	public handleSomeComplete = (value, value2) => this.proc(value!, value2!);
-	render() {
-		return (
-			<SomeOtherComponent
-				onComplete={(error, value, value2) => this.open(error, value, value2)}
-			/>
-		);
-		return (
-			<SomeOtherComponent
-				onComplete={(error, value, value2) => {
-					if (error) return Dialog.alert(error);
-					this.open(value, value2);
-				}}
-			/>
-		);
-		return <SomeOtherComponent onComplete={this.decorated} />;
-		return <SomeOtherComponent onComplete={this.handleSomeComplete} />;
-		// 1
-		return <button onClick={() => this.open()}></button>;
-		// 3 5
-		return <button onClick={this.method}></button>;
-	}
+  private proc(value: any, value2: any) {
+    // 실제 로직
+  }
+  // 1
+  public open(error?: any, value?: any, value2?: any) {
+    // 실제 로직
+  }
+  // 5
+  @decorator
+  public decorated(error, value, value2) {
+    if (error) return Dialog.alert(error);
+    this.open(value, value2);
+  }
+  // 3
+  public handleSomeComplete = (error, value, value2) => {
+    if (error) return Dialog.alert(error);
+    this.proc(value!, value2!);
+  };
+  public handleSomeComplete = (value, value2) => this.proc(value!, value2!);
+  render() {
+    return (
+      <SomeOtherComponent
+        onComplete={(error, value, value2) => this.open(error, value, value2)}
+      />
+    );
+    return (
+      <SomeOtherComponent
+        onComplete={(error, value, value2) => {
+          if (error) return Dialog.alert(error);
+          this.open(value, value2);
+        }}
+      />
+    );
+    return <SomeOtherComponent onComplete={this.decorated} />;
+    return <SomeOtherComponent onComplete={this.handleSomeComplete} />;
+    // 1
+    return <button onClick={() => this.open()}></button>;
+    // 3 5
+    return <button onClick={this.method}></button>;
+  }
 }
 ```
 
@@ -534,3 +534,11 @@ class some {
 ### case5
 
 - 상속 받는 곳에서 super를 사용할 수 없습니다...
+
+## [Class에서 arrow function을 사용하지 말아야하는 이유](https://simsimjae.medium.com/class%EC%97%90%EC%84%9C-arrow-function%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EC%95%84%EC%95%BC%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0-8c6ad4aa4bc4)
+
+- [심재철](https://simsimjae.medium.com/)님 블로그 글을 참조 했습니다.
+
+1. method override 문제
+2. Prototype 문제 (Performance 저하)
+3. 상속 문제
