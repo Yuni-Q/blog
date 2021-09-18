@@ -579,3 +579,11 @@ class extends React.Component {
 ```
 
 ## [Arrow Functions in Class Properties Might Not Be As Great As We Think](https://medium.com/@charpeni/arrow-functions-in-class-properties-might-not-be-as-great-as-we-think-3b3551c440b1)
+
+## 최종 나만의 규칙
+
+- 메서드를 작성할 때는 arrow function을 사용하지 않습니다.
+  - 위 규칙을 따름에 의해 오는 this bind 문제는 render 안에 함수에서 arrow를 사용함으로써 해결합니다.
+  - 위와 같은 규칙을 가지는 이유는 상속 구조를 가져가기 위해서 입니다.
+- 상속해서 사용하지 못하게 하려는 경우에는 Private class fields(#)를 사용합니다.
+  - 리액트 메서드를 하위에서 사용하지 못하게 할 때는 arrow function에 readonly로 사용합니다(메서드를 arrow로 작성하지 않는다는 규칙을 지킬 시 상위 클래스가 인스턴스 멤버 속성 인스턴스 멤버 함수로 정의로 정의한다는 에러가 발생합니다.)
