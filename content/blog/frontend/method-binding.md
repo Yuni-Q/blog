@@ -542,3 +542,40 @@ class some {
 1. method override 문제
 2. Prototype 문제 (Performance 저하)
 3. 상속 문제
+
+## Airbnb React/JSX Style Guide
+
+- Airbnb 같은 경우는 Airbnb React/JSX Style Guide에서 method 부분을 보면 알 수 있듯, field function을 very bad라 할 정도로 사용하는 것을 지양하고 있습니다.
+- Why? A bind call in the render path creates a brand new function on every single render. Do not use arrow functions in class fields, because it makes them challenging to test and debug, and can negatively impact performance, and because conceptually, class fields are for data, not logic.
+
+```js
+// very bad
+class extends React.Component {
+  onClickDiv = () => {
+    // do stuff
+  }
+
+  render() {
+    return <div onClick={this.onClickDiv} />
+  }
+}
+
+// good
+class extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onClickDiv = this.onClickDiv.bind(this);
+  }
+
+  onClickDiv() {
+    // do stuff
+  }
+
+  render() {
+    return <div onClick={this.onClickDiv} />;
+  }
+}
+```
+
+## [Arrow Functions in Class Properties Might Not Be As Great As We Think](https://medium.com/@charpeni/arrow-functions-in-class-properties-might-not-be-as-great-as-we-think-3b3551c440b1)
