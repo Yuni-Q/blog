@@ -175,7 +175,7 @@ export const Top = ({ theme }) => {
           sendGAEvent('button', GA_ACTION.CLICK, '/');
         }}
       >
-        {`Yuni-Q`}
+        Yuni-Q
       </Link>
       <StyledButton theme={theme} snow={state.snow} onClick={() => {}}>
         <GitHubIcon />
