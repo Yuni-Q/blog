@@ -102,6 +102,7 @@ export const Woowa: VFC = () => {
               복잡한 이해관계에 의해 통일성 없는 코드를 새로운 프로젝트 재구성
             </li>
             <li>CI/CD 구성</li>
+            <li>불법자금세탁방지를 위한 고객확인 기능을 추가하는 작업</li>
           </ul>
         </section>
         <section>
