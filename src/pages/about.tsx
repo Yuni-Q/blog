@@ -93,6 +93,15 @@ const About: React.VFC = () => {
                   </li>
                 </ul>
               </li>
+              <li>
+                <a
+                  href="https://techblog.woowahan.com/5327/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  셀프서비스 디자인시스템 #2 – 개발자 편
+                </a>
+              </li>
             </ul>
 
             <h3>수상</h3>
@@ -129,7 +138,7 @@ const About: React.VFC = () => {
               <span className="u-shadow">Last Updated</span>
             </h2>
             <ul>
-              <li>2021.09.18</li>
+              <li>2021.10.20</li>
             </ul>
           </Section>
         </article>
