@@ -3,7 +3,7 @@ title: OSI 7 계층
 date: 2021-10-22 23:10:19
 category: develop
 tags: []
-draft: true
+draft: false
 ---
 
 ## Layered 아키텍처를 따르는 대표적인 예 - 네트워크 시스템
