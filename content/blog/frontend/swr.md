@@ -277,7 +277,100 @@ export const NonMemberExceptionHandling = (url: string): string | null => {
 - API 특성에 맞는 Option 설정 가능 : API 특성별로 캐싱 등 React Query Option 설정 가능
 - API 연관 관계 처리 용이 : 여러 API가 연관되는 관계를 갖는 경우 용이하게 처리 가능
 
+### 사용중인 코드
+```ts
+import QueryString from 'qs';
+import { QueryFunctionContext, useQuery, UseQueryResult } from 'react-query';
 
+import { UserInfo } from 'utils/UserInfo';
+
+import { API } from './API';
+
+const defaultApi = new API(process.env.PAY_PLATFORM_HOST);
+
+interface Factory<RES, T, ERROR, K> {
+  prefix?: API;
+  onSuccess?: (res: RES | undefined) => T | RES | null;
+  onFailure?: (error: ERROR) => K;
+}
+
+export const fetcherFactory = <RES, T = Record<string, any> | null | RES, ERROR = string, K = void>({
+  prefix,
+  onSuccess,
+  onFailure,
+}: Factory<RES, T, ERROR, K>) => {
+  const api = prefix || defaultApi;
+  return (context: QueryFunctionContext) => {
+    return api
+      .get(context.queryKey[0] as string)
+      .then((res: RES): T | RES | null => {
+        if (onSuccess) {
+          return onSuccess(res);
+        }
+        return res || null;
+      })
+      .catch((error: ERROR): K | void => {
+        if (onFailure) {
+          return onFailure(error);
+        }
+        // TODO : TOAST 필요하지 않을까?
+        console.log('error', error);
+      });
+  };
+};
+
+interface PostFactory<DATA, RES, T, ERROR, K> extends Factory<RES, T, ERROR, K> {
+  data?: DATA;
+}
+
+export const fetcherPostFactory = <DATA, RES, T = Record<string, any> | null | RES, ERROR = string, K = void>({
+  prefix,
+  data,
+  onSuccess,
+  onFailure,
+}: PostFactory<DATA, RES, T, ERROR, K>) => {
+  const api = prefix || defaultApi;
+  return (context: QueryFunctionContext) => {
+    return api
+      .post(context.queryKey[0] as string, data)
+      .then((res: RES): T | RES | null => {
+        if (onSuccess) {
+          return onSuccess(res);
+        }
+        return res || null;
+      })
+      .catch((error: ERROR): K | void => {
+        if (onFailure) {
+          return onFailure(error);
+        }
+        // TODO : TOAST 필요하지 않을까?
+        console.log('error', error);
+      });
+  };
+};
+
+const defaultFetcher = fetcherFactory({ prefix: defaultApi });
+
+export type APIResponse<T> = () => UseQueryResult<T>;
+
+// export type APIResponseWithParams<T, P = unknown> = (params: P) => SWRResponseWrapper<T>;
+
+export const useCommonQuery = <Data, Error = unknown>(
+  url: string | null,
+  data?: Record<string, string>,
+  fetcher?: (context: QueryFunctionContext) => Promise<any>,
+): UseQueryResult<Data, Error> => {
+  // QueryString
+  if (!!url && data && typeof data !== 'string') {
+    url += (url.match(/\?/) ? '&' : '?') + QueryString.stringify(data);
+  }
+  return useQuery(url || '', fetcher || defaultFetcher, { suspense: true, enabled: !!url });
+};
+
+export const NonMemberExceptionHandling = (url: string): string | null => {
+  return !UserInfo.memberNumber || UserInfo.memberNumber === '000000000000' ? null : url;
+};
+```
 ## 참고
 
 - [Redux 를 넘어 SWR 로](https://min9nim.now.sh/2020-10-05-swr-intro1/)
