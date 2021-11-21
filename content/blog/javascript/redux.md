@@ -282,7 +282,7 @@ function combination() {
 
 - 리덕스의 불편상태 관리가 react(react는 상태를 불변상태로 관리해야한다고 하니까 리액트에서 리덕스를 쓰려면 상태를 불변으로 관리해야지라는 생각) 때문이지 않을까 하면서 html에서 redux를 사용 시에 불변상태를 유지하지 않아도 되어서 괜찮구나 라고 생각을 했는데 실제 불변상태를 가져야 하는 이유는 하나의 리듀서만 사용할때가 아닌 combineReducers를 사용할때 이고 그 이유는 combineReducers 중 아래와 같이 리듀서들을 합쳐서 관리할때 레퍼런스로 비교해서 해당 리듀서를 업데이트 할지 고려해서 인거 같네요 !
 - 리덕스 문서에 [combineReducers와 관련된 답변](https://redux.js.org/faq/reducers#reducers)도 있네요
-- 이렇게 되면 리덕스 자체에서 state를 딥카피해서 보내주면 항상 업데이트 되기 떄문에 redux에서 직접 해주지 않는 이유가 있는거처럼 보입니다.
+- 이렇게 되면 리덕스 자체에서 state를 딥카피해서 보내주면 항상 업데이트 되기 때문에 redux에서 직접 해주지 않는 이유가 있는거처럼 보입니다.
 
 ## [Why does Redux’s use of shallow equality checking require immutability?](https://redux.js.org/faq/immutable-data#why-does-reduxs-use-of-shallow-equality-checking-require-immutability)
 

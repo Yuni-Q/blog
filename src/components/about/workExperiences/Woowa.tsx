@@ -70,7 +70,7 @@ export const Woowa: VFC = () => {
               </tr>
               <tr>
                 <th>position</th>
-                <td>웹 프론트엔드 파트 리딩</td>
+                <td>웹 프론트엔드 파트 리딩(7월 입사 1명, 11월 입사 2명)</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -103,6 +103,7 @@ export const Woowa: VFC = () => {
             </li>
             <li>CI/CD 구성</li>
             <li>불법자금세탁방지를 위한 고객확인 기능을 추가하는 작업</li>
+            <li>배민페이 적립 포인트 노출(포장주문에서 짝수 회원만)</li>
           </ul>
         </section>
         <section>

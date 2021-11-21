@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { VFC } from 'react';
 
 import './index.scss';
 
-export const TwitterIcon = ({ onClick }) => (
+export const TwitterIcon: VFC<{
+  onClick: React.MouseEventHandler<HTMLAnchorElement>;
+}> = ({ onClick }) => (
   <a
     className="resp-sharing-button__link"
     href="#"

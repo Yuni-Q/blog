@@ -261,9 +261,25 @@ export const NonMemberExceptionHandling = (url: string): string | null => {
 };
 ```
 
----
+## react query
+
+- 라이브러리 사용량이나 기능적인 면에서 우세한 것 같아 react query를 사용해 보기로 함.
+- useMutation으로 사용자 인터렉션과 관련 된 api도 하나의 방향으로 해결이 가능해 보임.
+- React Query는 React Application에서 서버의 상태를 불러오고, 캐싱하며, 지속적으로 동기화하고 업데이트하는 작업을 도와주는 라이브러리입니다.
+- 복잡하고 장황한 코드가 필요한 다른 데이터 불러오기 방식과 달리 React Component 내부에서 간단하고 직관적으로 API를 사용 할 수 있습니다.
+- 더 나아가 React Query에서 제공하는 캐싱, Window Focus Refetching 등 다양한 기능을 활용하여 API 요청과 관련된 번잡한 작업 없이 `핵심 로직`에 집중할 수 있습니다.
+
+### 커스텀 hook을 만들어서 사용
+- API 별로 Custom Hook을 만들어서 사용하면 API를 손 쉽게 체계적으로 관리할 수 있습니다.
+- 직관적으로 API 사용 가능 : API 별로 Custom Hook이 나누어져 있어 직관적으로 API를 사용할 수 있습니다. 
+- API 전처리/후처리 가능 : API 별로 Custom Hook 내부에서 API 전처리, 후처리 하여 간결하고 이해하기 쉬운 Component 작성 가능
+- 휴먼 에러 방지 : Query Key가 Custom Hook 레벨에서 적용되기 때문에 캐싱 드 작업에서 휴먼 에러 방지 가능
+- API 특성에 맞는 Option 설정 가능 : API 특성별로 캐싱 등 React Query Option 설정 가능
+- API 연관 관계 처리 용이 : 여러 API가 연관되는 관계를 갖는 경우 용이하게 처리 가능
+
 
 ## 참고
 
 - [Redux 를 넘어 SWR 로](https://min9nim.now.sh/2020-10-05-swr-intro1/)
 - [Redux 말고 SWR](https://snyung.com/content/2021-01-09--SWR?fbclid=IwAR2xUtmDq9YwLcm6aK7T4AemKvoKRjg181dwI7l_60tfrCVfdH28BhixCBs)
+- [카카오페이 프론트엔드 개발자들이 React Query를 선택한 이유](https://if.kakao.com/session/118)

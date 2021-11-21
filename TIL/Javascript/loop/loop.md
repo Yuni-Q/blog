@@ -124,7 +124,7 @@ for (const val of arr) {
 ## for in
 객체를 순환 할 수 있다.  
 하지만 지양하기를 권고한다고 한다.  
-__proto__도 출력하기 떄문에 의도치 않은 출력을 할 수 있습니다.  
+__proto__도 출력하기 때문에 의도치 않은 출력을 할 수 있습니다.  
 ```javascript
 const obj = { '11':1, '22':2, '33':3 };
 for (const key in obj) {

@@ -229,7 +229,7 @@ const Routing = () => {
 
 ## 한글 입력 시 자모음 분리되는 현상
 
-- react-hooks-form을 쓰면서 unControl로 input을 컨트롤 하다가 e.currentTarget.value를 직접 수정해야 할 떄 ie에서 자모가 분리되는 현상이 있었습니다.
+- react-hooks-form을 쓰면서 unControl로 input을 컨트롤 하다가 e.currentTarget.value를 직접 수정해야 할 때 ie에서 자모가 분리되는 현상이 있었습니다.
 - 반드시 수정되야 하는 상황에서만 값을 수정하게 변경했습니다.
   > Control 컴포넌트나 useControl을 활용해서 문제를 해결할 수 있을 것 같아 보이기도 하지만 당시에는 이해가 부족해서 아래와 같이 수정하였습니다.
 

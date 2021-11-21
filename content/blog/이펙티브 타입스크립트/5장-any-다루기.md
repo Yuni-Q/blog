@@ -23,7 +23,7 @@ draft: true
 
 - `{[key: string]: any}` :
 - `object` : 모든 비기본형(non-primitive)타입을 포함하는 object 타입. object 타입은 객체의 키를 열거할 수는 있지만 속성에 접근할 수 없다는 점에서 `{[key: string]: any}`와 약간 다릅니다.
-- unknown : 객체지만 속성에 접근할 수없어야 한다면 unknown 타입이 필요한 상황일 수 있습니다.
+- unknown : 객체지만 속성에 접근할 수 없어야 한다면 unknown 타입이 필요한 상황일 수 있습니다.
 
 ### 함수 타입
 
@@ -61,19 +61,10 @@ const numArgsBad = (...args: any[]) => args.length; // number를 반환합니다
 ```ts
 // YAML 파서인 parserYAML 함수를 작성한다고 가정해 보겠습니다.
 
-// as-is
+// as-is : 함수의 반환 타입으로 any를 사용
 function parseYAML(yaml: string): any {
   // ...
 }
-
-interface Book {
-  name: string;
-  author: string;
-}
-const book: Book = parseYAML(`
-  name: Jane Eyre
-  author: Charlotte Bronte
-`);
 
 const book = parseYAML(`
   name: Jane Eyre
@@ -82,11 +73,24 @@ const book = parseYAML(`
 alert(book.title); // 오류 없음, 런타임에 "undefined" 경고
 book('read'); // 오류 없음, 런타임에 "TypeError: book은 함수가 아닙니다" 예외 발생
 
-// 함수의 반환 타입으로any를 사용하는 것은 좋지 않은 설계입니다.
-// 대신 parseYAML를 호출하는 곳에서 반환값을 원하는 타입으로 할당하는 것이 이상적입니다.
+// 함수의 반환 타입으로 any를 사용하는 것은 좋지 않은 설계입니다. 오류를 런타임 시점까지 알 수 없습니다.
+
+// to-be1 : 반환값을 원하는 타입으로 할당
+interface Book {
+
+  name: string;
+  author: string;
+}
+
+const book: Book = parseYAML(`
+  name: Jane Eyre
+  author: Charlotte Bronte
+`);
+
+// parseYAML를 호출하는 곳에서 반환값을 원하는 타입으로 할당하는 것이 이상적입니다.
 // 그러나 함수의 반환값에 타입 선언을 강제할 수 없기 때문에, 호출한 곳에서 타입 선언을 생략하게 되면 book 변수는 암시적 any 타입이 되고 사용되는 곳마다 타입 오류가 발생하게 됩니다.
 
-// to-be
+// to-be2 : unknown
 function safeParseYAML(yaml: string): unknown {
   return parseYAML(yaml);
 }
@@ -105,18 +109,25 @@ book('read'); // Object is of type 'unknown'.(2571)
 - any는 한 집합의 부분 집합이면서 동시에 상위집합이 될 수 있기 때문에 타입 시스템과 상충되는 면을 가지고 있습니다.
 - 타입 체커는 집합 기반이기 때문에 any를 사용하면 타입체커가 무용지물이 됩니다.
 
-#### unknown
+#### unknown은 any 대신 쓸 수 있는 타입 시스템에 부합하는 타입입니다.
 
-- unknown은 any 대신 쓸 수 있는 타입 시스템에 부합하는 타입입니다.
-  - unknown 타입은 any와 같이 `어떠한 타입이든 unknown에 할당 가능`합니다.
-  - unknown 타입은 any와 달리 `unknown은 오직 unknown과 any에만 할당 가능`합니다.
+```ts
+const a: unknown = 1;
+const b: string = a; // Type 'unknown' is not assignable to type 'string'.(2322)
+
+const c: never = 1; // Type 'number' is not assignable to type 'never'.(2322)
+const d: string = c;
+```
+
+- unknown 타입은 any와 같이 `어떠한 타입이든 unknown에 할당 가능`합니다.
+- unknown 타입은 any와 달리 `unknown은 오직 unknown과 any에만 할당 가능`합니다.
   - never 타입은 unknown과 정반대입니다.
     - 어떠한 타입도 never에 할당할 수 없습니다.
     - 어떠한 타입으로도 할당 가능합니다.
 - unknown 타입인 채로 값을 사용하면 오류가 발생합니다. unknown인 값에 함수 호출을 하거나 연산을 하려고 해도 마찬가지입니다. unknown 상태로 사용하려고 하면 오류가 발생하기 때문에, 적절한 타입으로 변환하도록 강제할 수 있습니다.
 
+
 ```ts
-// 책의 예제
 interface Book {
   name: string;
   author: string;
@@ -138,7 +149,7 @@ book('read'); // This expression is not callable. Type 'Book' has no call signat
 ### 변수 선언과 관련된 unknown
 
 ```ts
-// GeoJSON 사양에서 Feature의 properties 속성은 JSON 직렬화가 가능한 모든 것을 다믄 잡동사니 주머니 같은 존재입니다. 그래서 타입을 예상할 수 없기 떄문에 unknown을 사용합니다.
+// GeoJSON 사양에서 Feature의 properties 속성은 JSON 직렬화가 가능한 모든 것을 담은 잡동사니 주머니 같은 존재입니다. 그래서 타입을 예상할 수 없기 때문에 unknown을 사용합니다.
 interface Feature {
   id?: string | number;
   geometry: Geometry;
@@ -161,6 +172,8 @@ function isBook(val: unknown): val is Book {
 function processValue(val: unknown) {
   if (isBook(val)) {
     val; // 타입이 Book
+  } else {
+    val; // unknown
   }
 }
 
@@ -252,7 +265,7 @@ document.monkey = 'Tamarin'; // 정상
 - 타입이 더 안전합니다. 타입 체커는 오타나 잘못된 타입의 할당을 오류로 표시합니다.
 - 속성에 주석을 붙일 수 있습니다.
 - 속성에 자동완성을 사용할 수 있습니다.
-- 몽키 패치가 어떤 부분에 적용되었는지 정확환 기록이 남습니다.
+- 몽키 패치가 어떤 부분에 적용되었는지 정확한 기록이 남습니다.
 
 #### 보강의 모듈 영역 문제를 이해해야 합니다.
 
@@ -281,24 +294,24 @@ interface MonkeyDocument extends Document {
 ```
 
 - MonkeyDocument는 Document를 확장하기 때문에 타입 단언문은 정상이며 할당문의 타입은 안전합니다.
-- Document 타입을 건드리지 않고 별도로 확장하는 새로운 타입을 도입했기 떄문에 모듈 영역 문제도 해결할 수 있습니다(import하는 곳의 영역에만 해당됨).
+- Document 타입을 건드리지 않고 별도로 확장하는 새로운 타입을 도입했기 때문에 모듈 영역 문제도 해결할 수 있습니다(import하는 곳의 영역에만 해당됨).
 - 몽키 패치된 속성을 참조하는 경우에만 단언문을 사용하거나 새로운 변수를 도입하면 됩니다.
 
 ## 아이템 44 : 타입 커버리지를 추가하여 타입 안정성 유지하기
 
 - noImplicitAny가 설정되어 있어도, 명시적 any 또는 서드파티 타입 선언(@types)을 통해 any 타입은 코드 내에 여전히 존재할 수 있다는 점을 주의해야 합니다.
 - 작성한 프로그램의 타입이 얼마나 잘 선언되었는지 추적해야 합니다. 추적함으로써 any의 사용을 줄여 나갈 수 있고 타입 안전성을 꾸준히 높을 수 있습니다.
-- npm의 `type-cover-age` 패키지를 활용하여 any를 추적할 수 있습니다.
+- npm의 `type-coverage` 패키지를 활용하여 any를 추적할 수 있습니다.
 
 ### noImplicitAny가 설정되어 있어도 any 타입이 여전히 프로그램 내에 존재하는 경우
 
 - 명시적 any 타입
 - 서드파티 타입 선언
 
-### type-cover-age
+### type-coverage
 
 ```zsh
-npx type-cover-age
+npx type-coverage
 # 9985 / 10117 98.69%
 ```
 
@@ -322,7 +335,7 @@ function getColumnInfo(name: string): any {
 #### 전체 모듈에 any 타입을 부여하는 것
 
 ```ts
-// 어떤 것이든 오류 없이 임포트할 수 있습니다. 임포트한 모든 심벌은 any 타입이고, 임포트한 값이 사용디ㅗ는 곳마다 any 타입을 양산하게 됩니다.
+// 어떤 것이든 오류 없이 임포트할 수 있습니다. 임포트한 모든 심벌은 any 타입이고, 임포트한 값이 사용되는 곳마다 any 타입을 양산하게 됩니다.
 declare module 'my-module';
 
 import { someMethod, someSymbol } from 'my-module';
@@ -334,9 +347,9 @@ const pt2 = someMethod(pt1, someSymbol); // 정상, pt2 타입이 any
 ```
 
 - 일반적으로 모듈 사용법과 동일하기 때문에 타입 정보가 모두 제거됐다는 것을 간과할 수 있습니다.
-- 동료가 모든 타입 정보를 날려 버렸찌만, 알아채지 못하는 경우일 수도 있습니다.
+- 동료가 모든 타입 정보를 날려 버렸지만, 알아채지 못하는 경우일 수도 있습니다.
 - 가끔 해당 모듈을 점검해야 합니다. 어느 순간 모듈에 대한 공식 타입 선언이 릴리스되었을지도 모릅니다. 또는 모듈을 충분히 이해한 후에 직접 타입 선언을 작성해서 커뮤니티에 공개할 수도 있습니다.
 
 #### 타입에 버그가 있는 경우
 
-- 아이템 29의 조언(값을 생성할 때는 엄격하게 타입을 적용)을 무시한 채로, 함수가 유니온 타입을 반환하도록선언하고 실제로는 유니온 타입보다 훨씬 더 특정된 값을 반환하는 경우입니다. 선언된 타입과 실제 반환된 타입이 맞지 않는다면 어쩔 수 없이 any 단언문을 사용해야 합니다. 그러나 나중에 라이브러리가 업데이트되어 함수의 선언문이 제대로 수정된다면 any를 제거해야합니다. 또는 직접 라이브러리의 선언문을 수정하고 커뮤니티에 공개할 수도 있습니다.
+- 아이템 29의 조언(값을 생성할 때는 엄격하게 타입을 적용)을 무시한 채로, 함수가 유니온 타입을 반환하도록 선언하고 실제로는 유니온 타입보다 훨씬 더 특정된 값을 반환하는 경우입니다. 선언된 타입과 실제 반환된 타입이 맞지 않는다면 어쩔 수 없이 any 단언문을 사용해야 합니다. 그러나 나중에 라이브러리가 업데이트되어 함수의 선언문이 제대로 수정된다면 any를 제거해야합니다. 또는 직접 라이브러리의 선언문을 수정하고 커뮤니티에 공개할 수도 있습니다.

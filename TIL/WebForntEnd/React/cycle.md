@@ -10,7 +10,7 @@ componentWillUnmount 메소드만 실행됩니다.
 ## 컴포넌트의 prop이 변경될 때엔
 componentWillReceiveProps -> shouldComponentUpdate -> componentWillUpdate-> render -> componentDidUpdate 순으로 진행됩니다.
 
-> state가 변경될 떄엔 props 를 받았을 때 와 비슷하지만 shouldComponentUpdate 부터 시작됩니다.
+> state가 변경될 때엔 props 를 받았을 때 와 비슷하지만 shouldComponentUpdate 부터 시작됩니다.
 
 ### constructor
 > 생성자 메소드로서 컴포넌트가 처음 만들어 질 때 실행됩니다.<br>
@@ -34,7 +34,7 @@ componentWillReceiveProps -> shouldComponentUpdate -> componentWillUpdate-> rend
 
 ### shouldComponentUpdate
 > prop 혹은 state 가 변경 되었을 때, 리렌더링을 할지 말지 정하는 메소드입니다.<br>
-> 위 예제에선 무조건 true 를 반환 하도록 하였지만, 실제로 사용 할 떄는 필요한 비교를 하고 값을 반환하도록 하시길 바랍니다.<br>
+> 위 예제에선 무조건 true 를 반환 하도록 하였지만, 실제로 사용 할 때는 필요한 비교를 하고 값을 반환하도록 하시길 바랍니다.<br>
 > 예: return nextProps.id !== this.props.id;<br>
 > JSON.stringify() 를 쓰면 여러 field 를 편하게 비교 할 수 있답니다.<br>
 

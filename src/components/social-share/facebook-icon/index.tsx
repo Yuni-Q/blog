@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { VFC } from 'react';
 
 import './index.scss';
 
-export const FacebookIcon = ({ onClick }) => (
+export const FacebookIcon: VFC<{
+  onClick: React.MouseEventHandler<HTMLAnchorElement>;
+}> = ({ onClick }) => (
   <a
     className="resp-sharing-button__link"
     href="#"
