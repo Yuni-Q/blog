@@ -61,6 +61,52 @@ export const Woowa: VFC = () => {
         height={ref.current?.scrollHeight || 0}
       >
         <section>
+          <h3>뉴 통합 결제 플랫폼</h3>
+          <table>
+            <tbody>
+              <tr>
+                <th>period</th>
+                <td>21.10 ~</td>
+              </tr>
+              <tr>
+                <th>position</th>
+                <td>웹 프론트엔드 파트 리딩</td>
+              </tr>
+              <tr>
+                <th>skill</th>
+                <td>
+                  <Badge>Typescript</Badge>
+                  <Badge>React</Badge>
+                  <Badge>Mobx</Badge>
+                </td>
+              </tr>
+              <tr>
+                <th>description</th>
+                <td>배민페이관리 웹뷰</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul>
+            <li>
+              복잡한 이해관계에 의해 통일성 없는 코드를 새로운 프로젝트 구성
+            </li>
+            <li>배민페이 관리 지면 전면 개편 및 공통 모듈 재작성</li>
+            <li>
+              react-query 도입을 통해 서버 상태와 프론트 상태를 분리하고 mobx
+              역할을 축소
+            </li>
+            <li>
+              dialog를 선언적으로 처리하여 click 함수 안에서 modal에 관련 된
+              코드를 한 곳에서 작성하여 쉽게 사용하도록 함
+            </li>
+            <li>
+              functional css 도입을 통해 생산성을 향상 시키고 styled-component의
+              역할을 제한적으로 허용하여 다양한 디자인을 시스템을 만들어
+              공통적으로 관리되고 통일성 있는 UI/UX를 제공함
+            </li>
+          </ul>
+        </section>
+        <section>
           <h3>배민 통합 결제 플랫폼</h3>
           <table>
             <tbody>
@@ -105,26 +151,9 @@ export const Woowa: VFC = () => {
             <li>배포 프로세스 개선, 알람 정리 및 작업 방식 정리</li>
             <li>센트리 소스맵 추가로 인해 디거핑 편의성 증가</li>
             <li>앱 웹뷰 지원(최소 버전 안드로이드 4.x)</li>
-            <li>
-              복잡한 이해관계에 의해 통일성 없는 코드를 새로운 프로젝트 구성
-            </li>
             <li>CI/CD 구성</li>
             <li>불법자금세탁방지를 위한 고객확인 기능을 추가하는 작업</li>
             <li>배민페이 적립 포인트 노출(포장주문에서 짝수 회원만)</li>
-            <li>배민페이 관리 지면 전면 개편</li>
-            <li>
-              react-query 도입을 통해 서버 상태와 프론트 상태를 분리하고 mobx
-              역할을 축소
-            </li>
-            <li>
-              dialog를 선언적으로 처리하여 click 함수 안에서 modal에 관련 된
-              코드를 한 곳에서 작성하여 쉽게 사용하도록 함
-            </li>
-            <li>
-              functional css 도입을 통해 생산성을 향상 시키고 styled-component의
-              역할을 제한적으로 허용하여 다양한 디자인을 시스템을 만들어
-              공통적으로 관리되고 통일성 있는 UI/UX를 제공함
-            </li>
             <li>
               규칙없이 구성되어 있던 인프라를 회사의 기준 인프라를 기준으로
               재정비하여 누구든 수정 할 수 있게 구성함
