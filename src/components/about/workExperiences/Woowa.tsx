@@ -85,13 +85,14 @@ export const Woowa: VFC = () => {
                 <td>
                   각 지면 주문하기 웹뷰 및 배민페이 관리 웹뷰
                   <br />
-                  (배민, 배민라이더스, 비마트, 선물하기, 가족계정, 브랜드오더,
-                  배민페이 웹뷰)
+                  (배민(배민/배민라이더스/배민원), 비마트, 선물하기, 가족계정,
+                  브랜드오더, 배민페이관리 웹뷰)
                 </td>
               </tr>
             </tbody>
           </table>
           <ul>
+            <li>결제플랫폼 프론트 파트 리딩</li>
             <li>문서 최신화, 정리 및 실행환경 개선</li>
             <li>린트, 프리티어 수정, 서브모듈 제거</li>
             <li>브랜치 정리 및 브랜치 전략 수정</li>
@@ -99,11 +100,12 @@ export const Woowa: VFC = () => {
             <li>센트리 소스맵 추가로 인해 디거핑 편의성 증가</li>
             <li>앱 웹뷰 지원(최소 버전 안드로이드 4.x)</li>
             <li>
-              복잡한 이해관계에 의해 통일성 없는 코드를 새로운 프로젝트 재구성
+              복잡한 이해관계에 의해 통일성 없는 코드를 새로운 프로젝트 구성
             </li>
             <li>CI/CD 구성</li>
             <li>불법자금세탁방지를 위한 고객확인 기능을 추가하는 작업</li>
             <li>배민페이 적립 포인트 노출(포장주문에서 짝수 회원만)</li>
+            <li>배민페이 관리 지면 전면 개편</li>
           </ul>
         </section>
         <section>
@@ -196,7 +198,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>20.11 ~ 21.01</td>
+                <td>20.11 ~ 21.01 (3개월)</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -224,7 +226,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>20.11 ~ 21.05</td>
+                <td>20.11 ~ 21.05 (6개월)</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -284,7 +286,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>20.07 ~ 20.11</td>
+                <td>20.07 ~ 20.11 (4개월)</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -320,7 +322,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>20.06 ~ 21.01</td>
+                <td>20.06 ~ 21.01 (7개월)</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -349,7 +351,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>20.01 ~ 20.10</td>
+                <td>20.01 ~ 20.10 (9개월)</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -390,7 +392,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>19.10 ~ 20.10</td>
+                <td>19.10 ~ 20.10 (12개월)</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -422,7 +424,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>19.08 ~ 20.01</td>
+                <td>19.08 ~ 20.01 (5개월)</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -460,7 +462,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>19.08 ~ 20.01</td>
+                <td>19.08 ~ 20.01 (5개월)</td>
               </tr>
               <tr>
                 <th>skill</th>
