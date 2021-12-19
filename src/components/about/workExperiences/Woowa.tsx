@@ -158,6 +158,7 @@ export const Woowa: VFC = () => {
               규칙없이 구성되어 있던 인프라를 회사의 기준 인프라를 기준으로
               재정비하여 누구든 수정 할 수 있게 구성함
             </li>
+            <li>스프린트 도입</li>
           </ul>
         </section>
         <section>
