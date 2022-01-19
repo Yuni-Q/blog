@@ -2,7 +2,7 @@
 title: Iterator
 date: 2020-04-12 00:04:35
 category: javascript
-draft: true
+draft: false
 ---
 
 - Iterator는 자바스크립트의 collection을 반복하는 새로운 방법입니다. ES6에서 소개된 개념이고 매우 유용하고 많은 곳에서 사용되고 있기 때문에 인기가 많습니다.

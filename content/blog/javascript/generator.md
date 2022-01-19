@@ -2,7 +2,7 @@
 title: generator
 date: 2020-04-12 00:04:09
 category: javascript
-draft: true
+draft: false
 ---
 
 - ES6는 제너레이터(Generator) 또는 Generator 함수 형태에서 함수와 Iterator를 다루는 방법을 새롭게 소개했습니다. 제너레이터는 함수를 중간에서 멈추고, 다시 멈췄던 부분부터 실행할 수 있게 합니다. 요약하면, Generator는 함수의 형태를 띄지만, Iterator처럼 동작합니다.
@@ -10,17 +10,18 @@ draft: true
 
 ## 제너레이터란 무엇인가?
 
+- 제너레이터는 <b>함수</b>이지만 일반 함수와는 다른 독특한 동작을 합니다.
 - 일반적인 함수들은 작업이 끝나기 전엔 끝낼 수 없습니다. 이러한 형태의 함수를 run-to-complete 모델이라고 합니다. 반대로, 제너레이터는 `중간에 멈출 수 있는 함수`입니다. 그리고 `멈춘 부분부터 다시 실행`을 시작할 수 있습니다.
 - 제너레이터의 일반적인 정의는 다음과 같습니다.
-  - 제너레이터는 아이터레이터 작성 작업을 간단하게 해줄 수 있는 함수들의 특별한 클래스입니다.
+  - 제너레이터는 Iterator 작성 작업을 간단하게 해줄 수 있는 함수들의 특별한 클래스입니다.
   - 제너레이터는 하나의 값 대신에 결과의 순서를 생성하는 함수입니다. 이를테면 제너레이터는 값의 시리즈를 만들어(generate) 냅니다.
 - 자바스크립트에서, 제너레이터는 next()를 호출할 수 있는 오브젝트를 반환하는 함수입니다. 여러분이 next() 호출을 할 때마다, 다음과 같은 형태의 오브젝트를 반환합니다. value 프로퍼티는 값을 가집니다. done 프로퍼티는 true 혹은 false를 갖습니다. done이 true가 될 때, 제너레이터는 멈추고 더 이상 값을 만들어내지 않습니다.
   - 제너레이터가 영영 끝나지 않는 경우의 수도 있습니다.
 
 ## 제너레이터 만들어보기
 
-- 우리는 function이라는 일반적인 함수 선언 대신에 function _이라는 문법을 사용해서 함수를 선언했습니다. function 키워드와 _ 그리고 함수 이름 사이에는 얼만큼의 빈공간이든 들어올 수 있습니다. 왜냐하면 이건 그냥 함수이고, 함수가 사용되는 곳이면 어디서든 사용할 수 있습니다. 예를 들면, 오브젝트 내부 그리고 클래스 메소드로도 사용 가능합니다.
-- 함수의 바디 부분 내부에서, 우리는 return 키워드를 사용하지 않습니다. 그 대신에, 우리는 yield라는 키워드를 대신 사용합니다. yield라는 키워드는 제너레이터가 멈추게 할 수 있는 연산자(operator)입니다. 제너레이터가 yield를 만날 때마다, 제너레이터는 yield 뒤에 기재된 값을 반환합니다.
+- 우리는 function이라는 일반적인 함수 선언 대신에 function* 이라는 문법을 사용해서 함수를 선언했습니다. function 키워드와 \* 그리고 함수 이름 사이에는 얼만큼의 빈공간이든 들어올 수 있습니다. 왜냐하면 이건 그냥 함수이고, 함수가 사용되는 곳이면 어디서든 사용할 수 있습니다. 예를 들면, 오브젝트 내부 그리고 클래스 메소드로도 사용 가능합니다.
+- 함수의 바디 부분 내부에서, 우리는 return 키워드를 사용하지 않습니다. 그 대신에, 우리는 `yield`라는 키워드를 대신 사용합니다. yield라는 키워드는 제너레이터가 멈추게 할 수 있는 연산자(operator)입니다. 제너레이터가 yield를 만날 때마다, 제너레이터는 yield 뒤에 기재된 값을 반환합니다.
 - 제너레이터에서 물론 값을 그냥 반환(return)하는 것도 가능합니다. 하지만, return은 done 프로퍼티를 true로 설정합니다. 그래서 그 이후로는 제너레이터는 어떠한 값도 generate(생산)해낼 수 없습니다.
 - 우리는 제너레이터 오브젝트를 만들 때 함수를 호출하는 것처럼 보입니다. 사실대로 말하자면 우리는 정말 그렇게 했습니다. 단지 차이점은 제너레이터는 값을 반환하는 대신에 항상 제너레이터 오브젝트를 반환한다는 것입니다. 제너레이터 오브젝트는 iterator입니다. 그래서 여러분들은 for-of 루프 내부에서 제너레이터를 사용할 수도 있습니다. 또는 다른 함수에서도 역시 iterator처럼 받아들여집니다.
 - 내부에 존재하는 next() 메소드를 호출합니다. 이 호출로 인해, 제너레이터는 실행되기 시작합니다.
@@ -68,6 +69,131 @@ draft: true
 
 - generator 에 대한 많은 것들이 아직 다뤄지지 않았습니다. yield \*라던지, return(), throw()와 같은 것들이 다루어지지 않았습니다. generator는 또한 coroutine도 가능하게 만듭니다.
 
+## 제너레이터 함수의 생성
+- 제너레이터 함수는 function* 키워드로 선언합니다.
+- 그리고 하나 이상의 yield 구문을 포함합니다.
+
+```javascript
+// 제너레이터 함수 선언: 함수 선언식
+function* genFunc() {
+  var index = 0;
+  while (index < 3) {
+    yield index++;
+  }
+}
+```
+
+- 제너레이터 함수는 일반함수와 같이 함수 선언식, 함수 표현식, 메소드로 선언할 수 있습니다.
+
+```javascript
+// 제너레이터 함수 선언: 함수 표현식
+const genFunc = function* () {
+ ...
+};
+
+// 제너레이터 메소드
+const obj = {
+  * generatorMethod() {
+    ···
+  }
+};
+
+// 제너레이터 클래스 메소드
+class MyClass {
+  * generatorMethod() {
+    ···
+  }
+}
+
+```
+
+## 제너레이터 함수의 호출
+
+- 제너레이터 함수를 호출하면 함수 블록이 실행되는 것이 아니라, 제너레이터 객체를 반환
+
+```javascript
+// 제너레이터 함수 선언
+function* foo() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+// 제너레이터 함수 호출. 제너레이터 객체를 생성하고 반환한다.
+const generator = foo();
+
+// 제너레이터 객체는 순회가능한 이터러블이다.
+for (const val of generator) {
+  console.log(val); // 1 2 3
+}
+```
+
+```javascript
+// 제너레이터 함수 선언
+function* genFunc() {
+  console.log('제너레이터 함수 시작');
+  yield 1;
+  console.log('제너레이터 함수 재시작');
+  yield 2;
+  console.log('제너레이터 함수 종료');
+}
+
+// 제너레이터 함수 호출. 제너레이터 객체를 생성하고 반환한다.
+const generator = genFunc();
+
+// 제너레이터 객체는 next 메소드를 갖는 이터레이터이다.
+// 처음 실행
+console.log(generator.next());
+// 제너레이터 함수 시작
+// { value: 1, done: false }
+
+// 두번째 실행
+console.log(generator.next());
+// 제너레이터 함수 재시작
+// { value: 2, done: false }
+
+// 마지막 실행
+console.log(generator.next());
+// 제너레이터 함수 종료
+// { value: undefined, done: true }
+```
+
+## 이터레이션 프로토콜을 사용하여 피보나치 수열
+
+```javascript
+const fibonacci = {
+  * [Symbol.iterator]() {
+    let [prev, curr] = [0, 1];
+    const maxStep = 10;
+
+    for (let i = 0; i < maxStep; i++) {
+      [prev, curr] = [curr, prev + curr];
+      yield curr;
+    }
+  }
+};
+
+for (const num of fibonacci) {
+  console.log(num);
+}
+
+// 제너레이터 객체는 이터러블이다.
+const fibonacci = function* (maxStep) {
+  let [prev, curr] = [0, 1];
+
+  for (let i = 0; i < maxStep; i++) {
+    [prev, curr] = [curr, prev + curr];
+    yield curr;
+  }
+};
+
+for (const num of fibonacci(10)) {
+  console.log(num);
+}
+```
+
 ## 참조
 
 - [자바스크립트 개발자라면 알아야 할 33가지 개념 #24-2 자바스크립트 : 예제와 함께 자바스크립트 ES6 generator](https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-24-2-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%98%88%EC%A0%9C%EC%99%80-%ED%95%A8%EA%BB%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-ES6-generator)
+- [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73)
+- [제너레이터](https://poiemaweb.com/es6-generateor)
