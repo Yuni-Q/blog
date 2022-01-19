@@ -14,7 +14,7 @@ tags:
     '명시적바인딩',
     '묵시적바인딩',
   ]
-draft: true
+draft: false
 ---
 
 ## this

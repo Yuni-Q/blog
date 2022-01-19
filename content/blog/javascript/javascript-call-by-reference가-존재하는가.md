@@ -1,9 +1,9 @@
 ---
-title: javascript call by reference가 존재하는가?
+title: javascript call by reference가 존재하는가
 date: 2021-07-26 00:07:83
 category: javascript
 tags: []
-draft: true
+draft: false
 ---
 
 ## Call by reference란 무엇인가?
