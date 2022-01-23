@@ -39,16 +39,11 @@ draft: true
 ## chrome 설치
 
 ```zsh
-brew cask install google-chrome1234
+brew cask install google-chrome
 ```
 
 ### 로그인 해서 북마크 가져오기
 
-## Oh-My-Zsh 설치
-
-```zsh
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-```
 
 ## iterm2 설치
 
@@ -56,15 +51,48 @@ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | 
 brew cask install iterm2
 ```
 
-### 테마 변경
+### Theme
+
+- Preferences > Appearance > Theme > Minimal
+
+### Status Bar
+
+- Preferences > Profile > Session > Status Bar
+- Battery Level, CPU Utilization, Memory Utilization, Network Throughput
+
+### color
+
+- [https://iterm2colorschemes.com/](https://iterm2colorschemes.com/)
+- 다운로드 후 확장자(txt) 제거 후 실행
+- Preferences > Profile > Colors > Load Presets
+
+## Oh-My-Zsh 설치
 
 ```zsh
-vi ~./zshrc
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-```vim
-ZSH_THEME="refined" # 현재 사용 중인 테마
+### powerlevel10k
+
+```zsh
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
+
+#### 테마 변경
+
+```zsh
+vi ~/.zshrc
+```
+
+```zsh
+ZSH_THEME="powerlevel10k/powerlevel10k" # 현재 사용 중인 테마
+# 테마를 재설정하고 싶을 때 사용하는 명령어
+p10k configure
+```
+
+### vscode font setting
+
+- terminal > integrated: Font Family > MesloLGS NF
 
 ### zsh-syntax-highlighting (명령어에 색 입히기)
 
@@ -79,16 +107,27 @@ echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> 
 brew cask install visual-studio-code
 ```
 
-## node 설치
+## nvm 설치
 
 ```zsh
-brew install node
+brew install nvm
+nvm ls-remote # 설치 가능한 모든 node.js 버전
+nvm install v12
+nvm install v16
+nvm use v12
 ```
 
 ## gh 설치
 
 ```zsh
 brew install gh
+gh auth login
+```
+
+## rosetta 설치(M1인 경우)
+
+```zsh
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license
 ```
 
 ## intellij-idea 설치
@@ -323,7 +362,7 @@ username = GITHUB_ID_HERE
 max_contributions = 10
 ```
 
-## App Store 로그인
+## App Store 로그인
 
 ## mas 설치
 
@@ -378,14 +417,14 @@ mas install 1059074180
 brew cask install itsycal
 ```
 
-## Alfred 설치
+## Alfred 설치
 
 ```
 mas search alfred
 mas install 405843582
 ```
 
-## Amphetamine 설치
+## Amphetamine 설치
 
 ```
 mas search Amphetamine
