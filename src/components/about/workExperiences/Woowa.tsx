@@ -46,6 +46,7 @@ export const Woowa: VFC = () => {
        * B2B서비스실/사장님광장팀,
        * 배민결제서비스실/결제서비스개발팀,
        * 페이먼트서비스실/결제서비스개발팀
+       * 결제정산플랫폼실/배민페이프로덕트팀
        * */}
       <div style={{ textAlign: 'right' }}>
         <Button
