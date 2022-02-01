@@ -38,7 +38,7 @@ jobs:
         id: tag_version
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release 생성
+      - name: Bump version Release 생성
         if: ${{ steps.git_tag_check.outputs.tag != '' }}
         uses: actions/create-release@v1
         env:
