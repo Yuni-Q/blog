@@ -1,9 +1,9 @@
 name: Release Tag
 on:
-  push:
-    branches:
-      - master
-      - main
+  workflow_run:
+    workflows: [deploy]
+    types: [completed]
+
 jobs:
   build:
     runs-on: ubuntu-latest
