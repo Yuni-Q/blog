@@ -19,21 +19,31 @@ jobs:
           content="${content//$'\r'/'%0D'}"
           # end of optional handling for multi line json
           echo "::set-output name=packageJson::$content"
-      - name: 버전 정보
-        run: |
-          echo "${{fromJson(steps.version.outputs.packageJson).version}}"
-          VERSION=v${{fromJson(steps.version.outputs.packageJson).version}}
-          echo ${VERSION}
-          cd /home/runner/work/blog/blog
-          ls
-          git tag
-          git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1
-          git fetch
-          git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1
-          PREVIOUS_VERSION=33$(git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1)
-          echo ${PREVIOUS_VERSION}
       - uses: bbonkr/git-tag-check-action@v1.0.5
         id: git_tag_check
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{fromJson(steps.version.outputs.packageJson).version}}
+      - name: Release 생성
+        if: ${{ steps.git_tag_check.outputs.tag == '' }}
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ fromJson(steps.version.outputs.packageJson).version }}
+          release_name: Release v${{ fromJson(steps.version.outputs.packageJson).version }}
+      - name: Bump version and push tag
+        if: ${{ steps.git_tag_check.outputs.tag != '' }}
+        uses: mathieudutour/github-tag-action@v5.5
+        id: tag_version
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release 생성
+        if: ${{ steps.git_tag_check.outputs.tag != '' }}
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
