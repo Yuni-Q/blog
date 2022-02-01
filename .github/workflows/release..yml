@@ -22,5 +22,18 @@ jobs:
       - name: 버전 정보
         run: |
           echo "${{fromJson(steps.version.outputs.packageJson).version}}"
-          VERSION=${{fromJson(steps.version.outputs.packageJson).version}}
+          VERSION=v${{fromJson(steps.version.outputs.packageJson).version}}
           echo ${VERSION}
+          cd /home/runner/work/blog/blog
+          ls
+          git tag
+          git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1
+          git fetch
+          git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1
+          PREVIOUS_VERSION=33$(git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1)
+          echo ${PREVIOUS_VERSION}
+      - uses: bbonkr/git-tag-check-action@v1.0.5
+        id: git_tag_check
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{fromJson(steps.version.outputs.packageJson).version}}
