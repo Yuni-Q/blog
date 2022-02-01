@@ -1,27 +1,14 @@
 name: Release Tag
+
 on:
-  workflow_run:
-    workflows: [deploy]
-    types: [completed]
+  push:
+    branches: [master]
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Bump version and push tag
-        uses: mathieudutour/github-tag-action@v5.5
-        id: tag_version
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release 생성
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.tag_version.outputs.new_tag }}
-          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
       - name: package 버전 정보 추출
         id: version
         run: |
@@ -35,3 +22,26 @@ jobs:
       - name: 버전 정보
         run: |
           echo "${{fromJson(steps.version.outputs.packageJson).version}}"
+      - name: Release 생성
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ fromJson(steps.version.outputs.packageJson).version }}
+          release_name: Release ${{ fromJson(steps.version.outputs.packageJson).version }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+      - name: Bump version and push tag
+        if: ${{ failure() }}
+        uses: mathieudutour/github-tag-action@v5.5
+        id: tag_version
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release 생성
+        if: ${{ failure() }}
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
