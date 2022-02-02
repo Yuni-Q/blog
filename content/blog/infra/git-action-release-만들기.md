@@ -1,5 +1,15 @@
+---
+title: git action release 만들기
+date: 2022-02-02 16:02:72
+category: infra
+tags: []
+draft: true
+---
+
+```yaml
 name: Release Tag
 
+# deploy라는 action이 끝나면 실행
 on:
   workflow_run:
     workflows: [deploy]
@@ -49,3 +59,4 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
+```
