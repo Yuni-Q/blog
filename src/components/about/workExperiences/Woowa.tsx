@@ -103,6 +103,7 @@ export const Woowa: VFC = () => {
             <li>
               배민페이 관리 지면 전면 개편 및 공통 모듈 재작성(2022.01.27 open)
             </li>
+            <li>접근성 개선</li>
             <li>
               react-query 도입을 통해 서버 상태와 프론트 상태를 분리하고 mobx
               역할을 축소
