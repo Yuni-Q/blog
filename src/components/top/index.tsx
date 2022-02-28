@@ -169,7 +169,7 @@ export const Top = ({ theme }) => {
   return (
     <div className="top">
       <Link
-        to={`/`}
+        to="/"
         className="link"
         onClick={() => {
           sendGAEvent('button', GA_ACTION.CLICK, '/');
@@ -228,7 +228,24 @@ export const Top = ({ theme }) => {
           />
         </StyledSvg>
       </StyledButton>
+      <StyledLink
+        to="/search"
+        onClick={() => {
+          sendGAEvent('button', GA_ACTION.CLICK, '/search');
+        }}
+      >
+        검색
+      </StyledLink>
       {/*<SnowSwitch checked={state.snow} handleChange={setSnow} />*/}
     </div>
   );
 };
+
+const StyledLink = styled(Link)`
+  float: right;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  margin: 15px 5px;
+  color: black;
+`;
