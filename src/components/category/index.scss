@@ -1,31 +1,41 @@
 @import '../../styles/variables.scss';
 
 .category-container {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
+  top: 90px;
+  max-width: 240px;
+  width: calc((100vw - 630px) / 2);
+  max-height: calc(100vh - 90px);
+  left: 0;
+  position: fixed;
   line-height: 0;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-y: scroll;
   -ms-overflow-style: none; // IE 10+
   overflow: -moz-scrollbars-none; // Firefox
   z-index: 1;
+  list-style-type: none;
+  margin: 0;
   padding: 6px 20px;
 
   .item {
-    display: inline-block;
-    margin: 0.25rem 6px 0.25rem 0;
+    display: block;
     border-radius: 15px;
-    white-space: normal;
     box-sizing: border-box;
     cursor: pointer;
 
     div {
       display: block;
-      padding: 14px 16px 16px 16px;
+      white-space: normal;
+      padding: 8px 12px;      
       font-size: 13px;
+      line-height: 1.4;
       box-sizing: border-box;
     }
+    
+  }
+
+  .item + .item {
+    margin-bottom: 4px;
   }
 
   .item:last-child {

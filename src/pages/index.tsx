@@ -63,6 +63,7 @@ const Index: React.VFC<Props> = ({ data }) => {
   const initialCount = Storage.getCount(1);
   const initialCategory = Storage.getCategory(CATEGORY_TYPE.ALL);
   const [count, setCount] = useState(initialCount);
+  console.log({ initialCount, count });
   const countRef = useRef(count);
   const [category, setCategory] = useState(initialCategory);
   const { siteMetadata } = data.site;
@@ -136,6 +137,7 @@ const Index: React.VFC<Props> = ({ data }) => {
         categories={categories}
         category={category}
         selectCategory={selectCategory}
+        posts={posts}
       />
       <Contents
         posts={posts}
