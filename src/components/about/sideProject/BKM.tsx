@@ -5,7 +5,11 @@ export const BKM: VFC = () => {
   return (
     <>
       <h3>
-        <a href="https://github.com/Nexters/gamsung-routine-front">
+        <a
+          href="https://github.com/Nexters/gamsung-routine-front"
+          target="_blank"
+          rel="noreferrer"
+        >
           본캐마스터
         </a>
       </h3>
