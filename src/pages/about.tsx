@@ -11,6 +11,7 @@ import { FindOutTheAnimalForest } from '../components/about/sideProject/FindOutT
 import { Woowa } from '../components/about/workExperiences/Woowa';
 import { SVm } from '../components/about/workExperiences/SVm';
 import { BKM } from '../components/about/sideProject/BKM';
+import { TILTIL } from '../components/about/sideProject/TILTIL';
 
 const About: React.VFC = () => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const About: React.VFC = () => {
             <MOTI />
             <FindOutTheAnimalForest />
             <BKM />
+            <TILTIL />
             <StudyWatson />
           </Section>
           <Section>
@@ -64,7 +66,7 @@ const About: React.VFC = () => {
                 개발 동아리 활동
                 <ul>
                   <li>
-                    <Badge>21.07 ~ </Badge> Nexters
+                    <Badge>21.07 ~ 22.02 </Badge> Nexters
                   </li>
                   <li>
                     <Badge>18.03 ~ 20.04</Badge> MASH-UP
@@ -138,7 +140,7 @@ const About: React.VFC = () => {
               <span className="u-shadow">Last Updated</span>
             </h2>
             <ul>
-              <li>2021.10.20</li>
+              <li>2022.03.04</li>
             </ul>
           </Section>
         </article>
