@@ -84,6 +84,7 @@ export const Woowa: VFC = () => {
               <tr>
                 <th>description</th>
                 <td>배민페이관리 웹뷰</td>
+                <td>결제하기 웹뷰</td>
               </tr>
             </tbody>
           </table>
@@ -117,6 +118,10 @@ export const Woowa: VFC = () => {
               역할을 제한적으로 허용하여 다양한 디자인을 시스템을 만들어
               공통적으로 관리되고 통일성 있는 UI/UX를 제공함
             </li>
+            <li>
+              파편화 되어 있던 결제페이지 실행 코드를 통일하고 결제페이지 개편
+              및 관리 포인트 하나로 통일
+            </li>
           </ul>
         </section>
         <section>
@@ -145,7 +150,7 @@ export const Woowa: VFC = () => {
                   각 지면 주문하기 웹뷰 및 배민페이 관리 웹뷰
                   <br />
                   (배민(배민/배민라이더스/배민원), 비마트, 선물하기, 가족계정,
-                  브랜드오더, 배민페이관리 웹뷰)
+                  브랜드오더, 배민쇼핑라이브, <del>배민페이관리</del> 웹뷰)
                 </td>
               </tr>
             </tbody>
@@ -175,6 +180,7 @@ export const Woowa: VFC = () => {
               스프린트 도입 및 다양한 파트의 R&R 정리 및 결제플랫폼 로드맵
               문서화 및 공유
             </li>
+            <li>배민 쇼핑 라이브 결제플랫폼 도입</li>
           </ul>
         </section>
         <section>
