@@ -210,8 +210,12 @@ git config --global user.useConfigOnly true
 [user]
   name = yuni
   email = yuni@mycompany.com
+```
 
+## Git 브랜치 여러 개 한번에 삭제하기
 
+```zsh
+git branch | grep "t" | xargs git branch -D
 ```
 
 ---
