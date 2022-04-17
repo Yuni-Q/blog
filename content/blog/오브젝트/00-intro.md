@@ -1,6 +1,6 @@
 ---
 title: 00 intro
-date: 2022-04-11 21:08:76
+date: 2022-04-10 21:08:76
 category: 오브젝트
 tags: ['OOP','객체지향']
 draft: false
