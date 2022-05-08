@@ -129,7 +129,7 @@ function Component() {
 
 - 다이얼로그 배열에서 마지막 함수를 빼는 것으로 문제는 간단히 해결될 것처럼 보입니다. 하지만 우리는 여기서 애니메이션 효과를 하나 주면서 큰 문제에 직면하게 됩니다.
 
-#### 애니메이션 효과
+#### 애니메이션 효과가 필요하다면 ?
 
 - 애니메이션 효과를 주면서 내부 상태가 필요하게 됩니다. 이를 위해 우리는 컴포넌트를 만들어 제공하게 됩니다.
 
@@ -161,7 +161,7 @@ function Component() {
 function Dialog({ children }: { children: string }) {
   // 여기선 다이얼로그가 그려지는 순간이기 때문에 true가 기본값 입니다.
   const [show, setShow] = useState(true)
-  return <Wrap show={show} onClick={() => { setShow(false); dialogStore.close() }}>
+  return <Wrap show={show} onClick={() => { setShow(false); dialogStore.close(); }}>
     {children}
   </Wrap>
 }
@@ -202,7 +202,7 @@ const Wrap = styled.button<{ show: boolean }>`
 `
 ```
 
-- 위와 같이 구현 했을 경우 애니메이션이 실행되기 전에 컴포넌트가 unmount 되기 때문에 닫히는 애니메이션 정상 동작하지 않습니다. 이를 해결하기 위해 onAnimationEnd를 사용해 봅니다.
+위와 같이 구현 했을 경우 애니메이션이 실행되기 전에 컴포넌트가 unmount 되기 때문에 닫히는 애니메이션 정상 동작하지 않습니다. 이를 해결하기 위해 onAnimationEnd를 사용해 봅니다.
 
 ```tsx
 function Dialog({ children }: { children: string }) {
@@ -210,7 +210,7 @@ function Dialog({ children }: { children: string }) {
   const [show, setShow] = useState(true)
   return <Wrap show={show} onClick={() => { setShow(false); }} onAnimationEnd={() => {
     if (!show) {
-      dialogStore.close()
+      dialogStore.close();
     }
   }}>
     {children}
@@ -218,15 +218,16 @@ function Dialog({ children }: { children: string }) {
 }
 ```
 
-- 성공적으로 다이얼로그 작업을 마쳤다고 생각할 수 있지만 우리는 한 가지 사실을 놓치고 있습니다. 다이얼로그가 닫힘과 동시에 다이얼로그가 열린다면 어떻게 동작할까요?
+#### 성공 ?
+
+성공적으로 다이얼로그 작업을 마쳤다고 생각할 수 있지만 우리는 한 가지 사실을 놓치고 있습니다. 대화 상자가 닫힘과 동시에 대화 상자가 열린다면 어떻게 동작할까요?
 
 ```tsx
 function Dialog({ children }: { children: string }) {
-  // 여기선 다이얼로그가 그려지는 순간이기 때문에 true가 기본값 입니다.
   const [show, setShow] = useState(true)
   return <Wrap show={show} onClick={() => { setShow(false); dialogStore.open(<div>나를 봐줘</div>) }} onAnimationEnd={() => {
     if (!show) {
-      dialogStore.close()
+      dialogStore.close();
     }
   }}>
     {children}
@@ -234,12 +235,13 @@ function Dialog({ children }: { children: string }) {
 }
 ```
 
-- 위와 같이 구현 시 `나를 봐줘`는 아주 잠시 노출되고 사라지고 맙니다. 그리고 기존의 다이얼로그 또한 사라지지 않고 opacity가 0인 채로 남아 있게 됩니다.
-- 애니메이션 종료되어 기존의 컴포넌트가 빠지기 전에 새로운 컴포넌트가 추가되고 애니메이션이 종료 된 후에 가장 뒤에 있는 다이얼로그를 제거하려고 하기 때문에 문제가 발생합니다.
+`나를 봐줘`는 아주 잠시 노출되고 사라지고 맙니다. 그리고 기존의 다이얼로그 또한 사라지지 않고 opacity가 0인 채로 남아 있게 됩니다.
+애니메이션 종료되어 기존의 컴포넌트가 빠지기 전에 새로운 컴포넌트가 추가되고 애니메이션이 종료 된 후에 가장 뒤에 있는 대화 상자 제거하려고 하기 때문에 `나를 봐줘`는 사라지고 대화 상자는 보이지 않는 채로 남게 됩니다.
 
-#### 해결책은 ?
+#### 이 계획은 망햇어 ?
 
-- 가장 쉽게 생각할 수 있는 방식은 id를 넘겨주어 `나를 종료 시켜줘 !`를 구분하면 좋을거 같습니다. 하지만 모든 dialog에 id를 붙이는 것은 너무 어렵고 번거로운 일이니 store에서 알아서 넣어 주었으면 좋겠습니다.
+id를 넘겨주어 `나를 종료 시켜줘 !`를 구현하면 좋을거 같습니다. 
+하지만 모든 dialog에 id를 붙이는 것은 너무 어렵고 번거로운 일이니 store에서 알아서 넣어 주었으면 좋겠습니다.
 
 ```tsx
 const dialogStore = observable<{ key: number; dialogs: { key: number; dialog: ReactElement }[], open: (jsx: ReactElement) => void, close: (id: number) => void }>({
@@ -250,6 +252,9 @@ const dialogStore = observable<{ key: number; dialogs: { key: number; dialog: Re
     this.dialogs = [...this.dialogs, { dialog: newJsx, key: this.key }]
   },
   close(id) {
+    if(!id) {
+      throw new Error('대화 상자를 닫기 위한 id가 없습니다 !')
+    }
     const dialog = [...this.dialogs]
     const newDialogs = dialogs.filter(dialog => {
       return dialog.key !== id
@@ -282,8 +287,8 @@ function Component() {
   </>)
 }
 
+// id는 store에서 알아서 넣어주기 때문에 옵셔널 값입니다.
 function Dialog({ children, id }: { children: string; id?: number }) {
-  // 여기선 다이얼로그가 그려지는 순간이기 때문에 true가 기본값 입니다.
   const [show, setShow] = useState(true)
   return <Wrap show={show} onClick={() => { setShow(false); dialogStore.open(<div>나를 봐줘</div>) }} onAnimationEnd={() => {
     if (!show) {
@@ -296,7 +301,32 @@ function Dialog({ children, id }: { children: string; id?: number }) {
 ```
 
 
-- 그럼 이제 문제가 끝난 것일까요? id를 넘겨줘야 store에서 뺄 수 있는데 이를 위해서 store에서 체크 할 때 alert으로 props에 id를 옵셔널하게 주라고 알려주긴 하지만 설명을 듣지 않고는 잘 이해가 가지 않는 부분들이 있을 수 있습니다.
+#### 그럼 이제 문제가 끝난 것일까요? 
+
+```tsx
+function Dialog({ children, id }: { children: string; id?: number }) {
+  const [show, setShow] = useState(true)
+  return <Wrap show={show} onClick={() => { setShow(false); dialogStore.open(<div>나를 봐줘</div>) }} onAnimationEnd={() => {
+    if (!show) {
+      dialogStore.close(id || 0)
+    }
+  }}>
+    {children}
+  </Wrap>
+}
+
+// id를 props으로 받고 Dialog에게 전달해 주어야 합니다.
+const HiDialog = () => {
+  return <Dialog>hi</Dialog>
+}
+
+const HiComponent = () => {
+  return <button onClick={() => dialogStore.open(<HiDialog />)}>Hi</button>
+}
+```
+
+대화 상자를 공통 컴포넌트로 제공하고 있지만 재사용 되는 또다른 레이어를 만들어 사용할 경우 id를 받는 props를 열어두지 않는 경우 에러가 발생합니다.
+store에서 체크 할 때 에러를 던져 상기 시킬 수 있지만 이는 런타임 에러이기 때문에 좋지 않습니다.
 
 #### 자식은 나의 id를 몰라도 부모는 알 수 있지 않을까 props drilling을 피해보자.
 
@@ -327,7 +357,6 @@ function Component() {
 
 function Dialog({ children }: { children: string; }) {
   const ref = useRef<HTMLButtonElement>(null)
-  // 여기선 다이얼로그가 그려지는 순간이기 때문에 true가 기본값 입니다.
   const [show, setShow] = useState(true)
   return <Wrap ref={ref} show={show} onClick={() => { setShow(false); dialogStore.open(<div>나를 봐줘</div>) }} onAnimationEnd={() => {
     if (!show && ref.current) {
