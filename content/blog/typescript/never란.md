@@ -36,6 +36,27 @@ fn(myAny) // ❌ 'any' 타입은 'never' 타입에 할당할 수 없음
 
 - void가 아무것도 리턴하지 않는다라고 생각했는데 실제 리턴 값은 undefined일 것이다. 그럼에도 우리가 void를 쓰는 이유는 여러가지가 있을 수 있는데 우선 제가 내린 결론은 `리턴 값 타입이 명시적으로 설정되지 않는 함수`라고 정리하려고 합니다. 때문에 void로 선언 후 number, string array를 리턴한다고 해서 에러가 나지 않는거 같슴다.
   - void를 사용하는 이유를 `실제로 return 할 value의 타입을 신경쓰지 않고 싶어`라고 이해하는 것도 좋은 의견 같습니다(feat. 권기석님)
+- [예외](https://www.typescriptlang.org/docs/handbook/2/functions.html#return-type-void)도 있다는데 점점 더 어려운거 같습니다... 언젠간 답을 찾을 수 있겠지...
+
+```ts
+function a(): void {
+  return 'dd'; // Error
+}
+
+const b: () => void = () => {
+  return 'dd'; // not Error
+};
+
+const b2: () => number = () => {
+  return 'dd'; // Error
+};
+const c = (): void => {
+  return 'dd'; // Error
+};
+const d = (): void => {
+  return undefined; // not Error
+};
+```
 
 
 - [타입스크립트의 Never 타입 완벽 가이드](https://ui.toast.com/weekly-pick/ko_20220323)
