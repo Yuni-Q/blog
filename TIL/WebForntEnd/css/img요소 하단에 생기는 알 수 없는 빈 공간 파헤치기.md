@@ -29,9 +29,12 @@
 onError={(event) => {
   if (!event) return;
   
-  if ((event.target as HTMLImageElement).src === alternativeImage) {
+  const target = event.target as HTMLImageElement
+
+  if (target.src === alternativeImage) {
     return;
   }
-  (event.target as HTMLImageElement).src = alternativeImage;
+
+  target.src = alternativeImage;
 }}
 ```
