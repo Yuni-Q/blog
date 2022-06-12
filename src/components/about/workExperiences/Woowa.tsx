@@ -1,7 +1,7 @@
-import React, { useRef, useState, VFC } from 'react';
+import React, { useRef, useState } from 'react';
 import { Badge, Button, DetailSection } from '../../../pages/about';
 
-export const Woowa: VFC = () => {
+export const Woowa: React.FC = () => {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   return (
@@ -22,11 +22,13 @@ export const Woowa: VFC = () => {
           </tr>
           <tr>
             <th>position</th>
-            <td>결제서비스개발팀 / FrontEnd Engineer</td>
+            <td>커머스웹프론트개발팀 / FrontEnd Engineer</td>
           </tr>
         </tbody>
       </table>
       <ul>
+        <li>배민앱 시각 시스템 개발</li>
+        <li>개발 경험 향상을 위한 데브옵스 개발</li>
         <li>배달의민족 주문하기 및 결제하기 웹뷰 개발/운영개선</li>
         <li>배민페이머니관리 웹뷰 개발/운영개선</li>
         <li>
@@ -47,6 +49,7 @@ export const Woowa: VFC = () => {
        * 배민결제서비스실/결제서비스개발팀,
        * 페이먼트서비스실/결제서비스개발팀
        * 결제정산플랫폼실/배민페이프로덕트팀
+       * 커머스실/커머스웹프론트개발팀
        * */}
       <div style={{ textAlign: 'right' }}>
         <Button
@@ -61,6 +64,68 @@ export const Woowa: VFC = () => {
         show={show}
         height={ref.current?.scrollHeight || 0}
       >
+        <section>
+          <h3>BDS</h3>
+          <table>
+            <tbody>
+              <tr>
+                <th>period</th>
+                <td>22.06 ~</td>
+              </tr>
+              <tr>
+                <th>position</th>
+                <td>웹 프론트엔드 개발</td>
+              </tr>
+              <tr>
+                <th>skill</th>
+                <td>
+                  <Badge>Typescript</Badge>
+                  <Badge>React</Badge>
+                  <Badge>Storybook</Badge>
+                  <Badge>npm workspace</Badge>
+                </td>
+              </tr>
+              <tr>
+                <th>description</th>
+                <td>배민앱의 웹뷰를 위한 시각 시스템 개발</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul>
+            <li>뱃지 개발</li>
+          </ul>
+        </section>
+        <section>
+          <h3>데브옵스</h3>
+          <table>
+            <tbody>
+              <tr>
+                <th>period</th>
+                <td>22.06 ~</td>
+              </tr>
+              <tr>
+                <th>position</th>
+                <td>웹 프론트엔드 개발</td>
+              </tr>
+              <tr>
+                <th>skill</th>
+                <td>
+                  <Badge>Typescript</Badge>
+                  <Badge>Nest.js</Badge>
+                </td>
+              </tr>
+              <tr>
+                <th>description</th>
+                <td>개발 경험 향상을 위한 데브옵스 개발 프로젝트</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul>
+            <li>아틀라시안(지라, 위키) 연동</li>
+            <li>지라 버전 자동 생성 배치 개발</li>
+            <li>위키 데일리 리포트 자동 생성 배치 개발</li>
+          </ul>
+        </section>
         <section>
           <h3>뉴 통합 결제 플랫폼</h3>
           <table>
@@ -130,7 +195,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>21.06 ~</td>
+                <td>21.06 ~ 22.05 (1년)</td>
               </tr>
               <tr>
                 <th>position</th>
@@ -188,6 +253,7 @@ export const Woowa: VFC = () => {
             <li>배민 쇼핑 라이브 결제플랫폼 도입</li>
             <li>커머스 봉투값 도입</li>
             <li>디바이스별로 배포 환경 구성</li>
+            <li>전국별미 결제플랫폼 도입</li>
           </ul>
         </section>
         <section>
@@ -196,7 +262,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>21.06 ~</td>
+                <td>21.06 ~ 22.05 (1년)</td>
               </tr>
               <tr>
                 <th>position</th>
@@ -227,7 +293,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>21.06 ~</td>
+                <td>21.06 ~ 22.05 (1년)</td>
               </tr>
               <tr>
                 <th>position</th>
@@ -258,7 +324,7 @@ export const Woowa: VFC = () => {
             <tbody>
               <tr>
                 <th>period</th>
-                <td>21.06 ~</td>
+                <td>21.06 ~ 22.05 (1년)</td>
               </tr>
               <tr>
                 <th>skill</th>
