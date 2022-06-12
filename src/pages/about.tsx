@@ -140,7 +140,7 @@ const About: React.VFC = () => {
               <span className="u-shadow">Last Updated</span>
             </h2>
             <ul>
-              <li>2022.03.04</li>
+              <li>2022.06.13</li>
             </ul>
           </Section>
         </article>
