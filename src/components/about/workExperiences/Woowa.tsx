@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Badge, Button, DetailSection } from '../../../pages/about';
 
-export const Woowa: React.FC = () => {
+export const Woowa: React.VFC = () => {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   return (
