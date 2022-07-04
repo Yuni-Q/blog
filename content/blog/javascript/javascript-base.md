@@ -305,8 +305,8 @@ alert(answer);
 ```javascript
 // 객체의 생성
 const obj = {
-	x: 0, // 객체의 속성. 속성 이름: x, 속성 값: 0
-	y: 1, // 객체의 속성. 속성 이름: y, 속성 값: 1
+  x: 0, // 객체의 속성. 속성 이름: x, 속성 값: 0
+  y: 1, // 객체의 속성. 속성 이름: y, 속성 값: 1
 };
 
 // 객체의 속성에 접근하기
@@ -418,9 +418,9 @@ undefined == false; // false
 
 ```javascript
 const personPrototype = {
-	introduce: function() {
-		return `안녕하세요, 제 이름은 ${this.name}입니다.`;
-	},
+  introduce: function () {
+    return `안녕하세요, 제 이름은 ${this.name}입니다.`;
+  },
 };
 
 const person1 = Object.create(personPrototype); // 새 객체를 생성하고 프로토타입을 지정합니다.
@@ -525,7 +525,7 @@ console.log(pets.includes('at'));
 ### every
 
 ```javascript
-const isBelowThreshold = currentValue => currentValue < 40;
+const isBelowThreshold = (currentValue) => currentValue < 40;
 
 const array1 = [1, 30, 39, 29, 10, 13];
 
@@ -539,7 +539,7 @@ console.log(array1.every(isBelowThreshold));
 const array = [1, 2, 3, 4, 5];
 
 // checks whether an element is even
-const even = element => element % 2 === 0;
+const even = (element) => element % 2 === 0;
 
 console.log(array.some(even));
 // expected output: true
@@ -571,14 +571,14 @@ console.log(obj.hasOwnProperty('constructor')); // false
 
 ```javascript
 const obj = {
-	get prop() {
-		console.log('getter가 호출되었습니다.');
-		return this._hidden;
-	},
-	set prop(arg) {
-		console.log('setter가 호출되었습니다.');
-		this._hidden = arg;
-	},
+  get prop() {
+    console.log('getter가 호출되었습니다.');
+    return this._hidden;
+  },
+  set prop(arg) {
+    console.log('setter가 호출되었습니다.');
+    this._hidden = arg;
+  },
 };
 // `set prop` 메소드가 `1`을 인수로 해서 호출됩니다.
 obj.prop = 1;
@@ -635,28 +635,28 @@ console.log(c); // { a: 2, b: 3, e: { c: 99, d: 5 } }
 ```javascript
 // `func1`과 `func2`는 동일하게 동작합니다.
 function func1(cond) {
-	if (cond) {
-		console.log('조건을 만족합니다.');
-	}
+  if (cond) {
+    console.log('조건을 만족합니다.');
+  }
 }
 
 function func2(cond) {
-	cond && console.log('조건을 만족합니다.');
+  cond && console.log('조건을 만족합니다.');
 }
 ```
 
 ```javascript
 // `func1`과 `func2`는 동일하게 동작합니다.
 function func1(arg) {
-	if (!arg) {
-		arg = 'hello';
-	}
-	console.log(arg);
+  if (!arg) {
+    arg = 'hello';
+  }
+  console.log(arg);
 }
 
 function func2(arg) {
-	arg = arg || 'hello';
-	console.log(arg);
+  arg = arg || 'hello';
+  console.log(arg);
 }
 ```
 
@@ -686,8 +686,8 @@ console.log(c); // [3, 4, 5]
 
 ```javascript
 const {
-	a,
-	b: { c },
+  a,
+  b: { c },
 } = { a: 1, b: { c: 2 } };
 
 console.log(a, c); // 1 2
@@ -713,10 +713,10 @@ console.log(c); // 3
 ```javascript
 // `JSON.stringify`로 직렬화를 할 수 있습니다.
 JSON.stringify({
-	key: 'value',
-	arr: [1, 2, 3],
-	nullProp: null,
-	undefinedProp: undefined, // 값이 `undefined`인 속성은 직렬화 과정에서 제외됩니다.
+  key: 'value',
+  arr: [1, 2, 3],
+  nullProp: null,
+  undefinedProp: undefined, // 값이 `undefined`인 속성은 직렬화 과정에서 제외됩니다.
 }); // '{"key":"value","arr":[1,2,3],"nullProp":null}'
 
 // `JSON.parse`로 역직렬화를 할 수 있습니다.
@@ -786,19 +786,19 @@ var sym = new Symbol(); // TypeError
 ```javascript
 // generator 함수 선언하기
 function* gen1() {
-	// ...
+  // ...
 }
 
 // 표현식으로 사용하기
-const gen2 = function*() {
-	// ...
+const gen2 = function* () {
+  // ...
 };
 
 // 메소드 문법으로 사용하기
 const obj = {
-	*gen3() {
-		// ...
-	},
+  *gen3() {
+    // ...
+  },
 };
 ```
 
@@ -807,19 +807,19 @@ const obj = {
 
 ```javascript
 function* numberGen() {
-	yield 1;
-	yield 2;
-	yield 3;
+  yield 1;
+  yield 2;
+  yield 3;
 }
 
 function* numberGen2() {
-	yield* numberGen();
-	yield* numberGen();
+  yield* numberGen();
+  yield* numberGen();
 }
 
 // 1, 2, 3, 1, 2, 3이 순서대로 출력됩니다.
 for (let n of numberGen2()) {
-	console.log(n);
+  console.log(n);
 }
 ```
 
@@ -854,16 +854,16 @@ strIterator.next(); // { value: undefined, done: true }
 
 ```javascript
 class Person {
-	// 이전에서 사용하던 생성자 함수는 클래스 안에 `constructor`라는 이름으로 정의합니다.
-	constructor({ name, age }) {
-		this.name = name;
-		this.age = age;
-	}
+  // 이전에서 사용하던 생성자 함수는 클래스 안에 `constructor`라는 이름으로 정의합니다.
+  constructor({ name, age }) {
+    this.name = name;
+    this.age = age;
+  }
 
-	// 객체에서 메소드를 정의할 때 사용하던 문법을 그대로 사용하면, 메소드가 자동으로 `Person.prototype`에 저장됩니다.
-	introduce() {
-		return `안녕하세요, 제 이름은 ${this.name}입니다.`;
-	}
+  // 객체에서 메소드를 정의할 때 사용하던 문법을 그대로 사용하면, 메소드가 자동으로 `Person.prototype`에 저장됩니다.
+  introduce() {
+    return `안녕하세요, 제 이름은 ${this.name}입니다.`;
+  }
 }
 
 const person = new Person({ name: '이윤희', age: 19 });
@@ -883,16 +883,16 @@ console.log(person instanceof Person); // true
 
 ```javascript
 class Gen {
-	*[Symbol.iterator]() {
-		yield 1;
-		yield 2;
-		yield 3;
-	}
+  *[Symbol.iterator]() {
+    yield 1;
+    yield 2;
+    yield 3;
+  }
 }
 
 // 1, 2, 3이 차례대로 출력됩니다.
 for (let n of new Gen()) {
-	console.log(n);
+  console.log(n);
 }
 ```
 
@@ -906,11 +906,11 @@ for (let n of new Gen()) {
 
 ```javascript
 const timeoutId = setTimeout(() => {
-	console.log('setTimeout이 실행된 지 2초가 지났습니다.');
+  console.log('setTimeout이 실행된 지 2초가 지났습니다.');
 }, 2000);
 
 const intervalId = setInterval(() => {
-	console.log('3초마다 출력됩니다.');
+  console.log('3초마다 출력됩니다.');
 }, 3000);
 
 clearTimeout(timeoutId);
@@ -933,12 +933,12 @@ clearInterval(intervalId);
 
 ```javascript
 try {
-	// code
+  // code
 } catch (error) {
-	// try 안에서 에러 발생 시 동작
-	// code
+  // try 안에서 에러 발생 시 동작
+  // code
 } finally {
-	// catch 여부와 관계 없이 무조건 실행해야 하는 부분
+  // catch 여부와 관계 없이 무조건 실행해야 하는 부분
 }
 ```
 
@@ -952,22 +952,22 @@ throw new Error('짝수가 아닙니다.');
 
 ```javascript
 class MyError extends Error {
-	constructor(value, ...params) {
-		super(...params);
-		this.value = value;
-		this.name = 'MyError';
-	}
+  constructor(value, ...params) {
+    super(...params);
+    this.value = value;
+    this.name = 'MyError';
+  }
 }
 
 try {
-	const even = parseInt(prompt('짝수를 입력하세요'));
-	if (even % 2 !== 0) {
-		throw new MyError(even, '짝수가 아닙니다.');
-	}
+  const even = parseInt(prompt('짝수를 입력하세요'));
+  if (even % 2 !== 0) {
+    throw new MyError(even, '짝수가 아닙니다.');
+  }
 } catch (e) {
-	if (e instanceof MyError) {
-		console.log(e.value);
-	}
+  if (e instanceof MyError) {
+    console.log(e.value);
+  }
 }
 ```
 
@@ -982,35 +982,35 @@ try {
 ### 방법 1
 
 ```javascript
-const p = new Promise(resolve => {
-	const even = parseInt(prompt('짝수를 입력하세요'));
-	if (even % 2 !== 0) {
-		throw new Error('짝수가 아닙니다.');
-	} else {
-		resolve(even);
-	}
+const p = new Promise((resolve) => {
+  const even = parseInt(prompt('짝수를 입력하세요'));
+  if (even % 2 !== 0) {
+    throw new Error('짝수가 아닙니다.');
+  } else {
+    resolve(even);
+  }
 });
 
 p.then(
-	even => {
-		return '짝수입니다.';
-	},
-	e => {
-		return e.message;
-	}
+  (even) => {
+    return '짝수입니다.';
+  },
+  (e) => {
+    return e.message;
+  },
 ).then(alert);
 ```
 
 ### 방법 2
 
 ```javascript
-p.then(even => {
-	return '짝수입니다.';
+p.then((even) => {
+  return '짝수입니다.';
 })
-	.catch(e => {
-		return e.message;
-	})
-	.then(alert);
+  .catch((e) => {
+    return e.message;
+  })
+  .then(alert);
 ```
 
 ## 43. 모듈
@@ -1031,9 +1031,9 @@ p.then(even => {
 const x = 20;
 let answer1;
 if (x > 10) {
-	answer1 = 'greater than 10';
+  answer1 = 'greater than 10';
 } else {
-	answer1 = 'less than 10';
+  answer1 = 'less than 10';
 }
 
 // 축약기법
@@ -1048,7 +1048,7 @@ const answer3 = x > 10 ? ' greater than 10' : x;
 ```javascript
 // 기존
 if (variable1 !== null || variable1 !== undefined || variable1 !== '') {
-	let variable2 = variable1;
+  let variable2 = variable1;
 }
 
 // 축약기법
@@ -1076,8 +1076,8 @@ let z = 3;
 
 // 축약기법
 let x,
-	y,
-	z = 3;
+  y,
+  z = 3;
 ```
 
 ## 47. If Presence
@@ -1100,13 +1100,13 @@ if (likeJavaScript) {
 // 기존
 let a;
 if (a !== true) {
-	// 코드 실행...
+  // 코드 실행...
 }
 
 // 축약기법
 let a;
 if (!a) {
-	// 코드실행...
+  // 코드실행...
 }
 ```
 
@@ -1122,7 +1122,7 @@ for (let index of allImgs) {
 
 // Array.forEach 축약기법
 function logArrayElements(element, index, array) {
-	console.log('a[' + index + '] = ' + element);
+  console.log('a[' + index + '] = ' + element);
 }
 [2, 5, 9].forEach(logArrayElements);
 // logs:
@@ -1139,9 +1139,9 @@ function logArrayElements(element, index, array) {
 // 기존
 let dbHost;
 if (process.env.DB_HOST) {
-	dbHost = process.env.DB_HOST;
+  dbHost = process.env.DB_HOST;
 } else {
-	dbHost = 'localhost';
+  dbHost = 'localhost';
 }
 
 // 축약기법
@@ -1189,19 +1189,19 @@ const obj = { x, y };
 ```javascript
 // 기존
 function sayHello(name) {
-	console.log('Hello', name);
+  console.log('Hello', name);
 }
-setTimeout(function() {
-	console.log('Loaded');
+setTimeout(function () {
+  console.log('Loaded');
 }, 2000);
-list.forEach(function(item) {
-	console.log(item);
+list.forEach(function (item) {
+  console.log(item);
 });
 
 // 축약기법
-sayHello = name => console.log('Hello', name);
+sayHello = (name) => console.log('Hello', name);
 setTimeout(() => console.log('Loaded'), 2000);
-list.forEach(item => console.log(item));
+list.forEach((item) => console.log(item));
 ```
 
 - 애로우 함수 표기법에서는 this가 기존의 함수 선언문과 다르게 받아들여집니다. 따라서 위의 두 예제는 완벽하게 동일하다고 볼 수는 없습니다.
@@ -1230,9 +1230,9 @@ calcCircumference = diameter => (
 ```javascript
 // 기존
 function volume(l, w, h) {
-	if (w === undefined) w = 3;
-	if (h === undefined) h = 4;
-	return l * w * h;
+  if (w === undefined) w = 3;
+  if (h === undefined) h = 4;
+  return l * w * h;
 }
 
 // 축약기법
@@ -1284,12 +1284,12 @@ const { store, form, loading, errors, entity: contact } = this.props;
 ```javascript
 // 기존
 const lorem =
-	'Lorem ipsum dolor sit amet, consectetur\n\t' +
-	'adipisicing elit, sed do eiusmod tempor incididunt\n\t' +
-	'ut labore et dolore magna aliqua. Ut enim ad minim\n\t' +
-	'veniam, quis nostrud exercitation ullamco laboris\n\t' +
-	'nisi ut aliquip ex ea commodo consequat. Duis aute\n\t' +
-	'irure dolor in reprehenderit in voluptate velit esse.\n\t';
+  'Lorem ipsum dolor sit amet, consectetur\n\t' +
+  'adipisicing elit, sed do eiusmod tempor incididunt\n\t' +
+  'ut labore et dolore magna aliqua. Ut enim ad minim\n\t' +
+  'veniam, quis nostrud exercitation ullamco laboris\n\t' +
+  'nisi ut aliquip ex ea commodo consequat. Duis aute\n\t' +
+  'irure dolor in reprehenderit in voluptate velit esse.\n\t';
 
 // 축약기법
 const lorem = `Lorem ipsum dolor sit amet, consectetur
@@ -1342,19 +1342,19 @@ console.log(z); // { c: 3, d: 4 }
 ```javascript
 // 기존
 function foo(bar) {
-	if (bar === undefined) {
-		throw new Error('Missing parameter!');
-	}
-	return bar;
+  if (bar === undefined) {
+    throw new Error('Missing parameter!');
+  }
+  return bar;
 }
 
 // 축약기법
 mandatory = () => {
-	throw new Error('Missing parameter!');
+  throw new Error('Missing parameter!');
 };
 
 foo = (bar = mandatory()) => {
-	return bar;
+  return bar;
 };
 ```
 
@@ -1364,23 +1364,23 @@ foo = (bar = mandatory()) => {
 
 ```javascript
 const pets = [
-	{ type: 'Dog', name: 'Max' },
-	{ type: 'Cat', name: 'Karl' },
-	{ type: 'Dog', name: 'Tommy' },
+  { type: 'Dog', name: 'Max' },
+  { type: 'Cat', name: 'Karl' },
+  { type: 'Dog', name: 'Tommy' },
 ];
 
 // 기존
 function findDog(name) {
-	for (let i = 0; i < pets.length; ++i) {
-		if (pets[i].type === 'Dog' && pets[i].name === name) {
-			return pets[i];
-		}
-	}
+  for (let i = 0; i < pets.length; ++i) {
+    if (pets[i].type === 'Dog' && pets[i].name === name) {
+      return pets[i];
+    }
+  }
 }
 findDog('Tommy');
 
 // 축약기법
-pet = pets.find(pet => pet.type === 'Dog' && pet.name === 'Tommy');
+pet = pets.find((pet) => pet.type === 'Dog' && pet.name === 'Tommy');
 console.log(pet); // { type: 'Dog', name: 'Tommy' }
 ```
 
@@ -1391,9 +1391,9 @@ console.log(pet); // { type: 'Dog', name: 'Tommy' }
 ```javascript
 // 기존
 function validate(values) {
-	if (!values.first) return false;
-	if (!values.last) return false;
-	return true;
+  if (!values.first) return false;
+  if (!values.last) return false;
+  return true;
 }
 
 console.log(validate({ first: 'Bruce', last: 'Wayne' })); // true
@@ -1401,24 +1401,24 @@ console.log(validate({ first: 'Bruce', last: 'Wayne' })); // true
 // 축약기법
 // object validation rules (객체로 만든 validation 규칙)
 const schema = {
-	first: {
-		required: true,
-	},
-	last: {
-		required: true,
-	},
+  first: {
+    required: true,
+  },
+  last: {
+    required: true,
+  },
 };
 
 // universal validation function (공통적으로 사용할 수 있는 validation 함수)
 const validate = (schema, values) => {
-	for (field in schema) {
-		if (schema[field].required) {
-			if (!values[field]) {
-				return false;
-			}
-		}
-	}
-	return true;
+  for (field in schema) {
+    if (schema[field].required) {
+      if (!values[field]) {
+        return false;
+      }
+    }
+  }
+  return true;
 };
 
 console.log(validate(schema, { first: 'Bruce' })); // false
@@ -1443,29 +1443,29 @@ Math.floor(4.9) === 4; //true
 
 ```javascript
 const isOfType = (() => {
-	// 프로토 타입 없는 일반 객체 생성
-	const type = Object.create(null);
+  // 프로토 타입 없는 일반 객체 생성
+  const type = Object.create(null);
 
-	type.null = x => x === null;
-	type.undefined = x => x === undefined;
-	// null or undefined
-	type.nil = x => type.null(x) || type.undefined(x);
-	type.string = x =>
-		!type.nil(x) && (typeof x === 'string' || x instanceof String);
-	type.number = x =>
-		!type.nil(x) &&
-		((!isNaN(x) && isFinite(x) && typeof x === 'number') ||
-			x instanceof Number);
-	type.boolean = x =>
-		!type.nil(x) && (typeof x === 'boolean' || x instanceof Boolean);
-	type.array = x => !type.nil(x) && Array.isArray(x);
-	type.object = x => ({}.toString.call(x) === '[object Object]');
-	type.type = (x, X) => !type.nil(x) && x instanceof X;
-	type.set = x => type.type(x, Set);
-	type.map = x => type.type(x, Map);
-	type.date = x => type.type(x, Date);
+  type.null = (x) => x === null;
+  type.undefined = (x) => x === undefined;
+  // null or undefined
+  type.nil = (x) => type.null(x) || type.undefined(x);
+  type.string = (x) =>
+    !type.nil(x) && (typeof x === 'string' || x instanceof String);
+  type.number = (x) =>
+    !type.nil(x) &&
+    ((!isNaN(x) && isFinite(x) && typeof x === 'number') ||
+      x instanceof Number);
+  type.boolean = (x) =>
+    !type.nil(x) && (typeof x === 'boolean' || x instanceof Boolean);
+  type.array = (x) => !type.nil(x) && Array.isArray(x);
+  type.object = (x) => ({}.toString.call(x) === '[object Object]');
+  type.type = (x, X) => !type.nil(x) && x instanceof X;
+  type.set = (x) => type.type(x, Set);
+  type.map = (x) => type.type(x, Map);
+  type.date = (x) => type.type(x, Date);
 
-	return type;
+  return type;
 })();
 ```
 
@@ -1473,19 +1473,19 @@ const isOfType = (() => {
 
 ```javascript
 function isEmpty(x) {
-	if (Array.isArray(x) || typeof x === 'string' || x instanceof String) {
-		return x.length === 0;
-	}
+  if (Array.isArray(x) || typeof x === 'string' || x instanceof String) {
+    return x.length === 0;
+  }
 
-	if (x instanceof Map || x instanceof Set) {
-		return x.size === 0;
-	}
+  if (x instanceof Map || x instanceof Set) {
+    return x.size === 0;
+  }
 
-	if ({}.toString.call(x) === '[object Object]') {
-		return Object.keys(x).length === 0;
-	}
+  if ({}.toString.call(x) === '[object Object]') {
+    return Object.keys(x).length === 0;
+  }
 
-	return false;
+  return false;
 }
 ```
 
@@ -1495,17 +1495,17 @@ function isEmpty(x) {
 const { lstat } = require('fs-extra');
 
 function lastItem(list) {
-	if (Array.isArray(list)) {
-		return list.slice(-1)[0];
-	}
+  if (Array.isArray(list)) {
+    return list.slice(-1)[0];
+  }
 
-	if (list instanceof Set) {
-		return Array.from(list).slice(-1)[0];
-	}
+  if (list instanceof Set) {
+    return Array.from(list).slice(-1)[0];
+  }
 
-	if (list instanceof Map) {
-		return Array.from(list.values()).slice(-1)[0];
-	}
+  if (list instanceof Map) {
+    return Array.from(list.values()).slice(-1)[0];
+  }
 }
 ```
 
@@ -1513,11 +1513,11 @@ function lastItem(list) {
 
 ```javascript
 function randomNumber(max = 1, min = 0) {
-	if (min >= max) {
-		return max;
-	}
+  if (min >= max) {
+    return max;
+  }
 
-	return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * (max - min) + min);
 }
 ```
 
@@ -1527,34 +1527,34 @@ function randomNumber(max = 1, min = 0) {
 // 현재 시간(밀리 초)부터 고유 ID 생성
 // 요청할 때마다 1씩 증가합니다.
 const uniqueId = () => {
-	const id = (function*() {
-		let mil = new Date().getTime();
+  const id = (function* () {
+    let mil = new Date().getTime();
 
-		while (true) yield (mil += 1);
-	})();
+    while (true) yield (mil += 1);
+  })();
 
-	return () => id.next().value;
+  return () => id.next().value;
 };
 
 // 제공된 값 또는 0에서 고유 ID 생성
 const uniqueIncrementingId = ((lastId = 0) => {
-	const id = (function*() {
-		let numb = lastId;
+  const id = (function* () {
+    let numb = lastId;
 
-		while (true) yield (numb += 1);
-	})();
+    while (true) yield (numb += 1);
+  })();
 
-	return (length = 12) => `${id.next().value}`.padStart(length, '0');
+  return (length = 12) => `${id.next().value}`.padStart(length, '0');
 })();
 
 // 문자와 숫자로 고유 ID 생성
 const uniqueAlphaNumericId = (() => {
-	const heyStack = '0123456789abcdefghijklmnopqrstuvwxyz';
-	const randomInt = () =>
-		Math.floor(Math.random() * Math.floor(heyStack.length));
+  const heyStack = '0123456789abcdefghijklmnopqrstuvwxyz';
+  const randomInt = () =>
+    Math.floor(Math.random() * Math.floor(heyStack.length));
 
-	return (length = 24) =>
-		Array.from({ length }, () => heyStack[randomInt()]).join('');
+  return (length = 24) =>
+    Array.from({ length }, () => heyStack[randomInt()]).join('');
 })();
 ```
 
@@ -1562,25 +1562,25 @@ const uniqueAlphaNumericId = (() => {
 
 ```javascript
 function range(maxOrStart, end = null, step = null) {
-	if (!end) {
-		return Array.from({ length: maxOrStart }, (_, i) => i);
-	}
+  if (!end) {
+    return Array.from({ length: maxOrStart }, (_, i) => i);
+  }
 
-	if (end <= maxOrStart) {
-		return [];
-	}
+  if (end <= maxOrStart) {
+    return [];
+  }
 
-	if (step !== null) {
-		return Array.from(
-			{ length: Math.ceil((end - maxOrStart) / step) },
-			(_, i) => i * step + maxOrStart
-		);
-	}
+  if (step !== null) {
+    return Array.from(
+      { length: Math.ceil((end - maxOrStart) / step) },
+      (_, i) => i * step + maxOrStart,
+    );
+  }
 
-	return Array.from(
-		{ length: Math.ceil(end - maxOrStart) },
-		(_, i) => i + maxOrStart
-	);
+  return Array.from(
+    { length: Math.ceil(end - maxOrStart) },
+    (_, i) => i + maxOrStart,
+  );
 }
 ```
 
@@ -1588,38 +1588,38 @@ function range(maxOrStart, end = null, step = null) {
 
 ```javascript
 const obj = {
-	name: 'Yuni-Q',
-	family: [{ name: 'Yuni-Q' }],
-	something: [12, 3, 45],
-	mothod() {
-		return 'i am ignored';
-	},
-	set: new Set([1, 4, 5]),
-	map: new Map([
-		[1, 4],
-		[5, 10],
-	]),
-	symb: Symbol('test'),
+  name: 'Yuni-Q',
+  family: [{ name: 'Yuni-Q' }],
+  something: [12, 3, 45],
+  mothod() {
+    return 'i am ignored';
+  },
+  set: new Set([1, 4, 5]),
+  map: new Map([
+    [1, 4],
+    [5, 10],
+  ]),
+  symb: Symbol('test'),
 };
 
 const replacer = (key, val) => {
-	if (typeof val === 'symbol') {
-		return val.toString();
-	}
+  if (typeof val === 'symbol') {
+    return val.toString();
+  }
 
-	if (val instanceof Set) {
-		return Array.from(val);
-	}
+  if (val instanceof Set) {
+    return Array.from(val);
+  }
 
-	if (val instanceof Map) {
-		return Array.from(val.entries());
-	}
+  if (val instanceof Map) {
+    return Array.from(val.entries());
+  }
 
-	if (typeof val === 'function') {
-		return val.toString();
-	}
+  if (typeof val === 'function') {
+    return val.toString();
+  }
 
-	return val;
+  return val;
 };
 
 console.log(JSON.stringify(obj));
@@ -1648,28 +1648,28 @@ console.log(JSON.stringify(obj, replacer));
 
 ```javascript
 const asyncSequentializer = (() => {
-	const toPromise = x => {
-		if (x instanceof Promise) return x;
+  const toPromise = (x) => {
+    if (x instanceof Promise) return x;
 
-		if (typeof x === 'function') {
-			return (async () => await x())();
-		}
+    if (typeof x === 'function') {
+      return (async () => await x())();
+    }
 
-		return Promise.resolve(x);
-	};
+    return Promise.resolve(x);
+  };
 
-	return list => {
-		const results = [];
+  return (list) => {
+    const results = [];
 
-		return list
-			.reduce((lastPromise, currentPromise) => {
-				return lastPromise.then(res => {
-					results.push(res);
-					return toPromise(currentPromise);
-				});
-			}, toPromise(list.shift()))
-			.then(res => Promise.resolve([...results, res]));
-	};
+    return list
+      .reduce((lastPromise, currentPromise) => {
+        return lastPromise.then((res) => {
+          results.push(res);
+          return toPromise(currentPromise);
+        });
+      }, toPromise(list.shift()))
+      .then((res) => Promise.resolve([...results, res]));
+  };
 })();
 ```
 
@@ -1707,22 +1707,64 @@ const prom3 = Promise.resolve(48);
 const prom4 = Promise.reject('error');
 
 Promise.all([prom1, prom2, prom3, prom4])
-	.then(res => console.log('all', res))
-	.catch(err => console.log('all failed', err));
+  .then((res) => console.log('all', res))
+  .catch((err) => console.log('all failed', err));
 // all failed 12
 
 Promise.allSettled([prom1, prom2, prom3, prom4])
-	.then(res => console.log('allSettled', res))
-	.catch(err => console.log('allSettled failed', JSON.stringify(err)));
+  .then((res) => console.log('allSettled', res))
+  .catch((err) => console.log('allSettled failed', JSON.stringify(err)));
 // allSettled, [{status: "rejected", reason: 12}, {status: "fulfilled", value: 28}, {status: "fulfilled", value: 48}, {reason: 'error', status: 'rejected'}
 Promise.any([prom1, prom2, prom3, prom4])
-	.then(res => console.log('any', res))
-	.catch(err => console.log('any failed', err));
+  .then((res) => console.log('any', res))
+  .catch((err) => console.log('any failed', err));
 // any 28
 Promise.race([prom1, prom2, prom3, prom4])
-	.then(res => console.log('race', res))
-	.catch(err => console.log('race failed', err));
+  .then((res) => console.log('race', res))
+  .catch((err) => console.log('race failed', err));
 // race failed 12
+```
+
+### 10-1. Promise all과 await
+
+```js
+const d = async () => {
+  try {
+    const a = await Promise.all([b(), await c()]);
+    // argument가 먼저 판별되어야 함수(Promise.all)가 실행됩니다.
+    // b는 실행이 되었고 argument await c가 판별 중 에러가 발생하여 Promise.all 실행되지 못해서 b의 Rejection을 Promise.all이 해결해주지 못함.
+    // 14까지는 Warning(UnhandledPromiseRejectionWarning) 15부터는 Error로 처리되어 UnhandledPromiseRejection가 발생한다.
+    // ++a, a++과 같은 연산의 우선순위, 비동기문맥 동기문맥이 어떻게 흘러가는지를 알 수 있는 좋은 예제이다.
+
+    // 위 코드는 사실 아래의 코드와 같은게 된다(Promise.all은 실행되지 못했으니...)
+    // b();
+    // await c();
+
+    console.trace(a, 5);
+  } catch (e) {
+    console.error({ e });
+    console.error(6);
+  }
+};
+
+const b = () =>
+  new Promise((resolve, reject) => {
+    console.trace(1);
+    setTimeout(() => {
+      console.trace(2);
+      reject('b');
+    }, 2000);
+  });
+const c = () =>
+  new Promise((resolve, reject) => {
+    console.trace(3);
+    setTimeout(() => {
+      console.trace(4);
+      reject('c');
+    }, 1000);
+  });
+
+d();
 ```
 
 ### 11. 배열값 위치 바꾸기
@@ -1731,21 +1773,21 @@ Promise.race([prom1, prom2, prom3, prom4])
 const array = [12, 24, 48];
 
 const swapOldWay = (arr, i, j) => {
-	const arrayCopy = [...arr];
+  const arrayCopy = [...arr];
 
-	let temp = arrayCopy[i];
-	arrayCopy[i] = arrayCopy[j];
-	arrayCopy[j] = temp;
+  let temp = arrayCopy[i];
+  arrayCopy[i] = arrayCopy[j];
+  arrayCopy[j] = temp;
 
-	return arrayCopy;
+  return arrayCopy;
 };
 
 const swapNewWay = (arr, i, j) => {
-	const arrayCopy = [...arr];
+  const arrayCopy = [...arr];
 
-	[arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]];
+  [arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]];
 
-	return arrayCopy;
+  return arrayCopy;
 };
 ```
 
@@ -1755,8 +1797,8 @@ const swapNewWay = (arr, i, j) => {
 const condition = true;
 
 const sample = {
-	someProperty: 'some value',
-	...(!!condition ? { newProperty: 'value' } : {}),
+  someProperty: 'some value',
+  ...(!!condition ? { newProperty: 'value' } : {}),
 };
 ```
 
@@ -1766,8 +1808,8 @@ const sample = {
 const property = 'newValidProp';
 
 const sample = {
-	someProperty: 'some value',
-	[`${property}`]: 'value',
+  someProperty: 'some value',
+  [`${property}`]: 'value',
 };
 ```
 
@@ -1789,24 +1831,24 @@ console.log(sample.hasOwnProperty('toString'); // false
 
 ```javascript
 const numberArrays = [
-	undefined,
-	Infinity,
-	12,
-	NaN,
-	false,
-	5,
-	7,
-	null,
-	12,
-	false,
-	5,
-	undefined,
-	89,
-	9,
-	null,
-	Infinity,
-	5,
-	NaN,
+  undefined,
+  Infinity,
+  12,
+  NaN,
+  false,
+  5,
+  7,
+  null,
+  12,
+  false,
+  5,
+  undefined,
+  89,
+  9,
+  null,
+  Infinity,
+  5,
+  NaN,
 ];
 const objArrays = [{ id: 1 }, { id: 4 }, { id: 1 }, { id: 5 }, { id: 4 }];
 console.log(Array.from(new Set(numberArrays))); // 중복 제거
@@ -1814,12 +1856,12 @@ console.log(Array.from(new Set(objArrays))); // 중복 제거 되지 않음
 
 const idSet = new Set();
 console.log(
-	objArrays.filter(obj => {
-		const existingId = idSet.has(obj.id);
-		idSet.add(obj.id);
+  objArrays.filter((obj) => {
+    const existingId = idSet.has(obj.id);
+    idSet.add(obj.id);
 
-		return !existingId;
-	})
+    return !existingId;
+  }),
 );
 ```
 
@@ -1829,27 +1871,27 @@ console.log(
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 for (const number of numbers) {
-	if (number % 2 === 0) {
-		continue;
-	}
+  if (number % 2 === 0) {
+    continue;
+  }
 
-	if (number > 5) {
-		break;
-	}
+  if (number > 5) {
+    break;
+  }
 
-	console.log(number);
+  console.log(number);
 }
 
-numbers.some(number => {
-	if (number % 2 === 0) {
-		return false;
-	}
+numbers.some((number) => {
+  if (number % 2 === 0) {
+    return false;
+  }
 
-	if (number > 5) {
-		return true;
-	}
+  if (number > 5) {
+    return true;
+  }
 
-	console.log(number);
+  console.log(number);
 });
 ```
 
@@ -1857,15 +1899,15 @@ numbers.some(number => {
 
 ```javascript
 const obj = {
-	dt: { name: 'sample' },
+  dt: { name: 'sample' },
 };
 
 function destructuring({ dt: data }) {
-	console.log(data);
+  console.log(data);
 }
 
 function defaultValues({ dt: { name, id = 10 } }) {
-	console.log(name, id);
+  console.log(name, id);
 }
 
 destructuring(obj); // { name: 'sample' }
@@ -1876,16 +1918,16 @@ defaultValues(obj); // sample, 10
 
 ```javascript
 const obj = {
-	data: {
-		container: {
-			name: {
-				value: 'sample',
-			},
-			int: {
-				value: 0,
-			},
-		},
-	},
+  data: {
+    container: {
+      name: {
+        value: 'sample',
+      },
+      int: {
+        value: 0,
+      },
+    },
+  },
 };
 
 console.log(obj.data.container.int.value || 'no int value'); // 'no int value'
@@ -1893,7 +1935,7 @@ console.log(obj.data.container.int.value ?? 'no int value'); // 0
 
 console.log(obj.data.wrapper.name || 'no name'); // Uncaught TypeError: Cannot read property 'name' of undefined
 console.log(
-	(obj && obj.data && obj.data.wrapper && obj.data.wrapper.name) || 'no name'
+  (obj && obj.data && obj.data.wrapper && obj.data.wrapper.name) || 'no name',
 ); // no name
 console.log(obj?.data?.wrapper?.name || 'no name'); // no name
 ```
@@ -1902,15 +1944,15 @@ console.log(obj?.data?.wrapper?.name || 'no name'); // no name
 
 ```javascript
 function Parent() {
-	const privateProps = 12;
-	const privateMethod = () => privateProps + 10;
+  const privateProps = 12;
+  const privateMethod = () => privateProps + 10;
 
-	this.publicMethod = (x = 0) => privateMethod() + x;
-	this.publicProp = 10;
+  this.publicMethod = (x = 0) => privateMethod() + x;
+  this.publicProp = 10;
 }
 
 class Child extends Parent {
-	myProp = 20;
+  myProp = 20;
 }
 
 const child = new Child();
@@ -1926,21 +1968,21 @@ console.log(child.privateMethod()); // Uncaught TypeError: child.privateMethod i
 
 ```javascript
 function Employee() {
-	this.profession = 'Software Engineer';
-	this.salary = '$150000';
+  this.profession = 'Software Engineer';
+  this.salary = '$150000';
 }
 
 function DeveloperFreelancer() {
-	this.programmingLaguages = ['Javasciprt', 'Python', 'Swift'];
-	this.avgPerHour = '$100';
+  this.programmingLaguages = ['Javasciprt', 'Python', 'Swift'];
+  this.avgPerHour = '$100';
 }
 
 function Engineer(name) {
-	this.name = name;
-	this.freelancer = {};
+  this.name = name;
+  this.freelancer = {};
 
-	Employee.apply(this);
-	DeveloperFreelancer.apply(this.freelancer);
+  Employee.apply(this);
+  DeveloperFreelancer.apply(this.freelancer);
 }
 
 const yuni = new Engineer('yuni');
@@ -1955,18 +1997,18 @@ console.log(yuni.freelancer); // {programmingLaguages: ['Javasciprt', 'Python', 
 
 ```javascript
 function forEath(list, callback) {
-	let entries;
-	if (list instanceof Map || list instanceof Set) {
-		list = Array.from(list);
-	}
-	entries = Object.entries(list);
-	const len = entries.length;
+  let entries;
+  if (list instanceof Map || list instanceof Set) {
+    list = Array.from(list);
+  }
+  entries = Object.entries(list);
+  const len = entries.length;
 
-	for (i = 0; i < len; i++) {
-		const res = callback(entries[i][1], entries[i][0], list);
+  for (i = 0; i < len; i++) {
+    const res = callback(entries[i][1], entries[i][0], list);
 
-		if (res === true) break;
-	}
+    if (res === true) break;
+  }
 }
 
 forEath([1, 2, 3], console.log);
@@ -1979,12 +2021,12 @@ forEath(new Set([1, 2, 3]), console.log);
 // 1 "1" [1, 2, 3]
 // 1 "2" [1, 2, 3]
 forEath(
-	new Map([
-		[1, 1],
-		[2, 2],
-		[3, 3],
-	]),
-	console.log
+  new Map([
+    [1, 1],
+    [2, 2],
+    [3, 3],
+  ]),
+  console.log,
 );
 // [1,2], "0", [[1,1],[2,2],[3,3]]
 forEath('123', console.log);
@@ -2001,11 +2043,11 @@ forEath({ a: 1, b: 2, c: 3 }, console.log);
 
 ```javascript
 function required(argName = 'param') {
-	throw new Error(`"${argName}" is required`);
+  throw new Error(`"${argName}" is required`);
 }
 
 function iHaveRequiredOptions(arg1 = required('arg1'), arg2 = 10) {
-	console.log(arg1, arg2);
+  console.log(arg1, arg2);
 }
 
 iHaveRequiredOptions(); // Uncaught Error: "arg1" is required
@@ -2018,49 +2060,49 @@ iHaveRequiredOptions(undefined, 24); // Uncaught Error: "arg1" is required
 
 ```javascript
 class Service {
-	name = 'service';
+  name = 'service';
 }
 
-const service = (function() {
-	const service = new Service();
+const service = (function () {
+  const service = new Service();
 
-	return () => service;
+  return () => service;
 })();
 
-const element = (function() {
-	const element = document.createElement('DIV');
+const element = (function () {
+  const element = document.createElement('DIV');
 
-	return () => element;
+  return () => element;
 })();
 ```
 
 ### 24.deep clone object
 
 ```javascript
-const deepClone = obj => {
-	let clone = obj;
-	if (obj && typeof obj === 'object') {
-		clone = new obj.constructor();
+const deepClone = (obj) => {
+  let clone = obj;
+  if (obj && typeof obj === 'object') {
+    clone = new obj.constructor();
 
-		Object.getOwnPropertyNames(obj).forEach(
-			prop => (clone[prop] = deepClone(obj[prop]))
-		);
-	}
+    Object.getOwnPropertyNames(obj).forEach(
+      (prop) => (clone[prop] = deepClone(obj[prop])),
+    );
+  }
 
-	return clone;
+  return clone;
 };
 ```
 
 ### 25. Deep freeze object
 
 ```javascript
-const deepFreeze = obj => {
-	if (obj && typeof obj === 'object') {
-		if (!Object.isFrozen(obj))
-			Object.getOwnPropertyNames(obj).forEach(prop => deepFreeze(obj[prop]));
-	}
+const deepFreeze = (obj) => {
+  if (obj && typeof obj === 'object') {
+    if (!Object.isFrozen(obj))
+      Object.getOwnPropertyNames(obj).forEach((prop) => deepFreeze(obj[prop]));
+  }
 
-	return obj;
+  return obj;
 };
 ```
 

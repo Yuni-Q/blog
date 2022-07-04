@@ -795,6 +795,8 @@ draft: false
 
 ## a 태그 안에서는 a 태그를 사용할 수 없습니다.
 
+## a 태그의 다운로드 속성은 cross-origin requests를 지원하지 않습니다.
+
 ## HTML5 API
 
 | API              | 설명                                                                                                              |
