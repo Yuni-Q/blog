@@ -27,7 +27,7 @@ interface Todo {
 
 // TodoKeys의 타입 = "id" | "text" | "due"
 type TodoKeys = keyof Todo;
-```
+````
 
 ## never 타입
 
@@ -40,15 +40,15 @@ type TodoKeys = keyof Todo;
 ```typescript
 // Function returning never must have unreachable end point
 function error(message: string): never {
-	throw new Error(message);
+  throw new Error(message);
 }
 // Inferred return type is never
 function fail() {
-	return error('Something failed');
+  return error('Something failed');
 }
 // Function returning never must have unreachable end point
 function infiniteLoop(): never {
-	while (true) {}
+  while (true) {}
 }
 ```
 
@@ -64,8 +64,8 @@ function infiniteLoop(): never {
 type Partial<T> = { [P in keyof T]?: T[P] };
 
 interface User {
-	name: string;
-	age: number;
+  name: string;
+  age: number;
 }
 
 let user1: User = { name: 'harry', age: 23 }; //OK
@@ -73,22 +73,22 @@ let user2: User = { age: 23 }; // 에러발생
 let user2: Partial<User> = { age: 23 }; // OK
 
 interface Todo {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
 }
 
 function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
-	// todo, fieldToUpdate 두개 모두 값이 있을경우 오른쪽 값이 할당됩니다.
-	return { ...todo, ...fieldsToUpdate };
+  // todo, fieldToUpdate 두개 모두 값이 있을경우 오른쪽 값이 할당됩니다.
+  return { ...todo, ...fieldsToUpdate };
 }
 
 const todo1 = {
-	title: 'organize desk',
-	description: 'clear clutter',
+  title: 'organize desk',
+  description: 'clear clutter',
 };
 
 const todo2 = updateTodo(todo1, {
-	description: 'throw out trash',
+  description: 'throw out trash',
 });
 ```
 
@@ -101,15 +101,15 @@ const todo2 = updateTodo(todo1, {
 
 ```typescript
 type Required<T> = {
-	[P in keyof T]-?: T[P];
+  [P in keyof T]-?: T[P];
 };
 
 type MutableRequired<T> = { -readonly [P in keyof T]-?: T[P] }; // readonly, optional 제거
 type ReadonlyPartial<T> = { +readonly [P in keyof T]+?: T[P] }; // readonly, optional 추가
 
 interface Props {
-	a?: number;
-	b?: string;
+  a?: number;
+  b?: string;
 }
 
 const obj: Props = { a: 5 }; // OK
@@ -155,24 +155,24 @@ todo.title = 'Hello'; // Error: cannot reassign a readonly property
 
 ```typescript
 type Record<K extends keyof any, T> = {
-	[P in K]: T;
+  [P in K]: T;
 };
 
 export interface Car {
-	name: string;
-	price: number;
+  name: string;
+  price: number;
 }
 
 const productList: Record<'SONATA' | 'AVANTE', Car> = {
-	SONATA: { name: 'SONATA', price: 10000 },
-	AVANTE: { name: 'SONATA', price: 10000 },
+  SONATA: { name: 'SONATA', price: 10000 },
+  AVANTE: { name: 'SONATA', price: 10000 },
 };
 
 const nextProductList: Record<string, Car> = {
-	SONATA: { name: 'SONATA', price: 10000 },
-	AVANTE1: { name: 'SONATA', price: 10000 },
-	AVANTE2: { name: 'SONATA', price: 10000 },
-	AVANTE3: { name: 'SONATA', price: 10000 },
+  SONATA: { name: 'SONATA', price: 10000 },
+  AVANTE1: { name: 'SONATA', price: 10000 },
+  AVANTE2: { name: 'SONATA', price: 10000 },
+  AVANTE3: { name: 'SONATA', price: 10000 },
 };
 
 type memo = { content: string; date: string };
@@ -189,20 +189,20 @@ type friendType = Record<FriendTypeArray, memo>;
 
 ```typescript
 type Pick<T, K extends keyof T> = {
-	[P in K]: T[P];
+  [P in K]: T[P];
 };
 
 interface Todo {
-	title: string;
-	description: string;
-	completed: boolean;
+  title: string;
+  description: string;
+  completed: boolean;
 }
 
 type TodoPreview = Pick<Todo, 'title' | 'completed'>;
 
 const todo: TodoPreview = {
-	title: 'Clean room',
-	completed: false,
+  title: 'Clean room',
+  completed: false,
 };
 ```
 
@@ -241,9 +241,9 @@ type T1 = Extract<string | number | (() => void), Function>; // () => void
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 type Car = {
-	name: string;
-	price: number;
-	brand: string;
+  name: string;
+  price: number;
+  brand: string;
 };
 
 //Car에 속하는 Key값들중 brand를 키값으로 갖지않는 프로퍼티들을
@@ -257,25 +257,25 @@ type NoBrandCard = Pick<Car, RemainingKeys>;
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 interface Test {
-	a: string;
-	b: number;
-	c: boolean;
+  a: string;
+  b: number;
+  c: boolean;
 }
 
 type OmitA = Omit<Test, 'a'>; // Equivalent to: {b: number, c: boolean}
 type OmitAB = Omit<Test, 'a' | 'b'>; // Equivalent to: {c: boolean}
 
 interface Todo {
-	title: string;
-	description: string;
-	completed: boolean;
+  title: string;
+  description: string;
+  completed: boolean;
 }
 
 type TodoPreview = Omit<Todo, 'description'>;
 
 const todo: TodoPreview = {
-	title: 'Clean room',
-	completed: false,
+  title: 'Clean room',
+  completed: false,
 };
 ```
 
@@ -300,10 +300,10 @@ type T1 = NonNullable<string[] | null | undefined>; // string[]
 
 ```typescript
 type Parameters<T extends (...args: any) => any> = T extends (
-	...args: infer P
+  ...args: infer P
 ) => any
-	? P
-	: never;
+  ? P
+  : never;
 
 declare function f1(arg: { a: number; b: string }): void;
 type T0 = Parameters<() => string>; // []
@@ -329,18 +329,17 @@ type T8 = Parameters<Function>; // Error
 - 위의 parameters와 비슷하지만 new키워드를 추가하여 생성자 파라미터로 한정하였습니다.
 
 ```typescript
-type ConstructorParameters<
-	T extends new (...args: any) => any
-> = T extends new (...args: infer P) => any ? P : never;
+type ConstructorParameters<T extends new (...args: any) => any> =
+  T extends new (...args: infer P) => any ? P : never;
 
 class Person {
-	private _firstname: string;
-	private _lastname: string;
+  private _firstname: string;
+  private _lastname: string;
 
-	constructor(firstname: string, lastname: string) {
-		this._firstname = firstname;
-		this._lastname = lastname;
-	}
+  constructor(firstname: string, lastname: string) {
+    this._firstname = firstname;
+    this._lastname = lastname;
+  }
 }
 
 type constructuinArgsType = ConstructorParameters<typeof Person>;
@@ -354,10 +353,10 @@ let personConstructionArgs: constructuinArgsType = ['first', 'last'];
 
 ```typescript
 type ReturnType<T extends (...args: any) => any> = T extends (
-	...args: any
+  ...args: any
 ) => infer R
-	? R
-	: any;
+  ? R
+  : any;
 
 let f1 = () => ({ a: 23, b: 33 });
 type T0 = ReturnType<() => string>; // string
@@ -374,10 +373,10 @@ type T4 = ReturnType<typeof f1>; // { a: number, b: string }
 
 ```typescript
 type InstanceType<T extends new (...args: any) => any> = T extends new (
-	...args: any
+  ...args: any
 ) => infer R
-	? R
-	: any;
+  ? R
+  : any;
 
 let funTest = () => ({ a: 23, b: 33 });
 

@@ -44,7 +44,6 @@ brew cask install google-chrome
 
 ### 로그인 해서 북마크 가져오기
 
-
 ## iterm2 설치
 
 ```zsh
