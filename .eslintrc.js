@@ -24,6 +24,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   // 0 = off, 1 = warning, 2 = error (you passed "3")
   rules: {
+    indent: 0,
     'react/jsx-key': 2,
     'react/display-name': 0,
     'react/prop-types': 0,

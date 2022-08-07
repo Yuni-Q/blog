@@ -21,31 +21,31 @@
  * @return {ListNode}
  */
 function addTwoNumbers(l1, l2, carry) {
- // Break case (end of lists)
+ // 재귀 종료 조건 (ListNode가 모두 끝나는 시점)
  if (!l1 && !l2 && !carry) {
   return null;
  }
 
- // This allows us to carry numbers over
+ // 올림 수
  carry = carry || 0;
 
- // Add values (either node could not exist (or both if carry))
+ // 값 더하기
  let valRes = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry;
 
- // The carry for the next call
- let nextCarry = 0;
+ carry = 0;
 
- // Only single digits are allowed
+ // 한 자리 수로 만들기
  if (valRes >= 10) {
-  nextCarry = ~~(valRes / 10);
+  // ~~ === floor 연산자와 동일
+  carry = ~~(valRes / 10);
   valRes = valRes % 10;
  }
 
- // Create the new node
+ // 새 노드 만들기
  let l3 = new ListNode(valRes);
 
- // Set the new nodes next node
- l3.next = addTwoNumbers(l1 ? l1.next : null, l2 ? l2.next : null, nextCarry);
+ // 재귀 실행
+ l3.next = addTwoNumbers(l1 ? l1.next : null, l2 ? l2.next : null, carry);
 
  return l3;
 }
