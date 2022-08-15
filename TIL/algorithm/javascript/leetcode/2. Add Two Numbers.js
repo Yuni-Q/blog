@@ -8,13 +8,12 @@
 // Output: 7 -> 0 -> 8
 // Explanation: 342 + 465 = 807.
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
+// Definition for singly-linked list
+function ListNode(val) {
+ this.val = val;
+ this.next = null;
+}
+
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
@@ -49,3 +48,30 @@ function addTwoNumbers(l1, l2, carry) {
 
  return l3;
 }
+
+const addTwoNumbers2 = (l1, l2) => {
+ const head = new ListNode(0, null);
+ let tail = head;
+ let carryover = false;
+ while (l1 !== null || l2 !== null || carryover) {
+  let sum = carryover ? 1 : 0;
+  if (l1 !== null) {
+   sum += l1.val;
+   l1 = l1.next;
+  }
+  if (l2 !== null) {
+   sum += l2.val;
+   l2 = l2.next;
+  }
+  if (sum >= 10) {
+   sum -= 10;
+   carryover = true;
+  } else {
+   carryover = false;
+  }
+
+  tail.next = new ListNode(sum, null);
+  tail = tail.next;
+ }
+ return head.next;
+};
