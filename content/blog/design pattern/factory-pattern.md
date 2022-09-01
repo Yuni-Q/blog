@@ -80,39 +80,39 @@ marp: true
 
 ```ts
 class Factory {
-	orderPizza(): Pizza {
-		const pizza = new Pizza();
-		Pizza.prepare();
-		Pizza.bake();
-		Pizza.cut();
-		Pizza.box();
-		return pizza;
-	}
+  orderPizza(): Pizza {
+    const pizza = new Pizza();
+    Pizza.prepare();
+    Pizza.bake();
+    Pizza.cut();
+    Pizza.box();
+    return pizza;
+  }
 }
 
 // 여러 종류 피자를 만들기 위한 수정
 class Factory {
-	orderPizza(type: string): Pizza {
-		// 피자 종류가 바뀔 때 마다 코드를 고쳐야합니다.
-		let pizza;
-		if (type === 'cheese') {
-			pizza = new CheesePizza();
-		} else if (type === 'pepperoni') {
-			pizza = new PepperoniPizza();
-		} else if (type === 'clam') {
-			pizza = new ClamPizza();
-		} else if (type === 'veggie') {
-			pizza = new VeggiePizza();
-		}
+  orderPizza(type: string): Pizza {
+    // 피자 종류가 바뀔 때 마다 코드를 고쳐야합니다.
+    let pizza;
+    if (type === 'cheese') {
+      pizza = new CheesePizza();
+    } else if (type === 'pepperoni') {
+      pizza = new PepperoniPizza();
+    } else if (type === 'clam') {
+      pizza = new ClamPizza();
+    } else if (type === 'veggie') {
+      pizza = new VeggiePizza();
+    }
 
-		// 피자 종류에 상관없이 바뀌지 않는 부분.
-		Pizza.prepare();
-		Pizza.bake();
-		Pizza.cut();
-		Pizza.box();
+    // 피자 종류에 상관없이 바뀌지 않는 부분.
+    Pizza.prepare();
+    Pizza.bake();
+    Pizza.cut();
+    Pizza.box();
 
-		return pizza;
-	}
+    return pizza;
+  }
 }
 ```
 
@@ -151,27 +151,27 @@ class Factory {
 
 ```ts
 class Factory {
-	static orderPizza(type: string): Pizza {
-		// 피자 종류가 바뀔 때 마다 코드를 고쳐야합니다.
-		let pizza;
-		if (type === 'cheese') {
-			pizza = new CheesePizza();
-		} else if (type === 'pepperoni') {
-			pizza = new PepperoniPizza();
-		} else if (type === 'clam') {
-			pizza = new ClamPizza();
-		} else if (type === 'veggie') {
-			pizza = new VeggiePizza();
-		}
+  static orderPizza(type: string): Pizza {
+    // 피자 종류가 바뀔 때 마다 코드를 고쳐야합니다.
+    let pizza;
+    if (type === 'cheese') {
+      pizza = new CheesePizza();
+    } else if (type === 'pepperoni') {
+      pizza = new PepperoniPizza();
+    } else if (type === 'clam') {
+      pizza = new ClamPizza();
+    } else if (type === 'veggie') {
+      pizza = new VeggiePizza();
+    }
 
-		// 피자 종류에 상관없이 바뀌지 않는 부분.
-		pizza.prepare();
-		pizza.bake();
-		pizza.cut();
-		pizza.box();
+    // 피자 종류에 상관없이 바뀌지 않는 부분.
+    pizza.prepare();
+    pizza.bake();
+    pizza.cut();
+    pizza.box();
 
-		return pizza;
-	}
+    return pizza;
+  }
 }
 ```
 
@@ -194,72 +194,72 @@ class Factory {
 
 ```ts
 class PizzaFactory {
-	createPizza(type: string) {
-		if (type === 'cheese') {
-			return new CheesePizza();
-		}
-		if (type === 'pepper') {
-			return new PepperoniPizza();
-		}
-		if (type === 'clam') {
-			return new ClamPizza();
-		}
-		if (type === 'veggie') {
-			return new VeggiePizza();
-		}
-		throw new Error('올바른 타입이 아닙니다.');
-	}
+  createPizza(type: string) {
+    if (type === 'cheese') {
+      return new CheesePizza();
+    }
+    if (type === 'pepper') {
+      return new PepperoniPizza();
+    }
+    if (type === 'clam') {
+      return new ClamPizza();
+    }
+    if (type === 'veggie') {
+      return new VeggiePizza();
+    }
+    throw new Error('올바른 타입이 아닙니다.');
+  }
 }
 
 class PizzaStore {
-	public orderPizza(type: string): Pizza {
-		const pizza = new PizzaFactory().createPizz(type);
-		pizza.prepare();
-		pizza.bake();
-		pizza.cut();
-		pizza.box();
-		return pizza;
-	}
+  public orderPizza(type: string): Pizza {
+    const pizza = new PizzaFactory().createPizz(type);
+    pizza.prepare();
+    pizza.bake();
+    pizza.cut();
+    pizza.box();
+    return pizza;
+  }
 
-	abstract createPizza(type: string): Pizza;
+  abstract createPizza(type: string): Pizza;
 }
 
 abstract class Pizza {
-	name: string;
-	dough: string;
-	sauce: string;
-	toppings: string[];
+  name: string;
+  dough: string;
+  sauce: string;
+  toppings: string[];
 
-	prepare() {
-		console.log('Preparing ' + this.name);
-		console.log('Tossing dough... ');
-		console.log('Adding sauce... ');
-		console.log('Adding toppings: ');
-		this.toppings.forEach(topping => {
-			console.log(topping);
-		});
-	}
-	bake() {
-		console.log('Bake for 25 minutes at 350');
-	}
-	cut() {
-		console.log('Cutting the pizza into diagonal slice');
-	}
-	box() {
-		console.log('Place pizza in official PizzaStore box');
-	}
-	public getName(): string {
-		return this.name;
-	}
+  prepare() {
+    console.log('Preparing ' + this.name);
+    console.log('Tossing dough... ');
+    console.log('Adding sauce... ');
+    console.log('Adding toppings: ');
+    this.toppings.forEach((topping) => {
+      console.log(topping);
+    });
+  }
+  bake() {
+    console.log('Bake for 25 minutes at 350');
+  }
+  cut() {
+    console.log('Cutting the pizza into diagonal slice');
+  }
+  box() {
+    console.log('Place pizza in official PizzaStore box');
+  }
+  public getName(): string {
+    return this.name;
+  }
 }
 
 class NYStyleCheesePizza extends Pizza {
-	constructor() {
-		this.name = 'NY Style Sauce and Cheese Pizza';
-		this.dough = 'Thin Crust Dough';
-		this.sauce = 'Marinara Sauce';
-		this.toppings.push('Grated Regains Cheese');
-	}
+  constructor() {
+    this.name = 'NY Style Sauce and Cheese Pizza';
+    this.dough = 'Thin Crust Dough';
+    this.sauce = 'Marinara Sauce';
+    this.toppings.push('Grated Regains Cheese');
+  }
 }
 ```
 
@@ -410,16 +410,16 @@ class NYStyleCheesePizza extends Pizza {
 
 ```ts
 class PizzaStore {
-	public orderPizza(type: string): Pizza {
-		const pizza = this.createPizz(type);
-		pizza.prepare();
-		pizza.bake();
-		pizza.cut();
-		pizza.box();
-		return pizza;
-	}
+  public orderPizza(type: string): Pizza {
+    const pizza = this.createPizz(type);
+    pizza.prepare();
+    pizza.bake();
+    pizza.cut();
+    pizza.box();
+    return pizza;
+  }
 
-	abstract createPizza(type: string): Pizza;
+  abstract createPizza(type: string): Pizza;
 }
 ```
 
@@ -429,39 +429,39 @@ class PizzaStore {
 
 ```ts
 class NYPizzaStore extends PizzaStore {
-	createPizza(type: string) {
-		if (type === 'cheese') {
-			return new NYStyleCheesePizza();
-		}
-		if (type === 'pepper') {
-			return new NYStylePepperoniPizza();
-		}
-		if (type === 'clam') {
-			return new NYStyleClamPizza();
-		}
-		if (type === 'veggie') {
-			return new NYStyleVeggiePizza();
-		}
-		throw new Error('올바른 타입이 아닙니다.');
-	}
+  createPizza(type: string) {
+    if (type === 'cheese') {
+      return new NYStyleCheesePizza();
+    }
+    if (type === 'pepper') {
+      return new NYStylePepperoniPizza();
+    }
+    if (type === 'clam') {
+      return new NYStyleClamPizza();
+    }
+    if (type === 'veggie') {
+      return new NYStyleVeggiePizza();
+    }
+    throw new Error('올바른 타입이 아닙니다.');
+  }
 }
 
 class ChicagoPizzaStore extends PizzaStore {
-	createPizza(type: string) {
-		if (type === 'cheese') {
-			return new ChicagoStyleCheesePizza();
-		}
-		if (type === 'pepper') {
-			pizza = new ChicagoStylePepperoniPizza();
-		}
-		if (type === 'clam') {
-			pizza = new ChicagoStyleClamPizza();
-		}
-		if (type === 'veggie') {
-			pizza = new ChicagoStyleVeggiePizza();
-		}
-		throw new Error('올바른 타입이 아닙니다.');
-	}
+  createPizza(type: string) {
+    if (type === 'cheese') {
+      return new ChicagoStyleCheesePizza();
+    }
+    if (type === 'pepper') {
+      pizza = new ChicagoStylePepperoniPizza();
+    }
+    if (type === 'clam') {
+      pizza = new ChicagoStyleClamPizza();
+    }
+    if (type === 'veggie') {
+      pizza = new ChicagoStyleVeggiePizza();
+    }
+    throw new Error('올바른 타입이 아닙니다.');
+  }
 }
 ```
 
@@ -471,32 +471,32 @@ class ChicagoPizzaStore extends PizzaStore {
 
 ```typescript
 abstract class Pizza {
-	name: string;
-	dough: string;
-	sauce: string;
-	toppings: string[];
+  name: string;
+  dough: string;
+  sauce: string;
+  toppings: string[];
 
-	prepare() {
-		console.log('Preparing ' + this.name);
-		console.log('Tossing dough... ');
-		console.log('Adding sauce... ');
-		console.log('Adding toppings: ');
-		this.toppings.forEach(topping => {
-			console.log(topping);
-		});
-	}
-	bake() {
-		console.log('Bake for 25 minutes at 350');
-	}
-	cut() {
-		console.log('Cutting the pizza into diagonal slice');
-	}
-	box() {
-		console.log('Place pizza in official PizzaStore box');
-	}
-	public getName(): string {
-		return this.name;
-	}
+  prepare() {
+    console.log('Preparing ' + this.name);
+    console.log('Tossing dough... ');
+    console.log('Adding sauce... ');
+    console.log('Adding toppings: ');
+    this.toppings.forEach((topping) => {
+      console.log(topping);
+    });
+  }
+  bake() {
+    console.log('Bake for 25 minutes at 350');
+  }
+  cut() {
+    console.log('Cutting the pizza into diagonal slice');
+  }
+  box() {
+    console.log('Place pizza in official PizzaStore box');
+  }
+  public getName(): string {
+    return this.name;
+  }
 }
 ```
 
@@ -506,24 +506,24 @@ abstract class Pizza {
 
 ```ts
 class NYStyleCheesePizza extends Pizza {
-	constructor() {
-		this.name = 'NY Style Sauce and Cheese Pizza';
-		this.dough = 'Thin Crust Dough';
-		this.sauce = 'Marinara Sauce';
-		this.toppings.push('Grated Regains Cheese');
-	}
+  constructor() {
+    this.name = 'NY Style Sauce and Cheese Pizza';
+    this.dough = 'Thin Crust Dough';
+    this.sauce = 'Marinara Sauce';
+    this.toppings.push('Grated Regains Cheese');
+  }
 }
 
 class ChicagoStyleCheesePizza extends Pizza {
-	ChicagoStyleCheesePizza() {
-		this.name = 'Chicago Style Deep Dish Cheese Pizza';
-		this.dough = 'Extra Thick Crust Dough';
-		this.sauce = 'Plum Tomato Sauce';
-		this.toppings.push('Shredded Mozzarella Cheese');
-	}
-	cut() {
-		console.log('Cutting the pizza into square slices');
-	}
+  ChicagoStyleCheesePizza() {
+    this.name = 'Chicago Style Deep Dish Cheese Pizza';
+    this.dough = 'Extra Thick Crust Dough';
+    this.sauce = 'Plum Tomato Sauce';
+    this.toppings.push('Shredded Mozzarella Cheese');
+  }
+  cut() {
+    console.log('Cutting the pizza into square slices');
+  }
 }
 ```
 
@@ -664,10 +664,10 @@ console.log(chicagoStylePizza.getName());
 
 ```ts
 interface PizzaIngredientFactory {
-	createDough(): Dough;
-	createCheese(): Cheese;
-	createBoolgogi(): Boolgogi;
-	createVeggies(): Veggies[];
+  createDough(): Dough;
+  createCheese(): Cheese;
+  createBoolgogi(): Boolgogi;
+  createVeggies(): Veggies[];
 }
 ```
 
@@ -677,22 +677,22 @@ interface PizzaIngredientFactory {
 
 ```ts
 class IndiaPizzaIngredientFactory implements PizzaIngredientFactory {
-	public createDough(): Dough {
-		return new VeggieDough();
-	}
+  public createDough(): Dough {
+    return new VeggieDough();
+  }
 
-	public createCheese(): Cheese {
-		return new VeggieCheese();
-	}
+  public createCheese(): Cheese {
+    return new VeggieCheese();
+  }
 
-	public createBoolgogi(): Boolgogi {
-		return new ChickenBoolgogi();
-	}
+  public createBoolgogi(): Boolgogi {
+    return new ChickenBoolgogi();
+  }
 
-	public createVeggies(): Veggies[] {
-		const veggies = [new Garlic(), new Onion(), new Mushroom()];
-		return veggies;
-	}
+  public createVeggies(): Veggies[] {
+    const veggies = [new Garlic(), new Onion(), new Mushroom()];
+    return veggies;
+  }
 }
 ```
 
@@ -765,21 +765,21 @@ class BoolGogiPizza extends Pizza {
 
 ```ts
 interface PizzaStore {
-	createPizza(type: string): Pizza;
+  createPizza(type: string): Pizza;
 }
 
 class KorPizzaStore extends PizzaStore {
-	protected createPizza(type: string): Pizza {
-		let pizza;
-		const fac = new KorIngredientPizzaFactory();
+  protected createPizza(type: string): Pizza {
+    let pizza;
+    const fac = new KorIngredientPizzaFactory();
 
-		if (type === 'boolgogi') {
-			// 팩토리 메소드와 다른 점은 피자 자체를 store에서 생성해주었지만, 이제는 원재료를 로컬별 IngredientPizzaFactory에서 받아쓰기때문에, IngredientPizzaFactory 객체를 BoolGogiPizza 생성자에 넘겨주어 피자 재료를 달리생성하게된다.
-			pizza = new BoolGogiPizza(fac);
-		}
+    if (type === 'boolgogi') {
+      // 팩토리 메소드와 다른 점은 피자 자체를 store에서 생성해주었지만, 이제는 원재료를 로컬별 IngredientPizzaFactory에서 받아쓰기때문에, IngredientPizzaFactory 객체를 BoolGogiPizza 생성자에 넘겨주어 피자 재료를 달리생성하게된다.
+      pizza = new BoolGogiPizza(fac);
+    }
 
-		return pizza;
-	}
+    return pizza;
+  }
 }
 ```
 
@@ -803,7 +803,8 @@ class KorPizzaStore extends PizzaStore {
 ### 생성하는 것만 래핑하면 되는 것인가?
 
 - 디자인 패턴을 이해하는데는 `인칭(화자)`를 명확히 하는 것이 중요합니다.
-- 팩토리의 경우 input 값을 통해 객체를 `return` 해 주는 것이 핵심입니다. 객체를 생성해서 내부의 배열로서 관리하는 것은 팩토리 패턴이 아닙니다.
+- 팩토리의 경우 input 값을 통해 객체를 `return` 해 주는 것
+  이 핵심입니다. 객체를 생성해서 내부의 배열로서 관리하는 것은 팩토리 패턴이 아닙니다.
   - 게임에서 몬스터를 잡으면 아이템이 나오는데 그 종류는 정해져 있을 것이고 그 확률은 팩토리가 관리할 것입니다. 하지만 팩토리가 만든 아이템은 유저가 가져갈 것입니다. 유저는 어떤 몹을 잡았는지 팩토리에게 알려주고 팩토리가 반환해 주는 아이템을 선택적으로 가져갈 것입니다.
 
 ---

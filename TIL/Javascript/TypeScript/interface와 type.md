@@ -22,19 +22,19 @@
 - React component를 사용하는데 declaration merging이나 implements는 필요 없다.
 - interface는 union이 사용되었다면 extends 할 수 없기 때문에 해당 경우에는 type 별칭을 사용해서 타입을 기술해야 한다.
 
-## intetface 중복 선언 가능
+## interface 중복 선언 가능
 
 ```typescript
 interface ABC {
-  a: string;
+ a: string;
 }
 
 interface ABC {
-  b: string;
+ b: string;
 }
 
 interface ABC {
-  c: string;
+ c: string;
 }
 
 // 위의 세개의 interface가 합쳐져서 아래와 같다
