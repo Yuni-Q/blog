@@ -128,6 +128,8 @@ export const Woowa: React.VFC = () => {
             <li>지라 버전 자동 생성 배치 개발</li>
             <li>위키 데일리 리포트 자동 생성 배치 개발</li>
             <li>노션을 활용한 주간 회의 배치 개발</li>
+            <li>Gitlab MR 자동 머지 시 rebase 기능 개발</li>
+            <li>Gitlab MR 시 다른 MR rebase and merge 기능 개발</li>
           </ul>
         </section>
         <section>
