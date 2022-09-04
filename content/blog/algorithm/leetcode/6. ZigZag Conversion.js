@@ -29,37 +29,36 @@
  * @return {string}
  */
 var convert = function (s, numRows) {
- let j = 0;
- let k = 0;
- let result = [];
- let result2 = '';
- for (let i = 0; i < s.length; i += 1) {
-  if (!k) {
-   if (!result[j]) result[j] = '';
-   result[j] += s[i];
-   j += 1;
-  } else {
-   result[k] += s[i];
-   k -= 1;
+  let j = 0;
+  let k = 0;
+  let result = [];
+  let result2 = '';
+  for (let i = 0; i < s.length; i += 1) {
+    if (!k) {
+      if (!result[j]) result[j] = '';
+      result[j] += s[i];
+      j += 1;
+    } else {
+      result[k] += s[i];
+      k -= 1;
+    }
+
+    if (j === numRows) {
+      if (numRows < 2) {
+        k = 0;
+        j = 0;
+      } else {
+        k = numRows - 2;
+        j = 0;
+      }
+    }
+  }
+  for (let i = 0; i < numRows; i += 1) {
+    if (!result[i]) result[i] = '';
+    result2 += result[i];
   }
 
-  if (j === numRows) {
-   if (numRows < 2) {
-    k = 0;
-    j = 0;
-   } else {
-    k = numRows - 2;
-    j = 0;
-   }
-  }
- }
- console.log(result);
- for (let i = 0; i < numRows; i += 1) {
-  if (!result[i]) result[i] = '';
-  result2 += result[i];
- }
-
- return result2;
+  return result2;
 };
 
 // numRows로 잘라서 접어서 계산하면 마지막에 result를 위한 loop를 사용하지 않아서 s의 length만큼만 반복합니다.
