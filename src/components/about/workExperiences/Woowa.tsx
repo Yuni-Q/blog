@@ -22,7 +22,7 @@ export const Woowa: React.VFC = () => {
           </tr>
           <tr>
             <th>position</th>
-            <td>커머스웹프론트개발팀 / FrontEnd Engineer</td>
+            <td>배민스토어웹프론트개발팀 / FrontEnd Engineer</td>
           </tr>
         </tbody>
       </table>
@@ -50,6 +50,7 @@ export const Woowa: React.VFC = () => {
        * 페이먼트서비스실/결제서비스개발팀
        * 결제정산플랫폼실/배민페이프로덕트팀
        * 커머스실/커머스웹프론트개발팀
+       * 배민스토어서비스실/배민스토어웹프론트개발팀
        * */}
       <div style={{ textAlign: 'right' }}>
         <Button
@@ -74,7 +75,7 @@ export const Woowa: React.VFC = () => {
               </tr>
               <tr>
                 <th>position</th>
-                <td>웹 프론트엔드 개발</td>
+                <td>웹 프론트엔드 개발 및 파트 리딩</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -92,7 +93,9 @@ export const Woowa: React.VFC = () => {
             </tbody>
           </table>
           <ul>
-            <li>뱃지 개발</li>
+            <li>컴포넌트 개발</li>
+            <li>디자이너와의 주간 회의 운영</li>
+            <li>타 디자인시스템 및 디자인시스템 툴 팀과의 회의 운영</li>
           </ul>
         </section>
         <section>
@@ -105,7 +108,7 @@ export const Woowa: React.VFC = () => {
               </tr>
               <tr>
                 <th>position</th>
-                <td>웹 프론트엔드 개발</td>
+                <td>개발</td>
               </tr>
               <tr>
                 <th>skill</th>
@@ -124,6 +127,38 @@ export const Woowa: React.VFC = () => {
             <li>아틀라시안(지라, 위키) 연동</li>
             <li>지라 버전 자동 생성 배치 개발</li>
             <li>위키 데일리 리포트 자동 생성 배치 개발</li>
+            <li>노션을 활용한 주간 회의 배치 개발</li>
+          </ul>
+        </section>
+        <section>
+          <h3>커머스 백오피스 플랫폼</h3>
+          <table>
+            <tbody>
+              <tr>
+                <th>period</th>
+                <td>22.06 ~ 22.07</td>
+              </tr>
+              <tr>
+                <th>position</th>
+                <td>웹 프론트엔드 개발</td>
+              </tr>
+              <tr>
+                <th>skill</th>
+                <td>
+                  <Badge>Typescript</Badge>
+                  <Badge>React</Badge>
+                  <Badge>Mobx</Badge>
+                  <Badge>Next</Badge>
+                </td>
+              </tr>
+              <tr>
+                <th>description</th>
+                <td>커머스를 위한 백오피스 개발</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul>
+            <li>디자인 QA 전담</li>
           </ul>
         </section>
         <section>
