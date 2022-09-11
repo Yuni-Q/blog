@@ -160,3 +160,9 @@ draft: true
 | Broadcasts | blocked      | passed through |
 | Security   | high         | none           |
 | Bandwidth  | good control | none           |
+
+---
+
+## 참고
+
+- [후니의 쉽게 쓴 시스코 네트워킹](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788931589191&orderClick=LFR&Kc=)

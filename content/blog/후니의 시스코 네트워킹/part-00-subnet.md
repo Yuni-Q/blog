@@ -48,3 +48,9 @@ draft: true
 | 15.18.192.6   | 255.255.0.0     | A     | 15.18.0.0     |
 | 130.15.121.13 | 255.255.255.0   | B     | 130.15.121.0  |
 | 153.70.100.2  | 255.255.255.192 | B     | 153.70.100.0  |
+
+---
+
+## 참고
+
+- [후니의 쉽게 쓴 시스코 네트워킹](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788931589191&orderClick=LFR&Kc=)
