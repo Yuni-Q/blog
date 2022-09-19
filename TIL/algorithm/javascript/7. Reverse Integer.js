@@ -20,6 +20,24 @@
  * @return {number}
  **/
 var reverse = function (x) {
+ let str = String(Math.abs(x));
+ let result = '';
+
+ for (let i = str.length - 1; i >= 0; i--) {
+  result += str[i];
+ }
+
+ if (x < 0) {
+  result = '-' + result;
+ }
+
+ if (result > 2 ** 31 - 1 || result < (-2) ** 31) {
+  return 0;
+ }
+ return result;
+};
+
+var reverse2 = function (x) {
  if (x === 0) return 0;
  let a = 1;
  if (x < 0) {
@@ -49,3 +67,19 @@ var reverse = function (x) {
   return c;
  }
 };
+
+function reverse3(n) {
+ // Array#reverse method takes no argument.
+ // You can use `Math.abs()` instead of changing the sign if negative.
+ // Conversion of string to number can be done with unary plus operator.
+ var reverseN = +String(Math.abs(n)).split('').reverse().join('');
+ // Use a number constant instead of calculating the power
+ if (reverseN > 0x7fffffff) {
+  return 0;
+ }
+ // As we did not change the sign, you can do without the boolean isNegative.
+ // Don't multiply with -1, just use the unary minus operator.
+ // The ternary operator might interest you as well (you could even use it
+ //    to combine the above return into one return statement)
+ return n < 0 ? -reverseN : reverseN;
+}
