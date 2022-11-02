@@ -1,0 +1,3 @@
+// type IsNever<T> = T extends never ? true : false;
+// 아래와 같이 하라는데 잘 모르겠어요...
+type IsNever<T> = [T] extends [never] ? true : false;
