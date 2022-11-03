@@ -49,7 +49,7 @@ brew install --cask google-chrome
 ## iterm2 설치
 
 ```zsh
-brew cask install iterm2
+brew install --cask iterm2
 ```
 
 ### Theme
@@ -75,21 +75,19 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 ### powerlevel10k
 
+- root에서 실행할 것
+
 ```zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
 ```
 
-#### 테마 변경
-
-```zsh
-vi ~/.zshrc
-```
+## visual-studio-code 설치
 
 ```zsh
-ZSH_THEME="powerlevel10k/powerlevel10k" # 현재 사용 중인 테마
-# 테마를 재설정하고 싶을 때 사용하는 명령어
-p10k configure
+brew install --cask visual-studio-code
 ```
+
 
 ### vscode font setting
 
@@ -102,18 +100,14 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
 
-## visual-studio-code 설치
-
-```zsh
-brew cask install visual-studio-code
-```
-
 ## nvm 설치
 
 ```zsh
 brew install nvm
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 nvm ls-remote # 설치 가능한 모든 node.js 버전
-nvm install v12
 nvm install v16
 nvm use v12
 ```
@@ -140,7 +134,7 @@ brew cask install intellij-idea
 ## slack 설치
 
 ```zsh
-brew cask install slack
+brew install --cask slack
 ```
 
 ## mysql 설치
@@ -162,19 +156,25 @@ brew services start redis
 ## spectacle 설치
 
 ```zsh
-brew cask install spectacle
+brew install --cask spectacle
 ```
 
 ## clipy 설치
 
 ```zsh
-brew cask install clipy
+brew install --cask clipy
+```
+
+## Docker 설치
+
+```zsh
+brew install --cask docker
 ```
 
 ## bitbar 설치
 
 ```zsh
-brew cask install bitbar
+brew install --cask bitbar
 ```
 
 - 플러그인 폴더 설정 후 파일 세팅
