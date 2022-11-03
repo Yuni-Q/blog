@@ -22,24 +22,25 @@ draft: true
 
 ## 배터리 퍼센트 표시 및 날짜 표시 변경
 
+- Dock 및 메뉴 막대 > 배터리 > 퍼센트 보기
+
 ## 트랙패드 설정
 
 - 탭하여 클릭하기
 
 ## 편의 기능
 
-- 포인터 제어기 - 트랙패드 옵션 - 드래그 활성화 - 세 손가락으로 드래그 하기
+- 손쉬우 사용 - 포인터 제어기 - 트랙패드 옵션 - 드래그 활성화 - 세 손가락으로 드래그 하기
 
 ## Homebrew 설치
 
 ```zsh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ## chrome 설치
 
 ```zsh
-brew cask install google-chrome
 ```
 
 ### 로그인 해서 북마크 가져오기
