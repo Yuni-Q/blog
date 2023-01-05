@@ -1118,6 +1118,11 @@ const categories = await question.categories;
 
 - 참고 : 다른 언어 (자바, PHP 등)에서 왔고 모든 곳에서 게으른 관계를 사용하는 데 익숙하다면 조심하세요. 이러한 언어는 비동기식이 아니며 지연로드는 다른 방식으로 이루어집니다. 그렇기 때문에 거기에서 promise를 사용하지 않습니다. 자바 스크립트와 Node.JS에서 지연로드 된 관계를 원하면 promise를 사용해야합니다. 이것은 비표준 기술이며 TypeORM에서 실험적인 것으로 간주됩니다.
 
+## typeorm의 bigint
+
+- typeorm bigint는 number로 바꿔주지 않습니다. string입니다.
+  - [Note about bigint type: bigint column type, used in SQL databases, doesn’t fit into the regular number type and maps property to a string instead.](https://typeorm.io/entities#column-types)
+
 ---
 
 ## 참고
