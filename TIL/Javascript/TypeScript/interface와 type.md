@@ -45,3 +45,8 @@ interface ABC {
 //   c: string;
 // }
 ```
+
+## interface를 사용하는 경우
+
+- interface의 "merging" 기능을 활용하고 싶을 때.
+- 클래스/인터페이스 계층을 포함하는 OO 스타일 코드를 가지고 있을 때.
