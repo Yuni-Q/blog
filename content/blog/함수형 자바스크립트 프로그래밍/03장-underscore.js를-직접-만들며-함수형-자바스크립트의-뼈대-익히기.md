@@ -268,7 +268,7 @@ function bloop(new_data, body) {
     } else {
       for (var i = 0, keys = _.keys(data), len = keys.length; i < len; i++) {
         if (data.hasOwnProperty(key))
-          body(iteratee(data[key], key, data), result);
+          body(iteratee(data[keys[i]], keys[i], data), result);
       }
     }
     return result;
@@ -291,3 +291,103 @@ function bloop(new_data, body) {
 - 객체지향 프로그래밍과 함수형 프로그래밍
   - 함수형 프로그래밍에서의 추상화 단위는 함수다. 함수형 프로그맹이에서의 협업 방법은 함수의 인자와 결과값이다.
   - 객체지향의 추상화의 단위는 클래스. 협업 방법은 참조나 이벤트 등을 통한 연결
+
+## 3.3 _.filter, _.reject, _.find, _.some, \_.every 만들기
+
+### 3.3.1 \_.filter 만들기
+
+```js
+_.filter = function (data, predicate) {
+  var result = [];
+  _.each(data, function (val, idx, data) {
+    if (predicate(val, idx, data)) result.push(val);
+  });
+  return result;
+};
+```
+
+### 3.3.2 bloop로 \_.filter 만들기
+
+```js
+function bloop(new_data, body) {
+  // 보조 함수를 itr_predi로 변경
+  return function (data, itr_predi) {
+    var result = new_data(data);
+    if (isArrayLike(data)) {
+      for (var i = 0, len = data.length; i < len; i++) {
+        // 인자에 원본 추가 data[i]
+        body(itr_predi(data[i], i, data), result, data[i]);
+      }
+    } else {
+      for (var i = 0, keys = _.keys(data), len = keys.length; i < len; i++) {
+        if (data.hasOwnProperty(key))
+          // 인자에 원본 추가 data[keys[i]]
+          body(itr_predi(data[keys[i]], keys[i], data), result, data[keys[i]]);
+      }
+    }
+    return result;
+  };
+}
+
+_.filter = bloop(_.array, function (bool, result, val) {
+  if (bool) result.push(val);
+});
+```
+
+### 3.3.3 _.rest, _.toArray, _.reverse, _.if
+
+```js
+_.toArray = function (list) {
+  return Array, isArray(list) ? list : _values(list);
+};
+
+_.rest = function (list, num) {
+  return _.toArray(list).slice(num || 1);
+};
+
+_.reverse = function (list) {
+  return _.toArray(list).reverse();
+};
+```
+
+#### \_.rester
+
+```js
+_.rester = function (func, num) {
+  return function () {
+    return func.apply(null, _.rest(arguments, num));
+  };
+};
+
+function sum(a, b, c, d) {
+  return (a || 0) + (b || 0) + (c || 0) + (d || 0);
+}
+
+_.rester(sum, 3)(1, 2, 3, 4); // 4
+```
+
+#### \_.if
+
+```js
+_.if = function (validator, func, alter) {
+  return validator.apply(null, arguments)
+    ? func.apply(null, arguments)
+    : alter && alter.apply(null, arguments);
+};
+
+function sub(a, b) {
+  return a - b;
+}
+
+var diff = _.if(
+  function (a, b) {
+    return a >= b;
+  },
+  sub,
+  function (a, b) {
+    return sub(b, a);
+  },
+);
+
+_.safety = _.with_validator = _.if;
+```
