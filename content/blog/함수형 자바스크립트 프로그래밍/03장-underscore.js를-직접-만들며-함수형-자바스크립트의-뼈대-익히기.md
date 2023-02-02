@@ -391,3 +391,122 @@ var diff = _.if(
 
 _.safety = _.with_validator = _.if;
 ```
+
+- 값이 아닌 함수로 협업하면 보다 많은 가능성을 만들 수 있다.
+
+### 3.3.4 익명 함수 없이 bloop로 \_.filter 만들기
+
+```js
+_.push = function (obj, val) {
+  obj.push(val);
+  return obj;
+};
+_.filter = bloop(_.array, _.if(_.idtt, _.rester(_.push)));
+```
+
+#### 익명 함수, 람다, 화살표 함수
+
+- 람다 표현식은 함수형 프로그램잉의 일부다. 클로저를 로직에 활용하기 위해서 혹은 고차 함수와 협업하기 위해서 사용되는 기법 중 하나일 뿐이다.
+- 함수를 보다 적극적으로 사용하고, 함수를 추상화의 단위로 사용하고, 상태 변경을 최소화하고, 로직을 함수로 고르고, 기본 객체를 많이 사용하며 함수의 응용을 중시하는 프로그래밍이 함수형 프로그래밍이다.
+- 다소 덜 사용되고 있었던 함수의 숨은 기능도 충분히 활용하고, 다양한 함수들의 조합으로 여러 컨텍스트를 연결하고 제어하는 것이 함수형 프로그래밍이다.
+
+### 3.3.5 \_.reject 만들기
+
+```js
+_.reject = bloop(_.array, _.if(_.idtt, _.noop, _.rester(_.push)));
+_.reject = bloop(_.array, _.if(_.negate(_.idtt), _.rester(_.push)));
+_.reject = bloop(_.array, _.if(_.not, _.rester(_.push)));
+```
+
+### 3.3.6 _.find, _.some, \_.every를 만들기 위해 bloop 고치기
+
+```js
+function bloop(new_data, body, stopper) {
+  return function (data, itr_predi) {
+    var result = new_data(data);
+    if (isArrayLike(data)) {
+      for (var i = 0, len = data.length; i < len; i++) {
+        memo = iter_predi(data[i], i, data); // 결과를 재료로 사용하기 위해 변수에 담기
+        if (!stopper) body(memo, result, data[i]);
+        // stopper 없으면 원래 로직대로
+        else if (stopper(memo)) return body(memo, result, data[i], i);
+      }
+    } else {
+      for (var i = 0, keys = _.keys(data), len = keys.length; i < len; i++) {
+        if (data.hasOwnProperty(key)) {
+          memo = itr_predi(data[keys[i]], keys[i], data);
+          if (!stopper) body(memo, result, data[keys[i]], keys[i]);
+          // stopper 없으면 원래 로직대로
+          else if (stopper(memo))
+            return body(memo, result, data[keys[i]], keys[i]);
+        }
+      }
+    }
+    return result;
+  };
+}
+
+_.each = bloop(_.identity, _.noop);
+_.map = bloop(_.array, _.push_to);
+_.filter = bloop(_.array, _.if(_.idtt, _rester(_.push)));
+_.reject = bloop(_.array, _.if(_.not, _rester(_.push)));
+```
+
+### 3.3.7 \_.find 만들기
+
+```js
+_.find = bloop(
+  _.noop, // new_data - 하나도 못 찾은 경우 undefined를 리턴하기 위해
+  function (bool, result, val) {
+    return val;
+  }, // body - stopper 조건에 부합한 경우 리턴할 값
+  _.idtt, // stopper - 참일 때 나가기 위해 memo의 값을 리턴
+);
+
+_.find = bloop(_.noop, _.rester(_.idtt, 2), _.idtt);
+```
+
+### 3.3.8 _.findIndex, _.findKey 만들기
+
+```js
+_.find = bloop(_.noop, _.rester(_.idtt, 2), _.idtt);
+_.findIndex = bloop(_.constant(-1), _.rester(_.idtt, 3), _.idtt);
+_.findKey = bloop(_.noop, _.rester(_.idtt, 3), _.idtt);
+```
+
+### 3.3.9 \_.some, \_every 만들기
+
+```js
+_.some = bloop(_.constant(false), _.constant(true), _.idtt);
+_.every = bloop(_.constant(true), _.constant(false), _.not);
+```
+
+```js
+function bloop(new_data, body, stopper) {
+  return function (data, itr_predi) {
+    itr_predi = itr_predi || _.idtt; // 넘어오지 않으면 _.idtt로 대체
+    var result = new_data(data);
+    if (isArrayLike(data)) {
+      for (var i = 0, len = data.length; i < len; i++) {
+        memo = iter_predi(data[i], i, data); // 결과를 재료로 사용하기 위해 변수에 담기
+        if (!stopper) body(memo, result, data[i]);
+        // stopper 없으면 원래 로직대로
+        else if (stopper(memo)) return body(memo, result, data[i], i);
+      }
+    } else {
+      for (var i = 0, keys = _.keys(data), len = keys.length; i < len; i++) {
+        if (data.hasOwnProperty(key)) {
+          memo = itr_predi(data[keys[i]], keys[i], data);
+          if (!stopper) body(memo, result, data[keys[i]], keys[i]);
+          // stopper 없으면 원래 로직대로
+          else if (stopper(memo))
+            return body(memo, result, data[keys[i]], keys[i]);
+        }
+      }
+    }
+    return result;
+  };
+}
+```
+
+### 3.3.10 함수형 프로그래밍에서 함수는 '로직'이다!
