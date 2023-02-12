@@ -97,3 +97,9 @@ draft: true
 - Keep eyes on WebAssembly & JavaScript
 - Zero-trust security model
 - Always bet on Web
+
+## 느낀점
+
+- 엣지라는 단어가 왜 그렇게 다양하고 많이 쓰이는지 알게 되었다.
+- 프론트엔드로서 역할을 조금 더 넓게 생각해야 할거 같다.
+- 웹어셈블리 공부해야 겠다(러스트?)
