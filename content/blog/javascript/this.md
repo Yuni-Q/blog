@@ -20,7 +20,8 @@ draft: false
 ## this
 
 - 자바스크립트의 함수는 호출될 때, 매개변수로 전달되는 인자값 이외에, arguments 객체와 this를 암묵적으로 전달 받습니다.
-  - 자바스크립트의 this keyword는 Java와 같은 익숙한 언어의 개념과 달라 개발자에게 혼란을 줍니다. - Java에서의 this는 인스턴스 자신(self)을 가리키는 참조변수입니다. this가 객체 자신에 대한 참조 값을 가지고 있다는 뜻입니다. 주로 매개변수와 객체 자신이 가지고 있는 멤버변수명이 같을 경우 이를 구분하기 위해서 사용됩니다.
+  - 자바스크립트의 this keyword는 Java와 같은 익숙한 언어의 개념과 달라 개발자에게 혼란을 줍니다.
+  - Java에서의 this는 인스턴스 자신(self)을 가리키는 참조변수입니다. this가 객체 자신에 대한 참조 값을 가지고 있다는 뜻입니다. 주로 매개변수와 객체 자신이 가지고 있는 멤버변수명이 같을 경우 이를 구분하기 위해서 사용됩니다.
   - 자바스크립트의 경우 Java와 같이 this에 바인딩되는 객체는 한가지가 아니라 해당 함수 호출 방식에 따라 this에 바인딩되는 객체가 달라집니다.
 - this는 함수가 동작하는 곳에 있는 오브젝트와 연결해줍니다.
 - 자바스크립트의 경우 함수 호출 방식에 의해 this에 바인딩할 어떤 객체가 동적으로 결정됩니다. 다시 말해, 함수를 선언할 때 this에 바인딩할 객체가 정적으로 결정되는 것이 아니고, 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정됩니다.
@@ -35,8 +36,8 @@ draft: false
 - apply/call/bind 호출
 
 ```javascript
-var foo = function() {
-	console.dir(this);
+var foo = function () {
+  console.dir(this);
 };
 
 // 1. 함수 호출
@@ -79,7 +80,7 @@ console.log(ga); // Global variable
 console.log(window.ga); // Global variable
 
 function foo() {
-	console.log('invoked!');
+  console.log('invoked!');
 }
 window.foo(); // invoked!
 ```
@@ -88,11 +89,11 @@ window.foo(); // invoked!
 
 ```javascript
 function foo() {
-	console.log("foo's this: ", this); // foo's this: window
-	function bar() {
-		console.log("bar's this: ", this); // bar's this: window
-	}
-	bar();
+  console.log("foo's this: ", this); // foo's this: window
+  function bar() {
+    console.log("bar's this: ", this); // bar's this: window
+  }
+  bar();
 }
 foo();
 ```
@@ -103,16 +104,16 @@ foo();
 var value = 1;
 
 var obj = {
-	value: 100,
-	foo: function() {
-		console.log("foo's this: ", this); // foo's this: obj
-		console.log("foo's this.value: ", this.value); // foo's this.value: 100
-		function bar() {
-			console.log("bar's this: ", this); // bar's this: window
-			console.log("bar's this.value: ", this.value); // bar's this.value: 1
-		}
-		bar();
-	},
+  value: 100,
+  foo: function () {
+    console.log("foo's this: ", this); // foo's this: obj
+    console.log("foo's this.value: ", this.value); // foo's this.value: 100
+    function bar() {
+      console.log("bar's this: ", this); // bar's this: window
+      console.log("bar's this.value: ", this.value); // bar's this.value: 1
+    }
+    bar();
+  },
 };
 
 obj.foo();
@@ -124,13 +125,13 @@ obj.foo();
 var value = 1;
 
 var obj = {
-	value: 100,
-	foo: function() {
-		setTimeout(function() {
-			console.log("callback's this: ", this); // callback's this: window
-			console.log("callback's this.value: ", this.value); // callback's this.value: 1
-		}, 100);
-	},
+  value: 100,
+  foo: function () {
+    setTimeout(function () {
+      console.log("callback's this: ", this); // callback's this: window
+      console.log("callback's this.value: ", this.value); // callback's this.value: 1
+    }, 100);
+  },
 };
 
 obj.foo();
@@ -144,21 +145,21 @@ obj.foo();
 var value = 1;
 
 var obj = {
-	value: 100,
-	foo: function() {
-		var that = this; // Workaround : this === obj
+  value: 100,
+  foo: function () {
+    var that = this; // Workaround : this === obj
 
-		console.log("foo's this: ", this); // foo's this: obj
-		console.log("foo's this.value: ", this.value); // foo's this.value: 100
-		function bar() {
-			console.log("bar's this: ", this); // bar's this: window
-			console.log("bar's this.value: ", this.value); // bar's this.value: 1
+    console.log("foo's this: ", this); // foo's this: obj
+    console.log("foo's this.value: ", this.value); // foo's this.value: 100
+    function bar() {
+      console.log("bar's this: ", this); // bar's this: window
+      console.log("bar's this.value: ", this.value); // bar's this.value: 1
 
-			console.log("bar's that: ", that); // bar's this: obj
-			console.log("bar's that.value: ", that.value); // bar's this.value: 100
-		}
-		bar();
-	},
+      console.log("bar's that: ", that); // bar's this: obj
+      console.log("bar's that.value: ", that.value); // bar's this.value: 100
+    }
+    bar();
+  },
 };
 
 obj.foo();
@@ -172,14 +173,14 @@ obj.foo();
 
 ```javascript
 var obj1 = {
-	name: 'Lee',
-	sayName: function() {
-		console.log(this.name);
-	},
+  name: 'Lee',
+  sayName: function () {
+    console.log(this.name);
+  },
 };
 
 var obj2 = {
-	name: 'Kim',
+  name: 'Kim',
 };
 
 obj2.sayName = obj1.sayName;
@@ -192,11 +193,11 @@ obj2.sayName(); // Kim
 
 ```javascript
 function Person(name) {
-	this.name = name;
+  this.name = name;
 }
 
-Person.prototype.getName = function() {
-	return this.name;
+Person.prototype.getName = function () {
+  return this.name;
 };
 
 var me = new Person('Lee');
@@ -215,7 +216,7 @@ console.log(Person.prototype.getName()); // Kim
 ```javascript
 // 생성자 함수
 function Person(name) {
-	this.name = name;
+  this.name = name;
 }
 
 var me = new Person('Lee');
@@ -247,9 +248,9 @@ console.log(you); // undefined
 
 ```javascript
 function Person(name) {
-	// 생성자 함수 코드 실행 전 -------- 1
-	this.name = name; // --------- 2
-	// 생성된 함수 반환 -------------- 3
+  // 생성자 함수 코드 실행 전 -------- 1
+  this.name = name; // --------- 2
+  // 생성된 함수 반환 -------------- 3
 }
 
 var me = new Person('Lee');
@@ -261,16 +262,16 @@ console.log(me.name); // Lee
 ```javascript
 // 객체 리터럴 방식
 var foo = {
-	name: 'foo',
-	gender: 'male',
+  name: 'foo',
+  gender: 'male',
 };
 
 console.dir(foo);
 
 // 생성자 함수 방식
 function Person(name, gender) {
-	this.name = name;
-	this.gender = gender;
+  this.name = name;
+  this.gender = gender;
 }
 
 var me = new Person('Lee', 'male');
@@ -294,18 +295,18 @@ console.dir(you);
 ```javascript
 // Scope-Safe Constructor Pattern
 function A(arg) {
-	// 생성자 함수가 new 연산자와 함께 호출되면 함수의 선두에서 빈객체를 생성하고 this에 바인딩한다.
+  // 생성자 함수가 new 연산자와 함께 호출되면 함수의 선두에서 빈객체를 생성하고 this에 바인딩한다.
 
-	/**
-	 * this가 호출된 함수(arguments.callee, 본 예제의 경우 A)의 인스턴스가 아니면 new 연산자를 사용하지 않은 것이므로 이 경우 new와 함께 생성자 함수를 호출하여 인스턴스를 반환합니다.
-	 * arguments.callee는 호출된 함수의 이름을 나타냅니다. 이 예제의 경우 A로 표기하여도 문제없이 동작하지만 특정함수의 이름과 의존성을 없애기 위해서 arguments.callee를 사용하는 것이 좋습니다.
-	 */
-	if (!(this instanceof arguments.callee)) {
-		return new arguments.callee(arg);
-	}
+  /**
+   * this가 호출된 함수(arguments.callee, 본 예제의 경우 A)의 인스턴스가 아니면 new 연산자를 사용하지 않은 것이므로 이 경우 new와 함께 생성자 함수를 호출하여 인스턴스를 반환합니다.
+   * arguments.callee는 호출된 함수의 이름을 나타냅니다. 이 예제의 경우 A로 표기하여도 문제없이 동작하지만 특정함수의 이름과 의존성을 없애기 위해서 arguments.callee를 사용하는 것이 좋습니다.
+   */
+  if (!(this instanceof arguments.callee)) {
+    return new arguments.callee(arg);
+  }
 
-	// 프로퍼티 생성과 값의 할당
-	this.value = arg ? arg : 0;
+  // 프로퍼티 생성과 값의 할당
+  this.value = arg ? arg : 0;
 }
 
 var a = new A(100);
@@ -321,8 +322,8 @@ console.log(b.value); // 10
 
 ```javascript
 function Person(name) {
-	// new없이 호출하는 경우, 전역객체에 name 프로퍼티를 추가
-	this.name = name;
+  // new없이 호출하는 경우, 전역객체에 name 프로퍼티를 추가
+  this.name = name;
 }
 
 // 일반 함수로서 호출되었기 때문에 객체를 암묵적으로 생성하여 반환하지 않습니다.
@@ -350,8 +351,8 @@ func.apply(thisArg, [argsArray]);
 - 기억해야 할 것은 apply() 메소드를 호출하는 주체는 함수이며 apply() 메소드는 this를 특정 객체에 바인딩할 뿐 본질적인 기능은 함수 호출이라는 것입니다.
 
 ```javascript
-var Person = function(name) {
-	this.name = name;
+var Person = function (name) {
+  this.name = name;
 };
 
 var foo = {};
@@ -367,15 +368,15 @@ console.log(foo); // { name: 'name' }
 
 ```javascript
 function convertArgsToArray() {
-	console.log(arguments);
+  console.log(arguments);
 
-	// arguments 객체를 배열로 변환
-	// slice: 배열의 특정 부분에 대한 복사본을 생성한다.
-	var arr = Array.prototype.slice.apply(arguments); // arguments.slice
-	// var arr = [].slice.apply(arguments);
+  // arguments 객체를 배열로 변환
+  // slice: 배열의 특정 부분에 대한 복사본을 생성한다.
+  var arr = Array.prototype.slice.apply(arguments); // arguments.slice
+  // var arr = [].slice.apply(arguments);
 
-	console.log(arr);
-	return arr;
+  console.log(arr);
+  return arr;
 }
 
 convertArgsToArray(1, 2, 3);
@@ -393,17 +394,17 @@ Person.call(foo, 1, 2, 3);
 
 ```javascript
 function Person(name) {
-	this.name = name;
+  this.name = name;
 }
 
-Person.prototype.doSomething = function(callback) {
-	if (typeof callback == 'function') {
-		callback.call(this);
-	}
+Person.prototype.doSomething = function (callback) {
+  if (typeof callback == 'function') {
+    callback.call(this);
+  }
 };
 
 function foo() {
-	console.log(this.name);
+  console.log(this.name);
 }
 
 var p = new Person('Lee');
@@ -416,19 +417,19 @@ p.doSomething(foo); // 'Lee'
 
 ```javascript
 function Person(name) {
-	this.name = name;
+  this.name = name;
 }
 
-Person.prototype.doSomething = function(callback) {
-	if (typeof callback == 'function') {
-		// callback.call(this);
-		// this가 바인딩된 새로운 함수를 호출
-		callback.bind(this)();
-	}
+Person.prototype.doSomething = function (callback) {
+  if (typeof callback == 'function') {
+    // callback.call(this);
+    // this가 바인딩된 새로운 함수를 호출
+    callback.bind(this)();
+  }
 };
 
 function foo() {
-	console.log('#', this.name);
+  console.log('#', this.name);
 }
 
 var p = new Person('Lee');
@@ -459,13 +460,13 @@ p.doSomething(foo); // 'Lee'
 
 ```javascript
 myObject = {
-	myMethod: function() {
-		helperObject.doSomethingCool('superCool', this.onSomethingCoolDone, this);
-	},
+  myMethod: function () {
+    helperObject.doSomethingCool('superCool', this.onSomethingCoolDone, this);
+  },
 
-	onSomethingCoolDone: function() {
-		/// Now everybody know that "this" === myObject
-	},
+  onSomethingCoolDone: function () {
+    /// Now everybody know that "this" === myObject
+  },
 };
 ```
 
@@ -473,16 +474,16 @@ myObject = {
 
 ```javascript
 myObject = {
-	myMethod: function() {
-		helperObject.doSomethingCool(
-			'superCool',
-			this.onSomethingCoolDone.bind(this)
-		);
-	},
+  myMethod: function () {
+    helperObject.doSomethingCool(
+      'superCool',
+      this.onSomethingCoolDone.bind(this),
+    );
+  },
 
-	onSomethingCoolDone: function() {
-		/// Now everybody know that "this" === myObject
-	},
+  onSomethingCoolDone: function () {
+    /// Now everybody know that "this" === myObject
+  },
 };
 ```
 
@@ -490,13 +491,13 @@ myObject = {
 
 ```javascript
 myObject = {
-	myMethod: function() {
-		var me = this;
+  myMethod: function () {
+    var me = this;
 
-		helperObject.doSomethingCool('superCool', function() {
-			/// Only god knows what is "this" here, but we have access to "me"
-		});
-	},
+    helperObject.doSomethingCool('superCool', function () {
+      /// Only god knows what is "this" here, but we have access to "me"
+    });
+  },
 };
 ```
 
