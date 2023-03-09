@@ -8,7 +8,7 @@ let input = '';
 rl.on('line', function (line) {
   input += line + '\n';
 }).on('close', function () {
-  solution(input.slice(0).split('\n'));
+  solution(input.slice(0).trim().split('\n'));
   process.exit();
 });
 

@@ -9,11 +9,10 @@
 
 // 1101은 너무 크다고 수행되지 않음..
 
-type MinusOne<T extends number, Tuple extends unknown[] = []> =
-  T extends 0
-    ? -1
-    : [unknown, unknown, ...Tuple]['length'] extends T
-      ? [unknown, ...Tuple]['length']
-      : [unknown, ...Tuple]['length'] extends T
-        ? Tuple['length']
-        : MinusOne<T, [unknown, unknown, ...Tuple]>
+type MinusOne<T extends number, Tuple extends unknown[] = []> = T extends 0
+  ? -1
+  : [unknown, unknown, ...Tuple]['length'] extends T
+  ? [unknown, ...Tuple]['length']
+  : [unknown, ...Tuple]['length'] extends T
+  ? Tuple['length']
+  : MinusOne<T, [unknown, unknown, ...Tuple]>;
