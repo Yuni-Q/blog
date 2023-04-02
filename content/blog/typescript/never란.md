@@ -59,4 +59,38 @@ const d = (): void => {
 };
 ```
 
+### never 팁
+
+```ts
+// type IsNever<T> = T extends never ? true : false
+// type A1 = IsNever<never> // never
+// type A2 = IsNever<boolean> // false
+
+// 타입 매개변수와 유니온이 만나면 분배 법칙이 실행된다.
+// never는 유니온이다(never 공집합이다). 공집합이기 때문에 분배 법칙이 일어나지 않는다. never extends never는 never이다.
+// 배열에 넣는 것은 분배 법칙을 막는 한가지 방법이다. 객체를 활용해도 된다. type IsNever<T> = { type: T } extends { type: never } ? true : false
+type IsNever<T> = [T] extends [never] ? true : false;
+type A1 = IsNever<never>; // true
+type A2 = IsNever<boolean>; // false
+
+interface VO {
+  value: any;
+}
+
+const obj = { value: 'hi', what: 123 };
+const a: VO = obj;
+// const a: VO = { value: 'hi', what: 123 } // 리터럴을 바로 넣으면 잉여속성 체크를 한다.
+
+const returnVO = <T extends VO>(): T => {
+  // '{ value: string; }' is assignable to the constraint of type 'T', but 'T' could be instantiated with a different subtype of constraint 'VO'.
+  return { value: 'test' };
+};
+
+// 'boolean' is assignable to the constraint of type 'T', but 'T' could be instantiated with a different subtype of constraint 'boolean'.
+// boolean의 부분집합에는 never도 있다.
+function onlyBoolean<T extends boolean>(arg: T = false): T {
+  return arg;
+}
+```
+
 - [타입스크립트의 Never 타입 완벽 가이드](https://ui.toast.com/weekly-pick/ko_20220323)
