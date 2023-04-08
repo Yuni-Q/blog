@@ -33,6 +33,7 @@ draft: false
 | option + shift + drag  | 선택 영역 중독 커서(마우스 기준) |
 | command + 위/아래      | 최상위 / 최하위 로 이동          |
 | command + b            | 사이드바 숨기기                  |
+| command + i            | 자동완성                         |
 
 ## terminer에서 노드 실행하기
 
@@ -111,6 +112,9 @@ eslint init
 
 ### [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
 
+### [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+
+### [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 
 ---
 
@@ -119,7 +123,6 @@ eslint init
 ### [Placeholder Images](https://marketplace.visualstudio.com/items?itemName=JakeWilson.vscode-placeholder-images)
 
 ### [vscode-faker](https://marketplace.visualstudio.com/items?itemName=deerawan.vscode-faker)
-
 
 ### [htmltagwrap](https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap)
 

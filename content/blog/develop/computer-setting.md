@@ -32,6 +32,8 @@ draft: true
 
 - 손쉬운 사용 - 포인터 제어기 - 트랙패드 옵션 - 드래그 활성화 - 세 손가락으로 드래그 하기
 
+## [script kit](https://www.scriptkit.com/)
+
 ## Homebrew 설치
 
 ```zsh
@@ -41,7 +43,7 @@ draft: true
 ## chrome 설치
 
 ```zsh
-brew install --cask google-chrome 
+brew install --cask google-chrome
 ```
 
 ### 로그인 해서 북마크 가져오기
@@ -87,7 +89,6 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
 ```zsh
 brew install --cask visual-studio-code
 ```
-
 
 ### vscode font setting
 
