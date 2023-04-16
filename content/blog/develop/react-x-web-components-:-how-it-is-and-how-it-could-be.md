@@ -1,6 +1,5 @@
 ---
-title: React x 웹 구성 요소 - 현재 상태 및 상태
-Could Be
+title: React x 웹 구성 요소 - 현재 상태 및 상태 Could Be
 date: 2023-04-02 21:04:36
 category: develop
 tags: []
