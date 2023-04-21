@@ -30,3 +30,9 @@ function nestedUpdate(object, keys, modify) {
   });
 }
 ```
+
+---
+
+## 참고
+
+- [쏙쏙 들어오는 함수형 코딩](https://product.kyobobook.co.kr/detail/S000001952246)
