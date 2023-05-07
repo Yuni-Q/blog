@@ -160,3 +160,21 @@ draft: true
   - 데이터의 흐름이 한 눈에 보입니다.
   - 문제를 해결하기가 편리합니다. 네트워크에서 문제가 발생하면 이 문제 하나를 7개의 작은 문제로 나눈 후 그 문제를 해결하면 훨씬 쉽습니다.
   - 계층을 7개로 나누고 층별로 표준화를 하여 여러 회사 장비를 써도 네트워크가 이상 없이 돌아갑니다.
+
+## 09 SECTION 09 커ㅁ퓨터는 프로토콜(Protocol)로 말한다.
+
+- 프로토콜이란, 우리말로 하면 규약, 협약과 비슷한 뜻인데, 컴퓨터터끼리 서로 통신하기 위해서 꼭 필요한 서로 간의 통신 규약 또는 통신 방식에 대한 약속으로, 프로토콜이 같은 것끼리만 대화, 즉 통신이 가능합니다.
+
+### 프로토콜의 종류
+
+- TCP/IP란 Transmission Control Protocol/Internet Protocol 입니다.
+  - 인터넷에서 사용하는 프로토콜입니다.
+- IPX는 Internetwork Packet eXchange라는 프로토콜입니다.
+  - 같은 게임방에서 친구들끼리 편을 나누어 겡미을 하는 경우에는 IPX라는 프로토콜을 사용합니다.
+- 매킨토시가 사용하는 프로토콜인 AppleTalk가 있습니다.
+
+---
+
+## 참고
+
+- [후니의 쉽게 쓴 시스코 네트워킹](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788931589191&orderClick=LFR&Kc=)
