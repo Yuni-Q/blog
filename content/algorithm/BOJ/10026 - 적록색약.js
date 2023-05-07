@@ -6,13 +6,26 @@ function solution(input) {
   // map: 지도
   const map = input.slice(1).map((row) => row.split(''));
   // visited: 방문 여부
-  const visited = Array.from(Array(N), () => Array(N).fill(false));
-  // visited2: 적록색약인 사람의 방문 여부
-  const visited2 = Array.from(Array(N), () => Array(N).fill(false));
+  const visitedArray = [
+    Array.from(Array(N), () => Array(N).fill(false)),
+    Array.from(Array(N), () => Array(N).fill(false)),
+  ];
+  // predicate: 색이 같은지 확인하는 함수
+  const predicateArray = [
+    (color, x, y) => color !== map[x][y],
+    (color, x, y) => {
+      if (
+        (color === 'R' || color === 'G') &&
+        (map[x][y] === 'R' || map[x][y] === 'G')
+      ) {
+        return false;
+      }
+      return color !== map[x][y];
+    },
+  ];
+
   // count: 구역의 수
-  let count = 0;
-  // count2: 적록색약인 사람의 구역의 수
-  let count2 = 0;
+  let countArray = [0, 0];
 
   // dx, dy: 상하좌우
   const dx = [0, 0, -1, 1];
@@ -45,44 +58,26 @@ function solution(input) {
     }
   };
 
+  // 지도를 탐색하면서 구역의 수를 구함
   for (let i = 0; i < N; i++) {
     for (let j = 0; j < N; j++) {
-      // 적록색약이 아닌 사람
-      if (!visited[i][j]) {
-        dfs({
-          x: i,
-          y: j,
-          color: map[i][j],
-          predicate: (color, x, y) => color !== map[x][y],
-          visited,
-        });
-        // 구역의 수 증가
-        count++;
-      }
-      // 적록색약인 사람
-      if (!visited2[i][j]) {
-        dfs({
-          x: i,
-          y: j,
-          color: map[i][j],
-          predicate: (color, x, y) => {
-            if (
-              (color === 'R' || color === 'G') &&
-              (map[x][y] === 'R' || map[x][y] === 'G')
-            ) {
-              return false;
-            }
-            return color !== map[x][y];
-          },
-          visited: visited2,
-        });
-        // 구역의 수 증가
-        count2++;
-      }
+      visitedArray.forEach((visited, index) => {
+        if (!visited[i][j]) {
+          dfs({
+            x: i,
+            y: j,
+            color: map[i][j],
+            predicate: predicateArray[index],
+            visited,
+          });
+          // 구역의 수 증가
+          countArray[index] = countArray[index] + 1;
+        }
+      });
     }
   }
   // 정답 출력
-  console.log(count, count2);
+  console.log(`${countArray[0]} ${countArray[1]}`);
 }
 
 solution(input);
