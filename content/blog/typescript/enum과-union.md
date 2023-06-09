@@ -10,7 +10,7 @@ draft: true
 
 - 아래의 글은 열거형을 써야 하는 곳에는 enum을 쓰자는 내용 및 근거입니다.
 
-## 우선enum의 문제점이라고 하는 것들을 살펴보겠습니다.
+## 우선 enum의 문제점이라고 하는 것들을 살펴보겠습니다.
 
 ### enum은 기본적으로 확장이 불가능합니다.
 
@@ -52,6 +52,7 @@ enum Status {
 }
 
 const newStatus: Status = 100; // 에러가 발생하지 않습니다.
+// 5.0에서부터는 에러가 발생합니다.
 
 const a = (s: Status) => {
   return s;
@@ -96,13 +97,15 @@ a(1); // 에러가 발생하지 않습니다.
 enum Animal {
   DOG,
   CAT,
+  0 = 'DOG',
+  1 = 'CAT',
 }
 
 // 아래와 같이 컴파일됩니다.
 var Animal;
 (function (Animal) {
   Animal[(Animal['DOG'] = 0)] = 'DOG';
-  Animal[(Animal['CAT'] = 0)] = 'CAT';
+  Animal[(Animal['CAT'] = 1)] = 'CAT';
 })(Animal || (Animal = {}));
 ```
 
@@ -138,7 +141,7 @@ ODirection.Up;
 // 열거형을 매개변수로 사용
 function walk(dir: EDirection) {}
 
-// 값을 꺼내려면 추가 줄이 필요합니다.
+// 키를 꺼내려면 추가 줄이 필요합니다.
 // 길고 복잡한 "union string type" 방법으로 enum 을 대체하는게 내 프로덕트에 유의미한 차이를 줄까?
 type Direction = typeof ODirection[keyof typeof ODirection];
 function run(dir: Direction) {}
