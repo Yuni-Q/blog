@@ -14,7 +14,9 @@ import { BKM } from '../components/about/sideProject/BKM';
 import { TILTIL } from '../components/about/sideProject/TILTIL';
 
 const About: React.VFC = () => {
+  
   useEffect(() => {
+    console.log('resume');
     sendGAEvent('resume', GA_ACTION.EXPOSE, 'resume');
   }, []);
 
