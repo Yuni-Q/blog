@@ -50,7 +50,7 @@ export const Meme = () => {
       <Ul>
         <Li>화장품 e-commerce MEMEBOX 웹 프론트엔드 개발</Li>
       </Ul>
-      <Div style={{ textALign: 'right' }}>
+      <Div style={{ textAlign: 'right' }}>
         <Button
           show={show}
           onCLick={() => setShow((preShowMeme) => !preShowMeme)}

@@ -71,7 +71,7 @@ export const Woowa = () => {
        * 배민스토어서비스실/배민스토어웹프론트개발팀
        * 배민커머스서비스실/배민커머스웹프론트개발팀
        * */}
-      <Div style={{ textALign: 'right' }}>
+      <Div style={{ textAlign: 'right' }}>
         <Button
           show={show}
           onCLick={() => setShow((preShowWoowa) => !preShowWoowa)}

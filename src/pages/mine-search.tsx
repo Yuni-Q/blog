@@ -348,11 +348,10 @@ const MineSearch: React.VFC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { tableData, halted, timer, result, openedCount } = state;
 
-  const value = useMemo(() => ({ tableData, halted, dispatch, openedCount }), [
-    tableData,
-    halted,
-    openedCount,
-  ]);
+  const value = useMemo(
+    () => ({ tableData, halted, dispatch, openedCount }),
+    [tableData, halted, openedCount],
+  );
 
   useEffect(() => {
     let timer;
@@ -517,9 +516,8 @@ const getTdText = (code) => {
 
 const Td = memo(
   ({ rowIndex, cellIndex }: { rowIndex: number; cellIndex: number }) => {
-    const { tableData, dispatch, halted, openedCount } = useContext(
-      TableContext,
-    );
+    const { tableData, dispatch, halted, openedCount } =
+      useContext(TableContext);
 
     const onClickTd = useCallback(() => {
       if (halted) {

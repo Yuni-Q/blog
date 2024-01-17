@@ -8,7 +8,7 @@ const Card = styled.div<{ on?: boolean; off?: boolean }>`
   position: relative;
   border: solid ${({ on }) => (on ? '3px red' : '1px black')};
   margin-bottom: 10px;
-  background: ${({ off }) => (off ? 'gray' : 'white')}; ;
+  background: ${({ off }) => (off ? 'gray' : 'white')};
 `;
 
 const My = styled.div<{ turn: boolean }>`

@@ -54,7 +54,7 @@ export const SVm = () => {
       <Ul>
         <Li>동영상 스트리밍 앱인 퍼프 백엔드와 어드민 개발</Li>
       </Ul>
-      <Div style={{ textALign: 'right' }}>
+      <Div style={{ textAlign: 'right' }}>
         <Button
           show={show}
           onCLick={() => setShow((preShowSVm) => !preShowSVm)}
