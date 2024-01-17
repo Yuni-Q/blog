@@ -69,7 +69,7 @@ const About = () => {
                 개발 동아리 활동
                 <Ul>
                   <Li>
-                    <Badge>21.07 ~ 22.02 </Badge> SIPE
+                    <Badge>23.06 ~ 23.12 </Badge> SIPE
                     {/* | description | 현직 개발자들이 모여 함께 학습하고 소통하는 IT 커뮤니티                                                 |
 |             |
 |    homepage | <a href="https://sipe.team/" target="_blank">https://sipe.team/</a>                                     |
