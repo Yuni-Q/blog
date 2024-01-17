@@ -260,6 +260,7 @@ export const DetailSection = styled.section<{ show: boolean; height: number }>`
 `;
 
 export const Button = styled.button<{ show: boolean }>`
+  cursor: pointer;
   transition: all 0.4s;
   ${({ show }) =>
     show
