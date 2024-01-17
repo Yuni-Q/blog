@@ -1,93 +1,111 @@
-import React, { useRef, useState, VFC } from 'react';
-import { Badge, Button, DetailSection } from '../../../pages/about';
+import React, { useRef, useState } from 'react';
+import {
+  A,
+  Badge,
+  Br,
+  Button,
+  DetailSection,
+  Div,
+  H3,
+  Li,
+  Section,
+  TBody,
+  Table,
+  Td,
+  Th,
+  Tr,
+  Ul,
+} from '../../../pages/about';
 
-export const SVm: VFC = () => {
+export const SVm = () => {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   return (
     <>
-      <h3>
-        <a
-          href="https://www.pufflive.me/web/pufftv?locale=ko"
+      <H3>
+        <A
+          href="https://www.puffLive.me/web/pufftv?locale=ko"
           target="_blank"
           rel="noreferrer"
         >
           SVm
-        </a>
-      </h3>
-      <table>
-        <tbody>
-          <tr>
-            <th>period</th>
-            <td>18.06.05 ~ 19.01.18</td>
-          </tr>
-          <tr>
-            <th>position</th>
-            <td>서버팀 / Back-End Engineer</td>
-          </tr>
-          <tr>
-            <th>projects</th>
-            <td>
+        </A>
+      </H3>
+      <Table>
+        <TBody>
+          <Tr>
+            <Th>period</Th>
+            <Td>18.06.05 ~ 19.01.18</Td>
+          </Tr>
+          <Tr>
+            <Th>position</Th>
+            <Td>서버팀 / Back-End Engineer</Td>
+          </Tr>
+          <Tr>
+            <Th>projects</Th>
+            <Td>
               PUFF APP Backend
-              <br />
+              <Br />
               PUFF APP Admin
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <ul>
-        <li>동영상 스트리밍 앱인 퍼프 백엔드와 어드민 개발</li>
-      </ul>
-      <div style={{ textAlign: 'right' }}>
+            </Td>
+          </Tr>
+        </TBody>
+      </Table>
+      <Ul>
+        <Li>동영상 스트리밍 앱인 퍼프 백엔드와 어드민 개발</Li>
+      </Ul>
+      <Div style={{ textALign: 'right' }}>
         <Button
           show={show}
-          onClick={() => setShow((preShowSVm) => !preShowSVm)}
+          onCLick={() => setShow((preShowSVm) => !preShowSVm)}
         >
           SVm 프로젝트
         </Button>
-      </div>
+      </Div>
       <DetailSection
         ref={ref}
         show={show}
         height={ref.current?.scrollHeight || 0}
       >
-        <section>
-          <h3>PUFF APP Backend / PUFF APP Admin</h3>
-          <table>
-            <tbody>
-              <tr>
-                <th>period</th>
-                <td>18.06.05 ~ 19.01.18</td>
-              </tr>
-              <tr>
-                <th>skill</th>
-                <td>
+        <Section>
+          <H3>PUFF APP Backend / PUFF APP Admin</H3>
+          <Table>
+            <TBody>
+              <Tr>
+                <Th>period</Th>
+                <Td>18.06.05 ~ 19.01.18</Td>
+              </Tr>
+              <Tr>
+                <Th>skill</Th>
+                <Td>
                   <Badge>Ruby on Rails</Badge>
                   <Badge>Javascript</Badge>
                   <Badge>Node</Badge>
                   <Badge>MySQL</Badge>
                   <Badge>AWS</Badge>
-                </td>
-              </tr>
-              <tr>
-                <th>description</th>
-                <td>PUFF APP을 위한 API 및 ADMIN 개발/유지보수</td>
-              </tr>
-            </tbody>
-          </table>
-          <ul>
-            <li>Ruby on Rails monolithic 구성 된 프로젝트 유지 보수</li>
-            <li>앱 내 게임 관련 데이터 Redis에서 수집해 데이터 제공</li>
-            <li>GiftiShow Bathch Sever 구성(Node.js)</li>
-            <li>Ruby on Rails로 개발되어 있던 API Node로 리뉴얼</li>
-            <li>
-              KT GiftiShow 관련 API 수정 및 추가 - EC2(AutoScaling, ELB), S3,
+                </Td>
+              </Tr>
+              <Tr>
+                <Th>description</Th>
+                <Td>PUFF APP을 위한 API 및 ADMIN 개발/유지보수</Td>
+              </Tr>
+            </TBody>
+          </Table>
+          <Ul>
+            <Li>Ruby on Rails monoLiThic 구성 된 프로젝트 유지 보수</Li>
+            <Li>앱 내 게임 관련 데이터 Redis에서 수집해 데이터 제공</Li>
+            <Li>GiftiShow BaThch Sever 구성(Node.js)</Li>
+            <Li>Ruby on Rails로 개발되어 있던 API Node로 리뉴얼</Li>
+            <Li>
+              KT GiftiShow 관련 API 수정 및 추가 - EC2(AutoScaLing, ELB), S3,
               Route53, API Gateway 세팅 및 활용
-            </li>
-            <li>Swagger 작성 리드</li>
-            <li>Swagger 모듈화 및 효과적인 관리를 위한 방안 구상</li>
-          </ul>
-        </section>
+            </Li>
+            <Li>Swagger 작성 리드</Li>
+            <Ul>
+              <Li>Swagger 모듈화 및 효과적인 관리를 위한 방안 구상</Li>
+            </Ul>
+          </Ul>
+        </Section>
       </DetailSection>
     </>
   );

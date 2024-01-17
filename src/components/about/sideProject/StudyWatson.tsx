@@ -1,39 +1,39 @@
-import React, { VFC } from 'react';
-import { Badge } from '../../../pages/about';
+import React from 'react';
+import { A, Badge, H3, Li, Ul } from '../../../pages/about';
 
-export const StudyWatson: VFC = () => {
+export const StudyWatson = () => {
   return (
     <>
-      <h3>
-        <a
+      <H3>
+        <A
           href="https://github.com/mash-up-kr/study-watson"
           target="_blank"
           rel="noreferrer"
         >
           Study Watson
-        </a>
-      </h3>
-      <ul>
-        <li>
+        </A>
+      </H3>
+      <Ul>
+        <Li>
           효율적으로 스터디를 관리하는 가장 쉬운 방법을 제공하는 웹 서비스
           입니다.
-        </li>
-        <li>
+        </Li>
+        <Li>
           <Badge>React</Badge>
           <Badge>Redux</Badge>
           <Badge>Redux-Saga</Badge>
           <Badge>NEXT</Badge>
-        </li>
-        <li>
-          <a
+        </Li>
+        <Li>
+          <A
             href="https://www.youtube.com/watch?v=nKn6scRu-hk"
             target="_blank"
             rel="noreferrer"
           >
             시연 영상
-          </a>
-        </li>
-      </ul>
+          </A>
+        </Li>
+      </Ul>
     </>
   );
 };

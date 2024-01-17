@@ -55,7 +55,7 @@ const About = () => {
           </MySection>
           <MySection>
             <H2>
-              <Span className="u-shadow"> Community </Span>
+              <Span className="u-shadow">Community</Span>
             </H2>
             <H3>Activity</H3>
             <Ul>
@@ -69,10 +69,26 @@ const About = () => {
                 개발 동아리 활동
                 <Ul>
                   <Li>
+                    <Badge>21.07 ~ 22.02 </Badge> SIPE
+                    {/* | description | 현직 개발자들이 모여 함께 학습하고 소통하는 IT 커뮤니티                                                 |
+|             |
+|    homepage | <a href="https://sipe.team/" target="_blank">https://sipe.team/</a>                                     |
+|   instagram | <a href="https://www.instagram.com/sipe_team/" target="_blank">https://www.instagram.com/sipe_team/</a> |
+|      github | <a href="https://github.com/sipe-team/" target="_blank">https://github.com/sipe-team/</a>               | */}
+                  </Li>
+                  <Li>
                     <Badge>21.07 ~ 22.02 </Badge> Nexters
+                    {/* | description | 개발자와 디자이너를 위한 IT 연합동아리입니다. 대학생, 직장인, 프리랜서 등 다양한 직군으로 구성되어있습니다. 매주 토요일 정규 세션을 통해 IT 트렌드 및 기술을 공유합니다. 개발자와 디자이너가 팀을 구성하여 하나의 프로젝트 완성을 목표로 합니다. |
+|    homepage | <a href="http://teamnexters.com/" target="_blank">http://teamnexters.com/</a>                                                                                                                                                                    |
+|    facebook | <a href="https://web.facebook.com/Nexterspage" target="_blank">https://web.facebook.com/Nexterspage</a>                                                                                                                                          |
+|      github | <a href="https://github.com/nexters" target="_blank">https://github.com/nexters</a>            */}
                   </Li>
                   <Li>
                     <Badge>18.03 ~ 20.04</Badge> MASH-UP
+                    {/* | description | 개발, 디자인에 관심과 열정이 있는 사람들의 모임입니다. 격주로 팀 별 세미나와 스터디를 진행하며, 전체 세미나에서 팀 별 기술 및 정보를 공유합니다. 격주로 팀 별 세미나와 스터디를 진행하며, 전체 세미나에서 팀 별 기술 및 정보를 공유합니다. 팀을 구성하여 해커톤을 시작으로 하나의 서비스를 완성하고 배포합니다. |
+|    homepage | <a href="https://mash-up.it/" target="_blank">https://mash-up.it/</a>)                                                                                                                                                                                                                                          |
+|    facebook | <a href="https://www.facebook.com/mashupgroup" target="_blank">https://www.facebook.com/mashupgroup</a>                                                                                                                                                                                                         |
+|      github | <a href="https://github.com/mash-up-kr" target="_blank">https://github.com/mash-up-kr</a>                                                                                                                                                                                                                       | */}
                   </Li>
                 </Ul>
               </Li>
@@ -143,7 +159,7 @@ const About = () => {
               <Span className="u-shadow">Last Updated</Span>
             </H2>
             <Ul>
-              <Li>2022.09.04</Li>
+              <Li>2024.01.17</Li>
             </Ul>
           </MySection>
         </Article>
