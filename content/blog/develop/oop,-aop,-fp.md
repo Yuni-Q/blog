@@ -2,6 +2,7 @@
 title: OOP, AOP, FP
 date: 2020-04-16 10:04:71
 category: develop
+tags: []
 draft: false
 ---
 
