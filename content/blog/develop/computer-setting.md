@@ -471,3 +471,26 @@ cat BrewFile => 확인
 ```zsh
 brew bundle
 ```
+
+## Raycast
+
+- Clipboard History
+  - 컨맨드 + 쉬프트 + V
+- Calendar
+
+### Store
+
+- visual Studio Code
+- 
+- Note
+  - 손쉬운 사용에 추가해 주어야 새로운 메모를 작성할 수 있다.
+- Jira
+
+### 단축키 입력
+
+- 세팅 -> extensions -> Record Hotkey
+
+### extension보기
+- npm run dev하면 등록되어 사용이 가능하다. 
+
+## [shottr](https://shottr.cc)
