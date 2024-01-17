@@ -8,13 +8,13 @@ draft: true
 ## URL 유효성
 
 ```javascript
-const isValidUrl = url => {
-	try {
-		new URL(url);
-		return true;
-	} catch (e) {
-		return false;
-	}
+const isValidUrl = (url) => {
+  try {
+    new URL(url);
+    return true;
+  } catch (e) {
+    return false;
+  }
 };
 
 console.log(isValidUrl('http://www.naver.com')); // true
@@ -50,12 +50,12 @@ console.log('내름차순', ...arr);
 
 ```javascript
 const isOverlap = (base, target) => {
-	if (target.end <= base.begin) return false;
-	if (target.begin >= base.end) return false;
-	return true;
+  if (target.end <= base.begin) return false;
+  if (target.begin >= base.end) return false;
+  return true;
 };
 
-const assert = v1 => v2 => console.log(v1 === v2);
+const assert = (v1) => (v2) => console.log(v1 === v2);
 const base = { begin: 2, end: 4 };
 
 assert(false)(isOverlap(base, { begin: 0, end: 1 })); // true
@@ -74,14 +74,14 @@ assert(true)(isOverlap(base, { begin: 1, end: 5 })); // true
 // base: [begin: number, end: number]
 // target: [begin: number, end: number]
 const isSubset = (base, target) => {
-	if (base[0] > target[0]) return false;
-	if (base[1] < target[1]) return false;
-	if (base[0] >= target[1]) return false;
-	if (base[1] <= target[0]) return false;
-	return true;
+  if (base[0] > target[0]) return false;
+  if (base[1] < target[1]) return false;
+  if (base[0] >= target[1]) return false;
+  if (base[1] <= target[0]) return false;
+  return true;
 };
 
-const assert = v1 => v2 => console.log(v1 === v2);
+const assert = (v1) => (v2) => console.log(v1 === v2);
 const base = [2, 4];
 
 assert(false)(isSubset(base, [0, 1]));
@@ -98,10 +98,10 @@ assert(false)(isSubset(base, [1, 5]));
 ## SVG Parser
 
 ```javascript
-const parseSVG = template => {
-	var tmp = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-	tmp.innerHTML = template;
-	return tmp.children[0];
+const parseSVG = (template) => {
+  var tmp = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  tmp.innerHTML = template;
+  return tmp.children[0];
 };
 ```
 
@@ -118,24 +118,24 @@ const parseSVG = template => {
  * @return {Function} Event Listener
  */
 const throttle = (callback, ms = 100) => {
-	let timer = null;
-	let last = 0;
+  let timer = null;
+  let last = 0;
 
-	return function(...args) {
-		const self = this;
-		const now = +new Date();
+  return function (...args) {
+    const self = this;
+    const now = +new Date();
 
-		if (last && now < last + ms) {
-			clearTimeout(timer);
-			timer = setTimeout(() => {
-				last = now;
-				callback.apply(self, args);
-			}, ms);
-		} else {
-			last = now;
-			callback.apply(self, args);
-		}
-	};
+    if (last && now < last + ms) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        last = now;
+        callback.apply(self, args);
+      }, ms);
+    } else {
+      last = now;
+      callback.apply(self, args);
+    }
+  };
 };
 ```
 
@@ -152,15 +152,15 @@ const throttle = (callback, ms = 100) => {
  * @return {Function} Event Listener
  */
 const debounce = (callback, ms) => {
-	let timer = null;
+  let timer = null;
 
-	return function(...args) {
-		const self = this;
-		clearTimeout(timer);
-		timer = setTimeout(() => {
-			callback.apply(self, args);
-		}, ms);
-	};
+  return function (...args) {
+    const self = this;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      callback.apply(self, args);
+    }, ms);
+  };
 };
 ```
 
@@ -168,44 +168,44 @@ const debounce = (callback, ms) => {
 
 ```css
 .txt {
-	width: 200px;
-	max-height: 35px;
-	line-height: 20px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: normal;
-	word-wrap: break-word;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
+  width: 200px;
+  max-height: 35px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .txt.show {
-	display: block;
-	max-height: none;
+  display: block;
+  max-height: none;
 }
 .txt.show + .more {
-	display: none;
+  display: none;
 }
 ```
 
 ```html
 <div class="wrap">
-	<div class="txt">
-		가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마
-		가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마
-	</div>
-	<a href="#" class="more" onclick="toggle()">More</a>
+  <div class="txt">
+    가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마
+    가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마가나다라마
+  </div>
+  <a href="#" class="more" onClick="toggle()">More</a>
 </div>
 ```
 
 ```javascript
 const toggle = () => {
-	const txt = document.querySelector('.txt').classList;
-	if (txt.contains('show')) {
-		txt.remove('show');
-	} else {
-		txt.add('show');
-	}
+  const txt = document.querySelector('.txt').classList;
+  if (txt.contains('show')) {
+    txt.remove('show');
+  } else {
+    txt.add('show');
+  }
 };
 ```
 

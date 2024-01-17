@@ -74,7 +74,7 @@ export const Woowa = () => {
       <Div style={{ textAlign: 'right' }}>
         <Button
           show={show}
-          onCLick={() => setShow((preShowWoowa) => !preShowWoowa)}
+          onClick={() => setShow((preShowWoowa) => !preShowWoowa)}
         >
           우아한형제들 프로젝트
         </Button>

@@ -56,7 +56,7 @@ const Flappy = () => {
       })
         .then((unityInstance) => {
           loadingBar.style.display = 'none';
-          fullscreenButton.onclick = () => {
+          fullscreenButton.onClick = () => {
             unityInstance.SetFullscreen(1);
           };
         })

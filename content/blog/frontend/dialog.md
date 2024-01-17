@@ -17,17 +17,17 @@ import React, { useState } from 'react';
 
 function App() {
   // 컴포넌트를 나타낼지를 위한 상태 값
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   return (
     <>
       {/* 다이얼로그 나타내기 위한 로직은 따로 분리되어 있음 */}
-      <button onClick={() => setShow(true)}>
-        다이얼로그
-      </button>
+      <button onClick={() => setShow(true)}>다이얼로그</button>
       {/* 상태가 업데이트 되면 다이얼로그를 노출 */}
-      {show && <div>
-        <button onClick={() => setShow(false)}>닫기</button>
-      </div>}
+      {show && (
+        <div>
+          <button onClick={() => setShow(false)}>닫기</button>
+        </div>
+      )}
     </>
   );
 }
@@ -44,15 +44,18 @@ function App() {
 - 클릭 함수 내에서 내가 원하는 컴포넌트를 넘기면 렌더링 해주었으면 좋겠다고 생각했습니다.
 
 ```tsx
-const dialogStore = observable<{ dialog: ReactElement | null, open: (jsx: ReactElement) => void, close: () => void }>({
+const dialogStore = observable<{
+  dialog: ReactElement | null;
+  open: (jsx: ReactElement) => void;
+  close: () => void;
+}>({
   dialog: null,
   open(jsx: ReactElement) {
-    this.dialog = jsx
+    this.dialog = jsx;
   },
   close() {
-    this.dialog = null
-  }
-  
+    this.dialog = null;
+  },
 });
 
 function App() {
@@ -60,10 +63,7 @@ function App() {
     <>
       {/* 다이얼로그 업데이트가 앱에 렌더링에 영향이 가지 않게 격리 */}
       <Observer>
-        {() => <>
-          {!!dialogStore.dialog && dialogStore.dialog}
-        </>
-        }
+        {() => <>{!!dialogStore.dialog && dialogStore.dialog}</>}
       </Observer>
       <Component />
     </>
@@ -71,12 +71,20 @@ function App() {
 }
 
 function Component() {
-  return (<>
-    {/* 클릭 함수 내에 다이얼로그 관련 로직을 모을 수 있습니다 */}
-    <button onClick={() => dialogStore.open(<button onClick={() => dialogStore.close()}>닫기</button>)}>
-      다이얼로그
-    </button>
-  </>)
+  return (
+    <>
+      {/* 클릭 함수 내에 다이얼로그 관련 로직을 모을 수 있습니다 */}
+      <button
+        onClick={() =>
+          dialogStore.open(
+            <button onClick={() => dialogStore.close()}>닫기</button>,
+          )
+        }
+      >
+        다이얼로그
+      </button>
+    </>
+  );
 }
 ```
 
@@ -90,28 +98,34 @@ function Component() {
 - 가장 간단한 해결책으로는 dialog가 아닌 dialogs로 만들어 문제를 해결해 봅니다.
 
 ```tsx
-const dialogStore = observable<{ dialogs: ReactElement[], open: (jsx: ReactElement) => void, close: () => void }>({
+const dialogStore = observable<{
+  dialogs: ReactElement[];
+  open: (jsx: ReactElement) => void;
+  close: () => void;
+}>({
   dialogs: [] as ReactElement[],
   open(jsx: ReactElement) {
-    this.dialogs = [...this.dialogs, jsx]
+    this.dialogs = [...this.dialogs, jsx];
   },
   close() {
-    const dialog = [...this.dialogs]
-    dialog.pop()
-    this.dialogs = dialog
-  }
+    const dialog = [...this.dialogs];
+    dialog.pop();
+    this.dialogs = dialog;
+  },
 });
 
 function App() {
   return (
     <>
       <Observer>
-        {() => <>
-          {!!dialogStore.dialogs && dialogStore.dialogs.map(dialog => {
-            return dialog
-          })}
-        </>
-        }
+        {() => (
+          <>
+            {!!dialogStore.dialogs &&
+              dialogStore.dialogs.map((dialog) => {
+                return dialog;
+              })}
+          </>
+        )}
       </Observer>
       <Component />
     </>
@@ -119,11 +133,19 @@ function App() {
 }
 
 function Component() {
-  return (<>
-    <button onClick={() => dialogStore.open(<button onClick={() => dialogStore.close()}>닫기</button>)}>
-      다이얼로그
-    </button>
-  </>)
+  return (
+    <>
+      <button
+        onClick={() =>
+          dialogStore.open(
+            <button onClick={() => dialogStore.close()}>닫기</button>,
+          )
+        }
+      >
+        다이얼로그
+      </button>
+    </>
+  );
 }
 ```
 
@@ -138,12 +160,14 @@ function App() {
   return (
     <>
       <Observer>
-        {() => <>
-          {!!dialogStore.dialogs && dialogStore.dialogs.map(dialog => {
-            return dialog
-          })}
-        </>
-        }
+        {() => (
+          <>
+            {!!dialogStore.dialogs &&
+              dialogStore.dialogs.map((dialog) => {
+                return dialog;
+              })}
+          </>
+        )}
       </Observer>
       <Component />
     </>
@@ -151,19 +175,29 @@ function App() {
 }
 
 function Component() {
-  return (<>
-    <button onClick={() => dialogStore.open(<Dialog>닫기</Dialog>)}>
-      다이얼로그
-    </button>
-  </>)
+  return (
+    <>
+      <button onClick={() => dialogStore.open(<Dialog>닫기</Dialog>)}>
+        다이얼로그
+      </button>
+    </>
+  );
 }
 
 function Dialog({ children }: { children: string }) {
   // 여기선 다이얼로그가 그려지는 순간이기 때문에 true가 기본값 입니다.
-  const [show, setShow] = useState(true)
-  return <Wrap show={show} onClick={() => { setShow(false); dialogStore.close(); }}>
-    {children}
-  </Wrap>
+  const [show, setShow] = useState(true);
+  return (
+    <Wrap
+      show={show}
+      onClick={() => {
+        setShow(false);
+        dialogStore.close();
+      }}
+    >
+      {children}
+    </Wrap>
+  );
 }
 
 const Wrap = styled.button<{ show: boolean }>`
@@ -184,8 +218,8 @@ const Wrap = styled.button<{ show: boolean }>`
     }
   }
 
-  animation: 0.3s forwards ${({ show }) => show ? 'fadeIn' : 'fadeOut'};
-  
+  animation: 0.3s forwards ${({ show }) => (show ? 'fadeIn' : 'fadeOut')};
+
   position: fixed;
   top: 0;
   right: 0;
@@ -199,7 +233,7 @@ const Wrap = styled.button<{ show: boolean }>`
   background: rgba(0, 0, 0, 0.4);
 
   opacity: 0;
-`
+`;
 ```
 
 위와 같이 구현 했을 경우 애니메이션이 실행되기 전에 컴포넌트가 unmount 되기 때문에 닫히는 애니메이션 정상 동작하지 않습니다. 이를 해결하기 위해 onAnimationEnd를 사용해 봅니다.
@@ -207,14 +241,22 @@ const Wrap = styled.button<{ show: boolean }>`
 ```tsx
 function Dialog({ children }: { children: string }) {
   // 여기선 다이얼로그가 그려지는 순간이기 때문에 true가 기본값 입니다.
-  const [show, setShow] = useState(true)
-  return <Wrap show={show} onClick={() => { setShow(false); }} onAnimationEnd={() => {
-    if (!show) {
-      dialogStore.close();
-    }
-  }}>
-    {children}
-  </Wrap>
+  const [show, setShow] = useState(true);
+  return (
+    <Wrap
+      show={show}
+      onClick={() => {
+        setShow(false);
+      }}
+      onAnimationEnd={() => {
+        if (!show) {
+          dialogStore.close();
+        }
+      }}
+    >
+      {children}
+    </Wrap>
+  );
 }
 ```
 
@@ -224,14 +266,23 @@ function Dialog({ children }: { children: string }) {
 
 ```tsx
 function Dialog({ children }: { children: string }) {
-  const [show, setShow] = useState(true)
-  return <Wrap show={show} onClick={() => { setShow(false); dialogStore.open(<div>나를 봐줘</div>) }} onAnimationEnd={() => {
-    if (!show) {
-      dialogStore.close();
-    }
-  }}>
-    {children}
-  </Wrap>
+  const [show, setShow] = useState(true);
+  return (
+    <Wrap
+      show={show}
+      onClick={() => {
+        setShow(false);
+        dialogStore.open(<div>나를 봐줘</div>);
+      }}
+      onAnimationEnd={() => {
+        if (!show) {
+          dialogStore.close();
+        }
+      }}
+    >
+      {children}
+    </Wrap>
+  );
 }
 ```
 
@@ -240,39 +291,46 @@ function Dialog({ children }: { children: string }) {
 
 #### 이 계획은 망햇어 ?
 
-id를 넘겨주어 `나를 종료 시켜줘 !`를 구현하면 좋을거 같습니다. 
+id를 넘겨주어 `나를 종료 시켜줘 !`를 구현하면 좋을거 같습니다.
 하지만 모든 dialog에 id를 붙이는 것은 너무 어렵고 번거로운 일이니 store에서 알아서 넣어 주었으면 좋겠습니다.
 
 ```tsx
-const dialogStore = observable<{ key: number; dialogs: { key: number; dialog: ReactElement }[], open: (jsx: ReactElement) => void, close: (id: number) => void }>({
+const dialogStore = observable<{
+  key: number;
+  dialogs: { key: number; dialog: ReactElement }[];
+  open: (jsx: ReactElement) => void;
+  close: (id: number) => void;
+}>({
   key: 0,
   dialogs: [] as { key: number; dialog: ReactElement }[],
   open(jsx: ReactElement) {
-    const newJsx = cloneElement(jsx, { id: ++this.key })
-    this.dialogs = [...this.dialogs, { dialog: newJsx, key: this.key }]
+    const newJsx = cloneElement(jsx, { id: ++this.key });
+    this.dialogs = [...this.dialogs, { dialog: newJsx, key: this.key }];
   },
   close(id) {
-    if(!id) {
-      throw new Error('대화 상자를 닫기 위한 id가 없습니다 !')
+    if (!id) {
+      throw new Error('대화 상자를 닫기 위한 id가 없습니다 !');
     }
-    const dialog = [...this.dialogs]
-    const newDialogs = dialogs.filter(dialog => {
-      return dialog.key !== id
-    })
-    this.dialogs = newDialogs
-  }
+    const dialog = [...this.dialogs];
+    const newDialogs = dialogs.filter((dialog) => {
+      return dialog.key !== id;
+    });
+    this.dialogs = newDialogs;
+  },
 });
 
 function App() {
   return (
     <>
       <Observer>
-        {() => <>
-          {!!dialogStore.dialogs && dialogStore.dialogs.map(dialog => {
-            return <div key={dialog.key}>{dialog.dialog}</div>
-          })}
-        </>
-        }
+        {() => (
+          <>
+            {!!dialogStore.dialogs &&
+              dialogStore.dialogs.map((dialog) => {
+                return <div key={dialog.key}>{dialog.dialog}</div>;
+              })}
+          </>
+        )}
       </Observer>
       <Component />
     </>
@@ -280,49 +338,68 @@ function App() {
 }
 
 function Component() {
-  return (<>
-    <button onClick={() => dialogStore.open(<Dialog>닫기</Dialog>)}>
-      다이얼로그
-    </button>
-  </>)
+  return (
+    <>
+      <button onClick={() => dialogStore.open(<Dialog>닫기</Dialog>)}>
+        다이얼로그
+      </button>
+    </>
+  );
 }
 
 // id는 store에서 알아서 넣어주기 때문에 옵셔널 값입니다.
 function Dialog({ children, id }: { children: string; id?: number }) {
-  const [show, setShow] = useState(true)
-  return <Wrap show={show} onClick={() => { setShow(false); dialogStore.open(<div>나를 봐줘</div>) }} onAnimationEnd={() => {
-    if (!show) {
-      dialogStore.close(id || 0)
-    }
-  }}>
-    {children}
-  </Wrap>
+  const [show, setShow] = useState(true);
+  return (
+    <Wrap
+      show={show}
+      onClick={() => {
+        setShow(false);
+        dialogStore.open(<div>나를 봐줘</div>);
+      }}
+      onAnimationEnd={() => {
+        if (!show) {
+          dialogStore.close(id || 0);
+        }
+      }}
+    >
+      {children}
+    </Wrap>
+  );
 }
 ```
 
-
-#### 그럼 이제 문제가 끝난 것일까요? 
+#### 그럼 이제 문제가 끝난 것일까요?
 
 ```tsx
 function Dialog({ children, id }: { children: string; id?: number }) {
-  const [show, setShow] = useState(true)
-  return <Wrap show={show} onClick={() => { setShow(false); dialogStore.open(<div>나를 봐줘</div>) }} onAnimationEnd={() => {
-    if (!show) {
-      dialogStore.close(id || 0)
-    }
-  }}>
-    {children}
-  </Wrap>
+  const [show, setShow] = useState(true);
+  return (
+    <Wrap
+      show={show}
+      onClick={() => {
+        setShow(false);
+        dialogStore.open(<div>나를 봐줘</div>);
+      }}
+      onAnimationEnd={() => {
+        if (!show) {
+          dialogStore.close(id || 0);
+        }
+      }}
+    >
+      {children}
+    </Wrap>
+  );
 }
 
 // id를 props으로 받고 Dialog에게 전달해 주어야 합니다.
 const HiDialog = () => {
-  return <Dialog>hi</Dialog>
-}
+  return <Dialog>hi</Dialog>;
+};
 
 const HiComponent = () => {
-  return <button onClick={() => dialogStore.open(<HiDialog />)}>Hi</button>
-}
+  return <button onClick={() => dialogStore.open(<HiDialog />)}>Hi</button>;
+};
 ```
 
 대화 상자를 공통 컴포넌트로 제공하고 있지만 재사용 되는 또다른 레이어를 만들어 사용할 경우 id를 받는 props를 열어두지 않는 경우 에러가 발생합니다.
@@ -335,12 +412,18 @@ function App() {
   return (
     <>
       <Observer>
-        {() => <>
-          {!!dialogStore.dialogs && dialogStore.dialogs.map(dialog => {
-            return <div id={dialog.key.toString()} key={dialog.key}>{dialog.dialog}</div>
-          })}
-        </>
-        }
+        {() => (
+          <>
+            {!!dialogStore.dialogs &&
+              dialogStore.dialogs.map((dialog) => {
+                return (
+                  <div id={dialog.key.toString()} key={dialog.key}>
+                    {dialog.dialog}
+                  </div>
+                );
+              })}
+          </>
+        )}
       </Observer>
       <Component />
     </>
@@ -348,25 +431,37 @@ function App() {
 }
 
 function Component() {
-  return (<>
-    <button onClick={() => dialogStore.open(<Dialog>닫기</Dialog>)}>
-      다이얼로그
-    </button>
-  </>)
+  return (
+    <>
+      <button onClick={() => dialogStore.open(<Dialog>닫기</Dialog>)}>
+        다이얼로그
+      </button>
+    </>
+  );
 }
 
-function Dialog({ children }: { children: string; }) {
-  const ref = useRef<HTMLButtonElement>(null)
-  const [show, setShow] = useState(true)
-  return <Wrap ref={ref} show={show} onClick={() => { setShow(false); dialogStore.open(<div>나를 봐줘</div>) }} onAnimationEnd={() => {
-    if (!show && ref.current) {
-      const key = (ref.current.parentNode as HTMLDivElement).id;
-      const id = parseInt(key, 10) || 0
-      dialogStore.close(id)
-    }
-  }}>
-    {children}
-  </Wrap>
+function Dialog({ children }: { children: string }) {
+  const ref = useRef<HTMLButtonElement>(null);
+  const [show, setShow] = useState(true);
+  return (
+    <Wrap
+      ref={ref}
+      show={show}
+      onClick={() => {
+        setShow(false);
+        dialogStore.open(<div>나를 봐줘</div>);
+      }}
+      onAnimationEnd={() => {
+        if (!show && ref.current) {
+          const key = (ref.current.parentNode as HTMLDivElement).id;
+          const id = parseInt(key, 10) || 0;
+          dialogStore.close(id);
+        }
+      }}
+    >
+      {children}
+    </Wrap>
+  );
 }
 ```
 

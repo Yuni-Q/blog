@@ -53,7 +53,7 @@ export const Meme = () => {
       <Div style={{ textAlign: 'right' }}>
         <Button
           show={show}
-          onCLick={() => setShow((preShowMeme) => !preShowMeme)}
+          onClick={() => setShow((preShowMeme) => !preShowMeme)}
         >
           미미박스 프로젝트
         </Button>

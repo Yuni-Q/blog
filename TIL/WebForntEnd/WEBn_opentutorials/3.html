@@ -9,7 +9,7 @@
 </head>
 <body>
   <h1><a href="index.html">WEB</a></h1>
-  <input type="button" id="night_day2" name="" value="night" onclick="nightDayGandler(this)">
+  <input type="button" id="night_day2" name="" value="night" onClick="nightDayGandler(this)">
   <div id="grid">
     <ol>
       <li><a href="1.html">HTML</a></li>
@@ -27,15 +27,15 @@
   </div>
 
 
-<input type="button" name="" value="night" onclick="
+<input type="button" name="" value="night" onClick="
   document.querySelector('body').style.backgroundColor = 'black';
   document.querySelector('body').style.color = 'white';
 ">
-<input type="button" name="" value="day" onclick="
+<input type="button" name="" value="day" onClick="
   document.querySelector('body').style.backgroundColor = 'white';
   document.querySelector('body').style.color = 'black';
 ">
-<input type="button" id="night_day" name="" value="night" onclick="
+<input type="button" id="night_day" name="" value="night" onClick="
   if(document.querySelector('#night_day').value === 'night'){
     document.querySelector('body').style.backgroundColor = 'black';
     document.querySelector('body').style.color = 'white';

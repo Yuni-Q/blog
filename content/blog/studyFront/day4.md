@@ -12,15 +12,15 @@ draft: false
 ```html
 <!DOCTYPE html>
 <html lang="ko-KO">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>javascript</title>
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript</title>
+  </head>
 
-	<body>
-		<script src="./index.js"></script>
-	</body>
+  <body>
+    <script src="./index.js"></script>
+  </body>
 </html>
 ```
 
@@ -39,7 +39,7 @@ alert('javascript');
 
 ```javascript
 function onClick() {
-	alert('javascript');
+  alert('javascript');
 }
 
 window.addEventListener('click', onClick);
@@ -69,9 +69,9 @@ window.addEventListener('click', onClick);
 
 ```javascript
 function onClick() {
-	const element = document.createElement('div');
-	element.textContent = '추가!!';
-	document.body.appendChild(element);
+  const element = document.createElement('div');
+  element.textContent = '추가!!';
+  document.body.appendChild(element);
 }
 window.addEventListener('click', onClick);
 ```
@@ -102,8 +102,8 @@ window.addEventListener('click', onClick);
 
 ```javascript
 function onClick() {
-	const element = document.createElement('div');
-	element.style.cssText = `
+  const element = document.createElement('div');
+  element.style.cssText = `
 		position: absolute;
 		top: ${window.event.clientY - 5}px;
 		left: ${window.event.clientX - 5}px;
@@ -112,7 +112,7 @@ function onClick() {
 		background-color: red;
 		border-radius: 100%;
 	`;
-	document.body.appendChild(element);
+  document.body.appendChild(element);
 }
 window.addEventListener('click', onClick);
 ```

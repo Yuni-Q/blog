@@ -181,13 +181,8 @@ const 계좌정보 = () => {
 
 ```tsx
 const App: React.VFC = () => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    getValues,
-    trigger,
-  } = useForm<IFormValues>({ mode: 'onBlur', reValidateMode: 'onBlur' });
+  const { register, handleSubmit, errors, getValues, trigger } =
+    useForm<IFormValues>({ mode: 'onBlur', reValidateMode: 'onBlur' });
   const blurError = useRef({ id: '', password: '' });
   const checkId = async (value: string) => {
     if (

@@ -71,26 +71,26 @@ draft: false
 import React, { Component } from 'react';
 
 export default class test extends Component {
-	constructor(props) {
-		super(props);
-		state = {
-			count: 0,
-		};
-		this.onClick = this.onClick.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    state = {
+      count: 0,
+    };
+    this.onClick = this.onClick.bind(this);
+  }
 
-	onClick() {
-		count = this.state.count + 1;
-		this.setState({ count });
-	}
+  onClick() {
+    count = this.state.count + 1;
+    this.setState({ count });
+  }
 
-	render() {
-		return (
-			<div>
-				<button onClick={this.onClick}>UP</button>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <button onClick={this.onClick}>UP</button>
+      </div>
+    );
+  }
 }
 ```
 
@@ -100,25 +100,25 @@ export default class test extends Component {
 import React, { Component } from 'react';
 
 export default class test extends Component {
-	constructor(props) {
-		super(props);
-		state = {
-			count: 0,
-		};
-	}
+  constructor(props) {
+    super(props);
+    state = {
+      count: 0,
+    };
+  }
 
-	onClick = () => {
-		count = this.state.count + 1;
-		this.setState({ count });
-	};
+  onClick = () => {
+    count = this.state.count + 1;
+    this.setState({ count });
+  };
 
-	render() {
-		return (
-			<div>
-				<button onClick={this.onClick}>UP</button>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <button onClick={this.onClick}>UP</button>
+      </div>
+    );
+  }
 }
 ```
 
@@ -128,22 +128,22 @@ export default class test extends Component {
 import React, { Component } from 'react';
 
 export default class test extends Component {
-	state = {
-		count: 0,
-	};
+  state = {
+    count: 0,
+  };
 
-	onClick = () => {
-		count = this.state.count + 1;
-		this.setState({ count });
-	};
+  onClick = () => {
+    count = this.state.count + 1;
+    this.setState({ count });
+  };
 
-	render() {
-		return (
-			<div>
-				<button onClick={this.onClick}>UP</button>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <button onClick={this.onClick}>UP</button>
+      </div>
+    );
+  }
 }
 ```
 
@@ -153,15 +153,15 @@ export default class test extends Component {
 import React, { useState } from 'react';
 
 export default function test() {
-	const [count, setCount] = useState(0);
-	const onClick = () => {
-		setCount(count + 1);
-	};
-	return (
-		<div>
-			<button onClick={onClick}>UP</button>
-		</div>
-	);
+  const [count, setCount] = useState(0);
+  const onClick = () => {
+    setCount(count + 1);
+  };
+  return (
+    <div>
+      <button onClick={onClick}>UP</button>
+    </div>
+  );
 }
 ```
 

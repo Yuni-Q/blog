@@ -270,14 +270,16 @@ export const NonMemberExceptionHandling = (url: string): string | null => {
 - 더 나아가 React Query에서 제공하는 캐싱, Window Focus Refetching 등 다양한 기능을 활용하여 API 요청과 관련된 번잡한 작업 없이 `핵심 로직`에 집중할 수 있습니다.
 
 ### 커스텀 hook을 만들어서 사용
+
 - API 별로 Custom Hook을 만들어서 사용하면 API를 손 쉽게 체계적으로 관리할 수 있습니다.
-- 직관적으로 API 사용 가능 : API 별로 Custom Hook이 나누어져 있어 직관적으로 API를 사용할 수 있습니다. 
+- 직관적으로 API 사용 가능 : API 별로 Custom Hook이 나누어져 있어 직관적으로 API를 사용할 수 있습니다.
 - API 전처리/후처리 가능 : API 별로 Custom Hook 내부에서 API 전처리, 후처리 하여 간결하고 이해하기 쉬운 Component 작성 가능
 - 휴먼 에러 방지 : Query Key가 Custom Hook 레벨에서 적용되기 때문에 캐싱 드 작업에서 휴먼 에러 방지 가능
 - API 특성에 맞는 Option 설정 가능 : API 특성별로 캐싱 등 React Query Option 설정 가능
 - API 연관 관계 처리 용이 : 여러 API가 연관되는 관계를 갖는 경우 용이하게 처리 가능
 
 ### 사용중인 코드
+
 ```ts
 import QueryString from 'qs';
 import { QueryFunctionContext, useQuery, UseQueryResult } from 'react-query';
@@ -294,7 +296,12 @@ interface Factory<RES, T, ERROR, K> {
   onFailure?: (error: ERROR) => K;
 }
 
-export const fetcherFactory = <RES, T = Record<string, any> | null | RES, ERROR = string, K = void>({
+export const fetcherFactory = <
+  RES,
+  T = Record<string, any> | null | RES,
+  ERROR = string,
+  K = void,
+>({
   prefix,
   onSuccess,
   onFailure,
@@ -319,11 +326,18 @@ export const fetcherFactory = <RES, T = Record<string, any> | null | RES, ERROR 
   };
 };
 
-interface PostFactory<DATA, RES, T, ERROR, K> extends Factory<RES, T, ERROR, K> {
+interface PostFactory<DATA, RES, T, ERROR, K>
+  extends Factory<RES, T, ERROR, K> {
   data?: DATA;
 }
 
-export const fetcherPostFactory = <DATA, RES, T = Record<string, any> | null | RES, ERROR = string, K = void>({
+export const fetcherPostFactory = <
+  DATA,
+  RES,
+  T = Record<string, any> | null | RES,
+  ERROR = string,
+  K = void,
+>({
   prefix,
   data,
   onSuccess,
@@ -364,13 +378,19 @@ export const useCommonQuery = <Data, Error = unknown>(
   if (!!url && data && typeof data !== 'string') {
     url += (url.match(/\?/) ? '&' : '?') + QueryString.stringify(data);
   }
-  return useQuery(url || '', fetcher || defaultFetcher, { suspense: true, enabled: !!url });
+  return useQuery(url || '', fetcher || defaultFetcher, {
+    suspense: true,
+    enabled: !!url,
+  });
 };
 
 export const NonMemberExceptionHandling = (url: string): string | null => {
-  return !UserInfo.memberNumber || UserInfo.memberNumber === '000000000000' ? null : url;
+  return !UserInfo.memberNumber || UserInfo.memberNumber === '000000000000'
+    ? null
+    : url;
 };
 ```
+
 ## 참고
 
 - [Redux 를 넘어 SWR 로](https://min9nim.now.sh/2020-10-05-swr-intro1/)

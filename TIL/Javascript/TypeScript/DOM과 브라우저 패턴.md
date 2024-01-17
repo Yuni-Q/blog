@@ -19,42 +19,42 @@
 - 이벤트 리스너는 아래와 같이 구현할 수 있다.
 
 ```javascript
-var b = document.getElementById("clickme");
+var b = document.getElementById('clickme');
 if (document.addEventListener) {
-  b.addEventListener("click", myHandler, false);
+ b.addEventListener('click', myHandler, false);
 } else if (document.attachEvent) {
-  b.attachEvent("onclick".myHandler);
+ b.attachEvent('onClick'.myHandler);
 } else {
-  b.onclick = myHandler;
+ b.onClick = myHandler;
 }
 
 function myHandler(e) {
-  var src, parts;
+ var src, parts;
 
-  e = e || window.event;
-  src = e.target || e.srcElement;
+ e = e || window.event;
+ src = e.target || e.srcElement;
 
-  if (src.nodeName.toLowerCase() !== "button") {
-    return;
-  }
+ if (src.nodeName.toLowerCase() !== 'button') {
+  return;
+ }
 
-  parts = src.innerHTML.split(": ");
-  parts[1] = parseInt(parts[1], 10) + 1;
-  src.innerHTML = parts[0] + ": " + parts[1];
+ parts = src.innerHTML.split(': ');
+ parts[1] = parseInt(parts[1], 10) + 1;
+ src.innerHTML = parts[0] + ': ' + parts[1];
 
-  if (typeof e.stopPropagation === "function") {
-    e.stopPropagation();
-  }
-  if (typeof e.cancelBubble !== "undefined") {
-    e.cancelBubble = true;
-  }
+ if (typeof e.stopPropagation === 'function') {
+  e.stopPropagation();
+ }
+ if (typeof e.cancelBubble !== 'undefined') {
+  e.cancelBubble = true;
+ }
 
-  if (typeof e.preventDefault() === "funtion") {
-    e.preventDefault();
-  }
-  if (typeof e.preventDefault() !== "undefined") {
-    e.returnValue = false;
-  }
+ if (typeof e.preventDefault() === 'funtion') {
+  e.preventDefault();
+ }
+ if (typeof e.preventDefault() !== 'undefined') {
+  e.returnValue = false;
+ }
 }
 ```
 
@@ -71,7 +71,7 @@ var xhr = new XMLHttpRequest();
 // 응답 객체의 상태 변경시 알림을 받기 위한 콜백함수 지정
 xhr.onreadystatechange = handleResponse;
 // 요청을 보낸다.
-xhr.open("GET", "page.html", true); // 마지막 true 값은 요청의 비동기 여부, 가급적 true 로 사용자 경험 올리기
+xhr.open('GET', 'page.html', true); // 마지막 true 값은 요청의 비동기 여부, 가급적 true 로 사용자 경험 올리기
 xhr.send();
 ```
 

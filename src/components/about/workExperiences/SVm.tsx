@@ -57,7 +57,7 @@ export const SVm = () => {
       <Div style={{ textAlign: 'right' }}>
         <Button
           show={show}
-          onCLick={() => setShow((preShowSVm) => !preShowSVm)}
+          onClick={() => setShow((preShowSVm) => !preShowSVm)}
         >
           SVm 프로젝트
         </Button>

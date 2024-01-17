@@ -95,10 +95,10 @@ function Parent() {
 
 ```jsx
 function useToggle(initialValue) {
-  const [value, setValue] = useState(initialValue);
-  const onToggle = () => setValue(!value);
-  useDebugValue(value ? "on" : "off");
-  return [value, onToggle];
+ const [value, setValue] = useState(initialValue);
+ const onToggle = () => setValue(!value);
+ useDebugValue(value ? 'on' : 'off');
+ return [value, onToggle];
 }
 ```
 
@@ -106,13 +106,13 @@ function useToggle(initialValue) {
 
 ```jsx
 function Profile({ firstName, lastName }) {
-  const [name, setName] = useState(`${firstName} ${lastName}`);
-  const isFirstRef = useRef(true);
-  if (isFirstRef.current) {
-    isFirstRef.current = false;
-    callApi();
-  }
-  // ...
+ const [name, setName] = useState(`${firstName} ${lastName}`);
+ const isFirstRef = useRef(true);
+ if (isFirstRef.current) {
+  isFirstRef.current = false;
+  callApi();
+ }
+ // ...
 }
 ```
 
@@ -120,17 +120,17 @@ function Profile({ firstName, lastName }) {
 
 ```jsx
 function useOnFirstRender(func) {
-  const isFirstRef = useRef(true);
-  if (isFirstRef.current) {
-    isFirstRef.current = false;
-    func();
-  }
+ const isFirstRef = useRef(true);
+ if (isFirstRef.current) {
+  isFirstRef.current = false;
+  func();
+ }
 }
 
 function Profile({ firstName, lastName }) {
-  const [name, setName] = useState(`${firstName} ${lastName}`);
-  useOnFirstRender(callApi);
-  // ...
+ const [name, setName] = useState(`${firstName} ${lastName}`);
+ useOnFirstRender(callApi);
+ // ...
 }
 ```
 
@@ -138,18 +138,18 @@ function Profile({ firstName, lastName }) {
 
 ```jsx
 function Profile(props) {
-  const [name, setName] = useState(props.name);
-  const prevUserId = usePrevious(props.userId);
-  const isMountedRef = useRef(false);
-  useEffect(() => {
-    if (isMountedRef.current) {
-      if (prevUserId !== props.userId) {
-        setName(props.name);
-      }
-    } else {
-      isMountedRef.current = true;
-    }
-  });
+ const [name, setName] = useState(props.name);
+ const prevUserId = usePrevious(props.userId);
+ const isMountedRef = useRef(false);
+ useEffect(() => {
+  if (isMountedRef.current) {
+   if (prevUserId !== props.userId) {
+    setName(props.name);
+   }
+  } else {
+   isMountedRef.current = true;
+  }
+ });
 }
 ```
 
@@ -157,11 +157,11 @@ function Profile(props) {
 
 ```jsx
 function usePrevious(value) {
-  const valueRef = useRef();
-  useEffect(() => {
-    valueRef.current = value;
-  }, [value]);
-  return valueRef.current;
+ const valueRef = useRef();
+ useEffect(() => {
+  valueRef.current = value;
+ }, [value]);
+ return valueRef.current;
 }
 ```
 
@@ -169,14 +169,14 @@ function usePrevious(value) {
 
 ```jsx
 function useOnUpdate(func) {
-  const inMountedRef = useRef(false);
-  useEffect(() => {
-    if (isMountedRef.current) {
-      func();
-    } else {
-      isMountedRef.current = true;
-    }
-  });
+ const inMountedRef = useRef(false);
+ useEffect(() => {
+  if (isMountedRef.current) {
+   func();
+  } else {
+   isMountedRef.current = true;
+  }
+ });
 }
 ```
 
@@ -184,13 +184,13 @@ function useOnUpdate(func) {
 
 ```jsx
 function SpeedIndicator({ speed }) {
-  const [isFaster, setIsFaster] = useState(false);
-  const [prevSpeed, setPrevSpeed] = useState(0);
-  if (speed !== prevSpeed) {
-    setIsFaster(speed > prevSpeed);
-    setPrevSpeed(spped);
-  }
-  return <p>It's getting faster: {isFaster ? "yes" : "no"}</p>;
+ const [isFaster, setIsFaster] = useState(false);
+ const [prevSpeed, setPrevSpeed] = useState(0);
+ if (speed !== prevSpeed) {
+  setIsFaster(speed > prevSpeed);
+  setPrevSpeed(spped);
+ }
+ return <p>It's getting faster: {isFaster ? 'yes' : 'no'}</p>;
 }
 ```
 
@@ -198,11 +198,11 @@ function SpeedIndicator({ speed }) {
 
 ```jsx
 function MyComponent() {
-  const [_, forceUpdate] = useReducer(s => s + 1, 0);
-  function onClick() {
-    forceUpdate();
-  }
-  // ...
+ const [_, forceUpdate] = useReducer((s) => s + 1, 0);
+ function onClick() {
+  forceUpdate();
+ }
+ // ...
 }
 ```
 
@@ -210,25 +210,25 @@ function MyComponent() {
 
 ```jsx
 function useDebounce({ callback, ms, args }) {
-  useEffect(() => {
-    const id = setTimeout(callback, ms);
-    return () => clearTimeout(id);
-  }, args);
+ useEffect(() => {
+  const id = setTimeout(callback, ms);
+  return () => clearTimeout(id);
+ }, args);
 }
 
 function Profile() {
-  let [name, setName] = useState("");
-  let [nameTemp, setNameTemp] = useState("");
-  useDebounce({
-    callback: () => setName(nameTemp),
-    ms: 1000,
-    args: [nameTemp]
-  });
-  return (
-    <div>
-      <p>{name}</p>
-      <input type="text" onChange={e => setNameTemp(e.currentTarget.value)} />
-    </div>
-  );
+ let [name, setName] = useState('');
+ let [nameTemp, setNameTemp] = useState('');
+ useDebounce({
+  callback: () => setName(nameTemp),
+  ms: 1000,
+  args: [nameTemp],
+ });
+ return (
+  <div>
+   <p>{name}</p>
+   <input type="text" onChange={(e) => setNameTemp(e.currentTarget.value)} />
+  </div>
+ );
 }
 ```

@@ -532,13 +532,13 @@ flex: 0 0 auto
 - mobx v.6에서 IE지원을 위해서는 proxy를 사용하지 않게 해주어야 함.
 
 ```tsx
-import { configure } from "mobx"
+import { configure } from 'mobx';
 
-configure({ useProxies: "never" })
+configure({ useProxies: 'never' });
 ```
 
 - 그런데, 이 설정이 하나의 store에만 하면 되는게 아니라, 모든 store의 파일에 들어가서 해줘야 했다. 그렇지 않으면 동작을 안해서, 이렇게 해결...
-더 나은 방법이 있을지도 모르겠는데 아직은 못찾았습니다.
+  더 나은 방법이 있을지도 모르겠는데 아직은 못찾았습니다.
 
 ---
 
@@ -558,7 +558,6 @@ configure({ useProxies: "never" })
 ```
 
 ---
-
 
 ## history back
 
