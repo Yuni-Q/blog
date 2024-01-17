@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Switch from 'react-switch';
+// import Switch from 'react-switch';
 
 import './index.scss';
 import sendGAEvent, { GA_ACTION } from '../../utils/ga';
@@ -8,7 +8,7 @@ export const SnowSwitch = ({ checked, handleChange }) => {
   return (
     <div className="switch-container">
       <label htmlFor="normal-switch">
-        <Switch
+        {/* <Switch
           onChange={() => {
             sendGAEvent('button', GA_ACTION.CLICK, 'snow');
             handleChange();
@@ -23,7 +23,7 @@ export const SnowSwitch = ({ checked, handleChange }) => {
           offHandleColor={'#fff'}
           onColor={'#999'}
           onHandleColor={'#282c35'}
-        />
+        /> */}
       </label>
     </div>
   );

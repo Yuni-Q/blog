@@ -13,14 +13,14 @@ import { SVm } from '../components/about/workExperiences/SVm';
 import { BKM } from '../components/about/sideProject/BKM';
 import { TILTIL } from '../components/about/sideProject/TILTIL';
 
-const About: React.VFC = () => {
+const About = () => {
   useEffect(() => {
     sendGAEvent('resume', GA_ACTION.EXPOSE, 'resume');
   }, []);
 
   return (
     <Wrapper>
-      <div
+      <Div
         style={{
           marginLeft: `auto`,
           marginRight: `auto`,
@@ -30,121 +30,124 @@ const About: React.VFC = () => {
           )}`,
         }}
       >
-        <article>
-          <Section>
+        <Article>
+          <MySection>
             <Info />
             <Connect />
-          </Section>
-          <Section>
+          </MySection>
+          <MySection>
+            <H2>
+              <Span className="u-shadow">Work Experiences</Span>
+            </H2>
             <Woowa />
             <Meme />
             <SVm />
-          </Section>
-          <Section>
-            <h2>
-              <span className="u-shadow">Side Projects</span>
-            </h2>
+          </MySection>
+          <MySection>
+            <H2>
+              <Span className="u-shadow">Side Projects</Span>
+            </H2>
             <MOTI />
             <FindOutTheAnimalForest />
             <BKM />
             <TILTIL />
             <StudyWatson />
-          </Section>
-          <Section>
-            <h2>
-              <span className="u-shadow"> Community </span>
-            </h2>
-            <h3>Activity</h3>
-            <ul>
-              <li>
+          </MySection>
+          <MySection>
+            <H2>
+              <Span className="u-shadow"> Community </Span>
+            </H2>
+            <H3>Activity</H3>
+            <Ul>
+              <Li>
                 <Badge>21.06 ~ 21.08</Badge> 우아한 테크캠프 멘토
-              </li>
-              <li>
+              </Li>
+              <Li>
                 <Badge>20.05 ~ 21.05</Badge> DR 서포터즈 2기
-              </li>
-              <li>
+              </Li>
+              <Li>
                 개발 동아리 활동
-                <ul>
-                  <li>
+                <Ul>
+                  <Li>
                     <Badge>21.07 ~ 22.02 </Badge> Nexters
-                  </li>
-                  <li>
+                  </Li>
+                  <Li>
                     <Badge>18.03 ~ 20.04</Badge> MASH-UP
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <h3>Presentation</h3>
-            <ul>
-              <li>
-                <a
+                  </Li>
+                </Ul>
+              </Li>
+            </Ul>
+            <H3>Presentation</H3>
+            <Ul>
+              <Li>
+                <A
                   href="https://speakerdeck.com/yuniq/frontend"
                   target="_blank"
                   rel="noreferrer"
                 >
                   FRONTEND
-                </a>
-                <ul>
-                  <li>
+                </A>
+                <Ul>
+                  <Li>
                     <Badge>2020.01.11</Badge> &apos;MASH-UP BACKEND&apos;
                     세미나에서 발표한 내용입니다.
-                  </li>
-                  <li>
+                  </Li>
+                  <Li>
                     프론트엔드를 공부하며 알게 되었던 부분들을 중심으로 HTML부터
                     React 이후까지 간랸한 이야기를 공유하였습니다.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a
+                  </Li>
+                </Ul>
+              </Li>
+              <Li>
+                <A
                   href="https://techblog.woowahan.com/5327/"
                   target="_blank"
                   rel="noreferrer"
                 >
                   셀프서비스 디자인시스템 #2 – 개발자 편
-                </a>
-              </li>
-            </ul>
+                </A>
+              </Li>
+            </Ul>
 
-            <h3>수상</h3>
-            <ul>
-              <li>
+            <H3>수상</H3>
+            <Ul>
+              <Li>
                 <Badge>2020.12.14</Badge> 2020 농식품 빅데이터 온라인 해커톤
                 우수상(한국농수산식품유통공사)
-              </li>
-              <li>
+              </Li>
+              <Li>
                 <Badge>2019.12.16</Badge> 핀테크 x 인슈어테크 해커톤 금융결제원
                 우수상(과학기술정보통신부)
-              </li>
-              <li>
+              </Li>
+              <Li>
                 <Badge>2018.01.19</Badge> HANAplatform 기반 IoT 고급 개발자 양성
                 과정(NCS) BestProject상(멋쟁이사자처럼)
-              </li>
-            </ul>
-            <h3>Education</h3>
-            <ul>
-              <li>
+              </Li>
+            </Ul>
+            <H3>Education</H3>
+            <Ul>
+              <Li>
                 <Badge>2011.03 ~ 2017.02</Badge> 경북대학교(신소재공학부
                 전자재료공학 전공)
-              </li>
-              <li>
+              </Li>
+              <Li>
                 <Badge>2008.03 ~ 2011.02</Badge> 대구공업고등학교(전자기계과)
-              </li>
-              <li>
+              </Li>
+              <Li>
                 <Badge>2012.01 ~ 2014.01</Badge> 공군병(제 11전투 비행단 기계반)
-              </li>
-            </ul>
-          </Section>
-          <Section>
-            <h2>
-              <span className="u-shadow">Last Updated</span>
-            </h2>
-            <ul>
-              <li>2022.09.04</li>
-            </ul>
-          </Section>
-        </article>
-      </div>
+              </Li>
+            </Ul>
+          </MySection>
+          <MySection>
+            <H2>
+              <Span className="u-shadow">Last Updated</Span>
+            </H2>
+            <Ul>
+              <Li>2022.09.04</Li>
+            </Ul>
+          </MySection>
+        </Article>
+      </Div>
     </Wrapper>
   );
 };
@@ -190,7 +193,26 @@ const Wrapper = styled.div`
   background: #f6f6f6;
 `;
 
-const Section = styled.section`
+export const Div = styled.div``;
+export const Span = styled.span``;
+export const A = styled.a``;
+export const H1 = styled.h1``;
+export const H2 = styled.h2``;
+export const H3 = styled.h3``;
+export const Article = styled.div``;
+export const Ul = styled.ul``;
+export const Li = styled.li``;
+export const Table = styled.table``;
+export const TBody = styled.tbody``;
+export const Tr = styled.tr``;
+export const Th = styled.th``;
+export const Td = styled.td``;
+export const Br = styled.br``;
+export const Del = styled.del``;
+
+export const Section = styled.section``;
+
+const MySection = styled.section`
   background: #fff;
   padding: 36px;
   box-shadow: 1px 1px 10px 2px rgb(0 0 0 / 10%);
@@ -239,12 +261,12 @@ export const Button = styled.button<{ show: boolean }>`
 `;
 
 export const Badge = styled.span`
-  display: inline-block;
+  display: inLine-block;
   padding: 0.11em 0.3em;
   margin: 0 0.2em;
   border-radius: 0.3em;
   white-space: normal;
-  border: 1.2px solid #da3a6a;
+  border: 1.2px soLid #da3a6a;
   background: #fffbfe;
   color: #da3a6a;
   font-size: 13px;

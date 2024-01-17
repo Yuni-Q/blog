@@ -1,12 +1,12 @@
 import React from 'react';
-import Switch from 'react-switch';
+// import Switch from 'react-switch';
 import './index.scss';
 
 export const ThemeSwitch = ({ checked, handleChange }) => {
   return (
     <div className="switch-container">
       <label htmlFor="normal-switch">
-        <Switch
+        {/* <Switch
           onChange={handleChange}
           checked={checked === 'dark'}
           id="normal-switch"
@@ -18,7 +18,7 @@ export const ThemeSwitch = ({ checked, handleChange }) => {
           offHandleColor={'#fff'}
           onColor={'#999'}
           onHandleColor={'#282c35'}
-        />
+        /> */}
       </label>
     </div>
   );

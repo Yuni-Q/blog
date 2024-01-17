@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDisqusComments from 'react-disqus-comments';
+// import ReactDisqusComments from 'react-disqus-comments';
 
 interface Props {
   post: {
@@ -41,14 +41,16 @@ export class Disqus extends Component<Props, State> {
     const url = siteUrl + slug;
 
     return (
-      <ReactDisqusComments
+      <>
+      {/* <ReactDisqusComments
         shortname={shortName}
         identifier={post.frontmatter.title}
         title={post.frontmatter.title}
         url={url}
         category_id={post.frontmatter.category_id}
         onNewComment={this.notifyAboutComment}
-      />
+      /> */}
+      </>
     );
   }
 }
