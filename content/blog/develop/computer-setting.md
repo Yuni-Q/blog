@@ -32,8 +32,6 @@ draft: true
 
 - 손쉬운 사용 - 포인터 제어기 - 트랙패드 옵션 - 드래그 활성화 - 세 손가락으로 드래그 하기
 
-## [script kit](https://www.scriptkit.com/)
-
 ## Homebrew 설치
 
 ```zsh
@@ -474,6 +472,7 @@ brew bundle
 
 ## Raycast
 
+- [script kit](https://www.scriptkit.com/) 대체제
 - Clipboard History
   - 컨맨드 + 쉬프트 + V
 - Calendar
@@ -481,16 +480,17 @@ brew bundle
 ### Store
 
 - visual Studio Code
-- 
 - Note
   - 손쉬운 사용에 추가해 주어야 새로운 메모를 작성할 수 있다.
-- Jira
 
 ### 단축키 입력
 
 - 세팅 -> extensions -> Record Hotkey
 
 ### extension보기
-- npm run dev하면 등록되어 사용이 가능하다. 
+
+- npm run dev하면 등록되어 사용이 가능하다.
+- (open-browser)[https://github.com/Yuni-Q/open-browser]
+- (jira)[https://github.com/Yuni-Q/jira]
 
 ## [shottr](https://shottr.cc)

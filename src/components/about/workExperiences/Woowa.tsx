@@ -684,6 +684,19 @@ export const Woowa = () => {
             <Li>다양한 문서 정리</Li>
             <Li>VPC간 통신을 위한 네트워크 설정</Li>
             <Li>페어코딩 마련</Li>
+            <Li>CI 빌드킷 버전 업</Li>
+            <Li>FEOPS, 스펙트럼, 우아한 파티 합칠 준비 및 문서 정리</Li>
+            <Li>깃랩 개인 메시지 유저별로 조회 및 동기화로 수행</Li>
+            <Li>테스트 ava에서 vitest로 변경</Li>
+            <Li>서포트 워크플로우 강화하기 계획</Li>
+            <Li>루트 페이지 접속 시 필요한 아이콘 대응</Li>
+            <Li>중복 실행 알람 환경 변수 노출하기</Li>
+            <Li>업무 중에만 슬랙 DM 보내기 로깅하기</Li>
+            <Li>In Test 상태 변경이 되는지 팔로업 하기</Li>
+            <Li>소나큐브 연동</Li>
+            <Li>Vitest 테스트 데이터 gitlab(lcov), 소나큐브(cobertura) 연동</Li>
+            <Li>위키 자동화 시스템 만들기</Li>
+            <Li>withCredentials 대응</Li>
           </Ul>
         </Section>
         <Section>
