@@ -88,3 +88,22 @@ Access-Control-Allow-Headers: Origin,Accept,X-Requested-With,Content-Type,Access
 ## 참고
 
 - [javascript ajax 크로스도메인 요청-CORS](https://brunch.co.kr/@adrenalinee31/1)
+
+## Nest에서 CORS 대응
+
+```ts
+// 정규식 주소 허용
+app.enableCors({
+  origin: [/\.yuni\.com$/],
+  methods: 'GET,PUT,POST,PATCH,DELETE,HEAD,OPTIONS',
+  credentials: true,
+  preflightContinue: true,
+});
+
+app.use('*', function (req: Request, res: Response, next: NextFunction) {
+  // Access-Control-Allow-Origin의 주소가 *가 아니게 적용
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  // OPTIONS 메소드 대응
+  req.method === 'OPTIONS' ? res.sendStatus(200) : next();
+});
+```
