@@ -36,11 +36,12 @@ export const Woowa = () => {
           </Tr>
           <Tr>
             <Th>position</Th>
-            <Td>배민스토어웹프론트개발팀 / FrontEnd Engineer</Td>
+            <Td>배민공통서비스웹프론트개발팀 / FrontEnd Engineer</Td>
           </Tr>
         </TBody>
       </Table>
       <Ul>
+        <Li>전사 웹 프론트 라이브러리 및 도구를 개발</Li>
         <Li>B마트 서비스/어드민 프론트 개발</Li>
         <Li>배민앱 시각 시스템 개발</Li>
         <Li>개발 경험 향상을 위한 데브옵스 개발</Li>
@@ -70,6 +71,8 @@ export const Woowa = () => {
        * 커머스실/커머스웹프론트개발팀
        * 배민스토어서비스실/배민스토어웹프론트개발팀
        * 배민커머스서비스실/배민커머스웹프론트개발팀
+       *
+       * 공통서비스실/배민공통서비스웹프론트개발팀
        * */}
       <Div style={{ textAlign: 'right' }}>
         <Button
@@ -84,6 +87,43 @@ export const Woowa = () => {
         show={show}
         height={ref.current?.scrollHeight || 0}
       >
+        <Section>
+          <H3>배민공통서비스웹프론트개발팀</H3>
+          <Table>
+            <TBody>
+              <Tr>
+                <Th>period</Th>
+                <Td>24.02 ~ Current</Td>
+              </Tr>
+              <Tr>
+                <Th>position</Th>
+                <Td>FrontEnd/BackEnd Engineer</Td>
+              </Tr>
+            </TBody>
+          </Table>
+          <Ul>
+            <Li>팀 빌딩</Li>
+            <Ul>
+              <Li>
+                슬랙 워크플로우 생성(서포트 채널 가이드, 업무 요청, 장애 대응,
+                배포)
+              </Li>
+              <Li>슬랙 반복 스레드 생성(아침, 저녁)</Li>
+              <Li>
+                필수 문서 가이드 작성 및 공유(그라운드 룰, 배포 가이드, 버저닝
+                정책, 브랜치 전략, 릴리즈 전략, 자기소개, 담당 서비스 업무 지도,
+                지라 사용법, 1Pager 양식, 지라 티켓 생성 가이드)
+              </Li>
+              <Li>권한 관리(위키, 지라, 깃랩, 사내 어드민)</Li>
+              <Li>정리(위키 페이지, 지라 티켓, 깃랩 레포)</Li>
+              <Li>캘린더 생성(팀, 배포)</Li>
+              <Li>템플릿 제공(지라 티켓, 1Pager)</Li>
+              <Li>
+                사내 시스템에 팀 정보 등록(우아한워크플로우, 방화벽, 젠킨스)
+              </Li>
+            </Ul>
+          </Ul>
+        </Section>
         <Section>
           <H3>주문/결제 파트</H3>
           <Table>
@@ -198,7 +238,7 @@ export const Woowa = () => {
             <TBody>
               <Tr>
                 <Th>period</Th>
-                <Td>23.06 ~</Td>
+                <Td>23.06 ~ 24.01</Td>
               </Tr>
               <Tr>
                 <Th>position</Th>
@@ -404,7 +444,7 @@ export const Woowa = () => {
             <TBody>
               <Tr>
                 <Th>period</Th>
-                <Td>22.06 ~</Td>
+                <Td>22.06 ~ 24.02</Td>
               </Tr>
               <Tr>
                 <Th>position</Th>
@@ -740,7 +780,7 @@ export const Woowa = () => {
             <TBody>
               <Tr>
                 <Th>period</Th>
-                <Td>21.10 ~</Td>
+                <Td>21.10 ~ 22.06</Td>
               </Tr>
               <Tr>
                 <Th>position</Th>
@@ -803,7 +843,7 @@ export const Woowa = () => {
             <TBody>
               <Tr>
                 <Th>period</Th>
-                <Td>21.06 ~ 22.05 (1년)</Td>
+                <Td>21.06 ~ 22.06 (1년)</Td>
               </Tr>
               <Tr>
                 <Th>position</Th>
