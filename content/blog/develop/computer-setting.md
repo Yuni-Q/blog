@@ -494,3 +494,7 @@ brew bundle
 - (jira)[https://github.com/Yuni-Q/jira]
 
 ## [shottr](https://shottr.cc)
+
+## Next Meeting
+
+- 미팅을 메뉴바에 나타내 주는 앱

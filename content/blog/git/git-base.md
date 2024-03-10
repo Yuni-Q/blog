@@ -218,6 +218,13 @@ git config --global user.useConfigOnly true
 git branch | grep "t" | xargs git branch -D
 ```
 
+## 에디터 변경
+
+```zsh
+# vscode로 변경
+git config --global core.editor "code --wait"
+```
+
 ---
 
 ## 참고
