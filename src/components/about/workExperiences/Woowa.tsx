@@ -136,6 +136,8 @@ export const Woowa = () => {
                 <Li>라이브러리</Li>
               </Ul>
               <Li>우아한워크플로우 베타앱 만들기</Li>
+              <Li>온보딩 문서 만들기(readme, contribute) 및 타팀원 온보딩</Li>
+              <Li>3개의 서비스 서버 및 인프라 통합</Li>
             </Ul>
           </Ul>
         </Section>
