@@ -142,6 +142,10 @@ export const Woowa = () => {
                 우아한스펙트럼)
               </Li>
               <Li>Gitlab 파이프라인 가이드 및 파일 제공</Li>
+              <Li>개인 알람 ON/OFF</Li>
+              <Li>마이 페이지 추가</Li>
+              <Li>유저 페이지 수정(깃랩, 슬랙, 포털 링크 추가)</Li>
+              <Li>사내 프론트 밋업에서 프로덕트 발표</Li>
             </Ul>
           </Ul>
         </Section>
