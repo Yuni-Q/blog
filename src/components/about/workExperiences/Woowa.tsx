@@ -40,6 +40,7 @@ export const Woowa = () => {
           </Tr>
         </TBody>
       </Table>
+      {/* 24.06.07 */}
       <Ul>
         <Li>전사 웹 프론트 라이브러리 및 도구를 개발</Li>
         <Li>B마트 서비스/어드민 프론트 개발</Li>
