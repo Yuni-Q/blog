@@ -94,7 +94,33 @@ export const Woowa = () => {
             <TBody>
               <Tr>
                 <Th>period</Th>
-                <Td>24.02 ~ Current</Td>
+                <Td>24.05 ~ </Td>
+              </Tr>
+              <Tr>
+                <Th>position</Th>
+                <Td>FrontEnd/BackEnd Engineer/Product Manager</Td>
+              </Tr>
+            </TBody>
+          </Table>
+          <Ul>
+            <Li>우아한웤플로 구성원 모집(기획2, 디자인1, 서버2, 프론트10)</Li>
+            <Li>사내 프로덕트 합병(우아한북마크)</Li>
+            <Li>업무 요청 프로세스 개선</Li>
+            <Ul>
+              <Li>서포트 앱 만들기</Li>
+              <Li>서포트 가이드 제공</Li>
+              <Li>이모지로 자동화 기능 제공</Li>
+            </Ul>
+          </Ul>
+        </Section>
+        {/*  */}
+        <Section>
+          <H3>배민공통서비스웹프론트개발팀</H3>
+          <Table>
+            <TBody>
+              <Tr>
+                <Th>period</Th>
+                <Td>24.02 ~ 24.05</Td>
               </Tr>
               <Tr>
                 <Th>position</Th>
@@ -150,6 +176,7 @@ export const Woowa = () => {
             </Ul>
           </Ul>
         </Section>
+        {/*  */}
         <Section>
           <H3>주문/결제 파트</H3>
           <Table>
