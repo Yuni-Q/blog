@@ -1,0 +1,85 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "typescript.preferences.importModuleSpecifier": "shortest",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.turbo": true,
+    "**/node_modules": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": [
+    "aggregateprogress",
+    "aggregatetimeestimate",
+    "aggregatetimeoriginalestimate",
+    "aggregatetimespent",
+    "baedal",
+    "baemin",
+    "betawoowa",
+    "customfield",
+    "devstatus",
+    "duedate",
+    "FEOPS",
+    "FEOPSBETA",
+    "FEOPSSTAGE",
+    "fieldtype",
+    "gitbeaker",
+    "issuelinks",
+    "issuetype",
+    "JIRAUSER",
+    "keumky",
+    "KEUMKYOYOUNG",
+    "ldapts",
+    "localstack",
+    "Mrkdwn",
+    "nestjs",
+    "nofollow",
+    "notionhq",
+    "opsgenie",
+    "partyfigma",
+    "pullrequest",
+    "svcweb",
+    "typeorm",
+    "typesafe",
+    "WOOTELIER",
+    "woowa",
+    "Woowabros",
+    "woowahan",
+    "YUNHEE",
+    "yuni",
+    "yuniq",
+    "grafanas",
+    "MECE"
+  ],
+  "[javascript][typescript][typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  }
+}
