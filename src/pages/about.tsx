@@ -159,7 +159,7 @@ const About = () => {
               <Span className="u-shadow">Last Updated</Span>
             </H2>
             <Ul>
-              <Li>2024.01.17</Li>
+              <Li>2024.12.29</Li>
             </Ul>
           </MySection>
         </Article>
