@@ -174,7 +174,8 @@ const MemoPage: React.VFC = () => {
         memos.map((memo) => {
           const { id, top, left, width, height, text } = memo;
           return (
-            <Memo
+            <M
+              emo
               key={id}
               id={id}
               top={top}

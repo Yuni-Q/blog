@@ -23,7 +23,7 @@ const candyColor = [
 
 const WITH = 8;
 
-const CandyCrushWalkThrough: React.VFC = () => {
+const CandyCrushWalkThrough: React.FC = () => {
   const [colorBeingDragged, setColorBeingDragged] = useState('');
   const [colorBeingReplaced, setColorBeingReplaced] = useState('');
   const [squareIdBeingDragged, setSquareIdBeingDragged] = useState(0);
@@ -55,27 +55,8 @@ const CandyCrushWalkThrough: React.VFC = () => {
       return {
         array: [i, i + 1, i + 2, i + 3],
         notValid: [
-          5,
-          6,
-          7,
-          13,
-          14,
-          15,
-          21,
-          22,
-          23,
-          29,
-          30,
-          31,
-          37,
-          38,
-          39,
-          45,
-          46,
-          47,
-          53,
-          54,
-          55,
+          5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47,
+          53, 54, 55,
         ],
       };
     };

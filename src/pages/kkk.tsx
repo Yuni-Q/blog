@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 type Words = { second: number; text: string }[];
 
-const KKK: React.VFC = () => {
+const KKK: React.FC = () => {
   const [end, setEnd] = useState(false);
   const [words, setWords] = useState<Words>([]);
   const [index, setIndex] = useState(-1);
@@ -23,7 +23,8 @@ const KKK: React.VFC = () => {
     const timer = () => {
       const newData = new Date().getTime();
       const diffDate = Math.floor((newData - date) / 1000);
-      const wordsSecond = words[index].second;
+      console.log(words[index]);
+      const wordsSecond = words[index]?.second;
       if (wordsSecond - diffDate >= 0) {
         if (seconds !== wordsSecond - diffDate) {
           setSeconds(wordsSecond - diffDate);
