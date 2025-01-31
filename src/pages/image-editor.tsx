@@ -11,7 +11,8 @@ interface Rectangle extends Size {
 }
 
 interface BlurryArea extends Rectangle {
-  blurryImage?: ImageData;
+  maxWidth?: number;
+  maxHeight?: number;
 }
 
 const MAX_CANVAS_WIDTH = 800;
@@ -33,6 +34,13 @@ const INITIAL_AREA: BlurryArea = {
   height: 0,
 };
 
+const position: BlurryArea = {
+  x: 0,
+  y: 0,
+  width: 0,
+  height: 0,
+};
+
 const ImageEditor: React.FC = () => {
   const blurLayer = useRef<HTMLCanvasElement>(null);
   const imageLayer = useRef<HTMLCanvasElement>(null);
@@ -45,9 +53,14 @@ const ImageEditor: React.FC = () => {
   const [blurryArea, setBlurryArea] = useState<BlurryArea>(INITIAL_AREA);
   const [blurryAreas, setBlurryAreas] = useState<BlurryArea[]>([]);
 
-  useEffect(drawImageLayer, [imageSource, rotationAngle, blurryAreas]);
-  useEffect(drawBlurLayer, [imageSource, rotationAngle]);
-  useEffect(drawDragLayer, [imageSource, rotationAngle]);
+  useEffect(drawImageLayer, [blurryArea]);
+
+  useEffect(() => {
+    drawBlurLayer();
+    drawDragLayer();
+    drawImageLayer();
+  }, [imageSource, rotationAngle]);
+
   useEffect(drawDragArea, [blurryArea]);
 
   function drawImageLayer() {
@@ -58,6 +71,9 @@ const ImageEditor: React.FC = () => {
     const image = createImageElement(imageSource);
     image.onload = drawEditedImage;
 
+    const blurCanvas = blurLayer.current;
+    const blurContext = blurCanvas?.getContext('2d');
+
     function drawEditedImage() {
       const { x, y, width, height } = locateImage(image, rotationAngle);
       const canvasSize = getRotatedCanvasSize({ width, height }, rotationAngle);
@@ -65,13 +81,37 @@ const ImageEditor: React.FC = () => {
       context?.rotate((Math.PI / STRAIGHT_ANGLE) * rotationAngle);
       context?.drawImage(image, x, y, width, height);
 
-      blurryAreas
-        .filter(({ blurryImage }) => blurryImage !== undefined)
-        .forEach(({ blurryImage, ...area }) => {
-          const left = area.width > 0 ? area.x : area.x + area.width;
-          const top = area.height > 0 ? area.y : area.y + area.height;
-          context?.putImageData(blurryImage as ImageData, left, top);
-        });
+      blurryAreas.forEach(({ ...area }) => {
+        const angle = Math.abs(rotationAngle) % 360;
+        if (angle === 90) {
+          position.x = area.maxHeight - area.y - area.height;
+          position.y = area.x;
+          position.width = area.height;
+          position.height = area.width;
+        } else if (angle === 180) {
+          position.x = area.maxWidth - area.x - area.width;
+          position.y = area.maxHeight - area.y - area.height;
+          position.width = area.width;
+          position.height = area.height;
+        } else if (angle === 270) {
+          position.x = area.y;
+          position.y = area.maxWidth - area.x - area.width;
+          position.width = area.height;
+          position.height = area.width;
+        } else {
+          position.x = area.x;
+          position.y = area.y;
+          position.width = area.width;
+          position.height = area.height;
+        }
+        const blurryImage = blurContext?.getImageData(
+          position.x,
+          position.y,
+          position.width,
+          position.height,
+        );
+        context?.putImageData(blurryImage as ImageData, position.x, position.y);
+      });
 
       context?.restore();
     }
@@ -147,7 +187,6 @@ const ImageEditor: React.FC = () => {
     clientX,
     clientY,
   }: MouseEvent<HTMLCanvasElement>) {
-    console.log('handleMouseMove', { isBlurMode, buttons });
     if (!isBlurMode) return;
     if (buttons !== LEFT_CLICK) return;
 
@@ -161,22 +200,48 @@ const ImageEditor: React.FC = () => {
   }
 
   function handleMouseUp() {
-    console.log('handleMouseUp', { isBlurMode });
     if (!isBlurMode) return;
 
     const canvas = blurLayer.current;
     const context = canvas?.getContext('2d');
     if (blurryArea.width !== 0 && blurryArea.height !== 0) {
+      const { x, y, width, height } = blurryArea;
+      if (rotationAngle === 90) {
+        console.log('??', blurryArea);
+        position.x = y;
+        position.y = context?.canvas.height - x - width;
+        position.width = height;
+        position.height = width;
+      }
+      if (rotationAngle === 180) {
+        position.x = context?.canvas.width - x - width;
+        position.y = context?.canvas.height - y - height;
+        position.width = width;
+        position.height = height;
+      }
+      if (rotationAngle === 270) {
+        position.x = context?.canvas.width - y - height;
+        position.y = x;
+        position.width = height;
+        position.height = width;
+      }
+      if (rotationAngle === 0) {
+        position.x = x;
+        position.y = y;
+        position.width = width;
+        position.height = height;
+      }
+
       setBlurryAreas((areas) => [
         ...areas,
         {
-          ...blurryArea,
-          blurryImage: context?.getImageData(
-            blurryArea.x,
-            blurryArea.y,
-            blurryArea.width,
-            blurryArea.height,
-          ),
+          x: position.x,
+          y: position.y,
+          width: position.width,
+          height: position.height,
+          maxWidth: canvas?.width,
+          maxHeight: canvas?.height,
+          rotationAngle,
         },
       ]);
     }
