@@ -89,12 +89,99 @@ export const Woowa = () => {
         height={ref.current?.scrollHeight || 0}
       >
         <Section>
+          <H3>배민공통서비스웹프론트개발팀 직속 파트</H3>
+          <Table>
+            <TBody>
+              <Tr>
+                <Th>period</Th>
+                <Td>25.01 ~</Td>
+              </Tr>
+            </TBody>
+            <Ul>
+              <Li>우아한웤플로</Li>
+              <Ul>
+                <Li>우아한웤플로 서포트 업무 대응</Li>
+                <Li>클라우드 아틀라시안 베타 환경 연결</Li>
+                <Li>배공서웹 릴리즈 변경</Li>
+                <Li>퍼블릭 서버 보안 그룹 생성</Li>
+                <Li>아틀라시안 429 에러로 인한 IP 대역 등록</Li>
+                <Li>
+                  서포트웤플로 티켓 생성 시 내용에 지라키는 같은 키만 대응
+                </Li>
+                <Li>배디움 블로그 내용 전달 시 권한 문제 있는 페이지 제외</Li>
+                <Li>서포트웤플로 우아한청년들 계정 대응</Li>
+                <Li>온콜 알리미에서 옵스지니 스케쥴 삭제로 인한 에러 대응</Li>
+                <Li>
+                  서포트웤플로 다운로드 없는 링크의 경우 파일 첨부하지 않게 대응
+                </Li>
+                <Li>서포트웤플로 200건 돌파 인터뷰</Li>
+                <Li>클라우드 지라 403 에러로 인한 Redis 캐시 레이어 적용</Li>
+              </Ul>
+            </Ul>
+            <Ul>
+              <Li>백오피스 에디터</Li>
+              <Ul>
+                <Li>벽돌깨기 개발</Li>
+                <Li>이미지 편집 도구 개발</Li>
+                <Li>메모앱 만들기</Li>
+                <Li>백오피스 에디터 용어 정리</Li>
+                <Li>에디터에서 변환된 데이터 포맷을 노출하는 뷰어 구축</Li>
+                <Li>
+                  사내 시스템(auth-admin, gitlab, workflow)을 통한 백오피스
+                  에디터 자동 조사
+                </Li>
+                <Li>에디터에서 HTML 렌더러 구현</Li>
+                <Li>에디터에서 HTML 인터렉션 레이어 구현</Li>
+                <Li>에디터에서 HTML 인터렉션 레이어와 이벤트 버스 연결</Li>
+                <Li>에디터에서 패널과 이벤트 버스 연결</Li>
+                <Li>뷰어 수정 및 에디터의 렌더러와 연결</Li>
+                <Li>렌더러 인페이스 정의 및 구현</Li>
+                <Li>기본 컴포넌트 구현</Li>
+                <Li>프레임 구현</Li>
+                <Li>이벤트 정의 변경 및 중첩 구조 지원</Li>
+                <Li>검색 및 테이블 프레임 구현</Li>
+                <Li>폼 프레임 및 프로퍼티 변경 구현</Li>
+                <Li>폼 API 연결 구현 및 데이터 생성</Li>
+                <Li>폼 필드 구현</Li>
+                <Li>뷰어 DSL 기반 기본 형태 및 메타태그 구현</Li>
+                <Li>DSL 저장 및 불러오기를 위한 서버 및 프론트 구현</Li>
+              </Ul>
+            </Ul>
+            <Ul>
+              <Li>배민애즈 어드민</Li>
+              <Ul>
+                <Li>배민애즈, ad-manager 톺아보기</Li>
+                <Li>배민애즈 어드민 분리 논의</Li>
+                <Li>배민애즈 어드민 도메인 정리</Li>
+                <Li>배민애즈 어드민 작업 정리</Li>
+                <Li>package manager를 npm → pnpm으로 전환</Li>
+                <Li>Admin BFF를 설정 및 연동</Li>
+                <Li>광고 어드민 이관을 위한 Route53 추가 및 주소 변경</Li>
+                <Li>번들러를 CRA → Vite로 전환</Li>
+                <Li>react-query의 버전을 5.x 이상 버전으로 업데이트</Li>
+                <Li>API Client 추상화</Li>
+                <Li>상태관리 방법 일원화 완료(redux, zustand, context 제거)</Li>
+                <Li>antd에서 사내 디자인시스템(몰드 어드민)으로 전환</Li>
+              </Ul>
+            </Ul>
+            <Ul>
+              <Li>팀 업무</Li>
+              <Ul>
+                <Li>배공서웹 서포트 채널 변경</Li>
+                <Li>데일리리포트 개선 참여</Li>
+                <Li>Module Federation Platform을 위한 DynamoDB 스키마 개선</Li>
+                <Li>일의 감각 스터디</Li>
+              </Ul>
+            </Ul>
+          </Table>
+        </Section>
+        <Section>
           <H3>배민공통서비스웹프론트개발팀</H3>
           <Table>
             <TBody>
               <Tr>
                 <Th>period</Th>
-                <Td>24.02 ~ </Td>
+                <Td>24.02 ~ 24.12 </Td>
               </Tr>
               <Tr>
                 <Th>position</Th>

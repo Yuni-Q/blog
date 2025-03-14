@@ -17,12 +17,15 @@ interface PostIt {
 
 const MemoCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   const [postIts, setPostIts] = useState<PostIt[]>([]);
+
   const [selectedPostIt, setSelectedPostIt] = useState<number | null>(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isEditing, setIsEditing] = useState<number | null>(null);
   const [isResizing, setIsResizing] = useState(false);
   const [isRightClick, setIsRightClick] = useState(false);
-  const [isEditing, setIsEditing] = useState<number | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const [offset, setOffset] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,
@@ -39,19 +42,48 @@ const MemoCanvas: React.FC = () => {
     context.fillStyle = isDarkMode ? '#333' : '#fff';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    postIts.forEach((postIt, index) => {
+    postIts.forEach((postIt) => {
       context.fillStyle = isDarkMode ? '#555' : '#ffeb3b';
       context.fillRect(postIt.x, postIt.y, postIt.width, postIt.height);
       context.strokeStyle = isDarkMode ? '#fff' : '#000';
       context.strokeRect(postIt.x, postIt.y, postIt.width, postIt.height);
       context.fillStyle = isDarkMode ? '#fff' : '#000';
       context.font = '16px Arial';
-      context.fillText(
-        postIt.text,
-        postIt.x + 10,
-        postIt.y + 20,
-        postIt.width - 20,
-      );
+      const words = postIt.text.split(' ');
+      let line = '';
+      const lineHeight = 20;
+      let y = postIt.y + 20;
+      words.forEach((word) => {
+        const testLine = line + word + ' ';
+        const metrics = context.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > postIt.width - 20 && line !== '') {
+          context.fillText(line, postIt.x + 10, y);
+          line = word + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      });
+      // 공백이 없는 경우에도 줄바꿈 처리
+      let testLine = line;
+      let metrics = context.measureText(testLine);
+      let testWidth = metrics.width;
+      while (testWidth > postIt.width - 20) {
+        let splitIndex = testLine.length - 1;
+        while (
+          context.measureText(testLine.substring(0, splitIndex)).width >
+          postIt.width - 20
+        ) {
+          splitIndex--;
+        }
+        context.fillText(testLine.substring(0, splitIndex), postIt.x + 10, y);
+        testLine = testLine.substring(splitIndex);
+        y += lineHeight;
+        metrics = context.measureText(testLine);
+        testWidth = metrics.width;
+      }
+      context.fillText(testLine, postIt.x + 10, y);
     });
   }, [postIts, isDarkMode]);
 
@@ -153,7 +185,6 @@ const MemoCanvas: React.FC = () => {
     );
 
     if (postItIndex !== -1) {
-      setSelectedPostIt(postItIndex);
       setIsEditing(postItIndex);
     }
   }
@@ -235,6 +266,7 @@ const MemoCanvas: React.FC = () => {
             boxSizing: 'border-box',
             padding: '10px',
             font: '16px Arial',
+            whiteSpace: 'pre-wrap', // 줄바꿈을 위해 추가
           }}
         />
       )}

@@ -1,0 +1,184 @@
+{
+  "main": {
+    "id": "f76d1dd2bb0ee4ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "9ccf29ff247645f1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a15688b48ec1b1a5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "blog/오브젝트/02-객체지향-프로그래밍/02-객체지향-프로그래밍.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "02-객체지향-프로그래밍"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "abf79b7f3890b034",
+    "type": "split",
+    "children": [
+      {
+        "id": "52ac2f246d7f5037",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6c3bbf83bae4f22b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "ecaeb9e9de01583f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "5735d63e3580f5e1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2b8dc0ec510d3ca8",
+    "type": "split",
+    "children": [
+      {
+        "id": "f314bb9d830c9a3c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b830587fea2fd0e9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "d414480e021952cd",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "d2544b1509f8e6eb",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "26f77c7ea46dc41a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "a15688b48ec1b1a5",
+  "lastOpenFiles": [
+    "blog/오브젝트/01-객체,-설계/01-객체,-설계.md",
+    "blog/오브젝트/00-intro.md",
+    "blog/오브젝트/12-다형성.md",
+    "blog/오브젝트/11-합성과-유연한-설계.md",
+    "blog/오브젝트/10-상속과-코드-재사용.md",
+    "blog/오브젝트/09-유연한-설계.md",
+    "blog/오브젝트/08-의존성-관리하기.md",
+    "blog/오브젝트/07-객체-분해.md",
+    "blog/오브젝트/06-메시지와-인터페이스.md",
+    "blog/오브젝트/05-책임-할당하기.md",
+    "blog/오브젝트/04-설계-품질과-트레이드오프.md",
+    "blog/오브젝트/03-역할,-책임,-협력.md",
+    "blog/가상 면접 사례로 배우는 대규모 시스템 설계 기초/2장-개략적인-규모-추정.md"
+  ]
+}
