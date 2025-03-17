@@ -1,0 +1,266 @@
+{
+  "main": {
+    "id": "0e171b2dbe86ed34",
+    "type": "split",
+    "children": [
+      {
+        "id": "8679cdaedab4992f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6733dc75e16bf798",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/planner/daily/2025-03-17(월).md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "2025-03-17(월)"
+            }
+          },
+          {
+            "id": "a63b702fa3377e60",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TIL/옵시디언.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "옵시디언"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "02e14e6cdc7f5804",
+    "type": "split",
+    "children": [
+      {
+        "id": "6715188192b9d1e1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6e13e9143490ede5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "1acd2c679bace46f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "\b캐털리스",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "1945103bee6cc0f3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a3b7da928bd192d0",
+    "type": "split",
+    "children": [
+      {
+        "id": "537b3382d3a1195b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9d5b090868ca6d64",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "TIL/옵시디언.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "옵시디언 의 백링크"
+            }
+          },
+          {
+            "id": "99cd4993e7a7bbc0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "content/templeate/weekly-template.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "weekly-template 의 나가는 링크"
+            }
+          },
+          {
+            "id": "c005a07b59092c65",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "6223bdf8d6b6ff34",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "content/templeate/weekly-template.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "weekly-template 의 개요"
+            }
+          }
+        ]
+      },
+      {
+        "id": "511c105730bf7ff4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "50fa104db1ed40f8",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 299.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "templater-obsidian:Templater": false,
+      "vscode-editor:Create Code File": false,
+      "periodic-notes:Open today": false
+    }
+  },
+  "active": "a63b702fa3377e60",
+  "lastOpenFiles": [
+    "content/planner/daily/2025-03-17(월).md",
+    "content/planner/daily/데이터뷰.md",
+    "content/planner/daily/2025-03-16(일).md",
+    "assets/screenshot-pc.png",
+    "assets/screemshot-mobile.png",
+    "assets/gatsby-starter-bee.png",
+    "assets/cli-tool-example.gif",
+    "cli/create-new-post.js",
+    "content/blog/밸류 프로포지션 디자인/01장.md",
+    "TIL/옵시디언.md",
+    "content/blog/캐털리스트/02장-03장.md",
+    "content/blog/밸류 프로포지션 디자인",
+    "content/blog/캐털리스트/04장 나머지.md",
+    "content/blog/캐털리스트/01장.-리액턴스-효과:-사람들은-타인의-설득에-저항한다.md",
+    "content/templeate/템플릿.md",
+    "content/templeate/yearly-template.md",
+    "content/templeate/monthly-template.md",
+    "content/templeate/weekly-template.md",
+    "content/templeate/daliy-template.md",
+    "content/planner/yearly",
+    "content/planner/무제 폴더",
+    "content/planner/monthly",
+    "content/planner",
+    "content/planner/weekly",
+    "content/blog/INFCON 2022/vanilla-js와-함께-지속가능한-프런트엔드-코드-만들기---인프런-수강바구니-개선기,-이문ᄀ.md",
+    "content/blog/가상 면접 사례로 배우는 대규모 시스템 설계 기초/2장-개략적인-규모-추정.md",
+    "content/blog/가상 면접 사례로 배우는 대규모 시스템 설계 기초/3장-시스템-설계-면접-공략법.md",
+    "content/blog/가상 면접 사례로 배우는 대규모 시스템 설계 기초/1장-사용자-수에-따른-규모-확장성.md",
+    "content/type-challenges/13 - Hello World.ts",
+    "content/04-archive",
+    "content/무제 폴더",
+    "content/__about/resume-en.md",
+    "TIL/우아한 모노리스.md",
+    "static/phone.png",
+    "static/favicon2.png",
+    "TIL/playwright.md",
+    "README.md",
+    "README.ko.md",
+    "CONTRIBUTING.md"
+  ]
+}

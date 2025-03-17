@@ -1,0 +1,9 @@
+{
+  "showLineNumber": true,
+  "newFileLocation": "current",
+  "newFileFolderPath": "content/blog",
+  "attachmentFolderPath": "./files",
+  "showUnsupportedFiles": true,
+  "livePreview": true,
+  "defaultViewMode": "source"
+}

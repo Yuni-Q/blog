@@ -1,0 +1,34 @@
+{
+  "showGettingStartedBanner": false,
+  "hasMigratedDailyNoteSettings": false,
+  "hasMigratedWeeklyNoteSettings": false,
+  "daily": {
+    "format": "YYYY-MM-DD(ddd)",
+    "template": "content/templeate/daliy-template.md",
+    "folder": "content/planner/daily",
+    "enabled": true
+  },
+  "weekly": {
+    "format": "",
+    "template": "content/templeate/weekly-template.md",
+    "folder": "content/planner/weekly",
+    "enabled": true
+  },
+  "monthly": {
+    "format": "",
+    "template": "content/templeate/monthly-template.md",
+    "folder": "content/planner/monthly",
+    "enabled": true
+  },
+  "quarterly": {
+    "format": "",
+    "template": "",
+    "folder": ""
+  },
+  "yearly": {
+    "format": "",
+    "template": "content/templeate/yearly-template.md",
+    "folder": "content/planner/yearly",
+    "enabled": true
+  }
+}
