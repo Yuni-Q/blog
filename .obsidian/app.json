@@ -3,7 +3,7 @@
   "newFileLocation": "current",
   "newFileFolderPath": "content/blog",
   "attachmentFolderPath": "./files",
-  "showUnsupportedFiles": true,
+  "showUnsupportedFiles": false,
   "livePreview": true,
   "defaultViewMode": "source"
 }

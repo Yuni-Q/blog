@@ -1,38 +1,14 @@
 {
   "main": {
-    "id": "0e171b2dbe86ed34",
+    "id": "5324373015726ba8",
     "type": "split",
     "children": [
       {
-        "id": "8679cdaedab4992f",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "6733dc75e16bf798",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "content/planner/daily/2025-03-17(월).md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "2025-03-17(월)"
-            }
-          },
-          {
-            "id": "a63b702fa3377e60",
+            "id": "03634437be06566d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -53,6 +29,66 @@
               },
               "icon": "lucide-file",
               "title": "옵시디언"
+            }
+          },
+          {
+            "id": "0028a46e1d8061ae",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "content/excalidraw/Drawing 2025-03-18 14.58.25.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-03-18 14.58.25.excalidraw"
+            }
+          },
+          {
+            "id": "8968b24d06d66382",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/templeate/daliy-template.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "daliy-template"
+            }
+          },
+          {
+            "id": "1fabe52d46f0fc0b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/planner/daily/2025-03-18(화).md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "2025-03-18(화)"
             }
           }
         ],
@@ -88,7 +124,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "\b캐털리스",
+                "query": "tag:#r개인",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -129,7 +165,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TIL/옵시디언.md",
+                "file": "content/excalidraw/Drawing 2025-03-18 14.58.25.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +175,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "옵시디언 의 백링크"
+              "title": "Drawing 2025-03-18 14.58.25.excalidraw 의 백링크"
             }
           },
           {
@@ -218,12 +254,43 @@
       "command-palette:명령어 팔레트 열기": false,
       "templater-obsidian:Templater": false,
       "vscode-editor:Create Code File": false,
-      "periodic-notes:Open today": false
+      "kr-book-info-plugin:Add Book Info": false,
+      "homepage:Open homepage": false,
+      "obsidian-projects:Open projects": false,
+      "periodic-notes:Open today": false,
+      "translate:Open translation view": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "a63b702fa3377e60",
+  "active": "0028a46e1d8061ae",
   "lastOpenFiles": [
+    "Home.md",
+    "content/excalidraw/Drawing 2025-03-18 14.58.25.excalidraw.md",
+    "TIL/옵시디언.md",
+    "content/excalidraw/files/as.svg",
+    "content/excalidraw/files/new.svg",
+    "content/excalidraw/files",
+    "Excalidraw/Scripts/Downloaded/Create DrawIO file.svg",
+    "Excalidraw/Scripts/Downloaded/Create DrawIO file.md",
+    "Excalidraw/Scripts/Downloaded",
+    "Excalidraw/Scripts",
+    "Excalidraw",
+    "content/templeate/daliy-template.md",
+    "content/excalidraw",
+    "content/planner/daily/2025-03-18(화).md",
     "content/planner/daily/2025-03-17(월).md",
+    "CONTRIBUTING.md",
+    "content/templeate/템플릿.md",
+    "content/templeate/project-template.md",
+    "gatsby-meta-config.js",
+    "gatsby-config.js",
+    "gatsby-browser.js",
+    "README.md",
+    "content/blog/구글 엔지니어는 이렇게 일한다/내용.md",
+    "README.ko.md",
+    "content/blog/구글 엔지니어는 이렇게 일한다/구글 엔지니어는 이렇게 일한다 구글러가 전하는 문화 프로세스 도구의 모든 것.md",
+    "content/blog/OKR 실천편/summary.md",
+    "content/blog/OKR 실천편/실전 정량적 분석 재무제표 분석 1인자 체리형부의 트럼프 20 시대 수혜주 40선.md",
     "content/planner/daily/데이터뷰.md",
     "content/planner/daily/2025-03-16(일).md",
     "assets/screenshot-pc.png",
@@ -232,35 +299,14 @@
     "assets/cli-tool-example.gif",
     "cli/create-new-post.js",
     "content/blog/밸류 프로포지션 디자인/01장.md",
-    "TIL/옵시디언.md",
     "content/blog/캐털리스트/02장-03장.md",
     "content/blog/밸류 프로포지션 디자인",
     "content/blog/캐털리스트/04장 나머지.md",
     "content/blog/캐털리스트/01장.-리액턴스-효과:-사람들은-타인의-설득에-저항한다.md",
-    "content/templeate/템플릿.md",
     "content/templeate/yearly-template.md",
     "content/templeate/monthly-template.md",
     "content/templeate/weekly-template.md",
-    "content/templeate/daliy-template.md",
-    "content/planner/yearly",
-    "content/planner/무제 폴더",
-    "content/planner/monthly",
-    "content/planner",
-    "content/planner/weekly",
-    "content/blog/INFCON 2022/vanilla-js와-함께-지속가능한-프런트엔드-코드-만들기---인프런-수강바구니-개선기,-이문ᄀ.md",
-    "content/blog/가상 면접 사례로 배우는 대규모 시스템 설계 기초/2장-개략적인-규모-추정.md",
-    "content/blog/가상 면접 사례로 배우는 대규모 시스템 설계 기초/3장-시스템-설계-면접-공략법.md",
-    "content/blog/가상 면접 사례로 배우는 대규모 시스템 설계 기초/1장-사용자-수에-따른-규모-확장성.md",
-    "content/type-challenges/13 - Hello World.ts",
-    "content/04-archive",
-    "content/무제 폴더",
-    "content/__about/resume-en.md",
-    "TIL/우아한 모노리스.md",
     "static/phone.png",
-    "static/favicon2.png",
-    "TIL/playwright.md",
-    "README.md",
-    "README.ko.md",
-    "CONTRIBUTING.md"
+    "static/favicon2.png"
   ]
 }

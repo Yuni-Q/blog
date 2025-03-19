@@ -72,16 +72,20 @@ tR += should_include ? sectionContent : "없습니다😀";
 ## 오늘 끝내야 할 일
 ```tasks
 due on or before <% tp.file.title.slice(0,10) %>
-filter by function task.file.folder.includes("10. Planner")
-filter by function !task.file.folder.includes("templates")
+filter by function task.file.folder.includes("content/planner/daily")
 not done
 sort by priority
 ```
 ### 업무 할 일
 ```tasks
-tag include #업무 
+tag include #업무
+(done on <% tp.file.title.slice(0,10) %>) OR (not done)
 ```
 ### 개인 할 일
+```tasks
+tag include #개인
+(done on <% tp.file.title.slice(0,10) %>) OR (not done)
+```
 
 ### 반복 할 일
 ```tasks
@@ -95,6 +99,7 @@ has tags
 no due date
 not done
 description regex does not match /^$/
+folder includes {{query.file.folder}}
 ```
 
 ### 오늘 완료한 일

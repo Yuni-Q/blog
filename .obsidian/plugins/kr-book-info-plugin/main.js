@@ -97,23 +97,36 @@ var getBookInfoResult = (_0) => __async(void 0, [_0], function* ({
     const coverUrl = ((_b = html.querySelector("#yDetailTopWrap > div.topColLft > div").querySelector("#yDetailTopWrap > div.topColLft > div > div.gd_3dGrp > div > span.gd_img > em > img")) == null ? void 0 : _b.getAttribute("src")) || ((_c = html.querySelector("#yDetailTopWrap > div.topColLft > div > span > em > img")) == null ? void 0 : _c.getAttribute("src")) || "";
     const introduction = (_d = html.querySelector("#infoset_introduce > div.infoSetCont_wrap > div.infoWrap_txt > div")) == null ? void 0 : _d.getText().replace(/(<br>|<br\/>|<br \/>)/g, "\r\n").replace(/(<b>|<B>|<\/b>|<\/B>|\[|\]|\*|\#)/g, "").split("\n").map((line) => line.trim() + "\n").join("");
     const index = (_e = html.querySelector("#infoset_toc > div.infoSetCont_wrap > div.infoWrap_txt")) == null ? void 0 : _e.getText().replace(/(<br>|<br\/>|<br \/>)/g, "\r\n").replace(/(<b>|<B>|<\/b>|<\/B>|\[|\]|\*|\#)/g, "").split("\n").map((line) => line.trim() + "\n").join("");
+    const authorYaml = author.length === 1 ? `\n- ${author[0]}` : author.map(a => `- ${a}`).join('\n');
+    
     const frontmatter = {
-      created: `${new Date(+new Date() + 3240 * 1e4).toISOString().split("T")[0] + " " + new Date().toTimeString().split(" ")[0].slice(0, 5)}`,
-      tag: `${tag.join(" ")}`,
-      title: `${title}`,
-      author: `${author.join(", ")}`,
-      category: `${tag[1]}`,
-      total_page: page,
+      registered_date: `${new Date(+new Date() + 3240 * 1e4).toISOString().split("T")[0] + " " + new Date().toTimeString().split(" ")[0].slice(0, 5)}`,
+      book_title: `${mainTitle}`,
+      author: authorYaml,
       publish_date: `${publishDate}`,
+      total_page: page,
+      start_date: `${new Date(+new Date() + 3240 * 1e4).toISOString().split("T")[0]}`,
+      finish_date: `${new Date(+new Date() + 3240 * 1e4).toISOString().split("T")[0]}`,
+      reading: false,
+      book_note: false,
       cover_url: `${coverUrl}`,
-      status: `${status}`,
-      start_read_date: `${new Date(+new Date() + 3240 * 1e4).toISOString().split("T")[0]}`,
-      finish_read_date: `${new Date(+new Date() + 3240 * 1e4).toISOString().split("T")[0]}`,
-      my_rate: +myRate,
-      book_note: `${bookNote}`
+      tag: `${tag.join(" ")}`,
+      summary: ``
     };
-    const main = `---
-${(0, import_obsidian.stringifyYaml)(frontmatter)}---
+
+    const yamlString = (0, import_obsidian.stringifyYaml)(frontmatter);
+    const lines = yamlString.split('\n');
+    const cleanedLines = lines.map(line => {
+      if (line.trim().startsWith('author: |-')) {
+        return line.replace('author: |-', 'author:');
+      }
+      return line;
+    });
+    const cleanedYaml = cleanedLines.join('\n');
+
+
+const main = `---
+${cleanedYaml}---
 ${toggleTitle ? `
 # ${title}` : ""}${toggleIntroduction ? `
 
@@ -330,5 +343,3 @@ var KrBookInfoSettingTab = class extends import_obsidian3.PluginSettingTab {
     })));
   }
 };
-
-/* nosourcemap */

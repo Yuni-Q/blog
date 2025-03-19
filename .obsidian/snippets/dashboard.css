@@ -1,0 +1,38 @@
+/* https://www.youtube.com/@booktracing */
+/* Updated 2024-04-07 */
+
+.dashboard {
+  font-family: inherit;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.dashboard.markdown-preview-section {
+  max-width: 100%;
+}
+
+.dashboard h2 {
+  border-bottom-style: solid !important;
+  border-width: 2px !important;
+  padding-bottom: 15px !important;
+}
+
+.dashboard div.markdown-preview-section > div > ul > li > div.list-bullet,
+.dashboard.markdown-rendered.show-indentation-guide li > ul::before,
+.dashboard.markdown-rendered.show-indentation-guide li > ol::before {
+  display: none;
+}
+
+.dashboard.markdown-preview-view div > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 50px 50px; /* 항목 간의 간격 */
+}
+
+.dashboard ul.contains-task-list {
+  row-gap: 0px !important;
+}
+
+.dashboard ul.dataview {
+  row-gap: 0px !important;
+  list-style-type: square !important;
+}
