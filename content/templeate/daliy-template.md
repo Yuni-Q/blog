@@ -122,16 +122,3 @@ done <% tp.file.title.slice(0,10) %>
 >[!note]
 >
 ### 일기
-
-## 오늘 작성한 노트
-```dataview
-List FROM "" WHERE file.cday = date("<% tp.date.now('YYYY-MM-DD') %>") SORT file.ctime desc
-
-```
-
-## 오늘 수정한 노트
-```dataview
-List FROM "" WHERE file.mday = date("<% tp.date.now('YYYY-MM-DD') %>") SORT file.mtime desc
-
-
-```

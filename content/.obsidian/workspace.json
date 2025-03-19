@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "planner/daily/2025-03-17(월).md",
+                "mode": "source",
                 "source": false,
                 "backlinks": true,
                 "backlinkOpts": {
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Home"
+              "title": "2025-03-17(월)"
             }
           }
         ]
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "planner/daily/2025-03-17(월).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Home 의 백링크"
+              "title": "2025-03-17(월) 의 백링크"
             }
           },
           {
@@ -191,36 +191,36 @@
       "command-palette:명령어 팔레트 열기": false,
       "templater-obsidian:Templater": false,
       "vscode-editor:Create Code File": false,
+      "periodic-notes:Open today": false,
       "kr-book-info-plugin:Add Book Info": false,
       "homepage:Open homepage": false,
       "obsidian-projects:Open projects": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
-      "periodic-notes:Open today": false
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "planner/daily/2025-03-18(화).md",
+    "planner/daily/2025-03-19(수).md",
+    "templeate/daliy-template.md",
+    "planner/daily/2025-03-17(월).md",
+    "Home.md",
     "excalidraw/Drawing 2025-03-19 13.28.40.excalidraw.md",
     "excalidraw/files/asd.svg",
     "excalidraw/files/test_0.svg",
     "excalidraw/files/test.svg",
     "excalidraw/files",
-    "Home.md",
     "excalidraw/scripts/Downloaded/Create DrawIO file.svg",
     "excalidraw/scripts/Downloaded/Create DrawIO file.md",
     "excalidraw/scripts/Downloaded",
     "excalidraw/scripts",
     "excalidraw/Drawing 2025-03-19 13.25.23.excalidraw.md",
-    "planner/daily/2025-03-19(수).md",
     "blog/오브젝트/01-객체,-설계/01-객체,-설계.md",
     "blog/오브젝트/오브젝트 코드로 이해하는 객체지향 설계.md",
     "blog/밸류 프로포지션 디자인/01장.md",
     "blog/밸류 프로포지션 디자인/밸류 프로포지션 디자인 가치 제안 설계로 시작하라.md",
     "blog/오브젝트/03-역할,-책임,-협력.md",
     "blog/바바라 민토, 논리의 기술/01장-왜-피라미드-구조인가.md",
-    "templeate/daliy-template.md",
-    "planner/daily/2025-03-17(월).md",
-    "planner/daily/2025-03-18(화).md",
     "excalidraw/Drawing 2025-03-19 11.02.42.excalidraw.md",
     "excalidraw/Drawing 2025-03-18 14.58.25.excalidraw.md",
     "excalidraw/files/as.svg",
