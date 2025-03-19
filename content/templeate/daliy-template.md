@@ -60,9 +60,7 @@ tR += should_include ? sectionContent : "없습니다😀";
 ### 오늘의 확언
 - 
 ### 오늘의 목표
-- 
-- 
-- [ ] 
+
 - [ ] 
 
 ### 할 일 추가하기
@@ -80,11 +78,13 @@ sort by priority
 ```tasks
 tag include #업무
 (done on <% tp.file.title.slice(0,10) %>) OR (not done)
+sort by due date
 ```
 ### 개인 할 일
 ```tasks
 tag include #개인
 (done on <% tp.file.title.slice(0,10) %>) OR (not done)
+sort by due date
 ```
 
 ### 반복 할 일
