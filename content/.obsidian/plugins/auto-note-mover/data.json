@@ -4,22 +4,22 @@
   "statusBar_trigger_indicator": true,
   "folder_tag_pattern": [
     {
-      "folder": "content/planner/daily",
+      "folder": "planner/daily",
       "tag": "#daily",
       "pattern": ""
     },
     {
-      "folder": "content/planner/weekly",
+      "folder": "planner/weekly",
       "tag": "#weekly",
       "pattern": ""
     },
     {
-      "folder": "content/planner/monthly",
+      "folder": "planner/monthly",
       "tag": "#monthly",
       "pattern": ""
     },
     {
-      "folder": "content/planner/yearly",
+      "folder": "planner/yearly",
       "tag": "yearly",
       "pattern": ""
     }
@@ -27,7 +27,7 @@
   "use_regex_to_check_for_excluded_folder": false,
   "excluded_folder": [
     {
-      "folder": "content/templeate"
+      "folder": "templeate"
     }
   ]
 }

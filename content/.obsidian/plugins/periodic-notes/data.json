@@ -4,20 +4,20 @@
   "hasMigratedWeeklyNoteSettings": false,
   "daily": {
     "format": "YYYY-MM-DD(ddd)",
-    "template": "content/templeate/daliy-template.md",
-    "folder": "content/planner/daily",
+    "template": "templeate/daliy-template.md",
+    "folder": "planner/daily",
     "enabled": true
   },
   "weekly": {
     "format": "",
-    "template": "content/templeate/weekly-template.md",
-    "folder": "content/planner/weekly",
+    "template": "templeate/weekly-template.md",
+    "folder": "planner/weekly",
     "enabled": true
   },
   "monthly": {
     "format": "",
-    "template": "content/templeate/monthly-template.md",
-    "folder": "content/planner/monthly",
+    "template": "templeate/monthly-template.md",
+    "folder": "planner/monthly",
     "enabled": true
   },
   "quarterly": {
@@ -27,8 +27,8 @@
   },
   "yearly": {
     "format": "",
-    "template": "content/templeate/yearly-template.md",
-    "folder": "content/planner/yearly",
+    "template": "templeate/yearly-template.md",
+    "folder": "planner/yearly",
     "enabled": true
   }
 }
