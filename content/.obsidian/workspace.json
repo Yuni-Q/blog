@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "planner/daily/2025-03-21(금).md",
+                "mode": "source",
                 "source": false,
                 "backlinks": true,
                 "backlinkOpts": {
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Home"
+              "title": "2025-03-21(금)"
             }
           }
         ]
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "planner/daily/2025-03-21(금).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Home 의 백링크"
+              "title": "2025-03-21(금) 의 백링크"
             }
           },
           {
@@ -200,13 +200,15 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "planner/daily/2025-03-21(금).md",
     "planner/daily/2025-03-20(목).md",
-    "Home.md",
-    "planner/daily/2025-03-18(화).md",
     "excalidraw/백오피스에디터-데이터흐름-및-entity.excalidraw.md",
-    "excalidraw/Drawing 2025-03-19 13.28.40.excalidraw.md",
-    "planner/daily/2025-03-19(수).md",
+    "Home.md",
     "planner/daily/2025-03-17(월).md",
+    "planner/daily/2025-03-22(토).md",
+    "planner/daily/2025-03-19(수).md",
+    "planner/daily/2025-03-18(화).md",
+    "excalidraw/Drawing 2025-03-19 13.28.40.excalidraw.md",
     "planner/weekly",
     "templeate/daliy-template.md",
     "excalidraw/files/asd.svg",
